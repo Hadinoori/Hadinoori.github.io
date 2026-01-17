@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: Hadinoori.github.io/sitemap.xml
+Sitemap: https://hadinoori.ca/sitemap.xml
