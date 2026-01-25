@@ -1,13 +1,15 @@
 <style>
-  /* 1. INSTITUTIONAL IDENTITY SYSTEM */
   :root {
     --bg-main: #fcfcfc;
     --text-primary: #020617;
     --text-muted: #475569;
-    --accent-intellectual: #1e40af;
-    --border-subtle: #eeeeee;
-    --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
-    --font-serif: 'Lora', Georgia, serif;
+    --accent-blue: #1e40af; 
+    --ui-border: #e2e8f0;
+    --font-serif: 'Lora', serif;
+    --font-sans: 'Inter', sans-serif;
+    /* Independent Spacing Logic */
+    --hero-spine: 280px; 
+    --archive-meta-width: 180px;
   }
 
   body {
@@ -15,210 +17,148 @@
     font-family: var(--font-sans);
     color: var(--text-primary);
     margin: 0;
-    line-height: 1.55;
+    line-height: 1.6;
     -webkit-font-smoothing: antialiased;
   }
 
-  .site-container {
+  .wrap {
     max-width: 1100px;
     margin: 0 auto;
     padding: 0 50px;
   }
 
-  /* 2. HEADER: REFINED NAVIGATION */
-  header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 40px 0;
-    border-bottom: 1px solid var(--border-subtle);
+  /* 1. REFINED PORTRAIT: Professional & Modern */
+  .portrait-modern {
+    position: relative;
+    max-width: var(--hero-spine);
   }
 
-  .brand-logo {
-    font-weight: 900;
-    font-size: 1.1rem;
-    text-decoration: none;
-    color: var(--text-primary);
-    letter-spacing: -0.5px;
-    text-transform: uppercase;
+  .portrait-modern img {
+    width: 100%;
+    /* Enhanced Filter for Vitality */
+    filter: grayscale(80%) contrast(1.2) brightness(1.05);
+    border-radius: 6px;
+    box-shadow: 0 12px 32px rgba(0,0,0,0.09);
+    display: block;
   }
 
-  nav a {
-    margin-left: 35px;
-    text-decoration: none;
-    font-size: 0.8rem;
-    font-weight: 700;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    padding-bottom: 8px;
-    border-bottom: 2px solid transparent;
-    transition: all 0.2s ease;
-  }
-
-  nav a:hover, nav a.active {
-    color: var(--text-primary);
-    border-bottom: 2px solid var(--accent-intellectual);
-  }
-
-  /* 3. HERO: THE INTELLECTUAL MANIFESTO */
-  .hero-section {
+  /* 2. HERO SECTION: Focused Authority */
+  .hero-grid {
     display: grid;
-    grid-template-columns: 300px 1fr;
-    gap: 80px;
-    padding: 100px 0;
+    grid-template-columns: var(--hero-spine) 1fr;
+    gap: 60px; /* Reduced gap */
+    padding: 60px 0 80px 0; /* Optimized padding */
     align-items: start;
   }
 
-  .profile-frame {
-    position: relative;
-    transform: scale(0.96);
-  }
-
-  .profile-frame img {
-    width: 100%;
-    filter: grayscale(100%) contrast(1.1);
-    border-radius: 2px;
-    position: relative;
-    z-index: 2;
-  }
-
-  .profile-frame::after {
-    content: "";
-    position: absolute;
-    top: 15px; left: 15px;
-    width: 100%; height: 100%;
-    background: #f1f5f9;
-    z-index: 1;
-  }
-
-  .intellectual-label {
-    font-size: 0.75rem;
-    font-weight: 800;
-    color: var(--accent-intellectual);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 15px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .main-statement {
+  .statement-title {
     font-family: var(--font-serif);
     font-size: clamp(2.5rem, 5vw, 3.8rem);
     line-height: 1.05;
     font-weight: 700;
-    margin: 0 0 30px 0;
-    letter-spacing: -1.5px;
+    letter-spacing: -2px;
+    margin: 0 0 24px 0;
   }
 
-  .intro-text {
-    font-size: 1.2rem;
+  .manifesto-lead {
+    font-size: 1.25rem;
+    font-weight: 450;
     color: var(--text-muted);
     max-width: 45ch;
-    border-top: 1px solid var(--border-subtle);
-    padding-top: 25px;
+    margin-top: 44px; /* Added separation */
+    border-top: 1px solid var(--ui-border);
+    padding-top: 32px; /* Increased top padding */
   }
 
-  /* 4. RESEARCH ARCHIVE: DISCIPLINED FEED */
+  /* 3. ARCHIVE SECTION: Institutional Discipline */
   .archive-section { padding-bottom: 100px; }
 
-  .section-label {
-    font-size: 0.85rem;
+  .archive-label {
+    font-size: 0.9rem;
     font-weight: 900;
     letter-spacing: 3px;
     text-transform: uppercase;
-    color: var(--accent-intellectual);
+    color: var(--accent-blue);
     margin-bottom: 50px;
-    display: block;
   }
+
+  .archive-list { border-top: 1px solid var(--ui-border); }
 
   .archive-entry {
     display: grid;
-    grid-template-columns: 160px 1fr;
+    grid-template-columns: var(--archive-meta-width) 1fr;
     gap: 60px;
     padding: 48px 0;
-    border-top: 1px solid var(--border-subtle);
+    border-bottom: 1px solid var(--ui-border);
     text-decoration: none;
     color: inherit;
-    transition: background 0.2s ease;
+    transition: background-color 0.2s ease;
   }
 
-  .archive-entry:hover { background-color: #f9fafb; }
-
-  .archive-entry:hover .entry-title {
-    text-decoration: underline;
-    text-decoration-thickness: 1px;
-    text-underline-offset: 6px;
-    color: var(--accent-intellectual);
-  }
+  .archive-entry:hover { background-color: #f8fafc; }
 
   .entry-meta {
-    font-size: 0.75rem;
+    font-size: 0.82rem;
     font-weight: 800;
+    letter-spacing: 1.2px;
     color: var(--text-muted);
     text-transform: uppercase;
-    letter-spacing: 1.2px;
     padding-top: 8px;
   }
 
   .entry-title {
     font-family: var(--font-serif);
-    font-size: 2.1rem;
-    line-height: 1.25;
-    font-weight: 700;
-    margin: 0 0 12px 0;
-    letter-spacing: -0.5px;
+    font-size: clamp(1.6rem, 4vw, 2.1rem);
+    line-height: 1.28;
+    letter-spacing: -0.75px;
+    margin: 0 0 16px 0;
+    transition: color 0.2s ease;
   }
 
-  .entry-summary {
-    font-size: 1.05rem;
-    color: var(--text-muted);
-    max-width: 55ch;
+  .archive-entry:hover .entry-title { color: var(--accent-blue); }
+
+  /* 4. RESPONSIVE REFINEMENT */
+  @media (max-width: 900px) {
+    .hero-grid, .archive-entry { 
+      grid-template-columns: 1fr; 
+      gap: 30px; 
+    }
+    .portrait-modern { 
+      max-width: 280px; 
+      margin: 0 auto; 
+    }
+    .wrap { padding: 0 25px; }
   }
 </style>
 
-<div class="site-container">
-  <header>
-    <a href="/" class="brand-logo">Hadi Noori</a>
-    <nav>
-      <a href="/notes">Notes</a>
-      <a href="/playbooks" class="active">Playbooks</a>
-      <a href="/dossier">Dossier</a>
-      <a href="/contact">Contact</a>
-    </nav>
-  </header>
-
-  <main>
-    <section class="hero-section">
-      <div class="profile-frame">
-        <img src="/assets/img/profile.jpg" alt="Hadi Noori">
+<div class="wrap">
+  <section class="hero-grid">
+    <div class="portrait-modern">
+      <img src="/assets/img/profile.jpg" alt="Hadi Noori Profile">
+    </div>
+    <div class="hero-content">
+      <div style="font-size: 0.75rem; font-weight: 800; color: var(--accent-blue); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px;">
+        At the intersection of AI, regulation, and power
       </div>
-      <div class="hero-content">
-        <div class="intellectual-label">At the intersection of AI, regulation, and power</div>
-        <h1 class="main-statement">Intelligence is fragile.<br>Governance is its armor.</h1>
-        <p class="intro-text">Bridging the gap between sociopolitical theory and digital reality. Focusing on auditable, compliant, and fair AI systems.</p>
-      </div>
-    </section>
+      <h1 class="statement-title">Intelligence is fragile.<br>Governance is its armor.</h1>
+      <p class="manifesto-lead">
+        Bridging the gap between sociopolitical theory and digital reality. Focusing on auditable, compliant, and fair AI systems.
+      </p>
+    </div>
+  </section>
 
-    <section class="archive-section">
-      <span class="section-label">Research Archive & Playbooks</span>
-      
+  <section class="archive-section">
+    <h2 class="archive-label">Active Doctrine & Research</h2>
+    <div class="archive-list">
       <a href="/playbooks/ethics" class="archive-entry">
         <div class="entry-meta">Jan 2026 / Playbook</div>
         <div class="entry-content">
           <h3 class="entry-title">Operationalizing AI Ethics for Regulated Industries</h3>
-          <p class="entry-summary">A strategic framework for implementing fairness metrics and mitigating algorithmic bias in high-stakes environments.</p>
+          <p style="color: var(--text-muted); font-size: 1.1rem; max-width: 55ch; line-height: 1.6;">
+            Developing practical playbooks for implementing fairness metrics and mitigating algorithmic bias.
+          </p>
         </div>
       </a>
-
-      <a href="/notes/transformation" class="archive-entry">
-        <div class="entry-meta">Dec 2025 / Research</div>
-        <div class="entry-content">
-          <h3 class="entry-title">The Discourse of Digital Transformation Failure</h3>
-          <p class="entry-summary">Analyzing the sociopolitical and ethical dimensions that contribute to the failure of public sector digital projects.</p>
-        </div>
-      </a>
-    </section>
-  </main>
+      </div>
+  </section>
 </div>
