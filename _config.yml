@@ -1,8 +1,0 @@
-remote_theme: qwtel/hydejack@v9
-title: "Hadi Noori"
-
-# This part builds the professional look you expect
-hydejack:
-  brand_color: "#007c66" # The Green color you liked
-  show_author: true
-  show_sidebar: true
