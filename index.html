@@ -4,86 +4,108 @@ title: main
 ---
 
 <style>
-  /* 1. RESET AND LIBERATE */
-  .container { max-width: 100% !important; padding: 0 !important; }
+  /* 1. RESET CONSTRAINTS */
+  .container { max-width: 1200px !important; padding: 0 40px !important; }
   .profile-card, .card, .z-depth-1 { box-shadow: none !important; border: none !important; background: transparent !important; }
 
-  /* 2. LAYOUT: THE STRATEGIC FLOW */
+  /* 2. LAYOUT STRATEGY */
   .hero-flex {
     display: flex;
-    gap: 70px; /* Increased gap for breathability */
+    gap: 80px; 
     align-items: flex-start;
-    margin-top: 60px;
+    margin-top: 100px;
     flex-wrap: wrap;
   }
 
-  .portrait-side { flex: 0 0 320px; } /* Wider for presence */
+  .portrait-side { flex: 0 0 350px; } 
   .portrait-img {
     width: 100%;
-    filter: grayscale(100%) contrast(1.1); /* High-end press look */
+    filter: grayscale(100%) contrast(1.1); 
     border-radius: 0 !important;
+    border: 1px solid #eee; /* Light border for definition */
   }
 
-  /* 3. TYPOGRAPHY: THE AUTHORITY VOICE */
-  .text-side { flex: 1; min-width: 350px; }
+  /* 3. AUTHORITY TYPOGRAPHY */
+  .text-side { flex: 1; min-width: 400px; }
 
   .main-name {
-    font-family: 'Lora', serif !important; /* The Academic Weight */
-    font-size: 5.5rem; /* Massive Presence */
+    font-family: 'Lora', serif !important; 
+    font-size: 6rem; /* High-impact presence */
     font-weight: 700;
-    line-height: 0.9;
+    line-height: 0.85;
     color: #000 !important;
-    letter-spacing: -4px;
-    margin: 0 0 15px 0;
+    letter-spacing: -5px; /* Tight, premium feel */
+    margin: 0 0 20px 0;
   }
 
   .sub-title {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     font-weight: 800;
     text-transform: uppercase;
-    letter-spacing: 4px;
-    color: #666;
-    margin-bottom: 45px;
+    letter-spacing: 5px;
+    color: #888;
+    margin-bottom: 50px;
     display: block;
   }
 
   .editorial-quote {
     font-family: 'Lora', serif !important;
-    font-size: 1.9rem;
+    font-size: 2.2rem;
     font-weight: 400;
-    line-height: 1.4;
-    border-left: 4px solid #000;
-    padding-left: 30px;
-    color: #1a1a1a !important;
-    margin-bottom: 35px;
+    line-height: 1.3;
+    border-left: 5px solid #000;
+    padding-left: 35px;
+    color: #111 !important;
+    margin-bottom: 40px;
   }
 
-  /* 4. BUTTONS & TRUST SIGNALS */
-  .cta-row { display: flex; gap: 20px; margin-bottom: 80px; }
-  .btn-dark {
-    padding: 14px 32px;
+  .intro-text {
+    font-size: 1.25rem;
+    line-height: 1.8;
+    color: #444 !important;
+    margin-bottom: 50px;
+    max-width: 600px;
+  }
+
+  /* 4. REFINED ACTIONS */
+  .cta-row { display: flex; gap: 30px; align-items: center; margin-bottom: 100px; }
+  
+  .btn-black {
+    padding: 16px 35px;
     background: #000;
     color: #fff !important;
     text-decoration: none !important;
     font-weight: 700;
     font-size: 0.8rem;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 2px;
   }
 
+  .link-secondary {
+    color: #000;
+    font-weight: 800;
+    text-decoration: none;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 2px solid #000;
+    padding-bottom: 4px;
+  }
+
+  /* 5. THE TRUST BAR */
   .trust-row {
     border-top: 1px solid #eee;
-    padding-top: 40px;
+    padding-top: 50px;
     display: flex;
     justify-content: flex-start;
-    gap: 50px;
+    gap: 60px;
   }
 
   .trust-item {
-    font-size: 0.75rem;
-    font-weight: 800;
+    font-size: 0.7rem;
+    font-weight: 900;
     text-transform: uppercase;
-    color: #999;
+    color: #bbb;
     letter-spacing: 2px;
   }
 </style>
@@ -98,22 +120,23 @@ title: main
     <span class="sub-title">AI Ethics & Governance Specialist</span>
 
     <div class="editorial-quote">
-      Building AI that is auditable, compliant, and fundamentally fair.
+      Governance is not an obstacle; it is the foundation of resilient AI.
     </div>
 
-    <p style="font-size: 1.2rem; line-height: 1.8; color: #444; margin-bottom: 45px;">
-      Bridging policy and engineering for regulated industries. Specialized in MIS and Social Sciences from <strong>Oxford, Waterloo, and IVADO</strong>.
+    <p class="intro-text">
+      As an AI Ethics & Governance Specialist, I bridge the gap between policy and engineering for high-stakes, regulated industries.
     </p>
 
     <div class="cta-row">
-      <a href="/projects/" class="btn-dark">View Projects</a>
-      <a href="/about/" style="color: #000; font-weight: 800; text-decoration: underline; font-size: 0.85rem; align-self: center;">More About Me</a>
+      <a href="/projects/" class="btn-black">View Playbooks</a>
+      <a href="/about/" class="link-secondary">Full Academic Profile</a>
     </div>
   </div>
 </div>
 
 <div class="trust-row">
   <span class="trust-item">Oxford Trained</span>
-  <span class="trust-item">EU AI Scholarship Recipient</span>
-  <span class="trust-item">10+ Years in Strategy</span>
+  <span class="trust-item">Waterloo Alumnus</span>
+  <span class="trust-item">EU AI Scholarship</span>
+  <span class="trust-item">IVADO Fellow</span>
 </div>
