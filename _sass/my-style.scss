@@ -1,14 +1,69 @@
-.dl-table {
-  a {
-    @supports ((text-decoration-thickness: initial) and (text-underline-offset: initial)) {
-      text-underline-offset: .8rem;
-    }
-    @supports not ((text-decoration-thickness: initial) and (text-underline-offset: initial)) {
-      padding-bottom: .45rem;
-    }
-  }
+/* --- 1. ARCHITECTURAL OVERHAUL: KILL SIDEBAR --- */
+/* Removes the app-like sidebar to create an editorial focus */
+.sidebar, #sidebar, .sidebar-left {
+    display: none !important;
+}
 
-  .btn, .gumroad-button  {
-    margin: 1rem 0;
-  }
+/* --- 2. CENTERED LAYOUT: STRATEGIC FOCUS --- */
+/* Centers all content and limits width for premium readability */
+.post, .page, #about, article, .projects, .wrapper {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    max-width: 820px !important; 
+    float: none !important;
+    padding: 80px 24px !important;
+    background: transparent !important;
+}
+
+/* --- 3. EDITORIAL TYPOGRAPHY: THE AUTHORITY LOOK --- */
+/* Uses Serif fonts to evoke the prestige of a global consultant/academic */
+h1, h2, h3, .post-title, .navbar-brand {
+    font-family: "Lora", "Playfair Display", serif !important;
+    font-weight: 700 !important;
+    color: #111111 !important;
+    letter-spacing: -0.02em !important;
+    line-height: 1.25 !important;
+}
+
+/* Professional and clean body text for long-form insights */
+body {
+    background-color: #fdfdfd !important; 
+    font-family: "Inter", -apple-system, sans-serif !important;
+    font-size: 1.15rem !important;
+    line-height: 1.8 !important;
+    color: #2c3e50 !important;
+}
+
+/* --- 4. REFINED NAVIGATION: TOP BAR --- */
+/* Moves navigation to the top, making it subtle and high-end */
+.navbar {
+    border-bottom: 1px solid #eeeeee !important;
+    box-shadow: none !important;
+    padding: 1.5rem 0 !important;
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(10px);
+}
+
+.nav-link {
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 1.2px;
+    font-weight: 600;
+    color: #555 !important;
+}
+
+/* --- 5. VISUAL CLEAN-UP: MINIMALISM --- */
+/* Removes "Bootstrap-style" borders to make the site feel custom-built */
+.card, .profile-card {
+    border: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+}
+
+/* --- 6. MOTION REFINEMENT --- */
+/* Removes jittery slide-in animations that look amateurish */
+* {
+    transition: color 0.2s ease-in-out !important; 
+    animation: none !important; 
+    transform: none !important;
 }
