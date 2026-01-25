@@ -94,14 +94,15 @@ remote_theme: hydecorp/hydejack@v9
  # DESIGN: Solid Navy Background (Slider Enabled)
 # --------------------------------------------------------
 
-# 1. We MUST point to a file to activate the sliding animation
+# 1. Image path MUST be here to fix the white screen error
 cover_image: /assets/img/sidebar-bg.jpg
 
-# 2. We apply a 100% solid color overlay to hide the image visually
-cover_overlay: 'linear-gradient(#0c1c2e, #0c1c2e)'
+# 2. The Trick: An opaque (solid) gradient that hides the image completely
+cover_overlay: 'linear-gradient(to bottom, #0c1c2e, #0c1c2e)'
 
-# 3. Accent Color (Teal)
-accent_color: '#00d2d3'# IMPORTANT:
+# 3. Text colors
+accent_color: '#00d2d3'
+
 # As of Hydejack 9.2, Google Fonts are turned off by default due to a stronger focus on privacy.
 # Hydejack will use the default font of your visitor's operating system instead.
 # If you want to match the look of hydejack.com, remove the following line and uncomment 
