@@ -1,59 +1,48 @@
-/* --- 1. FULL PAGE LIBERATION (KILL THE BOX) --- */
-/* This removes all shadows, borders, and background boxes from the main container */
-.container, .post, .page, #about, .profile-card, .z-depth-1 {
+/* --- EMERGENCY OVERRIDE TO KILL THE CARD LOOK --- */
+
+/* 1. Remove the Box, Shadows, and Backgrounds from the entire site */
+.container, .row, .col, .card, .profile-card, .z-depth-1, .post, .page {
     box-shadow: none !important;
     border: none !important;
     background-color: transparent !important;
     padding: 0 !important;
     margin: 0 auto !important;
-    max-width: 100% !important; /* Forces the box to break */
+    max-width: 100% !important;
 }
 
-/* --- 2. EDITORIAL LAYOUT (CENTERED FLOW) --- */
-/* This centers your content on the paper-white background like a prestige report */
-main > .container, #about {
-    max-width: 850px !important; /* Perfect reading width for authorities */
-    padding-top: 100px !important;
-    padding-bottom: 100px !important;
+/* 2. Create the Editorial Centered Layout (The White Paper Look) */
+main, #about, .post-content {
     display: block !important;
+    max-width: 800px !important; /* Perfect width for strategic reading */
+    margin: 0 auto !important;
+    padding: 100px 20px !important;
+    background-color: #fdfdfd !important; /* Editorial white */
 }
 
-/* --- 3. TYPOGRAPHY: THE VOICE OF AUTHORITY --- */
-/* Using Serif for headers to command academic and strategic respect */
+/* 3. Authority Typography (Serif for headings) */
 h1, h2, h3, .post-title, .navbar-brand {
     font-family: "Lora", "Playfair Display", serif !important;
     font-weight: 700 !important;
-    color: #111111 !important;
-    letter-spacing: -0.03em !important;
+    color: #111 !important;
     line-height: 1.2 !important;
 }
 
 body {
-    background-color: #fdfdfd !important; /* Paper white background */
+    background-color: #fdfdfd !important; /* Ensures the whole page is white */
     font-family: "Inter", sans-serif !important;
-    font-size: 1.15rem !important;
     line-height: 1.8 !important;
-    color: #333333 !important;
 }
 
-/* --- 4. IMAGE INTEGRATION --- */
-/* Removes the "avatar" look. Your photo should look like a press portrait. */
-.profile {
-    float: none !important;
-    margin: 0 auto 3rem auto !important;
-    display: block !important;
-    text-align: center !important;
-}
-
+/* 4. Kill the Round Avatar - Transform to Portrait */
 .profile img {
-    width: 250px !important;
-    border-radius: 0 !important; /* Square for professional look */
-    filter: grayscale(100%); /* High-end editorial feel */
+    border-radius: 0 !important; /* Removes circle/rounded look */
+    filter: grayscale(100%) contrast(1.1) !important; /* High-end press look */
+    width: 280px !important;
+    height: auto !important;
+    box-shadow: none !important;
 }
 
-/* --- 5. CLEAN NAVIGATION --- */
-.navbar {
-    border-bottom: 1px solid #eee !important;
-    background: #fff !important;
-    box-shadow: none !important;
+/* 5. Hide the Amateur Sidebar Completely */
+.sidebar, #sidebar {
+    display: none !important;
 }
