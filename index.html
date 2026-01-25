@@ -1,39 +1,23 @@
 <style>
-  /* 1. GLOBAL DESIGN SYSTEM VARIABLES (Disciplined) */
-  :root {
-    --text-main: #020617;
-    --text-muted: #475569;
-    --accent-blue: #1e40af;
-    --ui-border: #eeeeee; /* Unified variable name */
-    --font-serif: 'Lora', Georgia, serif;
+  /* ARCHITECTURAL FEED FOR RESEARCH & NOTES */
+  .content-feed {
+    padding: 80px 0;
+    margin-top: 40px;
   }
 
-  /* 2. RESEARCH ARCHIVE SECTION */
-  .archive-container {
-    padding: 100px 0;
-    border-top: 1px solid var(--ui-border); /* Anchoring the feed */
-    margin-top: 60px;
-  }
-
-  .archive-entry {
+  .feed-entry {
     display: grid;
-    grid-template-columns: 160px 1fr; /* Narrower metadata for content dominance */
-    gap: 60px;
-    padding: 48px 0;
-    border-bottom: 1px solid var(--ui-border);
+    grid-template-columns: 200px 1fr;
+    gap: 50px;
+    padding: 40px 0;
+    border-top: 1px solid var(--border-line);
     text-decoration: none;
     color: inherit;
-    transition: background-color 0.2s ease;
+    transition: background 0.2s ease;
   }
 
-  .archive-entry:hover {
-    background-color: #fcfcfc;
-  }
-
-  .archive-entry:hover .entry-title {
-    text-decoration: underline;
-    text-decoration-thickness: 1px;
-    text-underline-offset: 6px;
+  .feed-entry:hover {
+    background-color: #f9fafb;
   }
 
   .entry-metadata {
@@ -41,35 +25,32 @@
     font-weight: 900;
     color: var(--text-muted);
     text-transform: uppercase;
-    letter-spacing: 1.2px; /* Balanced for mature institutional feel */
-    padding-top: 10px;
-    opacity: 0.8;
+    letter-spacing: 2px;
+    padding-top: 8px;
   }
 
   .entry-title {
     font-family: var(--font-serif);
-    font-size: 2.2rem; /* Bold editorial size */
-    line-height: 1.15;
+    font-size: 2rem;
+    line-height: 1.2;
     font-weight: 700;
-    margin: 0 0 15px 0;
-    color: var(--text-main);
-    letter-spacing: -0.75px; /* Aligned with Hero rhythm */
+    margin: 0 0 12px 0;
+    color: var(--text-primary);
+    letter-spacing: -0.5px;
   }
 
   .entry-summary {
-    font-size: 1.1rem;
-    color: var(--text-main); /* Darker for manifesto-like seriousness */
-    max-width: 52ch; /* Tighter measure for better focus */
-    line-height: 1.6; /* Increased density for serious tone */
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    max-width: 55ch; /* Optimal reading measure */
     margin: 0;
-    opacity: 0.9;
   }
 </style>
 
-<section class="archive-container">
+<section class="content-feed">
   <h2 class="dossier-label">Research Archive & Playbooks</h2>
   
-  <a href="/playbooks/operationalizing-ethics" class="archive-entry">
+  <a href="/playbooks/operationalizing-ethics" class="feed-entry">
     <div class="entry-metadata">Jan 2026 / Playbook</div>
     <div class="entry-content">
       <h3 class="entry-title">Operationalizing AI Ethics for Regulated Industries</h3>
@@ -77,7 +58,7 @@
     </div>
   </a>
 
-  <a href="/notes/digital-transformation-failure" class="archive-entry">
+  <a href="/notes/digital-transformation-failure" class="feed-entry">
     <div class="entry-metadata">Dec 2025 / Research</div>
     <div class="entry-content">
       <h3 class="entry-title">The Discourse of Digital Transformation Failure</h3>
