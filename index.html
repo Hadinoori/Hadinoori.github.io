@@ -4,140 +4,111 @@ title: main
 ---
 
 <style>
-  /* 1. ARCHITECTURAL BRUTALISM */
-  .container { max-width: 1400px !important; padding: 0 !important; overflow: hidden; }
+  /* 1. REFINED ARCHITECTURE */
+  .container { max-width: 1300px !important; padding: 0 !important; }
   
-  /* The "Severing Line" - A bold, aggressive horizontal cut */
   .hero-flex {
     display: flex;
     gap: 0;
     align-items: stretch;
-    margin-top: 50px;
-    border-top: 15px solid #000; 
-    position: relative;
+    margin-top: 40px;
+    border-top: 8px solid #000; /* Thinner line for balance */
   }
 
-  /* 2. THE PORTRAIT: THE UNSEEN DECISION-MAKER */
-  /* Aggressive cropping to remove the "LinkedIn Vibe" and add mystery */
+  /* 2. THE PORTRAIT: CLEAR & AUTHORITATIVE */
   .portrait-side { 
-    flex: 0 0 400px; 
-    background: #000;
+    flex: 0 0 450px; 
+    background: #f9f9f9;
     overflow: hidden;
-    filter: grayscale(100%) contrast(1.8) brightness(0.6);
+    filter: grayscale(100%); /* B&W for prestige, but clearly visible */
+    border-right: 2px solid #000;
   } 
   
   .portrait-img {
-    width: 150%; 
-    transform: translateX(-20%) translateY(5%);
-    opacity: 0.8;
-    mix-blend-mode: hard-light;
+    width: 100%; /* No more excessive zoom */
+    height: 100%;
+    object-fit: cover;
+    object-position: center; /* Ensures your face is centered and clear */
+    opacity: 1; /* Full visibility */
   }
 
-  /* 3. THE BRAND: HADI NOORI (Visual Violence) */
+  /* 3. THE BRAND: HADI NOORI (Strong but Readable) */
   .text-side { 
     flex: 1; 
-    padding: 80px 60px; 
+    padding: 60px; 
     background: #fff;
-    position: relative;
+    display: flex;
+    flex-direction: column;
   }
 
   .main-name {
     font-family: 'Lora', serif !important;
-    font-size: 11rem; 
+    font-size: 8rem; 
     font-weight: 900;
-    line-height: 0.65;
+    line-height: 0.8;
     color: #000 !important;
-    letter-spacing: -18px; /* High-tension kerning */
-    margin: -110px 0 60px -40px; 
+    letter-spacing: -6px; /* Professional compression */
+    margin: 0 0 30px 0;
     text-transform: uppercase;
-    position: relative;
-    z-index: 10;
-  }
-
-  /* The Line that cuts through the name */
-  .name-cut {
-    position: absolute;
-    top: 45%;
-    left: -100px;
-    width: 120%;
-    height: 8px;
-    background: #fff; 
-    z-index: 11;
-    transform: rotate(-1deg);
   }
 
   .sub-title {
-    font-size: 0.75rem;
-    font-weight: 900;
+    font-size: 0.8rem;
+    font-weight: 800;
     text-transform: uppercase;
-    letter-spacing: 15px; 
-    color: #000;
-    margin-bottom: 100px;
+    letter-spacing: 5px;
+    color: #666;
+    margin-bottom: 60px;
     display: block;
   }
 
-  /* 4. THE STATEMENT: BROKEN RHYTHM */
+  /* 4. THE STATEMENT */
   .editorial-quote {
     font-family: 'Lora', serif !important;
-    font-size: 3.2rem;
+    font-size: 2.6rem;
     font-weight: 400;
-    line-height: 0.95;
-    color: #000 !important;
+    line-height: 1.2;
+    color: #111 !important;
     margin-bottom: 40px;
-    letter-spacing: -3px;
-  }
-
-  .editorial-quote span {
-    display: block;
-    font-size: 1.5rem;
-    margin-top: 20px;
-    font-weight: 900;
-    background: #000;
-    color: #fff;
-    padding: 5px 15px;
-    width: fit-content; 
+    border-left: 6px solid #000;
+    padding-left: 30px;
   }
 
   .intro-text {
     font-size: 1.2rem;
-    line-height: 1.5;
+    line-height: 1.7;
     color: #444 !important;
-    max-width: 400px;
-    margin-bottom: 80px;
+    max-width: 500px;
+    margin-bottom: 60px;
   }
 
-  /* 5. CTA: THE TERRITORY ENTRY */
-  .cta-row { display: flex; border: 4px solid #000; }
+  /* 5. REFINED CTAs */
+  .cta-row { display: flex; gap: 20px; }
   
-  .btn-provoke {
-    flex: 1;
-    padding: 40px 20px;
-    text-align: center;
+  .btn-action {
+    padding: 20px 40px;
     text-decoration: none !important;
-    font-weight: 900;
-    font-size: 0.9rem;
+    font-weight: 800;
+    font-size: 0.85rem;
     text-transform: uppercase;
-    letter-spacing: 5px;
-    transition: 0.2s;
-    color: #000 !important;
+    letter-spacing: 2px;
+    transition: 0.3s;
+    border: 2px solid #000;
   }
 
-  .btn-active { background: #000; color: #fff !important; }
-  .btn-provoke:hover { filter: invert(1); }
+  .btn-filled { background: #000; color: #fff !important; }
+  .btn-outline { background: transparent; color: #000 !important; }
+  .btn-action:hover { opacity: 0.8; }
 
-  /* 6. TRUST SIGNALS: BURIED IN MARGINS */
-  /* Hidden in vertical alignment to prioritize brand over badges */
-  .trust-margin {
-    position: absolute;
-    bottom: 20px;
-    right: 40px;
-    font-size: 0.6rem;
-    font-weight: 900;
-    color: #ccc;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    writing-mode: vertical-rl;
+  /* 6. TRUST FOOTER */
+  .trust-bar {
+    margin-top: auto;
+    padding-top: 40px;
+    border-top: 1px solid #eee;
+    display: flex;
+    gap: 30px;
   }
+  .trust-item { font-size: 0.7rem; font-weight: 800; color: #999; text-transform: uppercase; letter-spacing: 1px; }
 </style>
 
 <div class="hero-flex">
@@ -146,29 +117,27 @@ title: main
   </div>
 
   <div class="text-side">
-    <div class="trust-margin">
-      OXFORD / WATERLOO / IVADO / TURING COLLEGE
-    </div>
-
-    <div style="position: relative;">
-      <h1 class="main-name">HADI<br>NOORI</h1>
-      <div class="name-cut"></div>
-    </div>
-    
+    <h1 class="main-name">HADI<br>NOORI</h1>
     <span class="sub-title">AI Ethics & Governance Specialist</span>
     
     <div class="editorial-quote">
-      Intelligence is fragile.
-      <span>Governance is its only armor.</span>
+      Intelligence is fragile.<br>Governance is its armor.
     </div>
 
     <p class="intro-text">
-      Bridging the gap between policy and engineering for high-stakes, regulated industries.
+      Bridging the gap between policy and engineering for high-stakes, regulated industries. Specialized in MIS and Social Sciences.
     </p>
 
     <div class="cta-row">
-      <a href="/projects/" class="btn-provoke btn-active">DECODE THE PLAYBOOK</a>
-      <a href="/about/" class="btn-provoke">DOSSIER</a>
+      <a href="/projects/" class="btn-action btn-filled">DECODE THE PLAYBOOK</a>
+      <a href="/about/" class="btn-action btn-outline">DOSSIER</a>
+    </div>
+
+    <div class="trust-bar">
+      <span class="trust-item">OXFORD</span>
+      <span class="trust-item">WATERLOO</span>
+      <span class="trust-item">IVADO</span>
+      <span class="trust-item">TURING COLLEGE</span>
     </div>
   </div>
 </div>
