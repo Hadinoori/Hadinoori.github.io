@@ -4,126 +4,182 @@ title: main
 ---
 
 <style>
-  /* 1. GLOBAL LAYOUT - THE EDITORIAL FRAME */
+  /* 1. RESET & ARCHITECTURAL FRAME */
   .container { max-width: 100% !important; padding: 0 !important; margin: 0 !important; }
   
   .hero-flex {
-    display: flex !important;
-    flex-direction: row !important;
-    align-items: stretch !important; /* Forces text and image to have same height */
-    min-height: 90vh; /* Fills the screen for authority */
-    border-top: 10px solid #000;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    min-height: 100vh;
+    background: #050505; /* Deepest black for authority */
+    color: #ffffff;
+    overflow: hidden;
   }
 
-  /* 2. THE PORTRAIT - FIXED LEFT COLUMN */
+  /* 2. THE PORTRAIT - REBALANCED & FRAMED */
   .portrait-side { 
-    flex: 0 0 40% !important; /* Occupies exactly 40% of the screen width */
-    background: #f0f0f0; /* Subtle base for the image */
-    overflow: hidden;
-    filter: grayscale(100%);
-    border-right: 3px solid #000;
+    flex: 0 0 42%;
+    background: #0a0a0a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-right: 1px solid #1a1a1a;
+    padding: 60px; /* Provides breathing room for the face */
   } 
   
   .portrait-img {
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: cover !important; /* Ensures the image fills the 40% column perfectly */
-    object-position: center top;
-    display: block !important;
+    width: 100%;
+    height: auto;
+    max-height: 80vh;
+    object-fit: cover;
+    filter: grayscale(100%) contrast(1.1) brightness(0.85);
+    border: 1px solid #222;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.8);
   }
 
-  /* 3. THE CONTENT - WHITE SPACE & TYPOGRAPHY */
+  /* 3. TYPOGRAPHY - THE SIGNATURE SYSTEM */
   .text-side { 
-    flex: 0 0 60% !important; /* Remaining 60% for text */
-    padding: 100px 80px !important;
-    background: #fff;
+    flex: 1;
+    padding: 100px 8% !important;
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Centers text vertically against the image */
+    justify-content: center;
+    background: #050505;
   }
 
   .main-name {
-    font-family: 'Lora', serif !important;
-    font-size: 9rem; 
+    font-family: 'Inter', sans-serif !important;
+    font-size: clamp(4rem, 6vw, 7.5rem); 
     font-weight: 900;
-    line-height: 0.8;
-    color: #000 !important;
-    letter-spacing: -7px;
-    margin: 0 0 20px 0;
+    line-height: 0.85;
+    letter-spacing: -4px;
+    margin: 0 0 15px 0;
     text-transform: uppercase;
+    color: #fff;
+  }
+
+  /* Secondary weight for the surname to create a unique signature */
+  .main-name span {
+    font-weight: 200;
+    letter-spacing: -1px;
+    display: block;
   }
 
   .sub-title {
-    font-size: 0.8rem;
-    font-weight: 900;
+    font-size: 0.7rem;
+    font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 6px;
-    color: #888;
+    letter-spacing: 5px;
+    color: #666; /* Subdued but visible */
     margin-bottom: 60px;
+    border-bottom: 1px solid #222;
+    padding-bottom: 10px;
+    width: fit-content;
   }
 
   .editorial-quote {
     font-family: 'Lora', serif !important;
-    font-size: 2.8rem;
-    font-weight: 400;
-    line-height: 1.15;
-    color: #000 !important;
-    border-left: 10px solid #000;
-    padding-left: 40px;
-    margin-bottom: 50px;
-    letter-spacing: -1.5px;
+    font-size: clamp(1.8rem, 2.5vw, 2.6rem);
+    font-weight: 300;
+    line-height: 1.2;
+    color: #eee !important;
+    border-left: 8px solid #fff;
+    padding-left: 35px;
+    margin-bottom: 45px;
+    font-style: italic;
   }
 
   .intro-text {
-    font-size: 1.3rem;
-    line-height: 1.6;
-    color: #444 !important;
-    max-width: 550px;
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: #888 !important;
+    max-width: 520px;
     margin-bottom: 60px;
+    font-weight: 400;
   }
 
-  /* 4. CALL TO ACTION - THE DECISION BAR */
+  /* 4. CALL TO ACTION - STRATEGIC HIERARCHY */
   .cta-row { 
     display: flex; 
-    border: 3px solid #000; 
-    width: fit-content;
+    align-items: center;
+    gap: 40px;
   }
   
-  .btn-action {
-    padding: 25px 50px;
+  .btn-primary {
+    padding: 20px 45px;
+    background: #ffffff;
+    color: #000000 !important;
     text-decoration: none !important;
     font-weight: 900;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     text-transform: uppercase;
-    letter-spacing: 3px;
-    color: #000 !important;
+    letter-spacing: 2px;
+    transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .btn-primary:hover {
+    background: #cccccc;
+    transform: translateY(-5px);
+  }
+
+  .btn-secondary {
+    color: #ffffff !important;
+    text-decoration: none !important;
+    font-weight: 600;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border-bottom: 2px solid #333;
+    padding-bottom: 5px;
     transition: 0.3s;
   }
 
-  .btn-primary { background: #000; color: #fff !important; }
-  .btn-action:hover { background: #000; color: #fff !important; }
+  .btn-secondary:hover {
+    border-color: #ffffff;
+    color: #ffffff !important;
+  }
 
-  /* 5. TRUST SIGNALS */
+  /* 5. TRUST SIGNALS - THE FOUNDATION */
   .trust-bar {
     margin-top: 80px;
     display: flex;
-    gap: 40px;
+    flex-wrap: wrap;
+    gap: 30px;
+    opacity: 0.3;
   }
-  .trust-item { font-size: 0.7rem; font-weight: 900; color: #ccc; text-transform: uppercase; letter-spacing: 2px; }
+  .trust-item { 
+    font-size: 0.65rem; 
+    font-weight: 800; 
+    color: #fff; 
+    text-transform: uppercase; 
+    letter-spacing: 3px; 
+  }
 
+  /* RESPONSIVE - MOBILE OPTIMIZATION */
+  @media (max-width: 1024px) {
+    .hero-flex { flex-direction: column; }
+    .portrait-side { flex: 0 0 40vh; border-right: none; border-bottom: 1px solid #1a1a1a; padding: 20px; }
+    .text-side { padding: 60px 30px !important; }
+    .main-name { font-size: 4rem; }
+  }
 </style>
 
 <div class="hero-flex">
   <div class="portrait-side">
-    <img src="/assets/img/profile.jpg" class="portrait-img" alt="Hadi Noori">
+    <img src="/assets/img/profile.jpg" class="portrait-img" alt="Personal Branding Portrait">
   </div>
 
   <div class="text-side">
-    <h1 class="main-name">HADI<br>NOORI</h1>
-    <span class="sub-title">AI Ethics & Governance Specialist</span>
+    <span class="sub-title">AI Ethics & Governance</span>
+    
+    <h1 class="main-name">
+      HADI <span>NOORI</span>
+    </h1>
     
     <div class="editorial-quote">
-      Intelligence is fragile.<br>Governance is its armor.
+      Intelligence is fragile.<br>
+      Governance is its armor.
     </div>
 
     <p class="intro-text">
@@ -131,15 +187,15 @@ title: main
     </p>
 
     <div class="cta-row">
-      <a href="/projects/" class="btn-action btn-primary">DECODE THE PLAYBOOK</a>
-      <a href="/about/" class="btn-action">DOSSIER</a>
+      <a href="/projects/" class="btn-primary">Decode Playbook</a>
+      <a href="/about/" class="btn-secondary">Dossier</a>
     </div>
 
     <div class="trust-bar">
-      <span class="trust-item">OXFORD</span>
-      <span class="trust-item">WATERLOO</span>
-      <span class="trust-item">IVADO</span>
-      <span class="trust-item">TURING COLLEGE</span>
+      <span class="trust-item">Oxford</span>
+      <span class="trust-item">Waterloo</span>
+      <span class="trust-item">Ivado</span>
+      <span class="trust-item">Turing College</span>
     </div>
   </div>
 </div>
