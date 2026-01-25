@@ -92,21 +92,19 @@ remote_theme: hydecorp/hydejack@v9
 # Customizaton
 # ----------------------------------------------------------------------------------------
  
-# Theme Color & Background Settings
 # --------------------------------------------------------
-# 1. Accent Color: A professional teal/slate (similar to pslattery.com style)
-accent_color: '#4ca1af'
+# DESIGN: Minimalist Deep Navy Cover (No Image)
+# --------------------------------------------------------
 
-# 2. Dark Mode Accent: Slightly lighter for better visibility on dark screens
-accent_color_dark: '#7dd3fc'
+# 1. Remove the image so nothing stretches or looks busy
+cover_image: null
 
-# 3. Background: A clean, modern dark gradient (No Image)
-# This creates a deep professional look without visual clutter.
-cover_overlay: 'linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%)'# This is used for the `theme-color` meta tag,
-# which changes the background color of the browser UI in certain browsers.
-# Defaults to `accent_color`.
-theme_color:            rgb(25,55,71)
+# 2. Create the "Sliding Curtain" with your brand colors
+# A smooth gradient from your Professional Navy (#0c1c2e) to a hint of Teal
+cover_overlay: 'linear-gradient(to bottom right, #0c1c2e 40%, #153e4d 100%)'
 
+# 3. Buttons & Links (Electric Teal for contrast)
+accent_color: '#00d2d3'
 # IMPORTANT:
 # As of Hydejack 9.2, Google Fonts are turned off by default due to a stronger focus on privacy.
 # Hydejack will use the default font of your visitor's operating system instead.
