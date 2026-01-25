@@ -1,4 +1,29 @@
+# Main Settings
 remote_theme: qwtel/hydejack@v9
-title: Hadi Noori
+title: "Hadi Noori"
+description: "Digital Transformation & AI Ethics Expert"
 url: "https://hadinoori.ca"
 baseurl: ""
+
+# Author Information
+author:
+  name: "Hadi Noori"
+  bio: "Expert in Digital Strategy and AI Transformation"
+  location: "Canada"
+  picture: /assets/img/logo.png
+
+# Visual Settings
+# Accent color removed to keep the default green theme
+font: "Roboto"
+
+# Plugins
+plugins:
+  - jekyll-remote-theme
+  - jekyll-gist
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# Hydejack Specific
+hydejack:
+  welcome_message: "Welcome to my professional portfolio."
