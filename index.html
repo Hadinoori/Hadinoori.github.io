@@ -1,151 +1,287 @@
 <style>
+  /* 1. GLOBAL STYLES & TYPOGRAPHY FOUNDATION */
   :root {
-    --bg-main: #fcfcfc;
-    --text-bold: #111111;
-    --text-sub: #555555;
-    --accent: #000000;
+    --color-background: #f8f8f8; /* Softest grey for warmth */
+    --color-text-dark: #1a1a1a;
+    --color-text-muted: #6b7280; /* Slate-gray for less harsh contrast */
+    --color-accent: #0f172a; /* Deep Slate Blue - Authoritative */
+    --color-link-hover: #3b82f6; /* Subtle bright blue for interactivity */
+    --color-border-light: #e5e7eb;
+    --font-primary: 'Inter', system-ui, sans-serif;
+    --font-serif: 'Lora', serif;
   }
 
-  body { 
-    background-color: #f4f4f4; 
-    font-family: 'Inter', sans-serif;
+  body {
+    background-color: var(--color-background);
+    font-family: var(--font-primary);
+    color: var(--color-text-dark);
+    line-height: 1.6;
     margin: 0;
   }
 
-  /* 1. CONTAINER - THE EDITORIAL FRAME */
-  .main-wrapper {
-    max-width: 1050px;
+  .site-container {
+    max-width: 1100px; /* Optimal width for content focus */
     margin: 40px auto;
-    background: #ffffff;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.05);
-    border: 1px solid #eee;
+    background: var(--color-background);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.05);
+    border-radius: 8px; /* Slightly rounded for modern feel */
+    overflow: hidden;
   }
 
-  /* 2. NAVIGATION - THE GATEWAY */
-  nav {
-    padding: 30px 60px;
+  /* 2. HEADER: THE SITE'S FIRM HANDSHAKE */
+  header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid #f0f0f0;
+    padding: 25px 60px;
+    border-bottom: 2px solid var(--color-accent); /* A bold statement line */
+    background: var(--color-background);
+    position: sticky; top: 0; z-index: 1000;
   }
 
-  .nav-logo { font-weight: 900; letter-spacing: -1px; font-size: 1.2rem; }
-  .nav-links { display: flex; gap: 30px; }
-  .nav-links a { 
-    text-decoration: none; 
-    color: var(--text-sub); 
-    font-size: 0.85rem; 
+  .brand-logo {
+    font-size: 1.3rem;
+    font-weight: 900;
+    letter-spacing: -1px;
+    text-decoration: none;
+    color: var(--color-accent);
+    text-transform: uppercase;
+  }
+
+  nav a {
+    margin-left: 35px;
+    text-decoration: none;
+    color: var(--color-text-muted);
+    font-size: 0.88rem;
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 1px;
-    transition: 0.3s;
+    transition: all 0.2s ease-out;
   }
-  .nav-links a:hover { color: var(--accent); }
 
-  /* 3. HERO SECTION - REFINED PROPORTIONS */
-  .hero-section {
-    display: flex;
-    padding: 60px;
-    align-items: center;
+  nav a:hover {
+    color: var(--color-accent);
+    border-bottom: 2px solid var(--color-link-hover);
+    padding-bottom: 5px;
+  }
+
+  /* 3. HERO SECTION: THE CORE STATEMENT */
+  .hero-block {
+    display: grid;
+    grid-template-columns: 280px 1fr; /* Image fixed width, text takes rest */
     gap: 60px;
+    padding: 80px 60px 60px 60px;
+    align-items: start; /* Align content to the top */
+    border-bottom: 1px solid var(--color-border-light);
   }
 
-  .portrait-wrap { flex: 0 0 30%; } /* Smaller image presence */
-  .portrait-img {
+  .profile-image-wrapper { position: relative; }
+  .profile-image-wrapper img {
     width: 100%;
-    filter: grayscale(100%);
-    border-radius: 2px;
+    border-radius: 6px;
+    filter: grayscale(100%) contrast(1.1);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08); /* Slightly more prominent shadow */
   }
 
-  .content-wrap { flex: 1; }
-  .main-name { font-size: 3rem; margin: 0; font-weight: 800; letter-spacing: -2px; }
-  .tagline { color: var(--text-sub); font-size: 0.9rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 30px; display: block; }
-  
-  .manifesto {
-    font-family: 'Lora', serif;
-    font-size: 1.6rem;
-    line-height: 1.4;
-    border-left: 4px solid #000;
-    padding-left: 25px;
-    margin: 30px 0;
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
-  /* 4. RECENT NOTES SECTION - THE BLOG PREVIEW */
-  .recent-notes {
-    padding: 60px;
-    background: #fafafa;
-    border-top: 1px solid #f0f0f0;
-  }
-
-  .section-title {
-    font-size: 0.75rem;
+  .specialization-tag {
+    font-size: 0.8rem;
     letter-spacing: 3px;
     text-transform: uppercase;
-    color: #999;
-    margin-bottom: 30px;
+    color: var(--color-accent);
+    font-weight: 700;
+    margin-bottom: 15px;
     display: block;
   }
 
-  .note-item {
+  .author-name {
+    font-size: 2.8rem;
+    font-weight: 800;
+    letter-spacing: -1.5px;
+    color: var(--color-text-dark);
+    margin: 0 0 20px 0;
+    line-height: 1.1;
+  }
+
+  /* THE DOCTRINE: BIG, BOLD, MEMORABLE */
+  .doctrine-quote {
+    font-family: var(--font-serif);
+    font-size: clamp(2.2rem, 3.5vw, 3.2rem); /* Dynamic scale, starts bigger */
+    font-weight: 700; /* Bolder for impact */
+    line-height: 1.25;
+    margin: 30px 0 35px 0;
+    border-left: 6px solid var(--color-accent); /* Accent color rule */
+    padding-left: 30px;
+    color: var(--color-text-dark);
+    letter-spacing: -1px;
+  }
+
+  .intro-summary {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--color-text-dark);
+    max-width: 60ch; /* Optimal reading width */
+    font-weight: 400;
+  }
+
+  /* 4. CONTENT SECTIONS: FEEDING THE THOUGHTS */
+  .content-sections {
+    padding: 60px 60px 80px 60px;
+  }
+
+  .section-title {
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    margin-bottom: 35px;
     display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    padding: 15px 0;
-    border-bottom: 1px solid #eee;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .section-title::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--color-border-light);
+  }
+
+  .article-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid for articles */
+    gap: 40px;
+  }
+
+  .article-card {
+    background: var(--color-background);
+    border: 1px solid var(--color-border-light);
+    border-radius: 4px;
+    padding: 25px;
     text-decoration: none;
+    color: var(--color-text-dark);
+    transition: all 0.2s ease-out;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .article-card:hover {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    transform: translateY(-5px);
+    border-color: var(--color-link-hover);
+  }
+
+  .article-card h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin: 0 0 10px 0;
+    line-height: 1.3;
+  }
+
+  .article-card p {
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+    margin-bottom: 15px;
+    flex-grow: 1;
+  }
+
+  .article-meta {
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+    font-family: monospace;
+    text-align: right;
+  }
+
+  .view-all-link {
+    display: inline-block;
+    margin-top: 40px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--color-accent);
+    text-decoration: none;
+    border-bottom: 2px solid var(--color-link-hover);
+    padding-bottom: 2px;
     transition: 0.2s;
   }
 
-  .note-item:hover { padding-left: 10px; }
-  .note-title { color: var(--text-bold); font-weight: 600; font-size: 1.1rem; }
-  .note-date { color: #ccc; font-size: 0.8rem; font-family: monospace; }
+  .view-all-link:hover { color: var(--color-link-hover); }
+
+  /* 5. FOOTER: THE CLOSING STATEMENT */
+  footer {
+    padding: 40px 60px;
+    border-top: 1px solid var(--color-border-light);
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    background: var(--color-background);
+  }
+
+  footer a { color: var(--color-link-hover); text-decoration: none; }
 
 </style>
 
-<div class="main-wrapper">
-  <nav>
-    <div class="nav-logo">HADI NOORI</div>
-    <div class="nav-links">
-      <a href="/blog/">Notes</a>
-      <a href="/projects/">Playbooks</a>
-      <a href="/cv/">Dossier</a>
+<div class="site-container">
+  <header>
+    <a href="#" class="brand-logo">HADI NOORI</a>
+    <nav>
+      <a href="/notes/">Notes</a>
+      <a href="/playbooks/">Playbooks</a>
+      <a href="/dossier/">Dossier</a>
       <a href="/contact/">Contact</a>
-    </div>
-  </nav>
+    </nav>
+  </header>
 
-  <div class="hero-section">
-    <div class="portrait-wrap">
-      <img src="/assets/img/profile.jpg" class="portrait-img" alt="Hadi Noori">
-    </div>
-    <div class="content-wrap">
-      <span class="tagline">AI Ethics & Governance Specialist</span>
-      <h1 class="main-name">Hadi Noori</h1>
-      <div class="manifesto">
-        Intelligence is fragile.<br>
-        Governance is its armor.
+  <main>
+    <section class="hero-block">
+      <div class="profile-image-wrapper">
+        <img src="/assets/img/profile.jpg" alt="Hadi Noori Profile">
       </div>
-      <p style="color: #666; line-height: 1.6; max-width: 500px;">
-        Specialist in MIS and Social Sciences, bridging the gap between AI policy and engineering for high-stakes industries.
-      </p>
-    </div>
-  </div>
+      <div class="hero-content">
+        <span class="specialization-tag">AI Ethics & Governance</span>
+        <h2 class="author-name">Hadi Noori</h2>
+        <div class="doctrine-quote">
+          "Intelligence is fragile.<br>
+          Governance is its armor."
+        </div>
+        <p class="intro-summary">
+          Specialist in MIS and Social Sciences, focusing on auditable, compliant, and fundamentally fair AI systems within regulated sectors.
+        </p>
+      </div>
+    </section>
 
-  <div class="recent-notes">
-    <span class="section-title">Latest Notes & Thoughts</span>
-    
-    <a href="#" class="note-item">
-      <span class="note-title">The Discourse of Digital Transformation Failure</span>
-      <span class="note-date">2026.01.24</span>
-    </a>
-    
-    <a href="#" class="note-item">
-      <span class="note-title">Algorithmic Bias in Regulated Industries</span>
-      <span class="note-date">2026.01.15</span>
-    </a>
+    <section class="content-sections">
+      <h2 class="section-title">Recent Work & Thoughts</h2>
+      <div class="article-list">
+        <a href="#" class="article-card">
+          <h3>The Discourse of Digital Transformation Failure in Public Sector</h3>
+          <p>Analyzing the deep-seated sociopolitical and ethical dimensions that lead to high failure rates in public sector digital projects.</p>
+          <span class="article-meta">22 JAN 2026 — Research</span>
+        </a>
 
-    <a href="/blog/" style="display: inline-block; margin-top: 30px; font-size: 0.8rem; font-weight: 800; color: #000; text-decoration: none; border-bottom: 2px solid #000;">
-      Read All Notes →
-    </a>
-  </div>
+        <a href="#" class="article-card">
+          <h3>Operationalizing AI Ethics: A Playbook for Regulated Industries</h3>
+          <p>A practical guide for implementing fairness metrics, mitigating algorithmic bias, and ensuring compliance in AI deployment.</p>
+          <span class="article-meta">15 JAN 2026 — Playbook</span>
+        </a>
+
+        <a href="#" class="article-card">
+          <h3>The AI Governance Gap: From Policy to Practice</h3>
+          <p>Exploring the disconnect between high-level AI policy mandates and the day-to-day realities of engineering and deployment.</p>
+          <span class="article-meta">05 JAN 2026 — Article</span>
+        </a>
+      </div>
+      <a href="/notes/" class="view-all-link">View All Research & Notes →</a>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Hadi Noori. DBA in Management Information Systems. Vancouver, BC.</p>
+    <p>Connect: <a href="#">LinkedIn</a> | <a href="#">GitHub</a> | <a href="#">Email</a></p>
+  </footer>
 </div>
