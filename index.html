@@ -1,287 +1,195 @@
 <style>
-  /* 1. GLOBAL STYLES & TYPOGRAPHY FOUNDATION */
   :root {
-    --color-background: #f8f8f8; /* Softest grey for warmth */
-    --color-text-dark: #1a1a1a;
-    --color-text-muted: #6b7280; /* Slate-gray for less harsh contrast */
-    --color-accent: #0f172a; /* Deep Slate Blue - Authoritative */
-    --color-link-hover: #3b82f6; /* Subtle bright blue for interactivity */
-    --color-border-light: #e5e7eb;
-    --font-primary: 'Inter', system-ui, sans-serif;
-    --font-serif: 'Lora', serif;
+    --bg-color: #fcfcfc;
+    --text-main: #111827;
+    --text-muted: #4b5563;
+    --accent-color: #1e40af; /* Deep blue for intellectual authority */
+    --border-color: #e5e7eb;
+    --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+    --font-serif: 'Lora', Georgia, serif;
   }
 
   body {
-    background-color: var(--color-background);
-    font-family: var(--font-primary);
-    color: var(--color-text-dark);
-    line-height: 1.6;
+    background-color: var(--bg-color);
+    font-family: var(--font-sans);
+    color: var(--text-main);
     margin: 0;
+    line-height: 1.5;
   }
 
-  .site-container {
-    max-width: 1100px; /* Optimal width for content focus */
-    margin: 40px auto;
-    background: var(--color-background);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.05);
-    border-radius: 8px; /* Slightly rounded for modern feel */
-    overflow: hidden;
+  .container {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 40px;
   }
 
-  /* 2. HEADER: THE SITE'S FIRM HANDSHAKE */
+  /* --- Header --- */
   header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 25px 60px;
-    border-bottom: 2px solid var(--color-accent); /* A bold statement line */
-    background: var(--color-background);
-    position: sticky; top: 0; z-index: 1000;
+    padding: 30px 0;
+    border-bottom: 1px solid var(--border-color);
   }
 
-  .brand-logo {
-    font-size: 1.3rem;
+  .logo {
     font-weight: 900;
-    letter-spacing: -1px;
+    font-size: 1.2rem;
+    letter-spacing: -0.5px;
     text-decoration: none;
-    color: var(--color-accent);
-    text-transform: uppercase;
+    color: var(--text-main);
   }
 
   nav a {
-    margin-left: 35px;
+    margin-left: 30px;
     text-decoration: none;
-    color: var(--color-text-muted);
-    font-size: 0.88rem;
+    font-size: 0.85rem;
     font-weight: 600;
+    color: var(--text-muted);
     text-transform: uppercase;
-    transition: all 0.2s ease-out;
+    transition: color 0.2s;
   }
 
-  nav a:hover {
-    color: var(--color-accent);
-    border-bottom: 2px solid var(--color-link-hover);
-    padding-bottom: 5px;
-  }
+  nav a:hover { color: var(--accent-color); }
 
-  /* 3. HERO SECTION: THE CORE STATEMENT */
-  .hero-block {
+  /* --- Hero Section (Editorial Style) --- */
+  .hero {
     display: grid;
-    grid-template-columns: 280px 1fr; /* Image fixed width, text takes rest */
-    gap: 60px;
-    padding: 80px 60px 60px 60px;
-    align-items: start; /* Align content to the top */
-    border-bottom: 1px solid var(--color-border-light);
+    grid-template-columns: 300px 1fr;
+    gap: 80px;
+    padding: 100px 0;
+    align-items: start;
   }
 
-  .profile-image-wrapper { position: relative; }
-  .profile-image-wrapper img {
+  .profile-box img {
     width: 100%;
-    border-radius: 6px;
-    filter: grayscale(100%) contrast(1.1);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08); /* Slightly more prominent shadow */
+    filter: grayscale(100%);
+    border-radius: 4px;
+    box-shadow: 20px 20px 0px var(--border-color); /* Geometric accent */
   }
 
-  .hero-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-
-  .specialization-tag {
-    font-size: 0.8rem;
-    letter-spacing: 3px;
+  .hero-content .label {
+    font-size: 0.75rem;
+    font-weight: 800;
     text-transform: uppercase;
-    color: var(--color-accent);
-    font-weight: 700;
+    letter-spacing: 3px;
+    color: var(--accent-color);
     margin-bottom: 15px;
     display: block;
   }
 
-  .author-name {
-    font-size: 2.8rem;
-    font-weight: 800;
-    letter-spacing: -1.5px;
-    color: var(--color-text-dark);
-    margin: 0 0 20px 0;
-    line-height: 1.1;
-  }
-
-  /* THE DOCTRINE: BIG, BOLD, MEMORABLE */
-  .doctrine-quote {
+  /* The core statement becomes the visual hero */
+  .manifesto-quote {
     font-family: var(--font-serif);
-    font-size: clamp(2.2rem, 3.5vw, 3.2rem); /* Dynamic scale, starts bigger */
-    font-weight: 700; /* Bolder for impact */
-    line-height: 1.25;
-    margin: 30px 0 35px 0;
-    border-left: 6px solid var(--color-accent); /* Accent color rule */
-    padding-left: 30px;
-    color: var(--color-text-dark);
-    letter-spacing: -1px;
+    font-size: 3.2rem;
+    line-height: 1.1;
+    font-weight: 700;
+    margin: 20px 0 40px 0;
+    letter-spacing: -1.5px;
   }
 
-  .intro-summary {
-    font-size: 1.05rem;
+  .bio-text {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    max-width: 550px;
     line-height: 1.7;
-    color: var(--color-text-dark);
-    max-width: 60ch; /* Optimal reading width */
-    font-weight: 400;
   }
 
-  /* 4. CONTENT SECTIONS: FEEDING THE THOUGHTS */
-  .content-sections {
-    padding: 60px 60px 80px 60px;
-  }
+  /* --- Content Grid --- */
+  .work-section { padding: 80px 0; }
 
-  .section-title {
-    font-size: 0.85rem;
-    font-weight: 800;
-    letter-spacing: 2px;
+  .section-headline {
+    font-size: 0.8rem;
+    font-weight: 900;
     text-transform: uppercase;
-    color: var(--color-accent);
-    margin-bottom: 35px;
+    letter-spacing: 2px;
+    margin-bottom: 40px;
     display: flex;
     align-items: center;
-    gap: 15px;
   }
 
-  .section-title::after {
+  .section-headline::after {
     content: "";
     flex: 1;
     height: 1px;
-    background: var(--color-border-light);
+    background: var(--border-color);
+    margin-left: 20px;
   }
 
-  .article-list {
+  .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid for articles */
-    gap: 40px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
   }
 
-  .article-card {
-    background: var(--color-background);
-    border: 1px solid var(--color-border-light);
-    border-radius: 4px;
-    padding: 25px;
+  .card {
+    padding: 30px;
+    border: 1px solid var(--border-color);
     text-decoration: none;
-    color: var(--color-text-dark);
-    transition: all 0.2s ease-out;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    color: inherit;
+    transition: all 0.3s;
   }
 
-  .article-card:hover {
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-    transform: translateY(-5px);
-    border-color: var(--color-link-hover);
+  /* Featured card for specific focus */
+  .card.featured {
+    grid-column: span 2;
+    background: #f8fafc;
+    border-top: 4px solid var(--accent-color);
   }
 
-  .article-card h3 {
-    font-size: 1.25rem;
-    font-weight: 700;
-    margin: 0 0 10px 0;
+  .card h3 {
+    font-size: 1.4rem;
+    margin: 0 0 15px 0;
     line-height: 1.3;
   }
 
-  .article-card p {
+  .card p {
     font-size: 0.95rem;
-    color: var(--color-text-muted);
-    margin-bottom: 15px;
-    flex-grow: 1;
+    color: var(--text-muted);
   }
-
-  .article-meta {
-    font-size: 0.8rem;
-    color: var(--color-text-muted);
-    font-family: monospace;
-    text-align: right;
-  }
-
-  .view-all-link {
-    display: inline-block;
-    margin-top: 40px;
-    font-size: 0.9rem;
-    font-weight: 700;
-    color: var(--color-accent);
-    text-decoration: none;
-    border-bottom: 2px solid var(--color-link-hover);
-    padding-bottom: 2px;
-    transition: 0.2s;
-  }
-
-  .view-all-link:hover { color: var(--color-link-hover); }
-
-  /* 5. FOOTER: THE CLOSING STATEMENT */
-  footer {
-    padding: 40px 60px;
-    border-top: 1px solid var(--color-border-light);
-    text-align: center;
-    font-size: 0.85rem;
-    color: var(--color-text-muted);
-    background: var(--color-background);
-  }
-
-  footer a { color: var(--color-link-hover); text-decoration: none; }
-
 </style>
 
-<div class="site-container">
+<div class="container">
   <header>
-    <a href="#" class="brand-logo">HADI NOORI</a>
+    <a href="/" class="logo">HADI NOORI</a>
     <nav>
-      <a href="/notes/">Notes</a>
-      <a href="/playbooks/">Playbooks</a>
-      <a href="/dossier/">Dossier</a>
-      <a href="/contact/">Contact</a>
+      <a href="/notes">Notes</a>
+      <a href="/playbooks">Playbooks</a>
+      <a href="/dossier">Dossier</a>
+      <a href="/contact">Contact</a>
     </nav>
   </header>
 
   <main>
-    <section class="hero-block">
-      <div class="profile-image-wrapper">
-        <img src="/assets/img/profile.jpg" alt="Hadi Noori Profile">
+    <section class="hero">
+      <div class="profile-box">
+        <img src="profile.jpg" alt="Strategic Portrait">
       </div>
       <div class="hero-content">
-        <span class="specialization-tag">AI Ethics & Governance</span>
-        <h2 class="author-name">Hadi Noori</h2>
-        <div class="doctrine-quote">
-          "Intelligence is fragile.<br>
-          Governance is its armor."
-        </div>
-        <p class="intro-summary">
-          Specialist in MIS and Social Sciences, focusing on auditable, compliant, and fundamentally fair AI systems within regulated sectors.
+        <span class="label">Specialist in AI Ethics & Governance</span>
+        <h1 class="manifesto-quote">
+          "Intelligence is fragile.<br>Governance is its armor."
+        </h1>
+        <p class="bio-text">
+          Focusing on auditable, compliant, and fundamentally fair AI systems 
+          within regulated sectors. Bridging the gap between policy and practice.
         </p>
       </div>
     </section>
 
-    <section class="content-sections">
-      <h2 class="section-title">Recent Work & Thoughts</h2>
-      <div class="article-list">
-        <a href="#" class="article-card">
-          <h3>The Discourse of Digital Transformation Failure in Public Sector</h3>
-          <p>Analyzing the deep-seated sociopolitical and ethical dimensions that lead to high failure rates in public sector digital projects.</p>
-          <span class="article-meta">22 JAN 2026 — Research</span>
+    <section class="work-section">
+      <h2 class="section-headline">Selected Work & Playbooks</h2>
+      <div class="grid">
+        <a href="#" class="card featured">
+          <small style="color:var(--accent-color); font-weight:bold">FEATURED PLAYBOOK</small>
+          <h3>Operationalizing AI Ethics for Regulated Industries</h3>
+          <p>A framework for implementing fairness metrics and mitigating algorithmic bias in high-stakes environments.</p>
         </a>
-
-        <a href="#" class="article-card">
-          <h3>Operationalizing AI Ethics: A Playbook for Regulated Industries</h3>
-          <p>A practical guide for implementing fairness metrics, mitigating algorithmic bias, and ensuring compliance in AI deployment.</p>
-          <span class="article-meta">15 JAN 2026 — Playbook</span>
-        </a>
-
-        <a href="#" class="article-card">
-          <h3>The AI Governance Gap: From Policy to Practice</h3>
-          <p>Exploring the disconnect between high-level AI policy mandates and the day-to-day realities of engineering and deployment.</p>
-          <span class="article-meta">05 JAN 2026 — Article</span>
+        <a href="#" class="card">
+          <h3>The Governance Gap</h3>
+          <p>Analyzing the disconnect between high-level AI policy and deployment reality.</p>
         </a>
       </div>
-      <a href="/notes/" class="view-all-link">View All Research & Notes →</a>
     </section>
   </main>
-
-  <footer>
-    <p>&copy; 2026 Hadi Noori. Vancouver, BC.</p>
-    <p>Connect: <a href="#">LinkedIn</a> | <a href="#">GitHub</a> | <a href="#">Email</a></p>
-  </footer>
 </div>
