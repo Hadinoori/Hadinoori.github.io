@@ -1,8 +1,16 @@
+# Essential Settings
 remote_theme: qwtel/hydejack@v9
 title: "Hadi Noori"
 url: "https://hadinoori.ca"
 
-# This activates the professional sidebar
+# Author Profile (Sidebar)
+author:
+  name: "Hadi Noori"
+  bio: "Digital Transformation & AI Ethics Expert"
+  location: "Canada"
+  picture: /assets/img/logo.png
+
+# The "Beautiful" Layout Settings
 hydejack:
   show_author: true
   show_sidebar: true
@@ -11,6 +19,8 @@ hydejack:
       url: "/"
     - title: "About"
       url: "/about/"
+    - title: "Projects"
+      url: "/projects/"
     - title: "Resume"
       url: "/resume/"
 
@@ -18,3 +28,5 @@ hydejack:
 plugins:
   - jekyll-remote-theme
   - jekyll-sitemap
+  - jekyll-gist
+  - jekyll-feed
