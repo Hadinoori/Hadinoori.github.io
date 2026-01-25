@@ -5,12 +5,18 @@ title_visible: false
 ---
 
 <style>
+  /* 0. HIDE DEFAULT THEME TITLE (Fix for Double Name) */
+  /* This targets the theme's automatic page title and hides it */
+  header.post-header, h1.post-title, .page-title {
+    display: none !important;
+  }
+
   /* 1. MINIMALIST COLOR PALETTE */
   :root {
     --bg-clean: #ffffff;
     --text-bold: #000000;
     --text-soft: #4b5563;
-    --accent: #00d2d3; /* A single sharp line for focus */
+    --accent: #00d2d3;
   }
 
   /* 2. LAYOUT: SPACIOUS & BALANCED */
@@ -18,7 +24,7 @@ title_visible: false
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
-    padding: 20px 0 120px 0; /* Heavy bottom padding for breathing room */
+    padding: 0px 0 120px 0; /* Removed top padding to sit even higher */
     gap: 80px;
     max-width: 1100px;
     margin: 0 auto;
@@ -30,7 +36,7 @@ title_visible: false
   }
 
   .hero-name {
-    font-size: 5.5rem; /* Massive scale for authority */
+    font-size: 5.5rem;
     font-weight: 900;
     line-height: 0.85;
     letter-spacing: -4px;
@@ -70,15 +76,15 @@ title_visible: false
   .profile-wrapper {
     flex: 1;
     position: relative;
-    margin-top: 10px; /* Aligns with the top of the name */
+    margin-top: 10px;
   }
 
   .profile-img-pro {
     width: 100%;
-    height: 650px;
+    height: 600px;
     object-fit: cover;
-    border-radius: 4px; /* Sharp, modern minimalism */
-    box-shadow: 30px 30px 0px -5px #f3f4f6; /* Modern offset background instead of fuzzy shadow */
+    border-radius: 4px;
+    box-shadow: 30px 30px 0px -5px #f3f4f6;
     transition: all 0.4s ease;
   }
 
@@ -121,7 +127,7 @@ title_visible: false
 
   /* RESPONSIVE FIX */
   @media (max-width: 1024px) {
-    .hero-container { flex-direction: column-reverse; padding: 40px 20px; text-align: left; }
+    .hero-container { flex-direction: column-reverse; padding: 20px; text-align: left; }
     .hero-name { font-size: 4rem; }
     .profile-img-pro { height: 500px; }
   }
