@@ -47,7 +47,6 @@ author:
   # # Used by `jekyll-seo-tag`:
   # twitter:             <username>
 
-# Add links to the sidebar.
 menu:
   - title:              Home
     url:                /
@@ -55,6 +54,8 @@ menu:
     url:                /about/
   - title:              Projects
     url:                /projects/
+  - title:              Insights    <--- عنوان جدید و حرفه‌ای برای پست‌ها
+    url:                /blog/      <--- آدرس استاندارد بلاگ
     
 # Add links to the footer.
 # Typically you'll want to link to your cookie- or privacy policy (if appliable), etc..
