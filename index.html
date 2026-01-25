@@ -1,134 +1,87 @@
 <style>
-  /* 1. ARCHITECTURAL REFINEMENT */
+  /* 1. GLOBAL DESIGN SYSTEM VARIABLES (Disciplined) */
   :root {
-    --text-primary: #020617;
+    --text-main: #020617;
     --text-muted: #475569;
-    --accent-intellectual: #1e40af;
-    --ui-border: #e2e8f0;
+    --accent-blue: #1e40af;
+    --ui-border: #eeeeee; /* Unified variable name */
     --font-serif: 'Lora', Georgia, serif;
   }
 
-  /* 2. DOSSIER LABEL: THE ANCHOR */
-  .archive-label {
-    font-size: 0.9rem;
-    font-weight: 900;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--accent-intellectual);
-    margin-bottom: 60px;
-    position: relative;
-    display: inline-block;
+  /* 2. RESEARCH ARCHIVE SECTION */
+  .archive-container {
+    padding: 100px 0;
+    border-top: 1px solid var(--ui-border); /* Anchoring the feed */
+    margin-top: 60px;
   }
 
-  .archive-label::after {
-    content: "";
-    position: absolute;
-    bottom: -12px;
-    left: 0;
-    width: 60px;
-    height: 2px;
-    background: var(--accent-intellectual);
-  }
-
-  /* 3. THE RESEARCH FEED (Disciplined List) */
-  .research-feed {
-    border-top: 1px solid var(--ui-border);
-    margin-top: 20px;
-  }
-
-  .feed-entry {
+  .archive-entry {
     display: grid;
-    grid-template-columns: 160px 1fr;
+    grid-template-columns: 160px 1fr; /* Narrower metadata for content dominance */
     gap: 60px;
-    padding: 56px 0; /* Increased padding for visual separation */
+    padding: 48px 0;
     border-bottom: 1px solid var(--ui-border);
     text-decoration: none;
     color: inherit;
-    position: relative;
-    transition: background-color 0.35s ease;
+    transition: background-color 0.2s ease;
   }
 
-  /* The Accent Line on Hover - Common in 2025 Research Sites */
-  .feed-entry::before {
-    content: "";
-    position: absolute;
-    left: -20px;
-    top: 0;
-    width: 4px;
-    height: 0;
-    background: var(--accent-intellectual);
-    transition: height 0.35s ease;
+  .archive-entry:hover {
+    background-color: #fcfcfc;
   }
 
-  .feed-entry:hover {
-    background-color: #f8fafc;
+  .archive-entry:hover .entry-title {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 6px;
   }
 
-  .feed-entry:hover::before {
-    height: 100%;
-  }
-
-  .feed-entry:hover .entry-title {
-    color: var(--accent-intellectual);
-  }
-
-  /* 4. CONTENT TYPOGRAPHY (Pixel-Perfect) */
   .entry-metadata {
-    font-size: 0.82rem;
-    font-weight: 800;
-    letter-spacing: 1.5px;
+    font-size: 0.7rem;
+    font-weight: 900;
     color: var(--text-muted);
     text-transform: uppercase;
-    padding-top: 6px;
+    letter-spacing: 1.2px; /* Balanced for mature institutional feel */
+    padding-top: 10px;
+    opacity: 0.8;
   }
 
   .entry-title {
     font-family: var(--font-serif);
-    font-size: clamp(1.8rem, 4vw, 2.2rem); /* Dynamic & Bold */
-    line-height: 1.28; /* Breathable spacing */
+    font-size: 2.2rem; /* Bold editorial size */
+    line-height: 1.15;
     font-weight: 700;
-    margin: 0 0 16px 0;
-    letter-spacing: -0.75px;
-    transition: color 0.3s ease;
+    margin: 0 0 15px 0;
+    color: var(--text-main);
+    letter-spacing: -0.75px; /* Aligned with Hero rhythm */
   }
 
   .entry-summary {
     font-size: 1.1rem;
-    color: #374151; /* Deeper slate for intellectual tone */
-    max-width: 55ch;
-    line-height: 1.6;
+    color: var(--text-main); /* Darker for manifesto-like seriousness */
+    max-width: 52ch; /* Tighter measure for better focus */
+    line-height: 1.6; /* Increased density for serious tone */
     margin: 0;
-  }
-
-  /* 5. MOBILE RESPONSIVENESS */
-  @media (max-width: 850px) {
-    .feed-entry {
-      grid-template-columns: 1fr;
-      gap: 20px;
-      padding: 40px 0;
-    }
-    .entry-metadata { font-size: 0.9rem; }
+    opacity: 0.9;
   }
 </style>
 
-<section class="archive-section" style="padding: 100px 0;">
-  <h2 class="archive-label">Active Doctrine & Research</h2>
+<section class="archive-container">
+  <h2 class="dossier-label">Research Archive & Playbooks</h2>
   
-  <div class="research-feed">
-    <a href="/playbooks/operationalizing-ethics" class="feed-entry">
-      <div class="entry-metadata">Jan 2026 / Playbook</div>
-      <div class="entry-content">
-        <h3 class="entry-title">Operationalizing AI Ethics for Regulated Industries</h3>
-        <p class="entry-summary">A strategic framework for implementing fairness metrics and mitigating algorithmic bias in high-stakes environments.</p>
-      </div>
-    </a>
+  <a href="/playbooks/operationalizing-ethics" class="archive-entry">
+    <div class="entry-metadata">Jan 2026 / Playbook</div>
+    <div class="entry-content">
+      <h3 class="entry-title">Operationalizing AI Ethics for Regulated Industries</h3>
+      <p class="entry-summary">A strategic framework for implementing fairness metrics and mitigating algorithmic bias in high-stakes environments.</p>
+    </div>
+  </a>
 
-    <a href="/notes/digital-transformation-failure" class="feed-entry">
-      <div class="entry-metadata">Dec 2025 / Research</div>
-      <div class="entry-content">
-        <h3 class="entry-title">The Discourse of Digital Transformation Failure</h3>
-        <p class="entry-summary">Analyzing the sociopolitical and ethical dimensions that contribute to the failure of public sector digital projects.</p>
-      </div>
-    </a>
-  </div>
+  <a href="/notes/digital-transformation-failure" class="archive-entry">
+    <div class="entry-metadata">Dec 2025 / Research</div>
+    <div class="entry-content">
+      <h3 class="entry-title">The Discourse of Digital Transformation Failure</h3>
+      <p class="entry-summary">Analyzing the sociopolitical and ethical dimensions that contribute to the failure of public sector digital projects.</p>
+    </div>
+  </a>
 </section>
