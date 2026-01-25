@@ -4,114 +4,119 @@ title: main
 ---
 
 <style>
-  /* 1. LAYOUT & WHITESPACE STRATEGY */
-  .container { max-width: 1150px !important; padding: 0 50px !important; }
-  .profile-card, .card, .z-depth-1 { box-shadow: none !important; border: none !important; background: transparent !important; }
-
+  /* 1. THE BRUTALIST GRID */
+  .container { max-width: 1400px !important; padding: 0 60px !important; }
+  
   .hero-flex {
     display: flex;
-    gap: 80px; 
-    align-items: flex-start;
-    margin-top: 110px;
-    flex-wrap: wrap;
+    gap: 0; /* Removing the safe gap */
+    align-items: stretch;
+    margin-top: 120px;
+    border-top: 2px solid #000; /* A sharp horizontal cut */
   }
 
-  .portrait-side { flex: 0 0 350px; } 
+  /* 2. THE IMAGE: CREATING VISUAL PRESSURE */
+  .portrait-side { 
+    flex: 0 0 450px; 
+    overflow: hidden;
+    filter: grayscale(100%) contrast(1.4) brightness(0.8); /* Darker, more mysterious */
+  } 
+  
   .portrait-img {
-    width: 100%;
-    filter: grayscale(100%) contrast(1.15); /* Deep intellectual contrast */
-    border-radius: 0 !important;
+    width: 110%; /* Slightly zoomed in for tension */
+    transform: translateX(-5%);
+    mix-blend-mode: multiply;
   }
 
-  /* 2. THE AUTHORITY BRAND: HADI NOORI */
-  .text-side { flex: 1; min-width: 400px; }
+  /* 3. THE BRAND: HADI NOORI (Visual Tension) */
+  .text-side { 
+    flex: 1; 
+    padding-left: 60px; 
+    border-left: 2px solid #000; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
 
   .main-name {
-    font-family: 'Lora', serif !important; /* THE CORE OF THE PRESTIGE LOOK */
-    font-size: 8rem; /* Absolute Presence */
-    font-weight: 800;
+    font-family: 'Lora', serif !important;
+    font-size: 9rem; 
+    font-weight: 900;
     line-height: 0.75;
     color: #000 !important;
-    letter-spacing: -8px; /* High-end fashion/editorial spacing */
-    margin: 0 0 25px 0;
+    letter-spacing: -12px; /* Aggressive Kerning */
+    margin: -20px 0 30px -10px;
     text-transform: uppercase;
   }
 
   .sub-title {
-    font-family: 'Inter', sans-serif !important;
-    font-size: 0.85rem;
-    font-weight: 800;
+    font-size: 0.8rem;
+    font-weight: 900;
     text-transform: uppercase;
-    letter-spacing: 6px; /* Elegant wide tracking */
-    color: #999;
-    margin-bottom: 55px;
-    display: block;
+    letter-spacing: 10px; /* Extreme tracking for contrast */
+    color: #000;
+    margin-bottom: 60px;
   }
 
-  /* 3. THE STATEMENT: THE VOICE OF A GOVERNANCE LEADER */
+  /* 4. THE STATEMENT: BOLD & CLINICAL */
   .editorial-quote {
     font-family: 'Lora', serif !important;
-    font-size: 2.6rem;
+    font-size: 2.8rem;
     font-weight: 400;
-    line-height: 1.25;
-    border-left: 8px solid #000; /* Heavier bar for more gravity */
-    padding-left: 40px;
-    color: #111 !important;
-    margin-bottom: 45px;
-    letter-spacing: -1.5px;
+    line-height: 1.1;
+    color: #000 !important;
+    margin-bottom: 50px;
+    max-width: 500px;
+    letter-spacing: -2px;
   }
 
   .intro-text {
-    font-family: 'Inter', sans-serif;
-    font-size: 1.35rem;
-    line-height: 1.8;
-    color: #444 !important;
-    margin-bottom: 55px;
-    max-width: 650px;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #666 !important;
+    max-width: 450px;
+    margin-bottom: 60px;
+    text-align: justify;
   }
 
-  /* 4. ACTIONS & TRUST SIGNALS */
-  .cta-row { display: flex; gap: 40px; align-items: center; margin-bottom: 120px; }
+  /* 5. CTAs: THE PROVOCATION */
+  .cta-row { display: flex; border-top: 1px solid #000; }
   
-  .btn-black {
-    padding: 20px 45px;
+  .btn-provoke {
+    flex: 1;
+    padding: 30px;
+    text-align: center;
+    text-decoration: none !important;
+    font-weight: 900;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    border-right: 1px solid #000;
+    transition: background 0.4s;
+    color: #000 !important;
+  }
+
+  .btn-provoke:hover {
     background: #000;
     color: #fff !important;
-    text-decoration: none !important;
-    font-weight: 800;
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
   }
 
-  .link-secondary {
-    color: #000;
-    font-weight: 800;
-    text-decoration: none;
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    border-bottom: 4px solid #000;
-    padding-bottom: 6px;
-  }
-
-  .trust-row {
-    border-top: 1px solid #eee;
-    padding-top: 50px;
+  /* 6. TRUST SIGNALS: THE SILENT LOGOS */
+  .trust-bar {
     display: flex;
-    justify-content: flex-start;
-    gap: 60px;
+    justify-content: space-between;
+    padding: 20px 0;
+    border-bottom: 2px solid #000;
   }
-
-  .trust-item {
-    font-family: 'Inter', sans-serif;
-    font-size: 0.75rem;
-    font-weight: 900;
-    text-transform: uppercase;
-    color: #cccccc;
-    letter-spacing: 2px;
-  }
+  .trust-item { font-size: 0.65rem; font-weight: 900; letter-spacing: 2px; color: #999; }
 </style>
+
+<div class="trust-bar">
+  <span class="trust-item">OXFORD</span>
+  <span class="trust-item">WATERLOO</span>
+  <span class="trust-item">IVADO</span>
+  <span class="trust-item">TURING COLLEGE</span>
+</div>
 
 <div class="hero-flex">
   <div class="portrait-side">
@@ -119,27 +124,22 @@ title: main
   </div>
 
   <div class="text-side">
-    <h1 class="main-name">HADI<br>NOORI</h1>
-    <span class="sub-title">AI Ethics & Governance Specialist</span>
+    <div>
+      <h1 class="main-name">HADI<br>NOORI</h1>
+      <span class="sub-title">AI Ethics & Governance Specialist</span>
+      
+      <div class="editorial-quote">
+        Intelligence is fragile.<br>Governance is its only armor.
+      </div>
 
-    <div class="editorial-quote">
-      Governance is the foundation of <br>resilient Intelligence.
+      <p class="intro-text">
+        Bridging the gap between AI policy and engineering for high-stakes, regulated industries. Specialized in MIS and Social Sciences.
+      </p>
     </div>
-
-    <p class="intro-text">
-      Bridging the gap between AI policy and engineering for high-stakes, regulated industries. Specialized in MIS and Social Sciences from <strong>Oxford, Waterloo, and IVADO</strong>.
-    </p>
 
     <div class="cta-row">
-      <a href="/projects/" class="btn-black">View Playbooks</a>
-      <a href="/about/" class="link-secondary">Academic Dossier</a>
+      <a href="/projects/" class="btn-provoke">DECODE THE PLAYBOOK</a>
+      <a href="/about/" class="btn-provoke">ACADEMIC DOSSIER</a>
     </div>
   </div>
-</div>
-
-<div class="trust-row">
-  <span class="trust-item">Oxford Trained</span>
-  <span class="trust-item">Waterloo Alumnus</span>
-  <span class="trust-item">EU AI Scholarship</span>
-  <span class="trust-item">IVADO Fellow</span>
 </div>
