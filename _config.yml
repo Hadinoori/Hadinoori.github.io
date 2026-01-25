@@ -27,7 +27,7 @@ title:                  Hadi Noori
 description:            >
   Hydejack is a boutique Jekyll theme for hackers, nerds, and academics,
   with a focus on personal sites that are meant to impress.
-
+favicon: /assets/img/sidebar-logo.png
 # A shorter description for the sidebar.
 tagline:                Digital Transformation & AI Ethics Expert
 
