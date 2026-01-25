@@ -5,55 +5,136 @@
     --text-muted: #475569;
     --accent-blue: #1e40af; 
     --ui-border: #e2e8f0;
-    --font-serif: 'Lora', serif;
+    --font-serif: 'Lora', serif; /* Manifesto Style */
     --font-sans: 'Inter', sans-serif;
-    --hero-spine: 280px; 
-    --archive-meta: 180px;
+    --hero-spine: 280px; /* The Vertical Axis */
   }
 
-  body { background-color: var(--bg-main); font-family: var(--font-sans); color: var(--text-primary); margin: 0; line-height: 1.6; }
+  body { 
+    background-color: var(--bg-main); 
+    font-family: var(--font-sans); 
+    color: var(--text-primary); 
+    margin: 0; 
+    line-height: 1.6; 
+  }
+  
   .wrap { max-width: 1100px; margin: 0 auto; padding: 0 50px; }
 
-  /* NAVIGATION RECOVERY */
-  header { display: flex; justify-content: space-between; align-items: center; padding: 40px 0; border-bottom: 1px solid var(--ui-border); }
-  .brand { display: flex; align-items: center; gap: 15px; text-decoration: none; color: var(--text-primary); }
-  .brand-logo { height: 32px; width: auto; }
-  .brand-name { font-weight: 900; font-size: 1.1rem; text-transform: uppercase; letter-spacing: -0.5px; }
+  /* NAVIGATION: Right-aligned, Minimalist */
+  header { 
+    display: flex; 
+    justify-content: flex-end; 
+    padding: 60px 0 40px 0; 
+  }
   
-  nav a { margin-left: 35px; text-decoration: none; font-size: 0.8rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; padding-bottom: 8px; border-bottom: 2px solid transparent; transition: color 0.2s; }
-  nav a:hover, nav a.active { color: var(--text-primary); border-bottom: 2px solid var(--accent-blue); }
+  nav { display: flex; gap: 40px; }
+  
+  nav a { 
+    text-decoration: none; 
+    font-size: 0.8rem; 
+    font-weight: 800; 
+    color: var(--text-muted); 
+    text-transform: uppercase; 
+    letter-spacing: 1px;
+    padding-bottom: 8px; 
+    border-bottom: 2px solid transparent; 
+    transition: color 0.2s, border-bottom-color 0.2s; 
+  }
+  
+  nav a:hover { 
+    color: var(--text-primary); 
+    border-bottom: 2px solid var(--ui-border); 
+  }
 
-  /* HERO SECTION */
-  .hero-grid { display: grid; grid-template-columns: var(--hero-spine) 1fr; gap: 60px; padding: 60px 0 80px 0; align-items: start; }
-  .portrait-modern img { width: 100%; filter: grayscale(80%) contrast(1.2); border-radius: 6px; box-shadow: 0 12px 32px rgba(0,0,0,0.09); }
+  /* HERO SECTION: The Core Manifesto */
+  .hero-grid { 
+    display: grid; 
+    grid-template-columns: var(--hero-spine) 1fr; 
+    gap: 90px; 
+    padding: 20px 0 100px 0; 
+    align-items: start; 
+  }
 
-  .statement-title { font-family: var(--font-serif); font-size: clamp(2.5rem, 5vw, 3.8rem); line-height: 1.05; font-weight: 700; letter-spacing: -2px; margin: 0 0 24px 0; }
-  .manifesto-lead { font-size: 1.25rem; font-weight: 450; color: var(--text-muted); max-width: 45ch; margin-top: 44px; border-top: 1px solid var(--ui-border); padding-top: 32px; }
+  .portrait-frame { 
+    position: relative; 
+    max-width: var(--hero-spine); 
+  }
 
-  /* ARCHIVE SECTION */
+  .portrait-frame img { 
+    width: 100%; 
+    filter: grayscale(100%) contrast(1.2) brightness(1.05); 
+    border-radius: 6px; 
+    box-shadow: 0 12px 32px rgba(0,0,0,0.09); 
+    display: block; 
+  }
+
+  .statement-title { 
+    font-family: var(--font-serif); 
+    font-size: clamp(2.5rem, 5vw, 3.8rem); 
+    line-height: 1.05; 
+    font-weight: 700; 
+    letter-spacing: -2px; 
+    margin: 0 0 24px 0; 
+  }
+
+  .manifesto-lead { 
+    font-size: 1.25rem; 
+    font-weight: 450; 
+    color: var(--text-muted); 
+    max-width: 45ch; 
+    margin-top: 44px; 
+    border-top: 1px solid var(--ui-border); 
+    padding-top: 32px; 
+  }
+
+  /* RESEARCH FEED: Aligned to Hero Spine */
   .archive-section { padding-bottom: 100px; }
-  .archive-label { font-size: 0.9rem; font-weight: 900; letter-spacing: 3px; text-transform: uppercase; color: var(--accent-blue); margin-bottom: 50px; display: block; }
+  .section-label { font-size: 0.9rem; font-weight: 900; letter-spacing: 3px; text-transform: uppercase; color: var(--accent-blue); margin-bottom: 50px; display: block; }
+  
   .archive-list { border-top: 1px solid var(--ui-border); }
 
-  .archive-entry { display: grid; grid-template-columns: var(--archive-meta) 1fr; gap: 60px; padding: 48px 0; border-bottom: 1px solid var(--ui-border); text-decoration: none; color: inherit; transition: background 0.2s; }
+  .archive-entry { 
+    display: grid; 
+    grid-template-columns: var(--hero-spine) 1fr; 
+    gap: 90px; 
+    padding: 56px 0; 
+    border-bottom: 1px solid var(--ui-border); 
+    text-decoration: none; 
+    color: inherit; 
+    transition: background-color 0.2s ease;
+  }
+
   .archive-entry:hover { background-color: #f8fafc; }
-  .archive-entry:hover .entry-title { color: var(--accent-blue); text-decoration: underline; text-underline-offset: 6px; }
 
-  .entry-meta { font-size: 0.82rem; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1.2px; padding-top: 8px; }
-  .entry-title { font-family: var(--font-serif); font-size: clamp(1.6rem, 4vw, 2.1rem); line-height: 1.28; letter-spacing: -0.75px; margin: 0 0 16px 0; }
+  .entry-meta { 
+    font-size: 0.82rem; 
+    font-weight: 800; 
+    color: var(--text-muted); 
+    text-transform: uppercase; 
+    text-align: right; /* Attached to the content column */
+    padding-top: 10px; 
+  }
 
-  @media (max-width: 900px) { .hero-grid, .archive-entry { grid-template-columns: 1fr; gap: 30px; } .wrap { padding: 0 25px; } }
+  .entry-title { 
+    font-family: var(--font-serif); 
+    font-size: clamp(1.6rem, 4vw, 2.1rem); 
+    line-height: 1.28; 
+    letter-spacing: -0.75px; 
+    margin: 0 0 16px 0; 
+  }
+
+  @media (max-width: 900px) { 
+    .hero-grid, .archive-entry { grid-template-columns: 1fr; gap: 40px; } 
+    .entry-meta { text-align: left; }
+    .wrap { padding: 0 25px; } 
+  }
 </style>
 
 <div class="wrap">
   <header>
-    <a href="/" class="brand">
-      <img src="/assets/img/sidebar-logo.png" alt="Logo" class="brand-logo">
-      <span class="brand-name">Hadi Noori</span>
-    </a>
     <nav>
       <a href="/notes">Notes</a>
-      <a href="/playbooks" class="active">Playbooks</a>
+      <a href="/playbooks">Playbooks</a>
       <a href="/dossier">Dossier</a>
       <a href="/contact">Contact</a>
     </nav>
@@ -61,8 +142,8 @@
 
   <main>
     <section class="hero-grid">
-      <div class="portrait-modern">
-        <img src="/assets/img/profile.jpg" alt="Hadi Noori Profile">
+      <div class="portrait-frame">
+        <img src="/assets/img/profile.jpg" alt="Hadi Noori">
       </div>
       <div class="hero-content">
         <div style="font-size: 0.75rem; font-weight: 800; color: var(--accent-blue); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px;">
@@ -76,23 +157,14 @@
     </section>
 
     <section class="archive-section">
-      <h2 class="archive-label">Active Doctrine & Research</h2>
+      <span class="section-label">Active Doctrine & Research</span>
       <div class="archive-list">
-        <a href="/playbooks/operationalizing-ethics" class="archive-entry">
+        <a href="/playbooks/ethics" class="archive-entry">
           <div class="entry-meta">Jan 2026 / Playbook</div>
           <div class="entry-content">
             <h3 class="entry-title">Operationalizing AI Ethics for Regulated Industries</h3>
             <p style="color: var(--text-muted); font-size: 1.1rem; max-width: 55ch; line-height: 1.6;">
-              Developing practical playbooks for implementing fairness metrics and mitigating algorithmic bias.
-            </p>
-          </div>
-        </a>
-        <a href="/notes/digital-transformation" class="archive-entry">
-          <div class="entry-meta">Dec 2025 / Research</div>
-          <div class="entry-content">
-            <h3 class="entry-title">The Discourse of Digital Transformation Failure</h3>
-            <p style="color: var(--text-muted); font-size: 1.1rem; max-width: 55ch; line-height: 1.6;">
-              Analyzing sociopolitical dimensions of large-scale digital transformation failures.
+              Developing practical frameworks for implementing fairness metrics in high-stakes environments.
             </p>
           </div>
         </a>
