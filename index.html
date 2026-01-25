@@ -4,81 +4,82 @@ title: main
 ---
 
 <style>
-  /* 1. ARCHITECTURAL REFINEMENT */
-  .container { max-width: 1100px !important; padding: 0 50px !important; }
-  
-  /* 2. THE HERO FLEX - INCREASING THE GRAVITY */
+  /* 1. LAYOUT & WHITESPACE STRATEGY */
+  .container { max-width: 1150px !important; padding: 0 50px !important; }
+  .profile-card, .card, .z-depth-1 { box-shadow: none !important; border: none !important; background: transparent !important; }
+
   .hero-flex {
     display: flex;
     gap: 80px; 
     align-items: flex-start;
-    margin-top: 100px;
+    margin-top: 110px;
     flex-wrap: wrap;
   }
 
-  .portrait-side { flex: 0 0 340px; } 
+  .portrait-side { flex: 0 0 350px; } 
   .portrait-img {
     width: 100%;
-    filter: grayscale(100%) contrast(1.1); /* High-end press look */
+    filter: grayscale(100%) contrast(1.15); /* Deep intellectual contrast */
     border-radius: 0 !important;
-    border: 1px solid #f0f0f0; 
   }
 
-  /* 3. THE BRAND: HADI NOORI AS AN AUTHORITY */
+  /* 2. THE AUTHORITY BRAND: HADI NOORI */
   .text-side { flex: 1; min-width: 400px; }
 
   .main-name {
-    font-family: 'Lora', serif !important; /* THE KEY TO WEIGHT */
-    font-size: 7rem; /* Stronger presence */
+    font-family: 'Lora', serif !important; /* THE CORE OF THE PRESTIGE LOOK */
+    font-size: 8rem; /* Absolute Presence */
     font-weight: 800;
-    line-height: 0.8;
+    line-height: 0.75;
     color: #000 !important;
-    letter-spacing: -6px; /* Tight and powerful */
+    letter-spacing: -8px; /* High-end fashion/editorial spacing */
     margin: 0 0 25px 0;
     text-transform: uppercase;
   }
 
   .sub-title {
+    font-family: 'Inter', sans-serif !important;
     font-size: 0.85rem;
     font-weight: 800;
     text-transform: uppercase;
-    letter-spacing: 6px; /* High-end luxury spacing */
+    letter-spacing: 6px; /* Elegant wide tracking */
     color: #999;
-    margin-bottom: 50px;
+    margin-bottom: 55px;
     display: block;
   }
 
-  /* 4. THE STATEMENT: BOLD & ACADEMIC */
+  /* 3. THE STATEMENT: THE VOICE OF A GOVERNANCE LEADER */
   .editorial-quote {
     font-family: 'Lora', serif !important;
-    font-size: 2.4rem;
+    font-size: 2.6rem;
     font-weight: 400;
-    line-height: 1.3;
-    border-left: 6px solid #000;
-    padding-left: 35px;
+    line-height: 1.25;
+    border-left: 8px solid #000; /* Heavier bar for more gravity */
+    padding-left: 40px;
     color: #111 !important;
     margin-bottom: 45px;
-    letter-spacing: -1px;
+    letter-spacing: -1.5px;
   }
 
   .intro-text {
-    font-size: 1.3rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 1.35rem;
     line-height: 1.8;
-    color: #555 !important;
-    margin-bottom: 50px;
-    max-width: 600px;
+    color: #444 !important;
+    margin-bottom: 55px;
+    max-width: 650px;
   }
 
-  /* 5. ACTIONS & TRUST BAR */
-  .cta-row { display: flex; gap: 30px; align-items: center; margin-bottom: 120px; }
+  /* 4. ACTIONS & TRUST SIGNALS */
+  .cta-row { display: flex; gap: 40px; align-items: center; margin-bottom: 120px; }
   
   .btn-black {
-    padding: 18px 40px;
+    padding: 20px 45px;
     background: #000;
     color: #fff !important;
     text-decoration: none !important;
-    font-weight: 700;
-    font-size: 0.8rem;
+    font-weight: 800;
+    font-size: 0.85rem;
     text-transform: uppercase;
     letter-spacing: 2px;
   }
@@ -87,11 +88,11 @@ title: main
     color: #000;
     font-weight: 800;
     text-decoration: none;
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     text-transform: uppercase;
     letter-spacing: 1px;
-    border-bottom: 3px solid #000;
-    padding-bottom: 5px;
+    border-bottom: 4px solid #000;
+    padding-bottom: 6px;
   }
 
   .trust-row {
@@ -103,6 +104,7 @@ title: main
   }
 
   .trust-item {
+    font-family: 'Inter', sans-serif;
     font-size: 0.75rem;
     font-weight: 900;
     text-transform: uppercase;
