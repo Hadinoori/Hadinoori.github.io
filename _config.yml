@@ -1,32 +1,8 @@
-# Essential Settings
 remote_theme: qwtel/hydejack@v9
 title: "Hadi Noori"
-url: "https://hadinoori.ca"
 
-# Author Profile (Sidebar)
-author:
-  name: "Hadi Noori"
-  bio: "Digital Transformation & AI Ethics Expert"
-  location: "Canada"
-  picture: /assets/img/logo.png
-
-# The "Beautiful" Layout Settings
+# This part builds the professional look you expect
 hydejack:
+  brand_color: "#007c66" # The Green color you liked
   show_author: true
   show_sidebar: true
-  sidebar_menu:
-    - title: "Home"
-      url: "/"
-    - title: "About"
-      url: "/about/"
-    - title: "Projects"
-      url: "/projects/"
-    - title: "Resume"
-      url: "/resume/"
-
-# Required Plugins
-plugins:
-  - jekyll-remote-theme
-  - jekyll-sitemap
-  - jekyll-gist
-  - jekyll-feed
