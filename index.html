@@ -1,105 +1,117 @@
+---
+layout: default
+---
+
 <style>
-  /* 0. BREAK THE BOX: Removing all card-like constraints */
+  /* Ensure visibility and remove the "Card" look */
   header.post-header, h1.post-title, .page-title { display: none !important; }
   
-  .hero-wrapper {
-    background-color: transparent !important; /* Removes the dark container */
-    box-shadow: none !important; /* Removes the amateurish shadow */
-    padding: 100px 0 !important;
+  .hero-container {
+    background-color: transparent !important;
+    color: #1a1a1a !important;
+    padding: 60px 0;
     display: block !important;
-    color: #111111 !important; /* Switches to high-contrast dark text */
-    margin: 0 auto !important;
-    max-width: 900px;
+    visibility: visible !important;
   }
 
   .hero-layout {
     display: flex;
-    gap: 60px;
+    gap: 50px;
     align-items: flex-start;
+    flex-wrap: wrap;
   }
 
-  /* 1. IMAGE: From "Profile Pic" to "Strategic Portrait" */
-  .profile-box { flex: 0 0 300px; }
-  
+  /* Image - Editorial Style */
+  .profile-box { flex: 0 0 280px; }
   .profile-img-elite {
     width: 100%;
     height: auto;
-    border-radius: 0 !important; /* Square edges for authority */
-    filter: grayscale(100%) contrast(1.1); /* Adds intellectual weight */
-    box-shadow: none !important;
+    border-radius: 0 !important;
+    filter: grayscale(100%);
   }
 
-  /* 2. TYPOGRAPHY: The Voice of a Thought Leader */
-  .content-box { flex: 1; }
-
+  /* Typography - Authority Style */
+  .content-box { flex: 1; min-width: 300px; }
+  
   .name-heading {
-    font-family: 'Lora', serif !important; /* Requires Lora in _config.yml */
-    font-size: 4.5rem;
+    font-family: 'Lora', serif !important;
+    font-size: 4rem;
     font-weight: 700;
-    line-height: 1.0;
-    letter-spacing: -3px;
-    color: #111 !important;
-    margin-bottom: 15px;
+    line-height: 1.1;
+    margin: 0 0 10px 0;
+    color: #000 !important;
   }
 
   .expert-label {
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 3px;
-    color: #666 !important; /* Subtle but professional */
-    margin-bottom: 40px;
+    color: #666;
+    margin-bottom: 30px;
     display: block;
   }
 
-  .punchline-bold {
+  .punchline {
     font-family: 'Lora', serif !important;
-    font-size: 1.8rem;
-    font-weight: 500;
+    font-size: 1.7rem;
+    font-weight: 400;
     line-height: 1.4;
-    color: #222 !important;
     border-left: 3px solid #000;
-    padding-left: 25px;
+    padding-left: 20px;
     margin-bottom: 30px;
   }
 
-  .intro-text {
-    font-size: 1.1rem;
-    line-height: 1.8;
-    color: #444 !important;
-    margin-bottom: 40px;
-  }
-
-  /* 3. CTAs: Minimalist & Direct */
-  .cta-group { display: flex; gap: 20px; }
-  
+  /* CTAs & Signals */
+  .cta-group { display: flex; gap: 15px; margin-bottom: 50px; }
   .btn-elite {
-    padding: 14px 30px;
-    font-weight: 700;
+    padding: 12px 24px;
+    border: 1px solid #000;
     text-decoration: none !important;
-    font-size: 0.85rem;
-    border: 1px solid #111;
-    transition: 0.3s ease;
+    font-weight: 600;
+    color: #000;
   }
+  .btn-filled { background: #000; color: #fff !important; }
 
-  .btn-filled { background: #111; color: #fff !important; }
-  .btn-outline { background: transparent; color: #111 !important; }
-
-  /* 4. TRUST SIGNALS: The Academic Foundation */
   .trust-signals {
-    margin-top: 80px;
-    padding-top: 30px;
     border-top: 1px solid #eee;
+    padding-top: 30px;
     display: flex;
-    justify-content: flex-start;
-    gap: 40px;
+    gap: 30px;
   }
-
-  .signal-item { 
-    font-size: 0.7rem; 
-    color: #999; 
-    text-transform: uppercase; 
-    letter-spacing: 1.5px;
-    font-weight: 800;
-  }
+  .signal-item { font-size: 0.7rem; color: #999; font-weight: 800; text-transform: uppercase; }
 </style>
+
+<div class="hero-container">
+  <div class="hero-layout">
+    
+    <div class="profile-box">
+      <img src="/assets/img/profile.jpg" alt="Hadi Noori" class="profile-img-elite">
+    </div>
+
+    <div class="content-box">
+      <h1 class="name-heading">HADI NOORI</h1>
+      <span class="expert-label">AI Ethics & Governance Specialist</span>
+
+      <div class="punchline">
+        Building AI that is auditable, compliant, and fundamentally fair.
+      </div>
+
+      <p style="font-size: 1.1rem; line-height: 1.7; color: #444; margin-bottom: 40px;">
+        Bridging policy and engineering for regulated industries. Specialized in MIS and Social Sciences from <strong>Oxford, Waterloo, and IVADO</strong>.
+      </p>
+
+      <div class="cta-group">
+        <a href="/projects/" class="btn-elite btn-filled">View Projects</a>
+        <a href="/about/" class="btn-elite">More About Me</a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="trust-signals">
+    <span class="signal-item">Oxford Trained</span>
+    <span class="signal-item">EU AI Scholarship Recipient</span>
+    <span class="signal-item">10+ Years in Strategy</span>
+  </div>
+</div>
