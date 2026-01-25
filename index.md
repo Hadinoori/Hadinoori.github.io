@@ -1,5 +1,7 @@
 ---
 layout: front
+title: Home
 ---
-# Professional Portfolio
-Welcome to my new site.
+
+# Digital Transformation Expert
+Welcome to my professional space. This page is now using the Hydejack engine.
