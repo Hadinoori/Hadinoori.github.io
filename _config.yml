@@ -20,14 +20,12 @@
 lang:                  en
 
 # The title of your blog. Used in the sidebar and the browser tab.
-title:                 Starter Kit
+title:                 Hadi Noori
 
 # A short description (~150 chars) of the page used for the meta description tag.
 # Can use markdown, but no more than one paragraph (enforced by `>`)
 description:           >
-  Hydejack is a boutique Jekyll theme for hackers, nerds, and academics,
-  with a focus on personal sites that are meant to impress.
-
+  Digital Transformation & AI Ethics Expert
 # A shorter description for the sidebar.
 tagline:               Change `tagline` in `_config.yml`
 
@@ -42,7 +40,7 @@ logo:                  /assets/img/logo.png
 # This should be the same author as first entry in `_data/authors.yml`.
 author:
   # Used by `jekyll-feed`:
-  name:                <firstname> <lastname>
+  name:                <Hadi> <Noori>
   email:               <mail@domain.tld>
   # # Used by `jekyll-seo-tag`:
   # twitter:             <username>
@@ -50,7 +48,7 @@ author:
 # Add links to the sidebar.
 menu:
   - title:             Example
-    url:               /example/
+    url:               https://hadinoori.ca
   - title:             Documentation
     url:               /docs/
   - title:             About
