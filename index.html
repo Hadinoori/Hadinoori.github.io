@@ -4,109 +4,112 @@ title: main
 ---
 
 <style>
-  /* 1. LAYOUT & GRID LOCKING */
-  .container { max-width: 1400px !important; padding: 0 40px !important; }
+  /* 1. GLOBAL LAYOUT - THE EDITORIAL FRAME */
+  .container { max-width: 100% !important; padding: 0 !important; margin: 0 !important; }
   
   .hero-flex {
     display: flex !important;
     flex-direction: row !important;
-    align-items: stretch !important; /* Forces equal height for image and text boxes */
-    margin-top: 50px;
-    border-top: 8px solid #000;
+    align-items: stretch !important; /* Forces text and image to have same height */
+    min-height: 90vh; /* Fills the screen for authority */
+    border-top: 10px solid #000;
   }
 
-  /* 2. THE PORTRAIT - NO ZOOM, ALIGNED LEFT */
+  /* 2. THE PORTRAIT - FIXED LEFT COLUMN */
   .portrait-side { 
-    flex: 0 0 400px !important; /* Fixed width for the image column */
-    background: #fff;
-    border-right: 2px solid #000;
-    display: flex;
-    align-items: flex-end; /* Aligns photo to the bottom of the line */
+    flex: 0 0 40% !important; /* Occupies exactly 40% of the screen width */
+    background: #f0f0f0; /* Subtle base for the image */
+    overflow: hidden;
+    filter: grayscale(100%);
+    border-right: 3px solid #000;
   } 
   
   .portrait-img {
     width: 100% !important;
-    height: auto !important;
-    object-fit: contain !important; /* THE FIX: Shows the WHOLE image without zooming */
-    filter: grayscale(100%);
-    display: block;
+    height: 100% !important;
+    object-fit: cover !important; /* Ensures the image fills the 40% column perfectly */
+    object-position: center top;
+    display: block !important;
   }
 
-  /* 3. THE BRAND: HADI NOORI */
+  /* 3. THE CONTENT - WHITE SPACE & TYPOGRAPHY */
   .text-side { 
-    flex: 1 !important; 
-    padding: 60px 80px !important; 
+    flex: 0 0 60% !important; /* Remaining 60% for text */
+    padding: 100px 80px !important;
     background: #fff;
     display: flex;
     flex-direction: column;
+    justify-content: center; /* Centers text vertically against the image */
   }
 
   .main-name {
     font-family: 'Lora', serif !important;
-    font-size: 8rem; 
+    font-size: 9rem; 
     font-weight: 900;
-    line-height: 0.85;
+    line-height: 0.8;
     color: #000 !important;
-    letter-spacing: -6px;
-    margin: 0 0 30px 0;
+    letter-spacing: -7px;
+    margin: 0 0 20px 0;
     text-transform: uppercase;
   }
 
   .sub-title {
-    font-size: 0.85rem;
-    font-weight: 800;
+    font-size: 0.8rem;
+    font-weight: 900;
     text-transform: uppercase;
-    letter-spacing: 5px;
+    letter-spacing: 6px;
     color: #888;
     margin-bottom: 60px;
   }
 
-  /* 4. STRATEGIC STATEMENT */
   .editorial-quote {
     font-family: 'Lora', serif !important;
     font-size: 2.8rem;
     font-weight: 400;
-    line-height: 1.2;
-    color: #111 !important;
-    border-left: 8px solid #000;
-    padding-left: 35px;
-    margin-bottom: 45px;
+    line-height: 1.15;
+    color: #000 !important;
+    border-left: 10px solid #000;
+    padding-left: 40px;
+    margin-bottom: 50px;
+    letter-spacing: -1.5px;
   }
 
   .intro-text {
-    font-size: 1.25rem;
-    line-height: 1.7;
+    font-size: 1.3rem;
+    line-height: 1.6;
     color: #444 !important;
     max-width: 550px;
-    margin-bottom: 70px;
+    margin-bottom: 60px;
   }
 
-  /* 5. CTAs */
-  .cta-row { display: flex; gap: 20px; }
+  /* 4. CALL TO ACTION - THE DECISION BAR */
+  .cta-row { 
+    display: flex; 
+    border: 3px solid #000; 
+    width: fit-content;
+  }
   
   .btn-action {
-    padding: 20px 45px;
+    padding: 25px 50px;
     text-decoration: none !important;
-    font-weight: 800;
+    font-weight: 900;
     font-size: 0.85rem;
     text-transform: uppercase;
-    letter-spacing: 2px;
-    border: 3px solid #000;
-    transition: 0.2s ease-in-out;
+    letter-spacing: 3px;
+    color: #000 !important;
+    transition: 0.3s;
   }
 
-  .btn-filled { background: #000; color: #fff !important; }
-  .btn-outline { background: transparent; color: #000 !important; }
+  .btn-primary { background: #000; color: #fff !important; }
   .btn-action:hover { background: #000; color: #fff !important; }
 
-  /* 6. TRUST FOOTER */
+  /* 5. TRUST SIGNALS */
   .trust-bar {
-    margin-top: auto;
-    padding-top: 50px;
+    margin-top: 80px;
     display: flex;
     gap: 40px;
   }
-  .trust-item { font-size: 0.7rem; font-weight: 900; color: #bbb; text-transform: uppercase; letter-spacing: 1.5px; }
+  .trust-item { font-size: 0.7rem; font-weight: 900; color: #ccc; text-transform: uppercase; letter-spacing: 2px; }
 
 </style>
 
@@ -128,14 +131,14 @@ title: main
     </p>
 
     <div class="cta-row">
-      <a href="/projects/" class="btn-action btn-filled">DECODE THE PLAYBOOK</a>
-      <a href="/about/" class="btn-action btn-outline">DOSSIER</a>
+      <a href="/projects/" class="btn-action btn-primary">DECODE THE PLAYBOOK</a>
+      <a href="/about/" class="btn-action">DOSSIER</a>
     </div>
 
     <div class="trust-bar">
       <span class="trust-item">OXFORD</span>
-      <span class="trust-item">WATERLOO Alumnus</span>
-      <span class="trust-item">IVADO Fellow</span>
+      <span class="trust-item">WATERLOO</span>
+      <span class="trust-item">IVADO</span>
       <span class="trust-item">TURING COLLEGE</span>
     </div>
   </div>
