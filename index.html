@@ -1,49 +1,113 @@
 <style>
-  /* ARCHITECTURAL FEED FOR RESEARCH & NOTES */
+  /* --- ARCHITECTURAL FEED FOR RESEARCH & NOTES --- */
+  
   .content-feed {
     padding: 80px 0;
-    margin-top: 40px;
+    margin-top: 40px; /* Separation from the Hero section */
+  }
+
+  /* Section Header Styling */
+  .dossier-label {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--text-primary);
+    margin-bottom: 40px;
+    padding-left: 2px; /* Micro-alignment with the grid */
   }
 
   .feed-entry {
     display: grid;
-    grid-template-columns: 200px 1fr;
-    gap: 50px;
-    padding: 40px 0;
+    /* CRITICAL: Matches the Hero section image width (260px) for vertical alignment */
+    grid-template-columns: 260px 1fr; 
+    gap: 40px; 
+    padding: 32px 0;
     border-top: 1px solid var(--border-line);
     text-decoration: none;
     color: inherit;
-    transition: background 0.2s ease;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    /* Align text baselines of the date and the title */
+    align-items: baseline; 
   }
 
+  /* Hover Interaction: Subtle forward movement + highlight */
   .feed-entry:hover {
-    background-color: #f9fafb;
+    background-color: #f8fafc; /* Very subtle slate tint */
+    transform: translateX(10px); 
+    padding-left: 10px; /* Compensate for movement */
+    border-top-color: var(--accent-intellectual);
   }
 
   .entry-metadata {
-    font-size: 0.7rem;
-    font-weight: 900;
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    font-weight: 700;
     color: var(--text-muted);
     text-transform: uppercase;
-    letter-spacing: 2px;
-    padding-top: 8px;
+    letter-spacing: 0.05em;
+  }
+  
+  /* Visual distinction for content type */
+  .entry-type {
+    color: var(--accent-intellectual);
+    font-weight: 800;
   }
 
   .entry-title {
     font-family: var(--font-serif);
-    font-size: 2rem;
-    line-height: 1.2;
-    font-weight: 700;
+    font-size: 1.75rem; /* Reduced size for better hierarchy relative to Hero */
+    line-height: 1.3;
+    font-weight: 500;
     margin: 0 0 12px 0;
     color: var(--text-primary);
-    letter-spacing: -0.5px;
+    letter-spacing: -0.02em;
+    transition: color 0.2s ease;
+  }
+  
+  .feed-entry:hover .entry-title {
+    color: var(--accent-intellectual);
   }
 
   .entry-summary {
-    font-size: 1.05rem;
+    font-family: var(--font-sans);
+    font-size: 1rem;
     color: var(--text-muted);
-    max-width: 55ch; /* Optimal reading measure */
+    max-width: 52ch; /* Golden ratio for readability measure */
     margin: 0;
+    line-height: 1.6;
+  }
+  
+  /* Invisible arrow that appears on hover */
+  .read-more-arrow {
+    display: inline-block;
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: all 0.2s ease;
+    color: var(--accent-intellectual);
+    margin-left: 10px;
+  }
+  
+  .feed-entry:hover .read-more-arrow {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  /* --- RESPONSIVE DESIGN (MOBILE) --- */
+  @media (max-width: 768px) {
+    .feed-entry {
+      grid-template-columns: 1fr; /* Stack into single column */
+      gap: 12px;
+    }
+    .entry-metadata {
+      font-size: 0.7rem;
+      margin-bottom: 4px;
+    }
+    .entry-title {
+      font-size: 1.5rem;
+    }
   }
 </style>
 
@@ -51,17 +115,27 @@
   <h2 class="dossier-label">Research Archive & Playbooks</h2>
   
   <a href="/playbooks/operationalizing-ethics" class="feed-entry">
-    <div class="entry-metadata">Jan 2026 / Playbook</div>
+    <div class="entry-metadata">
+      Jan 2026 <span style="margin: 0 8px; color: #ddd;">/</span> <span class="entry-type">Playbook</span>
+    </div>
     <div class="entry-content">
-      <h3 class="entry-title">Operationalizing AI Ethics for Regulated Industries</h3>
+      <h3 class="entry-title">
+        Operationalizing AI Ethics
+        <span class="read-more-arrow">→</span>
+      </h3>
       <p class="entry-summary">A strategic framework for implementing fairness metrics and mitigating algorithmic bias in high-stakes environments.</p>
     </div>
   </a>
 
   <a href="/notes/digital-transformation-failure" class="feed-entry">
-    <div class="entry-metadata">Dec 2025 / Research</div>
+    <div class="entry-metadata">
+      Dec 2025 <span style="margin: 0 8px; color: #ddd;">/</span> <span class="entry-type">Research</span>
+    </div>
     <div class="entry-content">
-      <h3 class="entry-title">The Discourse of Digital Transformation Failure</h3>
+      <h3 class="entry-title">
+        The Discourse of Failure
+        <span class="read-more-arrow">→</span>
+      </h3>
       <p class="entry-summary">Analyzing the sociopolitical and ethical dimensions that contribute to the failure of public sector digital projects.</p>
     </div>
   </a>
