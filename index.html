@@ -5,121 +5,120 @@ title_visible: false
 ---
 
 <style>
-  /* 0. HIDE DEFAULT THEME ELEMENTS */
+  /* 0. FORCE THEME RE-ALIGNMENT (The Fix) */
   header.post-header, h1.post-title, .page-title { display: none !important; }
 
-  /* 1. SAFE SIDEBAR SLIMMING & CONTENT ALIGNMENT */
+  /* 1. STRUCTURAL REPAIR - Slim Sidebar & Balanced Content */
   @media (min-width: 992px) {
-    /* We use padding on the body/content to push things rather than forcing width */
+    /* Step A: Slim the Sidebar Wrapper */
     .sidebar {
-      max-width: 280px !important; /* Slimmer look */
+      width: 20rem !important; /* Fixed slim width */
     }
-    .content {
-      padding-left: 320px !important; /* Ensures content never goes under sidebar */
-      padding-right: 40px !important;
-      max-width: 1200px !important;
-    }
+    /* Step B: Darken Background to match Brand */
     .sidebar-bg {
-      filter: brightness(0.2) contrast(1.1); /* Darker sidebar background */
+      filter: brightness(0.15) contrast(1.2) grayscale(40%);
+    }
+    /* Step C: Push Content to the right of the slim sidebar */
+    .content {
+      margin-left: 20rem !important; 
+      padding: 40px 60px !important;
+      max-width: 1000px !important;
     }
   }
 
-  /* 2. CENTER CARD - REBALANCED */
+  /* 2. HERO CARD - Professional Aesthetic */
   :root {
     --bg-card: #0f172a; 
-    --accent-cyan: #00d2d3;
-    --text-muted: #94a3b8;
+    --accent-teal: #00d2d3;
+    --text-dim: #94a3b8;
   }
 
   .hero-wrapper {
     background-color: var(--bg-card);
     border-radius: 12px;
-    padding: 50px 40px;
+    padding: 50px 45px;
     color: #ffffff;
-    box-shadow: 0 25px 50px rgba(0,0,0,0.3);
-    margin-top: 10px;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.4);
     display: flex;
     flex-direction: column;
-    width: 100%; /* Ensures it fills the available content area */
+    border: 1px solid rgba(255,255,255,0.03);
   }
 
   .hero-layout {
     display: flex;
-    gap: 40px;
+    gap: 45px;
     align-items: flex-start;
   }
 
-  /* 3. IMAGE BOX */
-  .profile-box { flex: 0 0 32%; } /* Slightly smaller image to balance the slim sidebar */
+  /* 3. IMAGE BOX (Portrait Aspect) */
+  .profile-box { flex: 0 0 35%; }
 
   .profile-img-elite {
     width: 100%;
-    height: 400px;
+    height: 450px;
     object-fit: cover;
     object-position: top;
-    border-radius: 8px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 6px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    filter: brightness(0.95);
   }
 
-  /* 4. TYPOGRAPHY */
+  /* 4. TYPOGRAPHY & CTA */
   .content-box { flex: 1; }
 
   .name-heading {
-    font-size: 3.8rem; /* Adjusted for better fit */
+    font-size: 4rem;
     font-weight: 900;
-    line-height: 0.9;
+    line-height: 0.85;
     letter-spacing: -2px;
     margin: 0;
     text-transform: uppercase;
   }
 
   .expert-label {
-    font-size: 0.75rem;
+    font-size: 0.8rem;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 3px;
-    color: var(--accent-cyan);
-    margin: 15px 0 35px 0;
+    letter-spacing: 4px;
+    color: var(--accent-teal);
+    margin: 20px 0 40px 0;
     display: block;
   }
 
   .punchline-bold {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     font-weight: 700;
     line-height: 1.4;
     margin-bottom: 25px;
-    border-left: 4px solid var(--accent-cyan);
+    border-left: 4px solid var(--accent-teal);
     padding-left: 20px;
   }
 
   .intro-text {
     font-size: 1.05rem;
     line-height: 1.7;
-    color: var(--text-muted);
+    color: var(--text-dim);
     margin-bottom: 35px;
   }
 
-  /* 5. BUTTONS */
   .cta-group { display: flex; gap: 15px; }
 
   .btn-elite {
-    padding: 12px 25px;
+    padding: 14px 28px;
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 1px;
     transition: 0.3s;
     text-decoration: none !important;
-    font-size: 0.75rem;
+    font-size: 0.8rem;
     border-radius: 4px;
     text-align: center;
   }
 
-  .btn-filled { background: var(--accent-cyan); color: var(--bg-card) !important; }
+  .btn-filled { background: var(--accent-teal); color: var(--bg-card) !important; }
   .btn-outline { background: transparent; color: #fff !important; border: 1px solid rgba(255,255,255,0.2); }
-  .btn-elite:hover { transform: translateY(-3px); opacity: 0.9; }
 
-  /* 6. TRUST SIGNALS */
+  /* 5. TRUST SIGNALS (Oxford, Waterloo) */
   .trust-signals {
     margin-top: 50px;
     padding-top: 30px;
@@ -128,14 +127,14 @@ title_visible: false
     justify-content: space-between;
   }
 
-  .signal-item { font-size: 0.65rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
+  .signal-item { font-size: 0.7rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1.5px; font-weight: 600; }
 
-  /* MOBILE */
+  /* MOBILE FIX */
   @media (max-width: 991px) {
     .hero-layout { flex-direction: column; text-align: center; }
     .name-heading { font-size: 2.8rem; }
-    .profile-box { width: 100%; max-width: 300px; margin: 0 auto 20px; }
-    .punchline-bold { border-left: none; border-bottom: 2px solid var(--accent-cyan); padding-bottom: 15px; }
+    .profile-box { width: 100%; max-width: 320px; margin: 0 auto 30px; }
+    .punchline-bold { border-left: none; border-bottom: 3px solid var(--accent-teal); padding-bottom: 15px; }
     .cta-group { flex-direction: column; }
     .trust-signals { flex-direction: column; gap: 10px; align-items: center; }
   }
