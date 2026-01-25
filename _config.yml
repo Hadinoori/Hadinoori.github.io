@@ -90,19 +90,18 @@ paginate_path:          /:num/
 remote_theme: hydecorp/hydejack@v9
 
 # Customizaton
-# ----------------------------------------------------------------------------------------
- # DESIGN: Solid Navy Background (Slider Enabled)
+# --------------------------------------------------------
+# DESIGN: New Cover Image
 # --------------------------------------------------------
 
-# 1. Image path MUST be here to fix the white screen error
-cover_image: /assets/img/sidebar-bg.jpg
+# 1. Point to the NEW file name to force update (Change file name if needed)
+cover_image: /assets/img/new-cover.jpg
 
-# 2. The Trick: An opaque (solid) gradient that hides the image completely
-cover_overlay: 'linear-gradient(to bottom, #0c1c2e, #0c1c2e)'
+# 2. A light semi-transparent overlay (so text is readable but image is visible)
+cover_overlay: 'linear-gradient(to bottom right, rgba(12, 28, 46, 0.8), rgba(21, 62, 77, 0.8))'
 
 # 3. Text colors
 accent_color: '#00d2d3'
-
 # As of Hydejack 9.2, Google Fonts are turned off by default due to a stronger focus on privacy.
 # Hydejack will use the default font of your visitor's operating system instead.
 # If you want to match the look of hydejack.com, remove the following line and uncomment 
