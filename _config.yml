@@ -1,21 +1,40 @@
+# Basics
 remote_theme: qwtel/hydejack@v9
 title: "Hadi Noori"
+description: "Digital Transformation & AI Ethics Expert"
+url: "https://hadinoori.ca"
 
-# Menu Configuration
+# Author (This fills the Sidebar)
+author:
+  name: "Hadi Noori"
+  bio: "Expert in Digital Strategy and AI Transformation"
+  location: "Canada"
+  picture: /assets/img/logo.png
+
+# Advanced Layout (The "Magic" settings)
 hydejack:
+  brand_color: "#007c66" # The original Hydejack Green you like
+  welcome_message: "Welcome to my professional portfolio."
+  show_author: true
+  show_sidebar: true
+  
+  # Professional Menu (Change these to match your pages)
   sidebar_menu:
     - title: "Home"
       url: "/"
-    - title: "Projects"
-      url: "/projects/"
-    - title: "Publications"
-      url: "/publications/"
-    - title: "Blog"
-      url: "/blog/"
     - title: "About"
       url: "/about/"
+    - title: "Projects"
+      url: "/projects/"
+    - title: "Resume"
+      url: "/resume/"
 
-# Content Organization
+# Technical
+plugins:
+  - jekyll-remote-theme
+  - jekyll-gist
+  - jekyll-feed
+  - jekyll-sitemap
+
+# Content Logic
 permalink: /:title/
-paginate: 5
-paginate_path: "/blog/page:num/"
