@@ -92,11 +92,17 @@ remote_theme: hydecorp/hydejack@v9
 # Customizaton
 # ----------------------------------------------------------------------------------------
  
-# Sidebar image and theme color of the site.
-cover_image:            /assets/img/sidebar-bg.jpg
-accent_color:           '#0c1c2e'
-accent_color_dark:      '#4a90e2'
-# This is used for the `theme-color` meta tag,
+# Theme Color & Background Settings
+# --------------------------------------------------------
+# 1. Accent Color: A professional teal/slate (similar to pslattery.com style)
+accent_color: '#4ca1af'
+
+# 2. Dark Mode Accent: Slightly lighter for better visibility on dark screens
+accent_color_dark: '#7dd3fc'
+
+# 3. Background: A clean, modern dark gradient (No Image)
+# This creates a deep professional look without visual clutter.
+cover_overlay: 'linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%)'# This is used for the `theme-color` meta tag,
 # which changes the background color of the browser UI in certain browsers.
 # Defaults to `accent_color`.
 theme_color:            rgb(25,55,71)
