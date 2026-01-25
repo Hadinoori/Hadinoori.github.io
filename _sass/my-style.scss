@@ -1,48 +1,14 @@
-/* --- EMERGENCY OVERRIDE TO KILL THE CARD LOOK --- */
-
-/* 1. Remove the Box, Shadows, and Backgrounds from the entire site */
-.container, .row, .col, .card, .profile-card, .z-depth-1, .post, .page {
-    box-shadow: none !important;
-    border: none !important;
-    background-color: transparent !important;
-    padding: 0 !important;
-    margin: 0 auto !important;
+/* Reset the theme's forced constraints */
+.container {
     max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
 }
 
-/* 2. Create the Editorial Centered Layout (The White Paper Look) */
-main, #about, .post-content {
-    display: block !important;
-    max-width: 800px !important; /* Perfect width for strategic reading */
+#about, article {
+    max-width: 900px !important;
     margin: 0 auto !important;
-    padding: 100px 20px !important;
-    background-color: #fdfdfd !important; /* Editorial white */
+    padding: 40px 20px !important;
 }
 
-/* 3. Authority Typography (Serif for headings) */
-h1, h2, h3, .post-title, .navbar-brand {
-    font-family: "Lora", "Playfair Display", serif !important;
-    font-weight: 700 !important;
-    color: #111 !important;
-    line-height: 1.2 !important;
-}
-
-body {
-    background-color: #fdfdfd !important; /* Ensures the whole page is white */
-    font-family: "Inter", sans-serif !important;
-    line-height: 1.8 !important;
-}
-
-/* 4. Kill the Round Avatar - Transform to Portrait */
-.profile img {
-    border-radius: 0 !important; /* Removes circle/rounded look */
-    filter: grayscale(100%) contrast(1.1) !important; /* High-end press look */
-    width: 280px !important;
-    height: auto !important;
-    box-shadow: none !important;
-}
-
-/* 5. Hide the Amateur Sidebar Completely */
-.sidebar, #sidebar {
-    display: none !important;
-}
+.sidebar { display: none !important; }
