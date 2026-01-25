@@ -3,33 +3,153 @@ layout: page
 title: Hadi Noori
 title_visible: false
 ---
-<div class="row">
+
+<style>
+  /* 1. CONTAINER LAYOUT */
+  .hero-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 60px 0;
+    gap: 40px;
+  }
+
+  /* 2. PROFILE IMAGE STYLING */
+  .profile-wrapper {
+    flex-shrink: 0;
+    position: relative;
+  }
+
+  .profile-img-custom {
+    width: 220px;
+    height: 220px;
+    object-fit: cover;
+    object-position: top; /* Focus on face */
+    border-radius: 50%;
+    border: 5px solid #ffffff;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.15); /* Soft professional shadow */
+    transition: transform 0.3s ease;
+  }
+
+  .profile-img-custom:hover {
+    transform: scale(1.02);
+  }
+
+  /* 3. TEXT TYPOGRAPHY */
+  .hero-content {
+    flex-grow: 1;
+  }
+
+  .hero-quote {
+    font-family: sans-serif;
+    font-size: 1.35rem;
+    font-weight: 700;
+    line-height: 1.4;
+    color: #0c1c2e; /* Navy Brand Color */
+    margin-bottom: 25px;
+    border-left: 4px solid #00d2d3; /* Teal Accent Line */
+    padding-left: 20px;
+  }
+
+  .hero-text {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: #555;
+    margin-bottom: 15px;
+  }
+
+  /* 4. BUTTONS (PILL STYLE) */
+  .hero-buttons {
+    margin-top: 35px;
+  }
+
+  .btn-hero {
+    display: inline-block;
+    padding: 12px 30px;
+    border-radius: 50px;
+    font-weight: 600;
+    text-decoration: none !important;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    margin-right: 15px;
+  }
+
+  /* Primary Button (Solid Navy) */
+  .btn-primary-custom {
+    background-color: #0c1c2e;
+    color: #ffffff !important;
+    border: 2px solid #0c1c2e;
+    box-shadow: 0 4px 15px rgba(12, 28, 46, 0.2);
+  }
+  .btn-primary-custom:hover {
+    background-color: #153e4d;
+    border-color: #153e4d;
+    transform: translateY(-3px);
+  }
+
+  /* Secondary Button (Outline) */
+  .btn-outline-custom {
+    background-color: transparent;
+    color: #0c1c2e !important;
+    border: 2px solid #0c1c2e;
+  }
+  .btn-outline-custom:hover {
+    background-color: #0c1c2e;
+    color: #ffffff !important;
+  }
+
+  /* 5. MOBILE RESPONSIVENESS */
+  @media (max-width: 768px) {
+    .hero-container {
+      flex-direction: column;
+      text-align: center;
+      padding: 30px 0;
+    }
+    .profile-img-custom {
+      width: 180px;
+      height: 180px;
+      margin-bottom: 20px;
+    }
+    .hero-quote {
+      font-size: 1.2rem;
+      border-left: none;
+      border-bottom: 3px solid #00d2d3;
+      padding-bottom: 15px;
+      padding-left: 0;
+    }
+    .btn-hero {
+      display: block;
+      width: 100%;
+      margin-bottom: 10px;
+    }
+  }
+</style>
+
+<div class="hero-container">
   
-  <div class="col-md-4 col-xs-12 text-center">
-    <img src="/assets/img/profile.jpg" 
-         alt="Hadi Noori" 
-         class="img-fluid rounded-circle shadow" 
-         style="max-width: 250px; border: 5px solid #fff;">
+  <div class="profile-wrapper">
+    <img src="/assets/img/profile.jpg" alt="Hadi Noori" class="profile-img-custom">
   </div>
 
-  <div class="col-md-8 col-xs-12">
-    <h2 class="lead font-weight-bold" style="font-size: 1.5rem; margin-top: 0;">
-      Digital Transformation is not just about technology; it is about people. 
-      <br>AI is not just a tool; it is a social responsibility.
-    </h2>
+  <div class="hero-content">
+    
+    <div class="hero-quote">
+      Digital Transformation is not just about technology; it is about people.<br>
+      AI is not just a tool; it is a social responsibility.
+    </div>
 
-    <p>
+    <p class="hero-text">
       Welcome. I am <strong>Hadi Noori</strong>, a dual-disciplinary researcher and advisor operating at the convergence of <strong>Management Information Systems</strong> and <strong>Social Sciences</strong>.
     </p>
     
-    <p>
+    <p class="hero-text">
       My work challenges technical-first narratives. I help organizations understand <em>why</em> digital transformations fail and <em>how</em> to build AI systems that are ethical, compliant, and trustworthy.
     </p>
 
-    <p class="mt-4">
-      <a href="/projects/" class="btn btn-primary btn-lg">View Projects</a>
-      <a href="/about/" class="btn btn-outline-primary btn-lg" style="margin-left: 10px;">More About Me</a>
-    </p>
-  </div>
+    <div class="hero-buttons">
+      <a href="/projects/" class="btn-hero btn-primary-custom">View Projects</a>
+      <a href="/about/" class="btn-hero btn-outline-custom">More About Me</a>
+    </div>
 
+  </div>
 </div>
