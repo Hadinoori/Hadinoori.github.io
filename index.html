@@ -1,174 +1,128 @@
-<style>
-  :root {
-    --bg-main: #fcfcfc;
-    --text-primary: #020617;
-    --text-muted: #475569;
-    --accent-blue: #1e40af; 
-    --ui-border: #e2e8f0;
-    --font-serif: 'Lora', serif; /* Manifesto Style */
-    --font-sans: 'Inter', sans-serif;
-    --hero-spine: 280px; /* The Vertical Axis */
-  }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hadi Noori | AI Ethics & Governance</title>
+    
+    <link rel="icon" type="image/png" href="/assets/img/sidebar-logo.png">
+    <link rel="apple-touch-icon" href="/assets/img/sidebar-logo.png">
 
-  body { 
-    background-color: var(--bg-main); 
-    font-family: var(--font-sans); 
-    color: var(--text-primary); 
-    margin: 0; 
-    line-height: 1.6; 
-  }
-  
-  .wrap { max-width: 1100px; margin: 0 auto; padding: 0 50px; }
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&family=Lora:italic,wght@0,700;1,700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-main: #fcfcfc;
+            --text-primary: #020617;
+            --text-muted: #475569;
+            --accent-blue: #1e40af; 
+            --ui-border: #e2e8f0;
+            --font-serif: 'Lora', serif;
+            --font-sans: 'Inter', sans-serif;
+            --hero-spine: 280px; 
+        }
 
-  /* NAVIGATION: Right-aligned, Minimalist */
-  header { 
-    display: flex; 
-    justify-content: flex-end; 
-    padding: 60px 0 40px 0; 
-  }
-  
-  nav { display: flex; gap: 40px; }
-  
-  nav a { 
-    text-decoration: none; 
-    font-size: 0.8rem; 
-    font-weight: 800; 
-    color: var(--text-muted); 
-    text-transform: uppercase; 
-    letter-spacing: 1px;
-    padding-bottom: 8px; 
-    border-bottom: 2px solid transparent; 
-    transition: color 0.2s, border-bottom-color 0.2s; 
-  }
-  
-  nav a:hover { 
-    color: var(--text-primary); 
-    border-bottom: 2px solid var(--ui-border); 
-  }
+        body { background-color: var(--bg-main); font-family: var(--font-sans); color: var(--text-primary); margin: 0; line-height: 1.6; }
+        .wrap { max-width: 1100px; margin: 0 auto; padding: 0 50px; }
 
-  /* HERO SECTION: The Core Manifesto */
-  .hero-grid { 
-    display: grid; 
-    grid-template-columns: var(--hero-spine) 1fr; 
-    gap: 90px; 
-    padding: 20px 0 100px 0; 
-    align-items: start; 
-  }
+        /* HEADER: Pure Navigation */
+        header { display: flex; justify-content: flex-end; padding: 60px 0 20px 0; }
+        nav { display: flex; gap: 40px; }
+        nav a { text-decoration: none; font-size: 0.8rem; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; padding-bottom: 8px; border-bottom: 2px solid transparent; transition: color 0.2s; }
+        nav a:hover { color: var(--text-primary); border-bottom: 2px solid var(--ui-border); }
 
-  .portrait-frame { 
-    position: relative; 
-    max-width: var(--hero-spine); 
-  }
+        /* HERO: The Intellectual Backbone */
+        .hero-grid { display: grid; grid-template-columns: var(--hero-spine) 1fr; gap: 90px; padding: 40px 0 100px 0; align-items: start; }
+        
+        .portrait-frame img { 
+            width: 100%; 
+            filter: grayscale(100%) contrast(1.1); 
+            border-radius: 6px; 
+            box-shadow: 0 12px 32px rgba(0,0,0,0.09); 
+        }
 
-  .portrait-frame img { 
-    width: 100%; 
-    filter: grayscale(100%) contrast(1.2) brightness(1.05); 
-    border-radius: 6px; 
-    box-shadow: 0 12px 32px rgba(0,0,0,0.09); 
-    display: block; 
-  }
+        /* TYPOGRAPHIC NAME: Bold & Minimalist */
+        .personal-brand {
+            font-size: 0.9rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-primary);
+            margin-bottom: 40px;
+            display: block;
+        }
 
-  .statement-title { 
-    font-family: var(--font-serif); 
-    font-size: clamp(2.5rem, 5vw, 3.8rem); 
-    line-height: 1.05; 
-    font-weight: 700; 
-    letter-spacing: -2px; 
-    margin: 0 0 24px 0; 
-  }
+        .statement-title { 
+            font-family: var(--font-serif); 
+            font-size: clamp(2.5rem, 5vw, 3.8rem); 
+            line-height: 1.05; 
+            font-weight: 700; 
+            letter-spacing: -2px; 
+            margin: 0 0 24px 0; 
+        }
 
-  .manifesto-lead { 
-    font-size: 1.25rem; 
-    font-weight: 450; 
-    color: var(--text-muted); 
-    max-width: 45ch; 
-    margin-top: 44px; 
-    border-top: 1px solid var(--ui-border); 
-    padding-top: 32px; 
-  }
+        .manifesto-lead { 
+            font-size: 1.25rem; 
+            font-weight: 450; 
+            color: var(--text-muted); 
+            max-width: 45ch; 
+            margin-top: 44px; 
+            border-top: 1px solid var(--ui-border); 
+            padding-top: 32px; 
+        }
 
-  /* RESEARCH FEED: Aligned to Hero Spine */
-  .archive-section { padding-bottom: 100px; }
-  .section-label { font-size: 0.9rem; font-weight: 900; letter-spacing: 3px; text-transform: uppercase; color: var(--accent-blue); margin-bottom: 50px; display: block; }
-  
-  .archive-list { border-top: 1px solid var(--ui-border); }
+        /* ARCHIVE: Aligned Grid */
+        .archive-entry { display: grid; grid-template-columns: var(--hero-spine) 1fr; gap: 90px; padding: 56px 0; border-bottom: 1px solid var(--ui-border); text-decoration: none; color: inherit; }
+        .meta { font-size: 0.82rem; font-weight: 800; color: var(--text-muted); text-transform: uppercase; text-align: right; padding-top: 10px; }
+        .entry-title { font-family: var(--font-serif); font-size: clamp(1.6rem, 4vw, 2.1rem); line-height: 1.28; letter-spacing: -0.75px; margin: 0 0 12px 0; }
 
-  .archive-entry { 
-    display: grid; 
-    grid-template-columns: var(--hero-spine) 1fr; 
-    gap: 90px; 
-    padding: 56px 0; 
-    border-bottom: 1px solid var(--ui-border); 
-    text-decoration: none; 
-    color: inherit; 
-    transition: background-color 0.2s ease;
-  }
-
-  .archive-entry:hover { background-color: #f8fafc; }
-
-  .entry-meta { 
-    font-size: 0.82rem; 
-    font-weight: 800; 
-    color: var(--text-muted); 
-    text-transform: uppercase; 
-    text-align: right; /* Attached to the content column */
-    padding-top: 10px; 
-  }
-
-  .entry-title { 
-    font-family: var(--font-serif); 
-    font-size: clamp(1.6rem, 4vw, 2.1rem); 
-    line-height: 1.28; 
-    letter-spacing: -0.75px; 
-    margin: 0 0 16px 0; 
-  }
-
-  @media (max-width: 900px) { 
-    .hero-grid, .archive-entry { grid-template-columns: 1fr; gap: 40px; } 
-    .entry-meta { text-align: left; }
-    .wrap { padding: 0 25px; } 
-  }
-</style>
+        @media (max-width: 900px) { .hero-grid, .archive-entry { grid-template-columns: 1fr; gap: 40px; } .meta { text-align: left; } .wrap { padding: 0 25px; } }
+    </style>
+</head>
+<body>
 
 <div class="wrap">
-  <header>
-    <nav>
-      <a href="/notes">Notes</a>
-      <a href="/playbooks">Playbooks</a>
-      <a href="/dossier">Dossier</a>
-      <a href="/contact">Contact</a>
-    </nav>
-  </header>
+    <header>
+        <nav>
+            <a href="/notes">Notes</a>
+            <a href="/playbooks">Playbooks</a>
+            <a href="/dossier">Dossier</a>
+            <a href="/contact">Contact</a>
+        </nav>
+    </header>
 
-  <main>
-    <section class="hero-grid">
-      <div class="portrait-frame">
-        <img src="/assets/img/profile.jpg" alt="Hadi Noori">
-      </div>
-      <div class="hero-content">
-        <div style="font-size: 0.75rem; font-weight: 800; color: var(--accent-blue); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px;">
-          At the intersection of AI, regulation, and power
-        </div>
-        <h1 class="statement-title">Intelligence is fragile.<br>Governance is its armor.</h1>
-        <p class="manifesto-lead">
-          Bridging the gap between sociopolitical theory and digital reality. Focusing on auditable, compliant, and fair AI systems.
-        </p>
-      </div>
-    </section>
+    <main>
+        <section class="hero-grid">
+            <div class="portrait-frame">
+                <img src="/assets/img/profile.jpg" alt="Hadi Noori">
+            </div>
+            <div class="hero-content">
+                <span class="personal-brand">Hadi Noori</span>
+                
+                <div style="font-size: 0.75rem; font-weight: 800; color: var(--accent-blue); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px;">
+                    At the intersection of AI, regulation, and power
+                </div>
+                <h1 class="statement-title">Intelligence is fragile.<br>Governance is its armor.</h1>
+                <p class="manifesto-lead">
+                    Bridging the gap between sociopolitical theory and digital reality. Focusing on auditable, compliant, and fair AI systems.
+                </p>
+            </div>
+        </section>
 
-    <section class="archive-section">
-      <span class="section-label">Active Doctrine & Research</span>
-      <div class="archive-list">
-        <a href="/playbooks/ethics" class="archive-entry">
-          <div class="entry-meta">Jan 2026 / Playbook</div>
-          <div class="entry-content">
-            <h3 class="entry-title">Operationalizing AI Ethics for Regulated Industries</h3>
-            <p style="color: var(--text-muted); font-size: 1.1rem; max-width: 55ch; line-height: 1.6;">
-              Developing practical frameworks for implementing fairness metrics in high-stakes environments.
-            </p>
-          </div>
-        </a>
-      </div>
-    </section>
-  </main>
+        <section style="padding-bottom: 100px;">
+            <span style="font-size: 0.9rem; font-weight: 900; letter-spacing: 3px; text-transform: uppercase; color: var(--accent-blue); display: block; margin-bottom: 50px;">Research Archive</span>
+            <div style="border-top: 1px solid var(--ui-border);">
+                <a href="/playbooks/ethics" class="archive-entry">
+                    <div class="meta">Jan 2026 / Playbook</div>
+                    <div class="content">
+                        <h3 class="entry-title">Operationalizing AI Ethics for Regulated Industries</h3>
+                        <p style="color: var(--text-muted); font-size: 1.1rem; max-width: 55ch;">Strategic frameworks for implementing fairness metrics.</p>
+                    </div>
+                </a>
+            </div>
+        </section>
+    </main>
 </div>
+
+</body>
+</html>
