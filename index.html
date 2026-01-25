@@ -5,162 +5,129 @@ title_visible: false
 ---
 
 <style>
-  /* 1. LAYOUT CONTAINER */
+  /* 1. TYPOGRAPHY UPGRADE (High Contrast & Heavy Weights) */
+  :root {
+    --primary-dark: #0f172a; /* Deep charcoal/navy */
+    --accent-neon: #00f2ff;  /* Sharp Cyan Accent */
+    --text-main: #1e293b;
+    --text-muted: #64748b;
+  }
+
   .hero-container {
     display: flex;
-    align-items: flex-start; /* Aligns image and text to the TOP */
+    align-items: flex-start;
     justify-content: space-between;
-    padding: 20px 0 80px 0; /* Minimal top padding to sit higher */
-    gap: 60px;
+    padding: 20px 0 100px 0;
+    gap: 80px;
+    max-width: 1200px;
+    margin: 0 auto;
   }
 
-  /* 2. IMAGE STYLING (NEW: Tall Rectangular Look) */
-  .profile-wrapper {
-    flex: 0 0 42%; /* Image takes 42% of the width */
-    position: relative;
-    /* Visual correction to match the first line of text */
-    margin-top: 10px; 
+  /* 2. POWERFUL HEADLINE (Bold & Massive) */
+  .hero-name {
+    font-size: 5rem; /* Massive size as requested */
+    font-weight: 900;
+    line-height: 0.9;
+    letter-spacing: -2px;
+    color: var(--primary-dark);
+    margin-bottom: 10px;
   }
 
-  .profile-img-custom {
-    width: 100%;
-    height: 600px; /* Tall rectangular height */
-    object-fit: cover; /* Prevents stretching */
-    object-position: top center; /* Focuses on face */
-    border-radius: 25px; /* Modern rounded corners (not a circle) */
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-    transition: all 0.3s ease;
+  .hero-title {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 50px;
   }
 
-  .profile-img-custom:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 35px 60px -15px rgba(0, 0, 0, 0.3);
-  }
-
-  /* 3. TEXT CONTENT */
-  .hero-content {
-    flex: 1;
-  }
-
-  .hero-quote {
-    font-family: sans-serif;
-    font-size: 1.65rem;
-    font-weight: 800;
-    line-height: 1.3;
-    color: #0c1c2e;
-    margin-bottom: 30px;
-    margin-top: 0;
-    border-left: 6px solid #00d2d3; /* Teal accent bar */
-    padding-left: 25px;
-  }
-
-  .hero-text {
-    font-size: 1.15rem;
-    line-height: 1.8;
-    color: #4a5568;
-    margin-bottom: 25px;
-  }
-
-  /* 4. BUTTONS (PILL STYLE) */
-  .hero-buttons {
-    margin-top: 40px;
-  }
-
-  .btn-hero {
-    display: inline-block;
-    padding: 14px 38px;
-    border-radius: 50px;
+  /* 3. PUNCHLINE (High Impact Quote) */
+  .punchline {
+    font-size: 1.8rem;
     font-weight: 700;
+    line-height: 1.3;
+    color: var(--primary-dark);
+    border-left: 8px solid var(--accent-neon);
+    padding-left: 30px;
+    margin-bottom: 40px;
+  }
+
+  /* 4. LARGE RECTANGULAR IMAGE (No Circle, No Reflections) */
+  .profile-wrapper {
+    flex: 0 0 40%; /* 40% width for strong presence */
+  }
+
+  .profile-img-professional {
+    width: 100%;
+    height: 650px; /* Dominant portrait height */
+    object-fit: cover;
+    border-radius: 12px; /* Very subtle rounding for modern feel */
+    filter: grayscale(20%); /* Professional desaturation */
+    box-shadow: 40px 40px 80px rgba(0,0,0,0.1);
+  }
+
+  /* 5. MODERN CTA BUTTONS */
+  .cta-group {
+    display: flex;
+    gap: 20px;
+    margin-top: 50px;
+  }
+
+  .btn-main {
+    padding: 18px 45px;
+    border-radius: 4px; /* Sharp modern corners */
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s;
     text-decoration: none !important;
-    transition: all 0.2s ease;
-    margin-right: 15px;
-    font-size: 1rem;
   }
 
-  .btn-primary-custom {
-    background-color: #0c1c2e;
-    color: #ffffff !important;
-    border: 2px solid #0c1c2e;
-    box-shadow: 0 10px 20px rgba(12, 28, 46, 0.15);
-  }
-  .btn-primary-custom:hover {
-    background-color: #153e4d;
-    border-color: #153e4d;
-    transform: translateY(-3px);
+  .btn-primary {
+    background: var(--primary-dark);
+    color: #fff !important;
+    border: 2px solid var(--primary-dark);
   }
 
-  .btn-outline-custom {
-    background-color: transparent;
-    color: #0c1c2e !important;
-    border: 2px solid #0c1c2e;
-  }
-  .btn-outline-custom:hover {
-    background-color: #0c1c2e;
-    color: #ffffff !important;
+  .btn-primary:hover {
+    background: var(--accent-neon);
+    color: var(--primary-dark) !important;
+    border-color: var(--accent-neon);
+    transform: translateY(-5px);
   }
 
-  /* 5. MOBILE RESPONSIVE */
-  @media (max-width: 992px) {
-    .hero-container {
-      flex-direction: column;
-      padding: 30px 0;
-      gap: 40px;
-    }
-    
-    .profile-wrapper {
-      width: 100%;
-      max-width: 500px;
-      margin: 0 auto;
-    }
-    
-    .profile-img-custom {
-      height: 450px;
-    }
-
-    .hero-quote {
-      font-size: 1.35rem;
-      border-left: 5px solid #00d2d3;
-    }
-    
-    .hero-buttons {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-    }
-    
-    .btn-hero {
-      width: 100%;
-      text-align: center;
-      margin-right: 0;
-    }
+  /* RESPONSIVE */
+  @media (max-width: 1024px) {
+    .hero-container { flex-direction: column-reverse; text-align: left; }
+    .hero-name { font-size: 3.5rem; }
+    .profile-img-professional { height: 450px; }
   }
 </style>
 
 <div class="hero-container">
   
-  <div class="profile-wrapper">
-    <img src="/assets/img/profile.jpg" alt="Hadi Noori" class="profile-img-custom">
-  </div>
-
   <div class="hero-content">
-    
-    <div class="hero-quote">
-      Digital Transformation is not just about technology; it is about people.<br>
-      AI is not just a tool; it is a social responsibility.
+    <h1 class="hero-name">HADI<br>NOORI</h1>
+    <div class="hero-title">AI Ethics & Governance Specialist</div>
+
+    <div class="punchline">
+      Building AI that is auditable, compliant, and fundamentally fair.
     </div>
 
-    <p class="hero-text">
-      Welcome. I am <strong>Hadi Noori</strong>, a dual-disciplinary researcher and advisor operating at the convergence of <strong>Management Information Systems</strong> and <strong>Social Sciences</strong>.
-    </p>
-    
-    <p class="hero-text">
-      My work challenges technical-first narratives. I help organizations understand <em>why</em> digital transformations fail and <em>how</em> to build AI systems that are ethical, compliant, and trustworthy.
+    <p style="font-size: 1.2rem; color: var(--text-muted); max-width: 600px;">
+      I bridge the gap between policy and engineering for regulated sectors. 
+      Digital transformation fails when it ignores the social fabric.
     </p>
 
-    <div class="hero-buttons">
-      <a href="/projects/" class="btn-hero btn-primary-custom">View Projects</a>
-      <a href="/about/" class="btn-hero btn-outline-custom">More About Me</a>
+    <div class="cta-group">
+      <a href="/projects/" class="btn-main btn-primary">View Projects</a>
+      <a href="/about/" style="color: var(--primary-dark); font-weight: 700; text-decoration: underline; align-self: center;">More About Me</a>
     </div>
-
   </div>
+
+  <div class="profile-wrapper">
+    <img src="/assets/img/profile.jpg" alt="Hadi Noori" class="profile-img-professional">
+  </div>
+
 </div>
