@@ -3,21 +3,21 @@ async function loadInsights() {
     if (!container) return;
 
     try {
-        // Fetch the JSON index with cache-busting
         const res = await fetch('/insights.json?v=' + new Date().getTime());
         if (!res.ok) throw new Error("Index file not found");
         
         const posts = await res.json();
 
-        // LOGIC: Map through ALL posts for the Archive page
-        const htmlContent = posts.map(post => {
+        container.innerHTML = posts.map(post => {
             const dateObj = new Date(post.date);
             const displayDate = dateObj.toLocaleDateString('en-US', { 
-                month: 'short', 
-                year: 'numeric' 
+                month: 'short', year: 'numeric' 
             }).toUpperCase();
 
-            // Maintaining the EXACT Home1 structure for every entry
+            // FIX: Ensure the link points to the actual HTML file in the insights folder
+            // If post.url is "2026-01-25-test", it converts to "/insights/2026-01-25-test.html"
+            const finalLink = post.is_external ? post.url : `/${post.url}.html`;
+
             return `
                 <div style="border-bottom: 1px solid var(--ui-border);">
                     <div class="entry">
@@ -26,7 +26,7 @@ async function loadInsights() {
                         </div>
                         <div class="item-body">
                             <h3 class="entry-title">
-                                <a href="${post.url}" ${post.is_external ? 'target="_blank"' : ''} style="text-decoration:none; color:inherit;">
+                                <a href="${finalLink}" ${post.is_external ? 'target="_blank"' : ''} style="text-decoration:none; color:inherit;">
                                     ${post.title} ${post.is_external ? '↗' : ''}
                                 </a>
                             </h3>
@@ -38,12 +38,9 @@ async function loadInsights() {
                 </div>
             `;
         }).join('');
-
-        container.innerHTML = htmlContent;
         
     } catch (e) {
         console.error("Archive Load Error:", e);
-        container.innerHTML = '<div class="entry"><div class="meta-spine">ERROR</div><div>Archive synchronization failed.</div></div>';
     }
 }
 window.onload = loadInsights;
