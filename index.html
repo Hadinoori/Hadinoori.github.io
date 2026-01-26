@@ -14,117 +14,89 @@
             --text-primary: #0a0a0a;
             --text-muted: #525252;
             --accent-blue: #1e3a8a; 
-            --ui-border: #d1d5db; 
+            --ui-border: #e2e8f0;
             --font-serif: 'Lora', Georgia, serif;
-            --font-sans: 'Inter', -apple-system, sans-serif;
+            --font-sans: 'Inter', sans-serif;
             --spine: 280px; 
-        }
-
-        /* Entrance Animations */
-        @keyframes reveal {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
         }
 
         * { box-sizing: border-box; }
         body { background-color: var(--bg-main); font-family: var(--font-sans); color: var(--text-primary); margin: 0; -webkit-font-smoothing: antialiased; }
         .wrap { max-width: 1100px; margin: 0 auto; padding: 0 40px; }
 
-        /* 1. HEADER: Optical Alignment Precision */
-        header { 
-            display: flex; justify-content: space-between; align-items: center; 
-            padding: 50px 0 30px; border-bottom: 1px solid #e2e8f0; 
-        }
-        .header-brand { 
-            font-size: 0.95rem; font-weight: 900; text-transform: uppercase; 
-            letter-spacing: 3px; text-decoration: none; color: var(--text-primary); 
-            margin-left: -2px; /* Optical adjustment to align with the image below */
-        }
+        header { display: flex; justify-content: space-between; align-items: center; padding: 50px 0 30px; border-bottom: 1px solid var(--ui-border); }
+        .header-brand { font-size: 0.95rem; font-weight: 900; text-transform: uppercase; letter-spacing: 3px; text-decoration: none; color: var(--text-primary); margin-left: -2px; }
 
         nav { display: flex; gap: 30px; }
-        nav a { 
-            text-decoration: none; font-size: 0.8rem; font-weight: 800; color: var(--text-muted); 
-            text-transform: uppercase; letter-spacing: 1.5px; transition: 0.3s; 
-            padding-bottom: 4px; border-bottom: 2px solid transparent; 
-        }
+        nav a { text-decoration: none; font-size: 0.8rem; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1.5px; transition: 0.3s; padding-bottom: 4px; border-bottom: 2px solid transparent; }
         nav a:hover { color: var(--text-primary); border-bottom-color: var(--text-primary); }
 
-        /* 2. HERO: Baseline Harmony */
-        .hero-home { 
-            display: grid; grid-template-columns: var(--spine) 1fr; gap: 80px; 
-            padding: 80px 0 120px; align-items: stretch;
-            animation: reveal 0.8s ease-out;
-        }
-
-        .portrait-frame img { 
-            width: 100%; filter: grayscale(100%) contrast(1.2); 
-            border-radius: 2px; 
-            box-shadow: 12px 12px 0px rgba(0,0,0,0.03); /* Hard Edge Classic Shadow */
-            display: block;
-        }
-
+        /* HERO */
+        .hero-home { display: grid; grid-template-columns: var(--spine) 1fr; gap: 80px; padding: 80px 0; align-items: stretch; }
+        .portrait-frame img { width: 100%; filter: grayscale(100%) contrast(1.2); border-radius: 2px; box-shadow: 12px 12px 0px rgba(0,0,0,0.03); display: block; }
         .hero-content { display: flex; flex-direction: column; justify-content: space-between; }
-
-        .statement { 
-            font-family: var(--font-serif); font-size: clamp(2.2rem, 6vw, 4rem); 
-            line-height: 1.05; font-weight: 700; letter-spacing: -2.5px; margin: 0; 
-        }
+        .statement { font-family: var(--font-serif); font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1.05; font-weight: 700; letter-spacing: -2.5px; margin: 0; }
         .statement em { font-style: italic; font-weight: 400; color: var(--accent-blue); }
+        .lead-text { font-size: 1.25rem; color: var(--text-muted); max-width: 45ch; margin-top: auto; padding-top: 40px; border-top: 1px solid var(--ui-border); }
 
-        .lead-text { 
-            font-size: 1.25rem; color: var(--text-muted); max-width: 45ch; 
-            margin-top: auto; padding-top: 40px; border-top: 1px solid #e2e8f0; 
-        }
+        /* CONTENT FEED (The Solution to Empty Space) */
+        .section-label { font-size: 0.8rem; font-weight: 900; letter-spacing: 4px; text-transform: uppercase; color: var(--accent-blue); margin-bottom: 50px; display: block; }
+        .entry { display: grid; grid-template-columns: var(--spine) 1fr; gap: 80px; padding: 45px 0; border-top: 1px solid var(--ui-border); text-decoration: none; color: inherit; transition: background 0.2s; }
+        .entry:hover { background: #f9fafb; }
+        .meta-spine { font-size: 0.8rem; font-weight: 800; color: var(--text-muted); text-align: right; padding-top: 10px; }
+        .entry-title { font-family: var(--font-serif); font-size: 2.1rem; line-height: 1.25; margin: 0 0 10px; }
 
-        /* 3. FOOTER: Grounding the Layout */
-        footer { 
-            margin-top: 100px; padding: 40px 0; border-top: 1px solid #e2e8f0; 
-            font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; 
-            letter-spacing: 2px; display: flex; justify-content: space-between;
-        }
+        footer { margin-top: 100px; padding: 40px 0; border-top: 1px solid var(--ui-border); font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px; display: flex; justify-content: space-between; }
 
         @media (max-width: 900px) { 
-            .hero-home { grid-template-columns: 1fr; gap: 40px; padding: 40px 0 80px; }
-            .header-brand { margin-left: 0; }
+            .hero-home, .entry { grid-template-columns: 1fr; gap: 40px; }
             footer { flex-direction: column; gap: 15px; text-align: center; }
         }
     </style>
 </head>
 <body>
+    <div class="wrap">
+        <header>
+            <a href="/" class="header-brand">Hadi Noori</a>
+            <nav>
+                <a href="/notes">Notes</a>
+                <a href="/playbooks">Playbooks</a>
+                <a href="/dossier">Dossier</a>
+                <a href="/contact">Contact</a>
+            </nav>
+        </header>
 
-<div class="wrap">
-    <header>
-        <a href="/" class="header-brand">Hadi Noori</a>
-        <nav>
-            <a href="/notes">Notes</a>
-            <a href="/playbooks">Playbooks</a>
-            <a href="/dossier">Dossier</a>
-            <a href="/contact">Contact</a>
-        </nav>
-    </header>
-
-    <main>
-        <section class="hero-home">
-            <div class="portrait-frame">
-                <img src="/assets/img/profile.jpg" alt="Hadi Noori">
-            </div>
-            <div class="hero-content">
-                <h1 class="statement">
-                    Intelligence is <em>fragile</em>.<br>
-                    Governance is its <em>armor</em>.
-                </h1>
-                <div class="lead-text">
-                    Bridging sociopolitical theory and digital reality to build auditable, compliant, and fair AI systems.
+        <main>
+            <section class="hero-home">
+                <div class="portrait-frame">
+                    <img src="/assets/img/profile.jpg" alt="Hadi Noori">
                 </div>
-            </div>
-        </section>
-    </main>
+                <div class="hero-content">
+                    <h1 class="statement">Intelligence is <em>fragile</em>.<br>Governance is its <em>armor</em>.</h1>
+                    <div class="lead-text">Bridging sociopolitical theory and digital reality to build auditable, compliant, and fair AI systems.</div>
+                </div>
+            </section>
 
-    <footer>
-        <span>&copy; 2026 Hadi Noori</span>
-        <span>Vancouver, BC &mdash; Canada</span>
-    </footer>
-</div>
+            <section style="padding-bottom: 100px;">
+                <span class="section-label">Selected Research & Thinking</span>
+                <div style="border-bottom: 1px solid var(--ui-border);">
+                    <a href="/notes/failure" class="entry">
+                        <div class="meta-spine">JAN 2026 / RESEARCH</div>
+                        <div class="item-body">
+                            <h3 class="entry-title">Operationalizing AI Ethics for Regulated Industries</h3>
+                            <p style="color: var(--text-muted); font-size: 1.1rem; max-width: 52ch; margin:0; line-height: 1.6;">
+                                Strategic frameworks for implementing fairness metrics and mitigating algorithmic bias in high-stakes environments.
+                            </p>
+                        </div>
+                    </a>
+                </div>
+            </section>
+        </main>
 
+        <footer>
+            <span>&copy; 2026 Hadi Noori</span>
+            <span>Vancouver, BC &mdash; Canada</span>
+        </footer>
+    </div>
 </body>
 </html>
