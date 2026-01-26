@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CMS Dashboard | Hadi Noori</title>
-  <script src="https://cdn.jsdelivr.net/npm/decap-cms@3.3.3/dist/decap-cms.js"></script>
+  <title>Strategic Admin | Hadi Noori</title>
+  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
 </head>
 <body>
   <script>
@@ -14,9 +14,9 @@
           name: "github",
           repo: "Hadinoori/Hadinoori.github.io",
           branch: "main",
-          auth_endpoint: "https://auth.decapcms.org/auth",
-          client_id: "Ov23liiWgz3ImtbZqQFi",
-          site_domain: "hadinoori.ca"
+          // Switch to implicit for direct GitHub connection
+          auth_type: "implicit",
+          client_id: "Ov23liiWgz3ImtbZqQFi"
         },
         display_url: "https://hadinoori.ca",
         media_folder: "assets/img",
