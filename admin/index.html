@@ -4,9 +4,43 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CMS Dashboard | Hadi Noori</title>
-  <link href="config.yml" type="text/yaml" rel="cms-config-url">
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
 </head>
 <body>
+  <script>
+    // Manually initialize the CMS if it doesn't find the config
+    CMS.init({
+      config: {
+        backend: {
+          name: "github",
+          repo: "Hadinoori/Hadinoori.github.io",
+          branch: "main",
+          auth_endpoint: "https://auth.decapcms.org/auth",
+          client_id: "Ov23liiWgz3ImtbZqQFi",
+          site_domain: "hadinoori.ca"
+        },
+        display_url: "https://hadinoori.ca",
+        media_folder: "assets/img",
+        public_folder: "/assets/img",
+        collections: [
+          {
+            name: "insights",
+            label: "Strategic Insights",
+            folder: "_insights",
+            create: true,
+            slug: "{{year}}-{{month}}-{{day}}-{{slug}}",
+            fields: [
+              { label: "Layout", name: "layout", widget: "hidden", default: "post" },
+              { label: "Title", name: "title", widget: "string" },
+              { label: "Publish Date", name: "date", widget: "datetime" },
+              { label: "Source Category", name: "source", widget: "string", default: "Original Note" },
+              { label: "Short Description", name: "description", widget: "text" },
+              { label: "Content Body", name: "body", widget: "markdown" }
+            ]
+          }
+        ]
+      }
+    });
+  </script>
 </body>
 </html>
