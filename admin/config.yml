@@ -2,6 +2,24 @@ backend:
   name: github
   repo: Hadinoori/Hadinoori.github.io
   branch: main
-  base_url: https://hadinoori.ca
-  auth_endpoint: https://auth.decapcms.org/auth
+  auth_type: implicit
   client_id: Ov23liiWgz3ImtbZqQFi
+
+display_url: https://hadinoori.ca
+media_folder: "assets/img"
+public_folder: "/assets/img"
+
+collections:
+  - name: "insights"
+    label: "Strategic Insights"
+    folder: "_insights"
+    create: true
+    format: "frontmatter"
+    extension: "md"
+    fields:
+      - {label: "Layout", name: "layout", widget: "hidden", default: "post"}
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Publish Date", name: "date", widget: "datetime"}
+      - {label: "Source Category", name: "source", widget: "string", default: "Original Note"}
+      - {label: "Short Description", name: "description", widget: "text"}
+      - {label: "Content Body", name: "body", widget: "markdown"}
