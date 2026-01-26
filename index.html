@@ -3,11 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hadi Noori | AI Ethics & Governance</title>
-    
+    <title>Hadi Noori | Strategic AI Governance</title>
     <link rel="icon" type="image/png" href="/assets/img/sidebar-logo.png">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Lora:italic,wght@0,700;1,700&display=swap" rel="stylesheet">
-
     <style>
         :root {
             --bg-main: #fcfcfc;
@@ -16,61 +14,35 @@
             --accent-blue: #1e3a8a; 
             --ui-border: #e2e8f0;
             --font-serif: 'Lora', Georgia, serif;
-            --font-sans: 'Inter', -apple-system, sans-serif;
+            --font-sans: 'Inter', sans-serif;
             --spine: 280px; 
         }
 
-        * { box-sizing: border-box; }
         body { background-color: var(--bg-main); font-family: var(--font-sans); color: var(--text-primary); margin: 0; -webkit-font-smoothing: antialiased; }
         .wrap { max-width: 1100px; margin: 0 auto; padding: 0 40px; }
 
-        /* 1. HEADER: Permanent Signature */
-        header { 
-            display: flex; justify-content: space-between; align-items: center; 
-            padding: 50px 0 30px; border-bottom: 1px solid var(--ui-border); 
-        }
-        .header-brand { 
-            text-decoration: none; color: var(--text-primary); margin-left: -2px; 
-        }
+        header { display: flex; justify-content: space-between; align-items: center; padding: 50px 0 30px; border-bottom: 1px solid var(--ui-border); }
+        .header-brand { text-decoration: none; color: var(--text-primary); margin-left: -2px; }
         .brand-name { font-size: 0.95rem; font-weight: 900; text-transform: uppercase; letter-spacing: 3px; display: block; }
         .brand-sub { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-muted); margin-top: 4px; display: block; }
 
         nav { display: flex; gap: 30px; }
-        nav a { 
-            text-decoration: none; font-size: 0.8rem; font-weight: 800; color: var(--text-muted); 
-            text-transform: uppercase; letter-spacing: 1.5px; padding-bottom: 4px; border-bottom: 2px solid transparent; 
-        }
+        nav a { text-decoration: none; font-size: 0.8rem; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1.5px; padding-bottom: 4px; border-bottom: 2px solid transparent; transition: 0.3s; }
         nav a:hover { color: var(--text-primary); border-bottom-color: var(--text-primary); }
 
-        /* 2. HERO: Precise Baseline */
-        .hero-home { 
-            display: grid; grid-template-columns: var(--spine) 1fr; gap: 80px; 
-            padding: 80px 0 100px; align-items: stretch;
-        }
-        .portrait-frame img { 
-            width: 100%; filter: grayscale(100%) contrast(1.2); 
-            border-radius: 2px; box-shadow: 12px 12px 0px rgba(0,0,0,0.03); display: block;
-        }
+        .hero-home { display: grid; grid-template-columns: var(--spine) 1fr; gap: 80px; padding: 80px 0 100px; align-items: stretch; }
+        .portrait-frame img { width: 100%; filter: grayscale(100%) contrast(1.2); border-radius: 2px; box-shadow: 12px 12px 0px rgba(0,0,0,0.03); display: block; }
+        
         .hero-content { display: flex; flex-direction: column; justify-content: space-between; }
         .statement { font-family: var(--font-serif); font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1.05; font-weight: 700; letter-spacing: -2.5px; margin: 0; }
         .statement em { font-style: italic; font-weight: 400; color: var(--accent-blue); }
 
-        .focus-areas { font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; color: var(--accent-blue); margin-top: 30px; }
+        .focus-areas { font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; color: var(--accent-blue); margin-top: 30px; border-bottom: 1px solid var(--ui-border); padding-bottom: 10px; }
+        .lead-text { font-size: 1.25rem; color: var(--text-muted); max-width: 45ch; margin-top: auto; padding-top: 40px; }
 
-        .lead-text { 
-            font-size: 1.25rem; color: var(--text-muted); max-width: 45ch; 
-            margin-top: auto; padding-top: 40px; border-top: 1px solid var(--ui-border); 
-        }
-
-        /* 3. RECENT THINKING: Spine Integrity */
         .section-label { font-size: 0.8rem; font-weight: 900; letter-spacing: 4px; text-transform: uppercase; color: var(--accent-blue); margin: 80px 0 50px; display: block; }
-        .entry { display: grid; grid-template-columns: var(--spine) 1fr; gap: 80px; padding: 45px 0; border-top: 1px solid var(--ui-border); text-decoration: none; color: inherit; }
-        .meta-spine { font-size: 0.8rem; font-weight: 800; color: var(--text-muted); text-align: right; padding-top: 10px; }
-        .entry-title { font-family: var(--font-serif); font-size: 2.1rem; line-height: 1.25; margin: 0 0 10px; }
-
-        footer { margin-top: 100px; padding: 40px 0; border-top: 1px solid var(--ui-border); font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px; display: flex; justify-content: space-between; }
-
-        @media (max-width: 900px) { .hero-home, .entry { grid-template-columns: 1fr; gap: 40px; } footer { flex-direction: column; gap: 15px; text-align: center; } }
+        
+        @media (max-width: 900px) { .hero-home { grid-template-columns: 1fr; gap: 40px; } }
     </style>
 </head>
 <body>
@@ -97,25 +69,8 @@
                     <div class="lead-text">Bridging sociopolitical theory and digital reality to build auditable, compliant, and fair AI systems.</div>
                 </div>
             </section>
-
-            <section style="padding-bottom: 100px;">
-                <span class="section-label">Selected Research</span>
-                <div style="border-bottom: 1px solid var(--ui-border);">
-                    <a href="/notes/failure" class="entry">
-                        <div class="meta-spine">JAN 2026 / RESEARCH</div>
-                        <div class="item-body">
-                            <h3 class="entry-title">Operationalizing AI Ethics for Regulated Industries</h3>
-                            <p style="color: var(--text-muted); font-size: 1.1rem; max-width: 52ch; margin:0; line-height: 1.6;">Implementing fairness metrics in high-stakes digital environments.</p>
-                        </div>
-                    </a>
-                </div>
-            </section>
-        </main>
-
-        <footer>
-            <span>&copy; 2026 Hadi Noori</span>
-            <span>Vancouver, BC &mdash; Canada</span>
-        </footer>
+            <span class="section-label">Selected Research</span>
+            </main>
     </div>
 </body>
 </html>
