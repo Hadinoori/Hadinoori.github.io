@@ -7,5 +7,17 @@
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
 </head>
 <body>
-  </body>
+  <script>
+    // This helper script ensures the handshake with GitHub is completed
+    if (window.location.hash.includes("access_token")) {
+      const hash = window.location.hash.substring(1);
+      const params = new URLSearchParams(hash);
+      const token = params.get("access_token");
+      if (token) {
+        localStorage.setItem("netlify-cms-user", JSON.stringify({ token }));
+        window.location.hash = "";
+      }
+    }
+  </script>
+</body>
 </html>
