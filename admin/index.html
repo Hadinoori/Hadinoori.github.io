@@ -7,40 +7,5 @@
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
 </head>
 <body>
-  <script>
-    CMS.init({
-      config: {
-        backend: {
-          name: "github",
-          repo: "Hadinoori/Hadinoori.github.io",
-          branch: "main",
-          // Switch to implicit for direct GitHub connection
-          auth_type: "implicit",
-          client_id: "Ov23liiWgz3ImtbZqQFi"
-        },
-        display_url: "https://hadinoori.ca",
-        media_folder: "assets/img",
-        public_folder: "/assets/img",
-        collections: [
-          {
-            name: "insights",
-            label: "Strategic Insights",
-            folder: "_insights",
-            create: true,
-            format: "frontmatter",
-            extension: "md",
-            fields: [
-              { label: "Layout", name: "layout", widget: "hidden", default: "post" },
-              { label: "Title", name: "title", widget: "string" },
-              { label: "Publish Date", name: "date", widget: "datetime" },
-              { label: "Source Category", name: "source", widget: "string", default: "Original Note" },
-              { label: "Short Description", name: "description", widget: "text" },
-              { label: "Content Body", name: "body", widget: "markdown" }
-            ]
-          }
-        ]
-      }
-    });
-  </script>
 </body>
 </html>
