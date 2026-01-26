@@ -1,46 +1,61 @@
 async function loadInsights() {
     const container = document.getElementById('insights-container');
-    if (!container) return;
-
+    const REPO = 'hadinoori/hadinoori.github.io';
+    
     try {
-        const res = await fetch('/insights.json?v=' + new Date().getTime());
-        if (!res.ok) throw new Error("Index file not found");
-        
-        const posts = await res.json();
+        // 1. Fetching the list of files directly from GitHub API
+        const res = await fetch(`https://api.github.com/repos/${REPO}/contents/_insights`);
+        const files = await res.json();
+        const mdFiles = files.filter(f => f.name.endsWith('.md')).reverse();
 
-        container.innerHTML = posts.map(post => {
-            const dateObj = new Date(post.date);
-            const displayDate = dateObj.toLocaleDateString('en-US', { 
-                month: 'short', year: 'numeric' 
+        container.innerHTML = ''; 
+
+        for (let file of mdFiles) {
+            const fRes = await fetch(file.download_url);
+            const text = await fRes.text();
+            
+            // Extracting Metadata using Regex
+            const titleMatch = text.match(/title:\s*["']?(.*?)["']?$/m);
+            const title = titleMatch ? titleMatch[1] : "Strategic Inquiry";
+            
+            const dateMatch = text.match(/date:\s*(.*)/);
+            const date = dateMatch ? dateMatch[1] : "";
+            
+            const descMatch = text.match(/description:\s*["']?(.*?)["']?$/m);
+            const desc = descMatch ? descMatch[1] : "";
+
+            const extUrlMatch = text.match(/external_url:\s*["']?(.*?)["']?$/m);
+            const externalUrl = extUrlMatch ? extUrlMatch[1] : null;
+
+            // FIXING THE 404: Constructing the correct link for GitHub Pages
+            // Removes date and .md to match standard Jekyll/GitHub Pages URLs
+            const cleanName = file.name.replace('.md', '');
+            const finalLink = externalUrl ? externalUrl : `/insights/${cleanName}.html`;
+
+            const displayDate = new Date(date).toLocaleDateString('en-US', {
+                month: 'short', year: 'numeric'
             }).toUpperCase();
 
-            // FIX: Ensure the link points to the actual HTML file in the insights folder
-            // If post.url is "2026-01-25-test", it converts to "/insights/2026-01-25-test.html"
-            const finalLink = post.is_external ? post.url : `/${post.url}.html`;
-
-            return `
+            container.innerHTML += `
                 <div style="border-bottom: 1px solid var(--ui-border);">
                     <div class="entry">
-                        <div class="meta-spine">
-                            ${displayDate} / ${post.is_external ? 'DISPATCH' : 'INSIGHT'}
-                        </div>
+                        <div class="meta-spine">${displayDate} / ${externalUrl ? 'DISPATCH' : 'INSIGHT'}</div>
                         <div class="item-body">
                             <h3 class="entry-title">
-                                <a href="${finalLink}" ${post.is_external ? 'target="_blank"' : ''} style="text-decoration:none; color:inherit;">
-                                    ${post.title} ${post.is_external ? '↗' : ''}
+                                <a href="${finalLink}" ${externalUrl ? 'target="_blank"' : ''} style="text-decoration:none; color:inherit;">
+                                    ${title} ${externalUrl ? '↗' : ''}
                                 </a>
                             </h3>
                             <p style="color: var(--text-muted); font-size: 1.1rem; max-width: 52ch; margin:0; line-height: 1.6;">
-                                ${post.description}
+                                ${desc}
                             </p>
                         </div>
                     </div>
                 </div>
             `;
-        }).join('');
-        
+        }
     } catch (e) {
-        console.error("Archive Load Error:", e);
+        console.error("Archive sync failed:", e);
     }
 }
 window.onload = loadInsights;
