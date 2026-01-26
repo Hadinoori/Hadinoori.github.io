@@ -1,61 +1,266 @@
-<div class="label" style="margin-top: 100px; margin-bottom: 20px;">
-    SELECTED DISPATCH.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hadi Noori | Strategic AI Governance</title>
+    
+    <link rel="icon" type="image/png" href="/assets/img/sidebar-logo.png">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Lora:italic,wght@0,700;1,700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-main: #fcfcfc;
+            --text-primary: #0a0a0a;
+            --text-muted: #525252;
+            --accent-blue: #1e3a8a; 
+            --ui-border: #e2e8f0;
+            --font-serif: 'Lora', Georgia, serif;
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --spine: 280px; /* The unified vertical axis for your brand */
+        }
+
+        /* 1. ANIMATIONS: Professional Reveal on Load */
+        @keyframes reveal {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        * { box-sizing: border-box; }
+        body { 
+            background-color: var(--bg-main); 
+            font-family: var(--font-sans); 
+            color: var(--text-primary); 
+            margin: 0; 
+            -webkit-font-smoothing: antialiased; 
+        }
+        
+        .wrap { max-width: 1100px; margin: 0 auto; padding: 0 40px; }
+
+        /* 2. HEADER: Fixed Identity & Navigation */
+        header { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 50px 0 30px; 
+            border-bottom: 1px solid var(--ui-border); 
+        }
+        
+        .header-brand { 
+            text-decoration: none; 
+            color: var(--text-primary); 
+            margin-left: -2px; /* Optical spine alignment */
+        }
+        .brand-name { font-size: 0.95rem; font-weight: 900; text-transform: uppercase; letter-spacing: 3px; display: block; }
+        .brand-sub { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-muted); margin-top: 4px; display: block; }
+
+        nav { display: flex; gap: 30px; }
+        nav a { 
+            text-decoration: none; 
+            font-size: 0.8rem; 
+            font-weight: 800; 
+            color: var(--text-muted); 
+            text-transform: uppercase; 
+            letter-spacing: 1.5px; 
+            padding-bottom: 4px; 
+            border-bottom: 2px solid transparent; 
+            transition: 0.3s; 
+        }
+        nav a:hover { color: var(--text-primary); border-bottom-color: var(--text-primary); }
+
+        /* 3. HERO: Intellectual Manifesto with Baseline Alignment */
+        .hero-home { 
+            display: grid; 
+            grid-template-columns: var(--spine) 1fr; 
+            gap: 80px; 
+            padding: 80px 0 120px; 
+            align-items: stretch;
+            animation: reveal 0.8s ease-out;
+        }
+
+        .portrait-frame img { 
+            width: 100%; 
+            filter: grayscale(100%) contrast(1.2); 
+            border-radius: 2px; 
+            box-shadow: 12px 12px 0px rgba(0,0,0,0.03); /* Precision Hard Shadow */
+            display: block;
+        }
+
+        .hero-content { display: flex; flex-direction: column; justify-content: space-between; }
+
+        .statement { 
+            font-family: var(--font-serif); 
+            font-size: clamp(2.5rem, 5vw, 4rem); 
+            line-height: 1.05; 
+            font-weight: 700; 
+            letter-spacing: -2.5px; 
+            margin: 0; 
+        }
+        
+        .statement em { 
+            font-style: italic; 
+            font-weight: 400; 
+            color: var(--accent-blue);
+        }
+
+        .focus-areas { 
+            font-size: 0.75rem; 
+            font-weight: 800; 
+            text-transform: uppercase; 
+            letter-spacing: 2px; 
+            color: var(--accent-blue); 
+            margin-top: 30px; 
+            border-bottom: 1px solid var(--ui-border); 
+            padding-bottom: 10px; 
+        }
+
+        .lead-text { 
+            font-size: 1.25rem; 
+            color: var(--text-muted); 
+            max-width: 45ch; 
+            margin-top: auto; 
+            padding-top: 40px; 
+            line-height: 1.6;
+        }
+
+        /* 4. CONTENT FEED: Strategic Research Archive */
+        .section-label { 
+            font-size: 0.8rem; 
+            font-weight: 900; 
+            letter-spacing: 4px; 
+            text-transform: uppercase; 
+            color: var(--accent-blue); 
+            margin: 80px 0 50px; 
+            display: block; 
+        }
+
+        .entry { 
+            display: grid; 
+            grid-template-columns: var(--spine) 1fr; 
+            gap: 80px; 
+            padding: 50px 0; 
+            border-top: 1px solid var(--ui-border); 
+            text-decoration: none; 
+            color: inherit; 
+            transition: background 0.2s; 
+        }
+        
+        .entry:hover { background: #f9fafb; }
+
+        .meta-spine { 
+            font-size: 0.8rem; 
+            font-weight: 800; 
+            color: var(--text-muted); 
+            text-align: right; 
+            padding-top: 10px; 
+        }
+
+        .entry-title { 
+            font-family: var(--font-serif); 
+            font-size: 2.1rem; 
+            line-height: 1.25; 
+            margin: 0 0 10px; 
+            transition: color 0.2s;
+        }
+        .entry:hover .entry-title { color: var(--accent-blue); }
+
+        .view-all-link { 
+            margin-top: 40px; 
+            text-align: right; 
+            padding-bottom: 100px;
+        }
+        .view-all-link a { 
+            text-decoration: none; 
+            font-size: 0.8rem; 
+            font-weight: 900; 
+            color: var(--text-primary); 
+            text-transform: uppercase; 
+            letter-spacing: 2px;
+            border-bottom: 2px solid var(--accent-blue);
+            padding-bottom: 5px;
+        }
+
+        /* 5. FOOTER: Institutional Grounding */
+        footer { 
+            margin-top: 60px; 
+            padding: 40px 0; 
+            border-top: 1px solid var(--ui-border); 
+            font-size: 0.75rem; 
+            color: var(--text-muted); 
+            text-transform: uppercase; 
+            letter-spacing: 2px; 
+            display: flex; 
+            justify-content: space-between; 
+        }
+
+        @media (max-width: 900px) { 
+            .hero-home, .entry { grid-template-columns: 1fr; gap: 40px; padding: 40px 0 80px; } 
+            header { flex-direction: column; gap: 25px; text-align: center; }
+            nav { gap: 15px; flex-wrap: wrap; justify-content: center; }
+            .meta-spine { text-align: left; }
+            .header-brand { margin-left: 0; }
+            footer { flex-direction: column; gap: 15px; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="wrap">
+    <header>
+        <a href="index.html" class="header-brand">
+            <span class="brand-name">Hadi Noori</span>
+            <span class="brand-sub">Strategic AI Governance</span>
+        </a>
+        <nav>
+            <a href="insights.html">Insights</a>
+            <a href="playbooks.html">Playbooks</a>
+            <a href="dossier.html">Dossier</a>
+            <a href="contact.html">Inquiry</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero-home">
+            <div class="portrait-frame">
+                <img src="/assets/img/profile.jpg" alt="Hadi Noori">
+            </div>
+            <div class="hero-content">
+                <h1 class="statement">
+                    Intelligence is <em>fragile</em>.<br>
+                    Governance is its <em>armor</em>.
+                </h1>
+                <div class="focus-areas">Algorithmic Fairness &bull; Regulatory Compliance &bull; Ethics Frameworks</div>
+                <div class="lead-text">
+                    Bridging sociopolitical theory and digital reality to build auditable, compliant, and fair AI systems.
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <span class="section-label">Selected Research</span>
+            <div style="border-bottom: 1px solid var(--ui-border);">
+                <a href="insights.html" class="entry">
+                    <div class="meta-spine">JAN 2026 / RESEARCH</div>
+                    <div class="item-body">
+                        <h3 class="entry-title">The Sociopolitical Failure of Digital Transformation</h3>
+                        <p style="color: var(--text-muted); font-size: 1.1rem; max-width: 52ch; margin:0; line-height: 1.6;">
+                            Analyzing institutional collapse within complex technical projects and the necessity of ethical oversight.
+                        </p>
+                    </div>
+                </a>
+            </div>
+            <div class="view-all-link">
+                <a href="insights.html">View all Insights &rarr;</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <span>&copy; 2026 Hadi Noori</span>
+        <span>Vancouver, BC &mdash; Canada</span>
+    </footer>
 </div>
 
-<div id="selected-dispatch-container">
-    </div>
-
-<hr style="margin-top: 60px; margin-bottom: 40px; border: 0; border-top: 1px solid #eee;">
-
-<script>
-    (async function() {
-        const container = document.getElementById('selected-dispatch-container');
-        const REPO = 'hadinoori/hadinoori.github.io';
-        
-        try {
-            const res = await fetch(`https://api.github.com/repos/${REPO}/contents/_insights`);
-            const files = await res.json();
-            const mdFiles = files.filter(f => f.name.endsWith('.md')).reverse();
-
-            let targetContent = null;
-            for (let file of mdFiles) {
-                const fRes = await fetch(file.download_url);
-                const text = await fRes.text();
-                // Matching the exact field from your dashboard
-                if (text.includes('selected_dispatch: true')) {
-                    targetContent = text;
-                    break;
-                }
-            }
-
-            // Fallback to the latest if nothing is selected
-            if (!targetContent && mdFiles.length > 0) {
-                const fallbackRes = await fetch(mdFiles[0].download_url);
-                targetContent = await fallbackRes.text();
-            }
-
-            if (targetContent) {
-                const title = targetContent.match(/title:\s*"(.*)"/)?.[1] || "Untitled Inquiry";
-                const date = targetContent.match(/date:\s*(.*)/)?.[1] || "";
-                const desc = targetContent.match(/description:\s*"(.*)"/)?.[1] || "";
-                
-                // Format Date: JAN 2026
-                const dateObj = new Date(date);
-                const displayDate = dateObj.toLocaleDateString('en-US', { month: 'short', year: 'numeric' }).toUpperCase();
-
-                // Injecting using the exact CSS classes of your template
-                container.innerHTML = `
-                    <div class="entry">
-                        <div class="date">${displayDate} / SELECTED</div>
-                        <div class="content">
-                            <h2 class="manifesto-title" style="margin-top: 0; font-size: 2.8rem; line-height: 1.1;">${title}</h2>
-                            <p class="description" style="font-size: 1.1rem; color: #555; line-height: 1.6;">${desc}</p>
-                        </div>
-                    </div>
-                `;
-            }
-        } catch (e) {
-            console.error("Home Layout Sync Error:", e);
-        }
-    })();
-</script>
+</body>
+</html>
