@@ -1,76 +1,67 @@
-<div class="section-label" style="font-size: 0.7rem; font-weight: 900; text-transform: uppercase; letter-spacing: 3px; color: #1e3a8a; margin-bottom: 45px; border-bottom: 1px solid #e2e8f0; padding-bottom: 12px;">
-    Selected Dispatch.
-</div>
+<div class="selected-dispatch-wrapper" style="margin-top: 80px; border-top: 1px solid #eee; padding-top: 40px;">
+    <div class="section-label" style="font-size: 0.7rem; font-weight: 900; text-transform: uppercase; letter-spacing: 3px; color: #1e3a8a; margin-bottom: 30px;">
+        Selected Dispatch.
+    </div>
 
-<div id="selected-dispatch-container">
-    <div class="entry">
-        <div class="meta-spine">SYNCHRONIZING...</div>
-        <div class="entry-content">
-            <h2>Fetching curated content...</h2>
+    <div id="selected-dispatch-container">
+        <div class="entry" style="display: flex;">
+            <div class="meta-spine" style="min-width: 280px; font-size: 0.75rem; color: #999;">LOADING...</div>
+            <div class="entry-content">
+                <h2 style="font-family: 'Lora', serif; font-size: 2rem; color: #eee;">_______</h2>
+            </div>
         </div>
     </div>
 </div>
 
 <script>
-    async function renderSelectedDispatch() {
+    (async function() {
         const container = document.getElementById('selected-dispatch-container');
-        const REPO = 'hadinoori/hadinoori.github.io'; // Using lowercase as recommended
+        const REPO = 'hadinoori/hadinoori.github.io';
         
         try {
             const res = await fetch(`https://api.github.com/repos/${REPO}/contents/_insights`);
+            if (!res.ok) throw new Error('Repo access failed');
             const files = await res.json();
-            // Sort files by name (date) descending to check newest first
             const mdFiles = files.filter(f => f.name.endsWith('.md')).reverse();
 
             let targetContent = null;
 
-            // Search for the 'selected_dispatch: true' flag
             for (let file of mdFiles) {
-                const fileRes = await fetch(file.download_url);
-                const raw = await fileRes.text();
-                
-                if (raw.includes('selected_dispatch: true')) {
-                    targetContent = raw;
-                    break; // Stop at the first (newest) selected entry
+                const fRes = await fetch(file.download_url);
+                const text = await fRes.text();
+                // Check for the exact field name you added to dashboard
+                if (text.includes('selected_dispatch: true')) {
+                    targetContent = text;
+                    break;
                 }
             }
 
-            // Fallback: If no entry is selected, use the absolute newest one
             if (!targetContent && mdFiles.length > 0) {
-                const fallbackRes = await fetch(mdFiles[0].download_url);
-                targetContent = await fallbackRes.text();
+                const fallRes = await fetch(mdFiles[0].download_url);
+                targetContent = await fallRes.text();
             }
 
             if (targetContent) {
                 const title = targetContent.match(/title:\s*"(.*)"/)?.[1] || "Untitled";
                 const date = targetContent.match(/date:\s*(.*)/)?.[1] || "";
                 const desc = targetContent.match(/description:\s*"(.*)"/)?.[1] || "";
-                const extUrl = targetContent.match(/external_url:\s*"(.*)"/)?.[1] || "";
-                
-                const displayDate = new Date(date).toLocaleDateString('en-US', {
-                    month: 'short', 
-                    year: 'numeric'
-                }).toUpperCase();
+                const displayDate = new Date(date).toLocaleDateString('en-US', {month:'short', year:'numeric'}).toUpperCase();
 
-                // If it's an external link, we can make the title clickable
-                const titleHtml = extUrl 
-                    ? `<a href="${extUrl}" target="_blank" style="text-decoration:none; color:inherit;">${title} ↗</a>`
-                    : title;
-
+                // Re-injecting the exact HTML structure that Home1 expects
                 container.innerHTML = `
-                    <div class="entry">
-                        <div class="meta-spine">${displayDate} / SELECTED</div>
-                        <div class="entry-content">
-                            <h2 style="font-family: 'Lora', serif; font-size: 2.3rem; line-height: 1.1; letter-spacing: -1px;">${titleHtml}</h2>
-                            <p style="font-size: 1.15rem; color: #525252; margin-top: 15px; line-height: 1.6; max-width: 65ch;">${desc}</p>
+                    <div class="entry" style="display: flex; align-items: flex-start; margin-bottom: 60px;">
+                        <div class="meta-spine" style="min-width: 280px; font-size: 0.75rem; font-weight: 700; color: #666; letter-spacing: 1px;">
+                            ${displayDate} / SELECTED
+                        </div>
+                        <div class="entry-content" style="max-width: 600px;">
+                            <h2 style="font-family: 'Lora', serif; font-size: 2.4rem; line-height: 1.1; margin: 0 0 20px 0; color: #000;">${title}</h2>
+                            <p style="font-size: 1.1rem; line-height: 1.6; color: #444; margin: 0;">${desc}</p>
                         </div>
                     </div>
                 `;
             }
-        } catch (e) { 
-            console.error("Home Page Sync Error:", e);
-            container.innerHTML = "<p>Unable to load content at this moment.</p>";
+        } catch (e) {
+            console.error("Layout Sync Error:", e);
         }
-    }
-    window.addEventListener('DOMContentLoaded', renderSelectedDispatch);
+    })();
 </script>
