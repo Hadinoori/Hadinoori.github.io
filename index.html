@@ -4,10 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hadi Noori | AI Ethics & Governance</title>
-    
     <link rel="icon" type="image/png" href="/assets/img/sidebar-logo.png">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Lora:italic,wght@0,700;1,700&display=swap" rel="stylesheet">
-
     <style>
         :root {
             --bg-main: #fcfcfc;
@@ -16,7 +14,7 @@
             --accent-blue: #1e3a8a; 
             --ui-border: #e2e8f0;
             --font-serif: 'Lora', Georgia, serif;
-            --font-sans: 'Inter', sans-serif;
+            --font-sans: 'Inter', -apple-system, sans-serif;
             --spine: 280px; 
         }
 
@@ -24,22 +22,22 @@
         body { background-color: var(--bg-main); font-family: var(--font-sans); color: var(--text-primary); margin: 0; -webkit-font-smoothing: antialiased; }
         .wrap { max-width: 1100px; margin: 0 auto; padding: 0 40px; }
 
+        /* HEADER: Institutional Identity */
         header { display: flex; justify-content: space-between; align-items: center; padding: 50px 0 30px; border-bottom: 1px solid var(--ui-border); }
         .header-brand { font-size: 0.95rem; font-weight: 900; text-transform: uppercase; letter-spacing: 3px; text-decoration: none; color: var(--text-primary); margin-left: -2px; }
-
         nav { display: flex; gap: 30px; }
         nav a { text-decoration: none; font-size: 0.8rem; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1.5px; transition: 0.3s; padding-bottom: 4px; border-bottom: 2px solid transparent; }
         nav a:hover { color: var(--text-primary); border-bottom-color: var(--text-primary); }
 
-        /* HERO */
-        .hero-home { display: grid; grid-template-columns: var(--spine) 1fr; gap: 80px; padding: 80px 0; align-items: stretch; }
+        /* HERO: Baseline Precision */
+        .hero-home { display: grid; grid-template-columns: var(--spine) 1fr; gap: 80px; padding: 80px 0 120px; align-items: stretch; }
         .portrait-frame img { width: 100%; filter: grayscale(100%) contrast(1.2); border-radius: 2px; box-shadow: 12px 12px 0px rgba(0,0,0,0.03); display: block; }
         .hero-content { display: flex; flex-direction: column; justify-content: space-between; }
         .statement { font-family: var(--font-serif); font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1.05; font-weight: 700; letter-spacing: -2.5px; margin: 0; }
         .statement em { font-style: italic; font-weight: 400; color: var(--accent-blue); }
         .lead-text { font-size: 1.25rem; color: var(--text-muted); max-width: 45ch; margin-top: auto; padding-top: 40px; border-top: 1px solid var(--ui-border); }
 
-        /* CONTENT FEED (The Solution to Empty Space) */
+        /* FEED: Intellectual Vitality */
         .section-label { font-size: 0.8rem; font-weight: 900; letter-spacing: 4px; text-transform: uppercase; color: var(--accent-blue); margin-bottom: 50px; display: block; }
         .entry { display: grid; grid-template-columns: var(--spine) 1fr; gap: 80px; padding: 45px 0; border-top: 1px solid var(--ui-border); text-decoration: none; color: inherit; transition: background 0.2s; }
         .entry:hover { background: #f9fafb; }
@@ -48,10 +46,7 @@
 
         footer { margin-top: 100px; padding: 40px 0; border-top: 1px solid var(--ui-border); font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px; display: flex; justify-content: space-between; }
 
-        @media (max-width: 900px) { 
-            .hero-home, .entry { grid-template-columns: 1fr; gap: 40px; }
-            footer { flex-direction: column; gap: 15px; text-align: center; }
-        }
+        @media (max-width: 900px) { .hero-home, .entry { grid-template-columns: 1fr; gap: 40px; } footer { flex-direction: column; gap: 15px; text-align: center; } }
     </style>
 </head>
 <body>
@@ -65,34 +60,27 @@
                 <a href="/contact">Contact</a>
             </nav>
         </header>
-
         <main>
             <section class="hero-home">
-                <div class="portrait-frame">
-                    <img src="/assets/img/profile.jpg" alt="Hadi Noori">
-                </div>
+                <div class="portrait-frame"><img src="/assets/img/profile.jpg" alt="Hadi Noori"></div>
                 <div class="hero-content">
                     <h1 class="statement">Intelligence is <em>fragile</em>.<br>Governance is its <em>armor</em>.</h1>
                     <div class="lead-text">Bridging sociopolitical theory and digital reality to build auditable, compliant, and fair AI systems.</div>
                 </div>
             </section>
-
             <section style="padding-bottom: 100px;">
-                <span class="section-label">Selected Research & Thinking</span>
+                <span class="section-label">Selected Thinking</span>
                 <div style="border-bottom: 1px solid var(--ui-border);">
                     <a href="/notes/failure" class="entry">
                         <div class="meta-spine">JAN 2026 / RESEARCH</div>
                         <div class="item-body">
-                            <h3 class="entry-title">Operationalizing AI Ethics for Regulated Industries</h3>
-                            <p style="color: var(--text-muted); font-size: 1.1rem; max-width: 52ch; margin:0; line-height: 1.6;">
-                                Strategic frameworks for implementing fairness metrics and mitigating algorithmic bias in high-stakes environments.
-                            </p>
+                            <h3 class="entry-title">The Sociopolitical Failure of Digital Transformation</h3>
+                            <p style="color: var(--text-muted); font-size: 1.1rem; max-width: 52ch; margin:0; line-height: 1.6;">Analysis of institutional collapse within complex technical projects.</p>
                         </div>
                     </a>
                 </div>
             </section>
         </main>
-
         <footer>
             <span>&copy; 2026 Hadi Noori</span>
             <span>Vancouver, BC &mdash; Canada</span>
