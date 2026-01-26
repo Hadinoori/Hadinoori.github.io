@@ -1,25 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hadi Noori | Strategic AI Governance</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Lora:italic,wght@0,700;1,700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-main: #fcfcfc;
+            --text-primary: #0a0a0a;
+            --text-muted: #525252;
+            --accent-blue: #1e3a8a; 
+            --ui-border: #e2e8f0;
+            --font-serif: 'Lora', Georgia, serif;
+            --font-sans: 'Inter', sans-serif;
+            --spine: 280px;
+        }
+        * { box-sizing: border-box; }
+        body { background-color: var(--bg-main); font-family: var(--font-sans); color: var(--text-primary); margin: 0; }
+        .wrap { max-width: 1100px; margin: 0 auto; padding: 0 40px; }
+        header { display: flex; justify-content: space-between; align-items: center; padding: 50px 0 30px; border-bottom: 1px solid var(--ui-border); }
+        .header-brand { text-decoration: none; color: var(--text-primary); }
+        .brand-name { font-size: 0.95rem; font-weight: 900; text-transform: uppercase; letter-spacing: 3px; display: block; }
+        .brand-sub { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-muted); margin-top: 4px; display: block; }
+        nav { display: flex; gap: 30px; }
+        nav a { text-decoration: none; font-size: 0.8rem; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1.5px; }
+        .hero-home { display: grid; grid-template-columns: var(--spine) 1fr; gap: 80px; padding: 80px 0 120px; }
+        .portrait-frame img { width: 100%; filter: grayscale(100%); border-radius: 2px; display: block; }
+        .statement { font-family: var(--font-serif); font-size: 3.5rem; line-height: 1.05; font-weight: 700; letter-spacing: -2.5px; margin: 0; }
+        .statement em { font-style: italic; font-weight: 400; color: var(--accent-blue); }
+        .section-label { font-size: 0.8rem; font-weight: 900; letter-spacing: 4px; text-transform: uppercase; color: var(--accent-blue); margin: 80px 0 50px; display: block; }
+        .entry { display: grid; grid-template-columns: var(--spine) 1fr; gap: 80px; padding: 50px 0; }
+        .meta-spine { font-size: 0.8rem; font-weight: 800; color: var(--text-muted); text-align: right; padding-top: 10px; }
+        .entry-title { font-family: var(--font-serif); font-size: 2.1rem; line-height: 1.25; margin: 0 0 10px; }
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <header>
+        <a href="index.html" class="header-brand">
+            <span class="brand-name">Hadi Noori</span>
+            <span class="brand-sub">Strategic AI Governance</span>
+        </a>
+        <nav>
+            <a href="insights.html">Insights</a>
+            <a href="playbooks.html">Playbooks</a>
+            <a href="dossier.html">Dossier</a>
+            <a href="contact.html">Inquiry</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero-home">
+            <div class="portrait-frame"><img src="/assets/img/profile.jpg" alt="Hadi Noori"></div>
+            <div class="hero-content">
+                <h1 class="statement">Intelligence is <em>fragile</em>.<br>Governance is its <em>armor</em>.</h1>
+                <div style="margin-top:auto; font-size: 1.25rem; color: var(--text-muted); line-height: 1.6;">
+                    Bridging sociopolitical theory and digital reality to build auditable, compliant, and fair AI systems.
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <span class="section-label">Selected Dispatch</span>
+            <div id="insights-container">
+                </div>
+        </section>
+    </main>
+</div>
+
+<script>
 async function loadInsights() {
     const container = document.getElementById('insights-container');
     if (!container) return;
-
     try {
-        // Fetch the pre-built JSON file directly
-        // Using a timestamp query param to prevent browser caching of old data
         const res = await fetch('/insights.json?v=' + new Date().getTime());
-        
         if (!res.ok) throw new Error("Index file not found");
-        
         const posts = await res.json();
+        
+        // Pick only the latest or selected post for home page
+        const post = posts[0]; 
 
-        const htmlContent = posts.map(post => {
-            // Date formatting
+        if (post) {
             const dateObj = new Date(post.date);
-            const displayDate = dateObj.toLocaleDateString('en-US', {
-                month: 'short', year: 'numeric'
-            }).toUpperCase();
+            const displayDate = dateObj.toLocaleDateString('en-US', { month: 'short', year: 'numeric' }).toUpperCase();
 
-            return `
-                <div style="border-bottom: 1px solid var(--ui-border);">
+            container.innerHTML = `
+                <div style="border-top: 1px solid var(--ui-border);">
                     <div class="entry">
                         <div class="meta-spine">${displayDate} / ${post.is_external ? 'DISPATCH' : 'INSIGHT'}</div>
                         <div class="item-body">
@@ -35,14 +102,12 @@ async function loadInsights() {
                     </div>
                 </div>
             `;
-        }).join('');
-
-        container.innerHTML = htmlContent;
-
+        }
     } catch (e) {
         console.error("Load Error:", e);
-        container.innerHTML = '<p style="color:var(--text-muted)">Unable to load insights.</p>';
     }
 }
-
 window.onload = loadInsights;
+</script>
+</body>
+</html>
