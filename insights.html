@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insights | Hadi Noori</title>
+    <link rel="icon" type="image/png" href="/assets/img/sidebar-logo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Lora:italic,wght@0,700;1,700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-main: #fcfcfc;
+            --text-primary: #0a0a0a;
+            --text-muted: #525252;
+            --accent-blue: #1e3a8a; 
+            --ui-border: #e2e8f0;
+            --font-serif: 'Lora', Georgia, serif;
+            --font-sans: 'Inter', sans-serif;
+            --spine: 280px; 
+        }
+
+        * { box-sizing: border-box; }
+        body { background-color: var(--bg-main); font-family: var(--font-sans); color: var(--text-primary); margin: 0; -webkit-font-smoothing: antialiased; }
+        .wrap { max-width: 1100px; margin: 0 auto; padding: 0 40px; }
+
+        /* HEADER: Matches Home1 */
+        header { display: flex; justify-content: space-between; align-items: center; padding: 50px 0 30px; border-bottom: 1px solid var(--ui-border); }
+        .header-brand { text-decoration: none; color: var(--text-primary); margin-left: -2px; }
+        .brand-name { font-size: 0.95rem; font-weight: 900; text-transform: uppercase; letter-spacing: 3px; display: block; }
+        .brand-sub { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-muted); margin-top: 4px; display: block; }
+
+        nav { display: flex; gap: 30px; }
+        nav a { text-decoration: none; font-size: 0.8rem; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1.5px; padding-bottom: 4px; border-bottom: 2px solid transparent; }
+        nav a.active { color: var(--text-primary); border-bottom-color: var(--text-primary); }
+
+        /* INSIGHTS FEED */
+        .page-intro { padding: 80px 0 60px; border-bottom: 2px solid var(--text-primary); }
+        .page-title { font-family: var(--font-serif); font-size: 3.5rem; margin: 0; letter-spacing: -3px; }
+        
+        .entry { display: grid; grid-template-columns: var(--spine) 1fr; gap: 80px; padding: 60px 0; border-bottom: 1px solid var(--ui-border); text-decoration: none; color: inherit; transition: background 0.2s; }
+        .entry:hover { background: #f9fafb; }
+
+        .meta-spine { font-size: 0.8rem; font-weight: 800; color: var(--text-muted); text-align: right; padding-top: 10px; line-height: 1.6; }
+        .source-tag { color: var(--accent-blue); display: block; margin-top: 5px; }
+
+        .entry-content h2 { font-family: var(--font-serif); font-size: 2.4rem; line-height: 1.1; margin: 0 0 15px; letter-spacing: -1px; }
+        .entry-content p { font-size: 1.15rem; color: var(--text-muted); line-height: 1.6; margin: 0; max-width: 55ch; }
+
+        footer { margin-top: 100px; padding: 40px 0; border-top: 1px solid var(--ui-border); font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px; display: flex; justify-content: space-between; }
+
+        @media (max-width: 900px) { 
+            .entry { grid-template-columns: 1fr; gap: 20px; }
+            .meta-spine { text-align: left; }
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <header>
+            <a href="/" class="header-brand">
+                <span class="brand-name">Hadi Noori</span>
+                <span class="brand-sub">Strategic AI Governance</span>
+            </a>
+            <nav>
+                <a href="/insights" class="active">Insights</a>
+                <a href="/playbooks">Playbooks</a>
+                <a href="/dossier">Dossier</a>
+                <a href="/contact">Inquiry</a>
+            </nav>
+        </header>
+
+        <main>
+            <div class="page-intro">
+                <h1 class="page-title">Insights.</h1>
+            </div>
+
+            <a href="https://linkedin.com/posts/..." class="entry" target="_blank">
+                <div class="meta-spine">
+                    JAN 2026
+                    <span class="source-tag">via LinkedIn</span>
+                </div>
+                <div class="entry-content">
+                    <h2>The Ethical Gap in Canadian AI Regulation</h2>
+                    <p>An analysis of current policy frameworks and the necessary sociopolitical adjustments for robust governance.</p>
+                </div>
+            </a>
+
+            <a href="/insights/algorithmic-bias" class="entry">
+                <div class="meta-spine">
+                    DEC 2025
+                    <span class="source-tag">Original Note</span>
+                </div>
+                <div class="entry-content">
+                    <h2>Fragility of Algorithmic Fairness</h2>
+                    <p>Why technical solutions for bias often fail without institutional armor and accountability structures.</p>
+                </div>
+            </a>
+        </main>
+
+        <footer>
+            <span>&copy; 2026 Hadi Noori</span>
+            <span>Vancouver, BC &mdash; Canada</span>
+        </footer>
+    </div>
+</body>
+</html>
