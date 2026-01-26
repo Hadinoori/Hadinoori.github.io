@@ -52,7 +52,7 @@
         </header>
         <main id="insights-container">
             <h1 class="page-title">Insights.</h1>
-            <div id="loading" style="padding: 40px 0; color: var(--text-muted); font-weight: 800; text-transform: uppercase; letter-spacing: 2px;">Establishing Secure Connection...</div>
+            <div id="status-msg" style="padding: 40px 0; color: var(--text-muted); font-weight: 800; text-transform: uppercase; letter-spacing: 2px;">Connecting to Repository...</div>
         </main>
         <footer>
             <span>&copy; 2026 Hadi Noori</span>
@@ -61,36 +61,46 @@
     </div>
 
     <script>
-        async function fetchInsights() {
+        async function fetchArchive() {
             const container = document.getElementById('insights-container');
-            const loading = document.getElementById('loading');
-            const REPO = 'Hadinoori/Hadinoori.github.io'; // اطلاعات شما جایگذاری شد
-            const API = `https://api.github.com/repos/${REPO}/contents/_insights`;
+            const status = document.getElementById('status-msg');
+            const REPO = 'Hadinoori/Hadinoori.github.io';
+            const ENDPOINT = `https://api.github.com/repos/${REPO}/contents/_insights`;
 
             try {
-                const res = await fetch(API);
-                const files = await res.json();
-                if(loading) loading.remove();
-                for (const file of files) {
-                    if (file.name.endsWith('.md')) {
-                        const contentRes = await fetch(file.download_url);
-                        const text = await contentRes.text();
-                        const title = text.match(/title:\s*"(.*)"/)?.[1] || text.match(/title:\s*(.*)/)?.[1] || "Untitled";
-                        const date = text.match(/date:\s*(.*)/)?.[1] || "";
-                        const source = text.match(/source:\s*(.*)/)?.[1] || "Original";
-                        const desc = text.match(/description:\s*"(.*)"/)?.[1] || text.match(/description:\s*(.*)/)?.[1] || "";
+                const res = await fetch(ENDPOINT);
+                const data = await res.json();
+                if(status) status.remove();
+                
+                for (const item of data) {
+                    if (item.name.endsWith('.md')) {
+                        const file = await fetch(item.download_url);
+                        const raw = await file.text();
+                        const title = raw.match(/title:\s*"(.*)"/)?.[1] || raw.match(/title:\s*(.*)/)?.[1] || "Untitled Insight";
+                        const date = raw.match(/date:\s*(.*)/)?.[1] || "";
+                        const source = raw.match(/source:\s*(.*)/)?.[1] || "Archive";
+                        const desc = raw.match(/description:\s*"(.*)"/)?.[1] || raw.match(/description:\s*(.*)/)?.[1] || "";
                         
-                        const html = `
+                        const entry = `
                             <article class="entry">
-                                <div class="meta-spine">${new Date(date).toLocaleDateString('en-US', {month:'short', year:'numeric'})}<span class="source-tag">${source}</span></div>
-                                <div class="entry-content"><h2>${title}</h2><p>${desc}</p></div>
+                                <div class="meta-spine">
+                                    ${new Date(date).toLocaleDateString('en-US', {month:'short', year:'numeric'})}
+                                    <span class="source-tag">${source}</span>
+                                </div>
+                                <div class="entry-content">
+                                    <h2>${title}</h2>
+                                    <p>${desc}</p>
+                                </div>
                             </article>`;
-                        container.insertAdjacentHTML('beforeend', html);
+                        container.insertAdjacentHTML('beforeend', entry);
                     }
                 }
-            } catch (e) { console.error(e); if(loading) loading.innerText = "Error syncing insights."; }
+            } catch (err) { 
+                console.error(err); 
+                if(status) status.innerText = "Synchronization Error."; 
+            }
         }
-        window.onload = fetchInsights;
+        window.onload = fetchArchive;
     </script>
 </body>
 </html>
