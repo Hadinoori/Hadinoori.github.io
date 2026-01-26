@@ -18,10 +18,9 @@
             --ui-border: #e2e8f0;
             --font-serif: 'Lora', Georgia, serif;
             --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            --spine: 280px; /* The unified vertical axis for your brand */
+            --spine: 280px; 
         }
 
-        /* 1. ANIMATIONS: Professional Reveal on Load */
         @keyframes reveal {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
@@ -38,7 +37,7 @@
         
         .wrap { max-width: 1100px; margin: 0 auto; padding: 0 40px; }
 
-        /* 2. HEADER: Fixed Identity & Navigation */
+        /* HEADER */
         header { 
             display: flex; 
             justify-content: space-between; 
@@ -50,7 +49,7 @@
         .header-brand { 
             text-decoration: none; 
             color: var(--text-primary); 
-            margin-left: -2px; /* Optical spine alignment */
+            margin-left: -2px; 
         }
         .brand-name { font-size: 0.95rem; font-weight: 900; text-transform: uppercase; letter-spacing: 3px; display: block; }
         .brand-sub { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-muted); margin-top: 4px; display: block; }
@@ -69,7 +68,7 @@
         }
         nav a:hover { color: var(--text-primary); border-bottom-color: var(--text-primary); }
 
-        /* 3. HERO: Intellectual Manifesto with Baseline Alignment */
+        /* HERO SECTION */
         .hero-home { 
             display: grid; 
             grid-template-columns: var(--spine) 1fr; 
@@ -83,7 +82,7 @@
             width: 100%; 
             filter: grayscale(100%) contrast(1.2); 
             border-radius: 2px; 
-            box-shadow: 12px 12px 0px rgba(0,0,0,0.03); /* Precision Hard Shadow */
+            box-shadow: 12px 12px 0px rgba(0,0,0,0.03); 
             display: block;
         }
 
@@ -124,7 +123,7 @@
             line-height: 1.6;
         }
 
-        /* 4. CONTENT FEED: Strategic Research Archive */
+        /* SELECTED DISPATCH FEED */
         .section-label { 
             font-size: 0.8rem; 
             font-weight: 900; 
@@ -163,6 +162,14 @@
             margin: 0 0 10px; 
             transition: color 0.2s;
         }
+        
+        .external-icon {
+            font-size: 1.2rem;
+            vertical-align: middle;
+            opacity: 0.5;
+            margin-left: 8px;
+        }
+
         .entry:hover .entry-title { color: var(--accent-blue); }
 
         .view-all-link { 
@@ -181,7 +188,6 @@
             padding-bottom: 5px;
         }
 
-        /* 5. FOOTER: Institutional Grounding */
         footer { 
             margin-top: 60px; 
             padding: 40px 0; 
@@ -208,15 +214,15 @@
 
 <div class="wrap">
     <header>
-        <a href="index.html" class="header-brand">
+        <a href="/" class="header-brand">
             <span class="brand-name">Hadi Noori</span>
             <span class="brand-sub">Strategic AI Governance</span>
         </a>
         <nav>
-            <a href="insights.html">Insights</a>
-            <a href="playbooks.html">Playbooks</a>
-            <a href="dossier.html">Dossier</a>
-            <a href="contact.html">Inquiry</a>
+            <a href="/insights">Insights</a>
+            <a href="/playbooks">Playbooks</a>
+            <a href="/dossier">Dossier</a>
+            <a href="/contact">Inquiry</a>
         </nav>
     </header>
 
@@ -237,21 +243,41 @@
             </div>
         </section>
 
-        <section>
-            <span class="section-label">Selected Research</span>
-            <div style="border-bottom: 1px solid var(--ui-border);">
-                <a href="insights.html" class="entry">
-                    <div class="meta-spine">JAN 2026 / RESEARCH</div>
-                    <div class="item-body">
-                        <h3 class="entry-title">The Sociopolitical Failure of Digital Transformation</h3>
-                        <p style="color: var(--text-muted); font-size: 1.1rem; max-width: 52ch; margin:0; line-height: 1.6;">
-                            Analyzing institutional collapse within complex technical projects and the necessity of ethical oversight.
-                        </p>
-                    </div>
-                </a>
+        <section id="dispatch">
+            <span class="section-label">Selected Dispatch</span>
+            
+            <div class="dispatch-feed">
+                {% assign dispatch_items = site.insights | where: "selected_dispatch", true | sort: "date" | reverse %}
+                
+                {% for item in dispatch_items %}
+                <div style="border-bottom: 1px solid var(--ui-border);">
+                    <a href="{% if item.external_url %}{{ item.external_url }}{% else %}{{ item.url }}{% endif %}" 
+                       class="entry" 
+                       {% if item.external_url %}target="_blank"{% endif %}>
+                        
+                        <div class="meta-spine">
+                            {{ item.date | date: "%b %Y" | upcase }} / 
+                            {% if item.external_url %}LINK{% else %}RESEARCH{% endif %}
+                        </div>
+
+                        <div class="item-body">
+                            <h3 class="entry-title">
+                                {{ item.title }} 
+                                {% if item.external_url %}<span class="external-icon">↗</span>{% endif %}
+                            </h3>
+                            <p style="color: var(--text-muted); font-size: 1.1rem; max-width: 52ch; margin:0; line-height: 1.6;">
+                                {{ item.description }}
+                            </p>
+                        </div>
+                    </a>
+                </div>
+                {% empty %}
+                <p style="padding: 40px 0; color: var(--text-muted);">No featured dispatches at the moment.</p>
+                {% endfor %}
             </div>
+
             <div class="view-all-link">
-                <a href="insights.html">View all Insights &rarr;</a>
+                <a href="/insights">View all Insights &rarr;</a>
             </div>
         </section>
     </main>
