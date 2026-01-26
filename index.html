@@ -1,76 +1,215 @@
-<style>
-  :root {
-    --bg-main: #fcfcfc;
-    --text-primary: #0a0a0a;
-    --text-muted: #525252;
-    --accent-blue: #1e3a8a; /* Deepened for Institutional Authority */
-    --ui-border: #e2e8f0;
-    --font-serif: 'Lora', Georgia, serif;
-    --font-sans: 'Inter', sans-serif;
-    --spine: 280px; 
-  }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hadi Noori | AI Ethics & Governance</title>
+    
+    <link rel="icon" type="image/png" href="/assets/img/sidebar-logo.png">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Lora:italic,wght@0,700;1,700&display=swap" rel="stylesheet">
 
-  body { background-color: var(--bg-main); font-family: var(--font-sans); color: var(--text-primary); margin: 0; -webkit-font-smoothing: antialiased; }
-  .wrap { max-width: 1100px; margin: 0 auto; padding: 0 50px; }
+    <style>
+        :root {
+            --bg-main: #fcfcfc;
+            --text-primary: #0a0a0a;
+            --text-muted: #525252;
+            --accent-blue: #1e3a8a; 
+            --ui-border: #e2e8f0;
+            --font-serif: 'Lora', Georgia, serif;
+            --font-sans: 'Inter', sans-serif;
+            --spine: 280px; 
+        }
 
-  /* 1. HEADER: Permanent Signature */
-  header { 
-    display: flex; justify-content: space-between; align-items: center; 
-    padding: 50px 0 30px; border-bottom: 1px solid var(--ui-border); 
-  }
-  .header-brand { 
-    font-size: 0.9rem; font-weight: 900; text-transform: uppercase; letter-spacing: 3px; 
-    text-decoration: none; color: var(--text-primary); transition: opacity 0.2s;
-  }
-  .header-brand:hover { opacity: 0.7; }
+        /* Reset & Base */
+        * { box-sizing: border-box; }
+        body { 
+            background-color: var(--bg-main); 
+            font-family: var(--font-sans); 
+            color: var(--text-primary); 
+            margin: 0; 
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        .wrap { max-width: 1100px; margin: 0 auto; padding: 0 50px; }
 
-  nav { display: flex; gap: 35px; }
-  nav a { 
-    text-decoration: none; font-size: 0.8rem; font-weight: 800; color: var(--text-muted); 
-    text-transform: uppercase; letter-spacing: 1.5px; padding-bottom: 6px; 
-    border-bottom: 2px solid transparent; transition: all 0.2s ease;
-  }
-  nav a:hover { color: var(--text-primary); border-bottom-color: var(--text-primary); }
+        /* 1. HEADER: Permanent Signature */
+        header { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 50px 0 30px; 
+            border-bottom: 1px solid var(--ui-border);
+        }
 
-  /* 2. HERO: Manifestation of Thought */
-  .hero-home { 
-    display: grid; grid-template-columns: var(--spine) 1fr; gap: 80px; 
-    padding: 60px 0 100px; align-items: start;
-  }
-  .portrait-impact img { 
-    width: 100%; filter: grayscale(100%) contrast(1.2); 
-    border-radius: 6px; box-shadow: 0 15px 35px rgba(0,0,0,0.08); 
-  }
+        .header-brand { 
+            font-size: 0.9rem; 
+            font-weight: 900; 
+            text-transform: uppercase; 
+            letter-spacing: 3px; 
+            text-decoration: none; 
+            color: var(--text-primary);
+        }
 
-  .statement { 
-    font-family: var(--font-serif); font-size: clamp(2.5rem, 5vw, 4rem); 
-    line-height: 1.05; font-weight: 700; letter-spacing: -2.5px; margin: 0; 
-  }
-  .statement em { font-style: italic; font-weight: 400; color: var(--accent-blue); }
+        nav { display: flex; gap: 35px; }
+        nav a { 
+            text-decoration: none; 
+            font-size: 0.8rem; 
+            font-weight: 800; 
+            color: var(--text-muted); 
+            text-transform: uppercase; 
+            letter-spacing: 1.5px; 
+            padding-bottom: 6px; 
+            border-bottom: 2px solid transparent; 
+            transition: all 0.2s ease;
+        }
+        nav a:hover { color: var(--text-primary); border-bottom-color: var(--text-primary); }
 
-  .lead-text { 
-    font-size: 1.25rem; color: var(--text-muted); max-width: 45ch; 
-    margin-top: 50px; border-top: 1px solid var(--ui-border); padding-top: 35px; 
-  }
+        /* 2. HERO: Focused Manifesto */
+        .hero-home { 
+            display: grid; 
+            grid-template-columns: var(--spine) 1fr; 
+            gap: 80px; 
+            padding: 60px 0 100px; 
+            align-items: start;
+        }
 
-  .cta-link {
-    display: inline-block; margin-top: 35px; font-size: 0.85rem; font-weight: 900;
-    text-transform: uppercase; letter-spacing: 2px; text-decoration: none; color: var(--text-primary);
-    border-bottom: 3px solid var(--accent-blue); padding-bottom: 4px;
-  }
+        .portrait-impact img { 
+            width: 100%; 
+            filter: grayscale(100%) contrast(1.2); 
+            border-radius: 6px; 
+            box-shadow: 0 15px 35px rgba(0,0,0,0.08); 
+        }
 
-  /* 3. RECENT WORK: Spine Alignment */
-  .section-label { font-size: 0.8rem; font-weight: 900; letter-spacing: 4px; text-transform: uppercase; color: var(--accent-blue); margin: 80px 0 50px; display: block; }
-  .entry { display: grid; grid-template-columns: var(--spine) 1fr; gap: 80px; padding: 45px 0; border-top: 1px solid var(--ui-border); text-decoration: none; color: inherit; }
-  
-  .meta-spine { font-size: 0.8rem; font-weight: 800; color: var(--text-muted); text-align: right; padding-top: 10px; }
-  .entry-title { font-family: var(--font-serif); font-size: 2.2rem; line-height: 1.25; margin: 0 0 10px; transition: color 0.2s; }
-  .entry:hover .entry-title { color: var(--accent-blue); }
+        .statement { 
+            font-family: var(--font-serif); 
+            font-size: clamp(2.5rem, 5vw, 3.8rem); 
+            line-height: 1.1; 
+            font-weight: 700; 
+            letter-spacing: -2.5px; 
+            margin: 0; 
+        }
+        
+        .statement em { 
+            font-style: italic; 
+            font-weight: 400; 
+            color: var(--accent-blue);
+        }
 
-  @media (max-width: 900px) { 
-    .hero-home, .entry { grid-template-columns: 1fr; gap: 30px; } 
-    header { flex-direction: column; gap: 20px; }
-    .meta-spine { text-align: left; }
-    .wrap { padding: 0 25px; } 
-  }
-</style>
+        .lead-text { 
+            font-size: 1.25rem; 
+            color: var(--text-muted); 
+            max-width: 45ch; 
+            margin-top: 50px; 
+            border-top: 1px solid var(--ui-border); 
+            padding-top: 35px; 
+        }
+
+        .cta-link {
+            display: inline-block; 
+            margin-top: 35px; 
+            font-size: 0.85rem; 
+            font-weight: 900;
+            text-transform: uppercase; 
+            letter-spacing: 2px; 
+            text-decoration: none; 
+            color: var(--text-primary);
+            border-bottom: 3px solid var(--accent-blue); 
+            padding-bottom: 4px;
+        }
+
+        /* 3. ARCHIVE: Spine Alignment */
+        .section-label { 
+            font-size: 0.8rem; 
+            font-weight: 900; 
+            letter-spacing: 4px; 
+            text-transform: uppercase; 
+            color: var(--accent-blue); 
+            margin: 40px 0 50px; 
+            display: block; 
+        }
+
+        .entry { 
+            display: grid; 
+            grid-template-columns: var(--spine) 1fr; 
+            gap: 80px; 
+            padding: 45px 0; 
+            border-top: 1px solid var(--ui-border); 
+            text-decoration: none; 
+            color: inherit; 
+            transition: background 0.2s; 
+        }
+        
+        .entry:hover { background: #f8fafc; }
+
+        .meta-spine { 
+            font-size: 0.8rem; 
+            font-weight: 800; 
+            color: var(--text-muted); 
+            text-align: right; 
+            padding-top: 10px; 
+        }
+
+        .entry-title { 
+            font-family: var(--font-serif); 
+            font-size: 2.1rem; 
+            line-height: 1.25; 
+            margin: 0 0 10px; 
+        }
+
+        @media (max-width: 900px) { 
+            .hero-home, .entry { grid-template-columns: 1fr; gap: 30px; } 
+            header { flex-direction: column; gap: 20px; }
+            .meta-spine { text-align: left; }
+            .wrap { padding: 0 25px; } 
+        }
+    </style>
+</head>
+<body>
+
+<div class="wrap">
+    <header>
+        <a href="/" class="header-brand">Hadi Noori</a>
+        <nav>
+            <a href="/notes">Notes</a>
+            <a href="/playbooks">Playbooks</a>
+            <a href="/dossier">Dossier</a>
+            <a href="/contact">Contact</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero-home">
+            <div class="portrait-impact">
+                <img src="/assets/img/profile.jpg" alt="Hadi Noori Profile">
+            </div>
+            <div class="hero-content">
+                <h1 class="statement">
+                    Intelligence is <em>fragile</em>.<br>
+                    Governance is its <em>armor</em>.
+                </h1>
+                <div class="lead-text">
+                    Bridging sociopolitical theory and digital reality to build auditable, compliant, and fair AI systems.
+                    <br>
+                    <a href="/notes" class="cta-link">Explore recent thinking &rarr;</a>
+                </div>
+            </div>
+        </section>
+
+        <section style="padding-bottom: 100px;">
+            <span class="section-label">Selected Thinking</span>
+            <div style="border-bottom: 1px solid var(--ui-border);">
+                <a href="/notes/failure" class="entry">
+                    <div class="meta-spine">DEC 2025 / RESEARCH</div>
+                    <div class="item-body">
+                        <h3 class="entry-title">The Sociopolitical Failure of Digital Transformation</h3>
+                        <p style="color: var(--text-muted); font-size: 1.1rem; max-width: 52ch; margin:0;">Analysis of institutional collapse within technical projects.</p>
+                    </div>
+                </a>
+            </div>
+        </section>
+    </main>
+</div>
+
+</body>
+</html>
