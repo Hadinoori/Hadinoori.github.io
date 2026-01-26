@@ -1,156 +1,89 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hadi Noori | Strategic AI Governance</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Lora:italic,wght@0,700;1,700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-main: #fcfcfc;
-            --text-primary: #0a0a0a;
-            --text-muted: #666666;
-            --accent-blue: #1e3a8a; 
-            --ui-border: #eeeeee;
-            --font-serif: 'Lora', Georgia, serif;
-            --font-sans: 'Inter', sans-serif;
-            --spine-width: 200px; /* تنظیم عرض برای جایگیری مناسب عکس و متون سمت چپ */
-        }
-
-        * { box-sizing: border-box; }
-        body { 
-            background-color: var(--bg-main); 
-            font-family: var(--font-sans); 
-            color: var(--text-primary); 
-            margin: 0; 
-            -webkit-font-smoothing: antialiased; 
-        }
-
-        .wrap { max-width: 1100px; margin: 0 auto; padding: 0 40px; }
-        
-        /* Header */
-        header { display: flex; justify-content: space-between; align-items: flex-start; padding: 60px 0 40px; }
-        .header-brand { text-decoration: none; color: var(--text-primary); transition: opacity 0.2s; }
-        .header-brand:hover { opacity: 0.7; }
-        .brand-name { font-size: 0.95rem; font-weight: 900; text-transform: uppercase; letter-spacing: 3px; display: block; }
-        .brand-sub { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-muted); margin-top: 5px; display: block; }
-        
-        nav { display: flex; gap: 40px; }
-        nav a { 
-            text-decoration: none; font-size: 0.75rem; font-weight: 800; color: var(--text-muted); 
-            text-transform: uppercase; letter-spacing: 2px; transition: color 0.2s; 
-        }
-        nav a:hover { color: var(--text-primary); }
-
-        /* Hero Section with Portrait */
-        .hero { 
-            padding: 80px 0 120px; 
-            display: grid;
-            grid-template-columns: var(--spine-width) 1fr;
-            gap: 80px;
-            align-items: flex-start;
-        }
-        .hero-portrait img {
-            width: 100%;
-            filter: grayscale(100%);
-            border-radius: 2px;
-            display: block;
-        }
-        .statement { font-family: var(--font-serif); font-size: 4rem; line-height: 1.05; font-weight: 700; letter-spacing: -2.5px; margin: 0 0 30px; }
-        .statement em { font-style: italic; font-weight: 400; color: var(--accent-blue); }
-        .sub-statement { font-size: 1.4rem; color: var(--text-muted); line-height: 1.5; max-width: 35ch; font-weight: 400; }
-
-        /* Projects Section */
-        .projects-section { margin-top: 20px; }
-        .section-label { 
-            font-size: 0.75rem; font-weight: 900; letter-spacing: 4px; text-transform: uppercase; 
-            color: var(--accent-blue); margin-bottom: 50px; display: block; 
-        }
-        .entry { 
-            display: grid; grid-template-columns: var(--spine-width) 1fr; gap: 80px; 
-            padding: 50px 0; border-top: 1px solid var(--ui-border); 
-        }
-        .meta-spine { font-size: 0.75rem; font-weight: 800; color: var(--text-muted); text-align: right; line-height: 1.8; letter-spacing: 1px; }
-        .meta-spine .tag { color: var(--accent-blue); display: block; text-transform: uppercase; }
-        
-        .entry-title { font-family: var(--font-serif); font-size: 2.2rem; line-height: 1.2; margin: 0; font-weight: 700; }
-        .entry-title a { text-decoration: none; color: inherit; transition: color 0.2s; }
-        .entry-title a:hover { color: var(--accent-blue); }
-        .entry-desc { color: var(--text-muted); font-size: 1.2rem; max-width: 55ch; margin: 18px 0 0; line-height: 1.6; }
-
-        /* Footer */
-        footer { padding: 100px 0 60px; border-top: 1px solid var(--ui-border); display: flex; justify-content: flex-end; }
-        .footer-link { font-size: 0.7rem; color: var(--text-muted); text-decoration: none; letter-spacing: 2px; text-transform: uppercase; opacity: 0.6; transition: opacity 0.2s; }
-        .footer-link:hover { opacity: 1; color: var(--text-primary); }
-
-        @media (max-width: 768px) {
-            .hero { grid-template-columns: 1fr; padding: 60px 0; gap: 40px; }
-            .hero-portrait { width: 180px; }
-            .statement { font-size: 2.8rem; }
-            .entry { grid-template-columns: 1fr; gap: 15px; }
-            .meta-spine { text-align: left; margin-bottom: 10px; }
-            header { flex-direction: column; gap: 30px; }
-        }
-    </style>
-</head>
-<body>
-
-<div class="wrap">
-    <header>
-        <a href="index.html" class="header-brand" aria-label="Hadi Noori - Home">
-            <span class="brand-name">Hadi Noori</span>
-            <span class="brand-sub">Strategic AI Governance</span>
-        </a>
-        <nav aria-label="Main Navigation">
-            <a href="insights.html">Insights</a>
-            <a href="projects.html">Projects</a>
-            <a href="contact.html">Contact</a>
-        </nav>
-    </header>
-
-    <main>
-        <section class="hero">
-            <div class="hero-portrait">
-                <img src="/assets/img/profile.jpg" alt="Hadi Noori">
+<section class="insights-section" aria-labelledby="insights-heading">
+    <h2 id="insights-heading" class="section-label">Selected Insights</h2>
+    <div id="insights-container">
+        <div class="entry">
+            <div class="meta-spine">STATUS</div>
+            <div class="entry-content">
+                <h3 class="entry-title">Connecting to dispatch archive...</h3>
             </div>
-            <div class="hero-content">
-                <h1 class="statement">Intelligence is <em>fragile</em>.<br>Governance is its <em>armor</em>.</h1>
-                <p class="sub-statement">Designing accountable AI governance systems.</p>
-            </div>
-        </section>
+        </div>
+    </div>
+</section>
 
-        <section class="projects-section" aria-labelledby="projects-heading">
-            <span id="projects-heading" class="section-label">Selected Projects</span>
-            <div class="projects-container">
-                <article class="entry">
-                    <div class="meta-spine">
-                        <span class="year">2024</span>
-                        <span class="tag">System</span>
-                    </div>
-                    <div class="entry-content">
-                        <h2 class="entry-title"><a href="#">Automated Risk Assessment Protocols</a></h2>
-                        <p class="entry-desc">Design of auditing protocols for decision-support systems in public institutions, focusing on algorithmic accountability.</p>
-                    </div>
-                </article>
+<script>
+    async function syncInsights() {
+        const container = document.getElementById('insights-container');
+        const REPO = 'hadinoori/hadinoori.github.io';
+        
+        try {
+            // Fetch file list from GitHub
+            const res = await fetch(`https://api.github.com/repos/${REPO}/contents/_insights`);
+            if (!res.ok) throw new Error('Failed to fetch repository contents');
+            
+            const files = await res.json();
+            const mdFiles = files.filter(f => f.name.endsWith('.md')).reverse();
+            
+            let htmlBuffer = '';
+            let foundAny = false;
 
-                <article class="entry">
-                    <div class="meta-spine">
-                        <span class="year">2023</span>
-                        <span class="tag">Policy</span>
-                    </div>
-                    <div class="entry-content">
-                        <h2 class="entry-title"><a href="#">Socio-Technical Governance Models</a></h2>
-                        <p class="entry-desc">Articulating the bridge between sociopolitical theories and digital infrastructures for fair data processing.</p>
-                    </div>
-                </article>
-            </div>
-        </section>
-    </main>
+            for (const file of mdFiles) {
+                const fileRes = await fetch(file.download_url);
+                const raw = await fileRes.text();
+                
+                // Enhanced robust parser for Frontmatter
+                const parseField = (key) => {
+                    const regex = new RegExp(`${key}:\\s*["']?(.*?)["']?(\\n|\\r|$)`, 'i');
+                    const match = raw.match(regex);
+                    return match ? match[1].trim() : null;
+                };
 
-    <footer>
-        <a href="dossier.html" class="footer-link">Dossier</a>
-    </footer>
-</div>
+                const isSelected = parseField('selected_dispatch');
+                
+                // Check for both string "true" and literal true from CMS
+                if (isSelected === 'true' || isSelected === true) {
+                    foundAny = true;
+                    const title = parseField('title') || "Untitled Dispatch";
+                    const dateRaw = parseField('date');
+                    const desc = parseField('description') || "";
+                    const extUrl = parseField('external_url');
+                    
+                    const displayDate = dateRaw 
+                        ? new Date(dateRaw).toLocaleDateString('en-US', {month:'short', year:'numeric'}).toUpperCase()
+                        : "RECENT";
 
-</body>
-</html>
+                    const isExternal = extUrl && extUrl !== '""' && extUrl !== 'null';
+                    const link = isExternal ? extUrl : `insights/${file.name.replace('.md', '.html')}`;
+                    const target = isExternal ? 'target="_blank" rel="noopener noreferrer"' : '';
+
+                    htmlBuffer += `
+                        <article class="entry">
+                            <div class="meta-spine">
+                                <span class="year">${displayDate}</span>
+                                <span class="tag">Insight</span>
+                            </div>
+                            <div class="entry-content">
+                                <h3 class="entry-title"><a href="${link}" ${target}>${title}</a></h3>
+                                <p class="entry-desc">${desc}</p>
+                            </div>
+                        </article>
+                    `;
+                }
+            }
+            
+            container.innerHTML = foundAny ? htmlBuffer : `
+                <div class="entry">
+                    <div class="meta-spine">EMPTY</div>
+                    <div class="entry-content"><h3 class="entry-title">No selected dispatches found in the archive.</h3></div>
+                </div>`;
+            
+        } catch (e) { 
+            console.error("Sync Error:", e);
+            container.innerHTML = `
+                <div class="entry">
+                    <div class="meta-spine">ERROR</div>
+                    <div class="entry-content"><h3 class="entry-title">System offline. Please check back later.</h3></div>
+                </div>`;
+        }
+    }
+    window.addEventListener('DOMContentLoaded', syncInsights);
+</script>
