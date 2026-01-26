@@ -1,48 +1,90 @@
-<div class="section-label" style="font-size: 0.7rem; font-weight: 900; text-transform: uppercase; letter-spacing: 3px; color: #1e3a8a; margin-bottom: 45px; border-bottom: 1px solid #e2e8f0; padding-bottom: 12px;">
-    Latest Dispatch.
-</div>
-
-<div id="latest-research-container">
-    <div class="entry">
-        <div class="meta-spine">POLLING...</div>
-        <div class="entry-content">
-            <h2>Synchronizing with Archive...</h2>
-        </div>
+<section class="insights-section" aria-labelledby="insights-heading">
+    <h2 id="insights-heading" class="section-label">Selected Insights</h2>
+    <div id="insights-container">
+        <div class="entry-loading">Syncing archive...</div>
     </div>
-</div>
+</section>
 
 <script>
-    async function syncLatestDispatch() {
-        const container = document.getElementById('latest-research-container');
-        const REPO = 'Hadinoori/Hadinoori.github.io';
+    async function syncInsights() {
+        const container = document.getElementById('insights-container');
+        const REPO = 'hadinoori/hadinoori.github.io';
         
         try {
+            // 6: Simple session caching (Optional but recommended)
+            const cachedData = sessionStorage.getItem('insights_data');
+            if (cachedData) {
+                renderInsights(JSON.parse(cachedData));
+            }
+
             const res = await fetch(`https://api.github.com/repos/${REPO}/contents/_insights`);
             const files = await res.json();
-            // Sorting to find the absolute newest markdown file
-            const newest = files.filter(f => f.name.endsWith('.md')).reverse()[0];
+            
+            // 2: Sorting logic based on naming convention
+            const sortedFiles = files.filter(f => f.name.endsWith('.md')).reverse();
+            const insightsData = [];
 
-            if (newest) {
-                const fileRes = await fetch(newest.download_url);
+            for (const file of sortedFiles) {
+                const fileRes = await fetch(file.download_url);
                 const raw = await fileRes.text();
                 
-                const title = raw.match(/title:\s*"(.*)"/)?.[1] || "Untitled";
-                const date = raw.match(/date:\s*(.*)/)?.[1] || "";
-                const desc = raw.match(/description:\s*"(.*)"/)?.[1] || "";
+                const getValue = (key) => {
+                    const regex = new RegExp(`${key}:\\s*["']?(.*?)["']?(\\n|$)`, 'i');
+                    const match = raw.match(regex);
+                    return match ? match[1].trim() : "";
+                };
 
-                const displayDate = new Date(date).toLocaleDateString('en-US', {month:'short', year:'numeric'}).toUpperCase();
-
-                container.innerHTML = `
-                    <div class="entry">
-                        <div class="meta-spine">${displayDate} / LATEST</div>
-                        <div class="entry-content">
-                            <h2 style="font-family: 'Lora', serif; font-size: 2.3rem; line-height: 1.1; letter-spacing: -1px;">${title}</h2>
-                            <p style="font-size: 1.15rem; color: #525252; margin-top: 15px; line-height: 1.6; max-width: 60ch;">${desc}</p>
-                        </div>
-                    </div>
-                `;
+                if (getValue('selected_dispatch') === 'true') {
+                    insightsData.push({
+                        title: getValue('title') || "Untitled",
+                        date: getValue('date'),
+                        desc: getValue('description'),
+                        url: getValue('external_url'),
+                        filename: file.name
+                    });
+                }
             }
-        } catch (e) { console.error("Dispatch Sync Error", e); }
+            
+            sessionStorage.setItem('insights_data', JSON.stringify(insightsData));
+            renderInsights(insightsData);
+            
+        } catch (e) { 
+            console.error("Sync Error:", e);
+            container.innerHTML = '<div class="entry-status">Unable to reach the archive.</div>';
+        }
     }
-    window.onload = syncLatestDispatch;
+
+    function renderInsights(data) {
+        const container = document.getElementById('insights-container');
+        if (data.length === 0) {
+            container.innerHTML = '<div class="entry-status">No selected dispatches found.</div>';
+            return;
+        }
+
+        container.innerHTML = data.map(item => {
+            const displayDate = item.date 
+                ? new Date(item.date).toLocaleDateString('en-US', {month:'short', year:'numeric'}).toUpperCase()
+                : "RECENT";
+
+            // 4: target="_blank" logic for external links
+            const isExternal = item.url && item.url !== '""';
+            const link = isExternal ? item.url : `insights/${item.filename.replace('.md', '.html')}`;
+            const target = isExternal ? 'target="_blank" rel="noopener noreferrer"' : '';
+
+            return `
+                <article class="entry">
+                    <div class="meta-spine">
+                        <span class="year">${displayDate}</span>
+                        <span class="tag">Insight</span>
+                    </div>
+                    <div class="entry-content">
+                        <h3 class="entry-title"><a href="${link}" ${target}>${item.title}</a></h3>
+                        <p class="entry-desc">${item.desc}</p>
+                    </div>
+                </article>
+            `;
+        }).join('');
+    }
+
+    window.addEventListener('DOMContentLoaded', syncInsights);
 </script>
