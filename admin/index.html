@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CMS Dashboard | Hadi Noori</title>
+  <script src="https://cdn.jsdelivr.net/npm/decap-cms@3.3.3/dist/decap-cms.js"></script>
 </head>
 <body>
-  <div id="cms-loading">Loading Management Interface...</div>
-  <script src="https://cdn.jsdelivr.net/npm/decap-cms@3.3.3/dist/decap-cms.js"></script>
   <script>
     CMS.init({
       config: {
@@ -21,18 +21,24 @@
         display_url: "https://hadinoori.ca",
         media_folder: "assets/img",
         public_folder: "/assets/img",
-        collections: [{
-          name: "insights",
-          label: "Strategic Insights",
-          folder: "_insights",
-          create: true,
-          format: "frontmatter",
-          fields: [
-            { label: "Title", name: "title", widget: "string" },
-            { label: "Publish Date", name: "date", widget: "datetime" },
-            { label: "Content", name: "body", widget: "markdown" }
-          ]
-        }]
+        collections: [
+          {
+            name: "insights",
+            label: "Strategic Insights",
+            folder: "_insights",
+            create: true,
+            format: "frontmatter",
+            extension: "md",
+            fields: [
+              { label: "Layout", name: "layout", widget: "hidden", default: "post" },
+              { label: "Title", name: "title", widget: "string" },
+              { label: "Publish Date", name: "date", widget: "datetime" },
+              { label: "Source Category", name: "source", widget: "string", default: "Original Note" },
+              { label: "Short Description", name: "description", widget: "text" },
+              { label: "Content Body", name: "body", widget: "markdown" }
+            ]
+          }
+        ]
       }
     });
   </script>
