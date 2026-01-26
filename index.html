@@ -9,105 +9,131 @@
         :root {
             --bg-main: #fcfcfc;
             --text-primary: #0a0a0a;
-            --text-muted: #525252;
+            --text-muted: #666666;
             --accent-blue: #1e3a8a; 
-            --ui-border: #e2e8f0;
+            --ui-border: #eeeeee;
             --font-serif: 'Lora', Georgia, serif;
             --font-sans: 'Inter', sans-serif;
-            --spine: 280px;
+            --spine-width: 160px;
         }
+
         * { box-sizing: border-box; }
-        body { background-color: var(--bg-main); font-family: var(--font-sans); color: var(--text-primary); margin: 0; }
-        .wrap { max-width: 1100px; margin: 0 auto; padding: 0 40px; }
-        header { display: flex; justify-content: space-between; align-items: center; padding: 50px 0 30px; border-bottom: 1px solid var(--ui-border); }
-        .header-brand { text-decoration: none; color: var(--text-primary); }
+        body { 
+            background-color: var(--bg-main); 
+            font-family: var(--font-sans); 
+            color: var(--text-primary); 
+            margin: 0; 
+            -webkit-font-smoothing: antialiased; 
+        }
+
+        .wrap { max-width: 1050px; margin: 0 auto; padding: 0 40px; }
+        
+        /* Header & Nav */
+        header { display: flex; justify-content: space-between; align-items: flex-start; padding: 60px 0 40px; }
+        .header-brand { text-decoration: none; color: var(--text-primary); transition: opacity 0.2s; }
+        .header-brand:hover { opacity: 0.7; }
         .brand-name { font-size: 0.95rem; font-weight: 900; text-transform: uppercase; letter-spacing: 3px; display: block; }
-        .brand-sub { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-muted); margin-top: 4px; display: block; }
-        nav { display: flex; gap: 30px; }
-        nav a { text-decoration: none; font-size: 0.8rem; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1.5px; }
-        .hero-home { display: grid; grid-template-columns: var(--spine) 1fr; gap: 80px; padding: 80px 0 120px; }
-        .portrait-frame img { width: 100%; filter: grayscale(100%); border-radius: 2px; display: block; }
-        .statement { font-family: var(--font-serif); font-size: 3.5rem; line-height: 1.05; font-weight: 700; letter-spacing: -2.5px; margin: 0; }
+        .brand-sub { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-muted); margin-top: 5px; display: block; }
+        
+        nav { display: flex; gap: 40px; }
+        nav a { 
+            text-decoration: none; font-size: 0.75rem; font-weight: 800; color: var(--text-muted); 
+            text-transform: uppercase; letter-spacing: 2px; transition: color 0.2s; 
+        }
+        nav a:hover, nav a.active { color: var(--text-primary); }
+
+        /* Hero Section */
+        .hero { padding: 120px 0 160px; max-width: 900px; }
+        .statement { font-family: var(--font-serif); font-size: 4.5rem; line-height: 1.05; font-weight: 700; letter-spacing: -3px; margin: 0 0 35px; }
         .statement em { font-style: italic; font-weight: 400; color: var(--accent-blue); }
-        .section-label { font-size: 0.8rem; font-weight: 900; letter-spacing: 4px; text-transform: uppercase; color: var(--accent-blue); margin: 80px 0 50px; display: block; }
-        .entry { display: grid; grid-template-columns: var(--spine) 1fr; gap: 80px; padding: 50px 0; }
-        .meta-spine { font-size: 0.8rem; font-weight: 800; color: var(--text-muted); text-align: right; padding-top: 10px; }
-        .entry-title { font-family: var(--font-serif); font-size: 2.1rem; line-height: 1.25; margin: 0 0 10px; }
+        .sub-statement { font-size: 1.5rem; color: var(--text-muted); line-height: 1.4; max-width: 35ch; font-weight: 400; }
+
+        /* Project List Structure */
+        .projects-section { margin-top: 40px; }
+        .section-label { 
+            font-size: 0.75rem; font-weight: 900; letter-spacing: 4px; text-transform: uppercase; 
+            color: var(--accent-blue); margin-bottom: 50px; display: block; 
+        }
+        .entry { 
+            display: grid; grid-template-columns: var(--spine-width) 1fr; gap: 70px; 
+            padding: 50px 0; border-top: 1px solid var(--ui-border); 
+        }
+        .meta-spine { font-size: 0.75rem; font-weight: 800; color: var(--text-muted); text-align: right; line-height: 1.6; letter-spacing: 1px; }
+        .meta-spine .tag { color: var(--accent-blue); display: block; text-transform: uppercase; }
+        .meta-spine .year { display: block; }
+        
+        .entry-title { font-family: var(--font-serif); font-size: 2.2rem; line-height: 1.2; margin: 0; font-weight: 700; letter-spacing: -0.5px; }
+        .entry-title a { text-decoration: none; color: inherit; transition: color 0.2s; }
+        .entry-title a:hover { color: var(--accent-blue); }
+        .entry-desc { color: var(--text-muted); font-size: 1.2rem; max-width: 55ch; margin: 18px 0 0; line-height: 1.6; }
+
+        /* Footer */
+        footer { padding: 100px 0 60px; border-top: 1px solid var(--ui-border); display: flex; justify-content: flex-end; }
+        .footer-link { font-size: 0.7rem; color: var(--text-muted); text-decoration: none; letter-spacing: 2px; text-transform: uppercase; opacity: 0.6; transition: opacity 0.2s; }
+        .footer-link:hover { opacity: 1; color: var(--text-primary); }
+
+        @media (max-width: 768px) {
+            .hero { padding: 80px 0; }
+            .statement { font-size: 3.2rem; }
+            .entry { grid-template-columns: 1fr; gap: 15px; }
+            .meta-spine { text-align: left; margin-bottom: 10px; }
+            header { flex-direction: column; gap: 30px; }
+        }
     </style>
 </head>
 <body>
+
 <div class="wrap">
     <header>
-        <a href="index.html" class="header-brand">
+        <a href="index.html" class="header-brand" aria-label="Hadi Noori - Home">
             <span class="brand-name">Hadi Noori</span>
             <span class="brand-sub">Strategic AI Governance</span>
         </a>
-        <nav>
+        <nav aria-label="Main Navigation">
             <a href="insights.html">Insights</a>
-            <a href="playbooks.html">Playbooks</a>
-            <a href="dossier.html">Dossier</a>
-            <a href="contact.html">Inquiry</a>
+            <a href="projects.html">Projects</a>
+            <a href="contact.html">Contact</a>
         </nav>
     </header>
 
     <main>
-        <section class="hero-home">
-            <div class="portrait-frame"><img src="/assets/img/profile.jpg" alt="Hadi Noori"></div>
-            <div class="hero-content">
-                <h1 class="statement">Intelligence is <em>fragile</em>.<br>Governance is its <em>armor</em>.</h1>
-                <div style="margin-top:auto; font-size: 1.25rem; color: var(--text-muted); line-height: 1.6;">
-                    Bridging sociopolitical theory and digital reality to build auditable, compliant, and fair AI systems.
-                </div>
+        <section class="hero">
+            <h1 class="statement">Intelligence is <em>fragile</em>.<br>Governance is its <em>armor</em>.</h1>
+            <p class="sub-statement">Designing accountable AI governance systems.</p>
+        </section>
+
+        <section class="projects-section" aria-labelledby="projects-heading">
+            <span id="projects-heading" class="section-label">Selected Projects</span>
+            <div class="projects-container">
+                <article class="entry">
+                    <div class="meta-spine">
+                        <span class="year">2024</span>
+                        <span class="tag">System</span>
+                    </div>
+                    <div class="entry-content">
+                        <h2 class="entry-title"><a href="#">Automated Risk Assessment Protocols</a></h2>
+                        <p class="entry-desc">Design of auditing protocols for decision-support systems in public institutions, focusing on algorithmic accountability.</p>
+                    </div>
+                </article>
+
+                <article class="entry">
+                    <div class="meta-spine">
+                        <span class="year">2023</span>
+                        <span class="tag">Policy</span>
+                    </div>
+                    <div class="entry-content">
+                        <h2 class="entry-title"><a href="#">Socio-Technical Governance Models</a></h2>
+                        <p class="entry-desc">Articulating the bridge between sociopolitical theories and digital infrastructures for fair data processing.</p>
+                    </div>
+                </article>
             </div>
         </section>
-
-        <section>
-            <span class="section-label">Selected Dispatch</span>
-            <div id="insights-container">
-                </div>
-        </section>
     </main>
+
+    <footer>
+        <a href="dossier.html" class="footer-link">Dossier</a>
+    </footer>
 </div>
 
-<script>
-async function loadInsights() {
-    const container = document.getElementById('insights-container');
-    if (!container) return;
-    try {
-        const res = await fetch('/insights.json?v=' + new Date().getTime());
-        if (!res.ok) throw new Error("Index file not found");
-        const posts = await res.json();
-        
-        // Pick only the latest or selected post for home page
-        const post = posts[0]; 
-
-        if (post) {
-            const dateObj = new Date(post.date);
-            const displayDate = dateObj.toLocaleDateString('en-US', { month: 'short', year: 'numeric' }).toUpperCase();
-
-            container.innerHTML = `
-                <div style="border-top: 1px solid var(--ui-border);">
-                    <div class="entry">
-                        <div class="meta-spine">${displayDate} / ${post.is_external ? 'DISPATCH' : 'INSIGHT'}</div>
-                        <div class="item-body">
-                            <h3 class="entry-title">
-                                <a href="${post.url}" ${post.is_external ? 'target="_blank"' : ''} style="text-decoration:none; color:inherit;">
-                                    ${post.title} ${post.is_external ? '↗' : ''}
-                                </a>
-                            </h3>
-                            <p style="color: var(--text-muted); font-size: 1.1rem; max-width: 52ch; margin:0; line-height: 1.6;">
-                                ${post.description}
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            `;
-        }
-    } catch (e) {
-        console.error("Load Error:", e);
-    }
-}
-window.onload = loadInsights;
-</script>
 </body>
 </html>
