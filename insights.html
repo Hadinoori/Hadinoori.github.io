@@ -23,84 +23,80 @@
         .brand-name { font-size: 0.95rem; font-weight: 900; text-transform: uppercase; letter-spacing: 3px; display: block; }
         .brand-sub { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-muted); margin-top: 4px; display: block; }
         nav { display: flex; gap: 30px; }
-        nav a { text-decoration: none; font-size: 0.8rem; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1.5px; padding-bottom: 4px; border-bottom: 2px solid transparent; }
+        nav a { text-decoration: none; font-size: 0.8rem; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1.5px; padding-bottom: 4px; border-bottom: 2px solid transparent; transition: 0.3s; }
         nav a.active { color: var(--text-primary); border-bottom-color: var(--text-primary); }
-        .page-title { font-family: var(--font-serif); font-size: 3.5rem; margin: 80px 0 60px; letter-spacing: -3px; border-bottom: 2px solid var(--text-primary); padding-bottom: 20px; }
-        .entry { display: grid; grid-template-columns: var(--spine) 1fr; gap: 80px; padding: 60px 0; border-bottom: 1px solid var(--ui-border); text-decoration: none; color: inherit; transition: 0.2s; }
+        nav a:hover { color: var(--text-primary); }
+
+        .page-title { font-family: var(--font-serif); font-size: 4rem; margin: 80px 0 60px; letter-spacing: -3px; border-bottom: 2px solid var(--text-primary); padding-bottom: 20px; }
+        
+        /* Layout for the entries */
+        .entry { display: grid; grid-template-columns: var(--spine) 1fr; gap: 80px; padding: 60px 0; border-bottom: 1px solid var(--ui-border); text-decoration: none; color: inherit; transition: background 0.2s; }
         .entry:hover { background: #f9fafb; }
+        .entry:hover h2 { color: var(--accent-blue); }
+
         .meta-spine { font-size: 0.8rem; font-weight: 800; color: var(--text-muted); text-align: right; padding-top: 10px; }
-        .source-tag { color: var(--accent-blue); display: block; margin-top: 5px; text-transform: uppercase; letter-spacing: 1px; }
-        .entry-content h2 { font-family: var(--font-serif); font-size: 2.4rem; line-height: 1.1; margin: 0 0 15px; letter-spacing: -1px; }
+        .source-tag { color: var(--accent-blue); display: block; margin-top: 5px; text-transform: uppercase; letter-spacing: 1px; font-size: 0.7rem; }
+        
+        .entry-content h2 { font-family: var(--font-serif); font-size: 2.4rem; line-height: 1.1; margin: 0 0 15px; letter-spacing: -1px; transition: color 0.2s; }
         .entry-content p { font-size: 1.15rem; color: var(--text-muted); line-height: 1.6; margin: 0; max-width: 55ch; }
+
         footer { margin-top: 100px; padding: 40px 0; border-top: 1px solid var(--ui-border); font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px; display: flex; justify-content: space-between; }
-        @media (max-width: 900px) { .entry { grid-template-columns: 1fr; gap: 20px; } .meta-spine { text-align: left; } }
+        
+        @media (max-width: 900px) { 
+            .entry { grid-template-columns: 1fr; gap: 20px; padding: 40px 0; } 
+            .meta-spine { text-align: left; }
+            .page-title { font-size: 3rem; }
+        }
     </style>
 </head>
 <body>
     <div class="wrap">
         <header>
-            <a href="index.html" class="header-brand">
+            <a href="/" class="header-brand">
                 <span class="brand-name">Hadi Noori</span>
                 <span class="brand-sub">Strategic AI Governance</span>
             </a>
             <nav>
-                <a href="insights.html" class="active">Insights</a>
-                <a href="playbooks.html">Playbooks</a>
-                <a href="dossier.html">Dossier</a>
-                <a href="contact.html">Inquiry</a>
+                <a href="/insights" class="active">Insights</a>
+                <a href="/playbooks">Playbooks</a>
+                <a href="/dossier">Dossier</a>
+                <a href="/contact">Inquiry</a>
             </nav>
         </header>
-        <main id="insights-container">
+
+        <main>
             <h1 class="page-title">Insights.</h1>
-            <div id="status-msg" style="padding: 40px 0; color: var(--text-muted); font-weight: 800; text-transform: uppercase; letter-spacing: 2px;">Connecting to Repository...</div>
+            
+            <div id="insights-list">
+                {% assign all_insights = site.insights | sort: "date" | reverse %}
+                {% for item in all_insights %}
+                <a href="{% if item.external_url %}{{ item.external_url }}{% else %}{{ item.url }}{% endif %}" 
+                   class="entry" 
+                   {% if item.external_url %}target="_blank"{% endif %}>
+                    
+                    <div class="meta-spine">
+                        {{ item.date | date: "%b %Y" | upcase }}
+                        <span class="source-tag">
+                            {% if item.external_url %}External Link{% else %}Internal Research{% endif %}
+                        </span>
+                    </div>
+
+                    <div class="entry-content">
+                        <h2>
+                            {{ item.title }}
+                            {% if item.external_url %}<span style="font-size: 1.2rem; opacity: 0.5; vertical-align: middle;">↗</span>{% endif %}
+                        </h2>
+                        <p>{{ item.description }}</p>
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
         </main>
+
         <footer>
             <span>&copy; 2026 Hadi Noori</span>
             <span>Vancouver, BC &mdash; Canada</span>
         </footer>
     </div>
-
-    <script>
-        async function fetchArchive() {
-            const container = document.getElementById('insights-container');
-            const status = document.getElementById('status-msg');
-            const REPO = 'Hadinoori/Hadinoori.github.io';
-            const ENDPOINT = `https://api.github.com/repos/${REPO}/contents/_insights`;
-
-            try {
-                const res = await fetch(ENDPOINT);
-                const data = await res.json();
-                if(status) status.remove();
-                
-                for (const item of data) {
-                    if (item.name.endsWith('.md')) {
-                        const file = await fetch(item.download_url);
-                        const raw = await file.text();
-                        const title = raw.match(/title:\s*"(.*)"/)?.[1] || raw.match(/title:\s*(.*)/)?.[1] || "Untitled Insight";
-                        const date = raw.match(/date:\s*(.*)/)?.[1] || "";
-                        const source = raw.match(/source:\s*(.*)/)?.[1] || "Archive";
-                        const desc = raw.match(/description:\s*"(.*)"/)?.[1] || raw.match(/description:\s*(.*)/)?.[1] || "";
-                        
-                        const entry = `
-                            <article class="entry">
-                                <div class="meta-spine">
-                                    ${new Date(date).toLocaleDateString('en-US', {month:'short', year:'numeric'})}
-                                    <span class="source-tag">${source}</span>
-                                </div>
-                                <div class="entry-content">
-                                    <h2>${title}</h2>
-                                    <p>${desc}</p>
-                                </div>
-                            </article>`;
-                        container.insertAdjacentHTML('beforeend', entry);
-                    }
-                }
-            } catch (err) { 
-                console.error(err); 
-                if(status) status.innerText = "Synchronization Error."; 
-            }
-        }
-        window.onload = fetchArchive;
-    </script>
 </body>
 </html>
