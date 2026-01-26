@@ -1,18 +1,22 @@
+# Decap CMS Configuration - SEPARATE FROM JEKYLL CONFIG
 backend:
   name: github
   repo: Hadinoori/Hadinoori.github.io
   branch: main
+  site_domain: hadinoori.ca
 
+display_url: https://hadinoori.ca
 media_folder: "assets/img"
 public_folder: "/assets/img"
 
 collections:
   - name: "insights"
     label: "Strategic Insights"
-    folder: "_insights"
+    folder: "_insights" # Jekyll uses underscores for collections
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
+      - {label: "Layout", name: "layout", widget: "hidden", default: "post"}
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Publish Date", name: "date", widget: "datetime"}
       - {label: "Source Category", name: "source", widget: "string", default: "Original Note"}
