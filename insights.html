@@ -1,66 +1,48 @@
+<div class="section-label" style="font-size: 0.7rem; font-weight: 900; text-transform: uppercase; letter-spacing: 3px; color: #1e3a8a; margin-bottom: 45px; border-bottom: 1px solid #e2e8f0; padding-bottom: 12px;">
+    Latest Dispatch.
+</div>
+
+<div id="latest-research-container">
+    <div class="entry">
+        <div class="meta-spine">POLLING...</div>
+        <div class="entry-content">
+            <h2>Synchronizing with Archive...</h2>
+        </div>
+    </div>
+</div>
+
 <script>
-async function loadInsights() {
-    const container = document.getElementById('insights-container');
-    const REPO = 'hadinoori/hadinoori.github.io';
-    
-    try {
-        const res = await fetch(`https://api.github.com/repos/${REPO}/contents/_insights`);
-        const files = await res.json();
+    async function syncLatestDispatch() {
+        const container = document.getElementById('latest-research-container');
+        const REPO = 'Hadinoori/Hadinoori.github.io';
         
-        // Filter Markdown files and reverse order
-        const mdFiles = files.filter(f => f.name.endsWith('.md')).reverse();
+        try {
+            const res = await fetch(`https://api.github.com/repos/${REPO}/contents/_insights`);
+            const files = await res.json();
+            // Sorting to find the absolute newest markdown file
+            const newest = files.filter(f => f.name.endsWith('.md')).reverse()[0];
 
-        container.innerHTML = ''; 
+            if (newest) {
+                const fileRes = await fetch(newest.download_url);
+                const raw = await fileRes.text();
+                
+                const title = raw.match(/title:\s*"(.*)"/)?.[1] || "Untitled";
+                const date = raw.match(/date:\s*(.*)/)?.[1] || "";
+                const desc = raw.match(/description:\s*"(.*)"/)?.[1] || "";
 
-        for (let file of mdFiles) {
-            const fRes = await fetch(file.download_url);
-            const text = await fRes.text();
-            
-            // Metadata extraction
-            const titleMatch = text.match(/title:\s*["']?(.*?)["']?$/m);
-            const title = titleMatch ? titleMatch[1] : "Strategic Inquiry";
-            
-            const dateMatch = text.match(/date:\s*(.*)/);
-            const date = dateMatch ? dateMatch[1] : "";
-            
-            const descMatch = text.match(/description:\s*["']?(.*?)["']?$/m);
-            const desc = descMatch ? descMatch[1] : "";
+                const displayDate = new Date(date).toLocaleDateString('en-US', {month:'short', year:'numeric'}).toUpperCase();
 
-            const extUrlMatch = text.match(/external_url:\s*["']?(.*?)["']?$/m);
-            const externalUrl = extUrlMatch ? extUrlMatch[1] : null;
-
-            // --- THE 404 FIX ---
-            // If Jekyll processes the files, the URL is usually /insights/filename (without .html)
-            // or /insights/filename.html. We will use the direct relative path.
-            const cleanName = file.name.replace('.md', '');
-            const finalLink = externalUrl ? externalUrl : `./${cleanName}.html`;
-            // --------------------
-
-            const displayDate = new Date(date).toLocaleDateString('en-US', {
-                month: 'short', year: 'numeric'
-            }).toUpperCase();
-
-            container.innerHTML += `
-                <div style="border-bottom: 1px solid var(--ui-border);">
+                container.innerHTML = `
                     <div class="entry">
-                        <div class="meta-spine">${displayDate} / ${externalUrl ? 'DISPATCH' : 'INSIGHT'}</div>
-                        <div class="item-body">
-                            <h3 class="entry-title">
-                                <a href="${finalLink}" ${externalUrl ? 'target="_blank"' : ''} style="text-decoration:none; color:inherit;">
-                                    ${title} ${externalUrl ? '↗' : ''}
-                                </a>
-                            </h3>
-                            <p style="color: var(--text-muted); font-size: 1.1rem; max-width: 52ch; margin:0; line-height: 1.6;">
-                                ${desc}
-                            </p>
+                        <div class="meta-spine">${displayDate} / LATEST</div>
+                        <div class="entry-content">
+                            <h2 style="font-family: 'Lora', serif; font-size: 2.3rem; line-height: 1.1; letter-spacing: -1px;">${title}</h2>
+                            <p style="font-size: 1.15rem; color: #525252; margin-top: 15px; line-height: 1.6; max-width: 60ch;">${desc}</p>
                         </div>
                     </div>
-                </div>
-            `;
-        }
-    } catch (e) {
-        console.error("Archive synchronization failed:", e);
+                `;
+            }
+        } catch (e) { console.error("Dispatch Sync Error", e); }
     }
-}
-window.onload = loadInsights;
+    window.onload = syncLatestDispatch;
 </script>
