@@ -13,7 +13,7 @@ async function loadInsights() {
             const fRes = await fetch(file.download_url);
             const text = await fRes.text();
             
-            // 1. Improved Regex for Title and Description (Handling multi-line and quotes)
+            // Regex parsing without Persian comments
             const titleMatch = text.match(/title:\s*["']?(.*?)["']?$/m);
             const title = titleMatch ? titleMatch[1] : "Strategic Inquiry";
             
@@ -23,18 +23,18 @@ async function loadInsights() {
             const descMatch = text.match(/description:\s*["']?(.*?)["']?$/m);
             const desc = descMatch ? descMatch[1] : "";
 
-            // 2. External Link Detection Logic
             const extUrlMatch = text.match(/external_url:\s*["']?(.*?)["']?$/m);
             const externalUrl = extUrlMatch ? extUrlMatch[1] : null;
 
             const postSlug = file.name.replace('.md', '');
-            // 3. Absolute Pathing for Internal Links
-            const finalLink = externalUrl ? externalUrl : `/insights/${postSlug}`;
+            const finalLink = externalUrl ? externalUrl : `/insights/${postSlug}.html`;
 
-            const displayDate = new Date(date).toLocaleDateString('en-US', {
+            const dateObj = new Date(date);
+            const displayDate = dateObj.toLocaleDateString('en-US', {
                 month: 'short', year: 'numeric'
             }).toUpperCase();
 
+            // Reconstructing the EXACT HTML structure from your functional Home page
             const entryHtml = `
                 <div style="border-bottom: 1px solid var(--ui-border);">
                     <div class="entry">
@@ -55,7 +55,7 @@ async function loadInsights() {
             container.innerHTML += entryHtml;
         }
     } catch (e) {
-        console.error("Archive synchronization error:", e);
+        console.error("Critical Sync Error:", e);
     }
 }
 window.onload = loadInsights;
