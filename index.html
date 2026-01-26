@@ -13,63 +13,39 @@
   body { background-color: var(--bg-main); font-family: var(--font-sans); color: var(--text-primary); margin: 0; -webkit-font-smoothing: antialiased; }
   .wrap { max-width: 1100px; margin: 0 auto; padding: 0 50px; }
 
-  /* 1. HEADER: Pure Navigation (No active states on Home) */
+  /* NAVIGATION: Balanced & Clean */
   header { display: flex; justify-content: flex-end; padding: 50px 0 30px; }
   nav { display: flex; gap: 35px; }
-  nav a { 
-    text-decoration: none; 
-    font-size: 0.8rem; 
-    font-weight: 800; 
-    color: var(--text-muted); 
-    text-transform: uppercase; 
-    letter-spacing: 1.5px; 
-    padding-bottom: 6px; 
-    border-bottom: 2px solid transparent; 
-    transition: all 0.2s ease;
-  }
+  nav a { text-decoration: none; font-size: 0.8rem; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1.5px; padding-bottom: 6px; border-bottom: 2px solid transparent; transition: all 0.2s ease; }
   nav a:hover { color: var(--text-primary); border-bottom-color: var(--ui-border); }
 
-  /* 2. HERO: Balanced Typography & Spine Alignment */
-  .hero-home { 
-    display: grid; 
-    grid-template-columns: var(--spine) 1fr; 
-    gap: 80px; 
-    padding: 40px 0 100px; 
-    align-items: start;
-  }
+  /* HERO GRID */
+  .hero-home { display: grid; grid-template-columns: var(--spine) 1fr; gap: 80px; padding: 40px 0 100px; align-items: start; }
+  .portrait-impact img { width: 100%; filter: grayscale(100%) contrast(1.2); border-radius: 6px; box-shadow: 0 15px 35px rgba(0,0,0,0.08); }
 
-  .portrait-impact img { 
-    width: 100%; 
-    filter: grayscale(100%) contrast(1.2); 
-    border-radius: 6px; 
-    box-shadow: 0 15px 35px rgba(0,0,0,0.08); 
-  }
-
-  .name-brand { 
+  /* IDENTITY: Act as a 'Home' button */
+  .name-link { 
     font-size: 0.9rem; 
     font-weight: 900; 
     text-transform: uppercase; 
     letter-spacing: 3px; 
     margin-bottom: 40px; 
-    display: block; 
+    display: inline-block; 
+    text-decoration: none;
+    color: var(--text-primary);
+    transition: opacity 0.2s;
   }
+  .name-link:hover { opacity: 0.7; }
 
-  /* Harmonized Statement Typography */
+  /* CONSOLIDATED TYPOGRAPHY: No jarring contrasts */
   .statement { 
     font-family: var(--font-serif); 
     font-size: clamp(2.5rem, 5vw, 3.8rem); 
     line-height: 1.1; 
     font-weight: 700; 
-    letter-spacing: -2px; 
+    letter-spacing: -2.5px; 
     margin: 0; 
     color: var(--text-primary);
-  }
-  
-  /* Subtle emphasis instead of jarring contrast */
-  .statement em { 
-    font-style: italic; 
-    font-weight: 400; 
-    color: var(--text-primary); /* Same color, different weight/style */
   }
 
   .lead-text { 
@@ -81,30 +57,15 @@
     padding-top: 30px; 
   }
 
-  /* 3. RECENT WORK: Integrated Archive */
+  /* RECENT WORK: Spine Alignment */
   .section-label { font-size: 0.8rem; font-weight: 900; letter-spacing: 4px; text-transform: uppercase; color: var(--accent-blue); margin-bottom: 50px; display: block; }
+  .entry { display: grid; grid-template-columns: var(--spine) 1fr; gap: 80px; padding: 45px 0; border-top: 1px solid var(--ui-border); text-decoration: none; color: inherit; }
   
-  .entry { 
-    display: grid; 
-    grid-template-columns: var(--spine) 1fr; 
-    gap: 80px; 
-    padding: 45px 0; 
-    border-top: 1px solid var(--ui-border); 
-    text-decoration: none; 
-    color: inherit; 
-    transition: background 0.2s;
-  }
-  .entry:hover { background: #f8fafc; }
+  .meta { font-size: 0.8rem; font-weight: 800; color: var(--text-muted); text-align: right; padding-top: 10px; }
+  .entry-title { font-family: var(--font-serif); font-size: 2.1rem; line-height: 1.25; margin: 0 0 10px; transition: color 0.2s; }
   .entry:hover .entry-title { color: var(--accent-blue); }
 
-  .meta { font-size: 0.8rem; font-weight: 800; color: var(--text-muted); text-align: right; padding-top: 8px; }
-  .entry-title { font-family: var(--font-serif); font-size: 2rem; line-height: 1.2; margin: 0 0 10px; }
-
-  @media (max-width: 900px) { 
-    .hero-home, .entry { grid-template-columns: 1fr; gap: 30px; } 
-    .meta { text-align: left; }
-    .wrap { padding: 0 25px; } 
-  }
+  @media (max-width: 900px) { .hero-home, .entry { grid-template-columns: 1fr; gap: 30px; } .meta { text-align: left; } }
 </style>
 
 <div class="wrap">
@@ -123,10 +84,10 @@
         <img src="/assets/img/profile.jpg" alt="Hadi Noori">
       </div>
       <div class="hero-content">
-        <span class="name-brand">Hadi Noori</span>
+        <a href="/" class="name-link">Hadi Noori</a>
         <h1 class="statement">
-          Intelligence is <em>fragile</em>.<br>
-          Governance is its <em>armor</em>.
+          Intelligence is fragile.<br>
+          Governance is its armor.
         </h1>
         <p class="lead-text">
           Bridging sociopolitical theory and digital reality to build auditable, compliant, and fair AI systems.
@@ -136,13 +97,15 @@
 
     <section style="padding-bottom: 100px;">
       <span class="section-label">Featured Thinking</span>
-      <a href="/notes/failure" class="entry">
-        <div class="meta">DEC 2025 / RESEARCH</div>
-        <div class="item-body">
-          <h3 class="entry-title">The Sociopolitical Failure of Digital Transformation</h3>
-          <p style="color: var(--text-muted); font-size: 1.1rem; max-width: 50ch; margin:0;">Analysis of institutional collapse within technical projects.</p>
-        </div>
-      </a>
+      <div style="border-bottom: 1px solid var(--ui-border);">
+          <a href="/notes/failure" class="entry">
+            <div class="meta">DEC 2025 / RESEARCH</div>
+            <div class="item-body">
+              <h3 class="entry-title">The Sociopolitical Failure of Digital Transformation</h3>
+              <p style="color: var(--text-muted); font-size: 1.1rem; max-width: 52ch; margin:0;">Analysis of institutional collapse within technical projects.</p>
+            </div>
+          </a>
+      </div>
     </section>
   </main>
 </div>
