@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: your-github-username/your-repo-name
+  repo: Hadinoori/Hadinoori.github.io
   branch: main
 
 media_folder: "assets/img"
