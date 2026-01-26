@@ -148,3 +148,73 @@
 </script>
 </body>
 </html>
+
+<script>
+    async function syncInsights() {
+        const container = document.getElementById('insights-container');
+        const REPO = 'hadinoori/hadinoori.github.io';
+        
+        try {
+            // Fetching the list of files from your _insights folder
+            const res = await fetch(`https://api.github.com/repos/${REPO}/contents/_insights`);
+            if (!res.ok) throw new Error('API Access Denied');
+            
+            const files = await res.json();
+            // Filtering for markdown and reversing for newest first
+            const mdFiles = files.filter(f => f.name.endsWith('.md')).reverse();
+            
+            let htmlBuffer = '';
+            let foundCount = 0;
+
+            for (const file of mdFiles) {
+                const fileRes = await fetch(file.download_url);
+                const raw = await fileRes.text();
+                
+                // Flexible regex to catch values regardless of formatting
+                const getVal = (key) => {
+                    const regex = new RegExp(`${key}:\\s*["']?(.*?)["']?(\\s*\\n|\\s*\\r|$)`, 'i');
+                    const match = raw.match(regex);
+                    return match ? match[1].trim() : null;
+                };
+
+                const isSelected = getVal('selected_dispatch');
+                
+                // Logic: show only if selected_dispatch is explicitly true
+                if (isSelected === 'true') {
+                    foundCount++;
+                    const title = getVal('title') || "Untitled";
+                    const dateRaw = getVal('date');
+                    const desc = getVal('description') || "";
+                    const extUrl = getVal('external_url');
+                    
+                    const dateObj = dateRaw ? new Date(dateRaw) : new Date();
+                    const displayDate = dateObj.toLocaleDateString('en-US', {month:'short', year:'numeric'}).toUpperCase();
+
+                    // Priority: External URL -> Internal Page
+                    const link = (extUrl && extUrl !== '""' && extUrl !== 'null') ? extUrl : `insights/${file.name.replace('.md', '.html')}`;
+                    const target = (extUrl && extUrl !== '""') ? 'target="_blank"' : '';
+
+                    htmlBuffer += `
+                        <article class="entry">
+                            <div class="meta-spine">
+                                <span class="year">${displayDate}</span>
+                                <span class="tag">Insight</span>
+                            </div>
+                            <div class="entry-content">
+                                <h3 class="entry-title"><a href="${link}" ${target}>${title}</a></h3>
+                                <p class="entry-desc">${desc}</p>
+                            </div>
+                        </article>
+                    `;
+                }
+            }
+            
+            container.innerHTML = foundCount > 0 ? htmlBuffer : '<div class="entry"><div class="meta-spine">NOTICE</div><div class="entry-content"><h3>No dispatches marked for Home display.</h3></div></div>';
+            
+        } catch (e) { 
+            console.error("Sync Error:", e);
+            container.innerHTML = '<div class="entry"><div class="meta-spine">ERROR</div><div class="entry-content"><h3>Unable to sync with the archive.</h3></div></div>';
+        }
+    }
+    window.addEventListener('DOMContentLoaded', syncInsights);
+</script>
