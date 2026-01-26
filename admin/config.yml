@@ -1,8 +1,12 @@
-# Decap CMS Configuration - SEPARATE FROM JEKYLL CONFIG
+# -----------------------------------------------------------------------------
+# DECAP CMS CONFIGURATION - STRATEGIC AI GOVERNANCE ARCHIVE
+# -----------------------------------------------------------------------------
 backend:
   name: github
   repo: Hadinoori/Hadinoori.github.io
   branch: main
+  auth_endpoint: https://auth.decapcms.org/auth
+  client_id: Ov23liiWgz3ImtbZqQFi
   site_domain: hadinoori.ca
 
 display_url: https://hadinoori.ca
@@ -12,7 +16,7 @@ public_folder: "/assets/img"
 collections:
   - name: "insights"
     label: "Strategic Insights"
-    folder: "_insights" # Jekyll uses underscores for collections
+    folder: "_insights"
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
