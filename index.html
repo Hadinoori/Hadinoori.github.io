@@ -4,74 +4,95 @@
     --text-primary: #0a0a0a;
     --text-muted: #525252;
     --accent-blue: #1e40af; 
-    --ui-border: #e2e8f0;
+    --ui-border: #111111; /* Sharp, authoritative borders */
     --font-serif: 'Lora', Georgia, serif;
     --font-sans: 'Inter', sans-serif;
-    --spine: 280px;
+    --spine: 300px; /* Wider spine for increased tension */
   }
 
   body { background-color: var(--bg-main); font-family: var(--font-sans); color: var(--text-primary); margin: 0; -webkit-font-smoothing: antialiased; }
   .wrap { max-width: 1100px; margin: 0 auto; padding: 0 50px; }
 
-  /* NAVIGATION: Balanced & Clean */
-  header { display: flex; justify-content: flex-end; padding: 50px 0 30px; }
-  nav { display: flex; gap: 35px; }
-  nav a { text-decoration: none; font-size: 0.8rem; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1.5px; padding-bottom: 6px; border-bottom: 2px solid transparent; transition: all 0.2s ease; }
-  nav a:hover { color: var(--text-primary); border-bottom-color: var(--ui-border); }
+  /* NAVIGATION: Hierarchy of Power */
+  header { display: flex; justify-content: flex-end; padding: 70px 0 30px; }
+  nav { display: flex; gap: 40px; align-items: baseline; }
+  nav a { text-decoration: none; font-size: 0.75rem; font-weight: 900; color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px; transition: 0.3s; }
+  
+  /* Highlighting the primary engine of thought */
+  nav a.nav-notes { font-size: 0.95rem; color: var(--text-primary); border-bottom: 3px solid var(--text-primary); padding-bottom: 4px; }
+  nav a:hover { color: var(--text-primary); }
 
-  /* HERO GRID */
-  .hero-home { display: grid; grid-template-columns: var(--spine) 1fr; gap: 80px; padding: 40px 0 100px; align-items: start; }
-  .portrait-impact img { width: 100%; filter: grayscale(100%) contrast(1.2); border-radius: 6px; box-shadow: 0 15px 35px rgba(0,0,0,0.08); }
+  /* HERO: Tension & Manifestation */
+  .hero-home { display: grid; grid-template-columns: var(--spine) 1fr; gap: 100px; padding: 30px 0 120px; align-items: start; }
+  
+  .portrait-impact { position: relative; }
+  .portrait-impact img { 
+    width: 100%; 
+    filter: grayscale(100%) contrast(1.3) brightness(1.05); 
+    border-radius: 4px; 
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1); 
+    /* Breaking the standard rectangle */
+    clip-path: polygon(0 0, 100% 0, 100% 92%, 0 100%);
+  }
 
-  /* IDENTITY: Act as a 'Home' button */
-  .name-link { 
-    font-size: 0.9rem; 
+  .name-home-link { 
+    font-size: 1rem; 
     font-weight: 900; 
     text-transform: uppercase; 
-    letter-spacing: 3px; 
-    margin-bottom: 40px; 
+    letter-spacing: 4px; 
+    margin-bottom: 50px; 
     display: inline-block; 
     text-decoration: none;
     color: var(--text-primary);
-    transition: opacity 0.2s;
   }
-  .name-link:hover { opacity: 0.7; }
 
-  /* CONSOLIDATED TYPOGRAPHY: No jarring contrasts */
+  /* TYPOGRAPHY SHOCK: Fragility vs Armor */
   .statement { 
     font-family: var(--font-serif); 
-    font-size: clamp(2.5rem, 5vw, 3.8rem); 
-    line-height: 1.1; 
+    font-size: clamp(2.8rem, 6vw, 4.2rem); 
+    line-height: 1; 
     font-weight: 700; 
-    letter-spacing: -2.5px; 
+    letter-spacing: -3px; 
     margin: 0; 
-    color: var(--text-primary);
   }
+  .statement em { font-style: italic; font-weight: 400; color: var(--accent-blue); }
 
   .lead-text { 
-    font-size: 1.25rem; 
+    font-size: 1.35rem; 
+    font-weight: 400;
     color: var(--text-muted); 
-    max-width: 45ch; 
-    margin-top: 50px; 
-    border-top: 1px solid var(--ui-border); 
-    padding-top: 30px; 
+    max-width: 42ch; 
+    margin-top: 60px; 
+    border-left: 4px solid var(--ui-border); 
+    padding-left: 40px; /* Visual Friction: Creating a solid anchor */
   }
 
-  /* RECENT WORK: Spine Alignment */
-  .section-label { font-size: 0.8rem; font-weight: 900; letter-spacing: 4px; text-transform: uppercase; color: var(--accent-blue); margin-bottom: 50px; display: block; }
-  .entry { display: grid; grid-template-columns: var(--spine) 1fr; gap: 80px; padding: 45px 0; border-top: 1px solid var(--ui-border); text-decoration: none; color: inherit; }
+  /* FEATURED THINKING: Institutional Label */
+  .section-label { 
+    font-size: 0.85rem; 
+    font-weight: 900; 
+    letter-spacing: 5px; 
+    text-transform: uppercase; 
+    color: var(--text-primary); 
+    margin-bottom: 80px; 
+    display: block;
+    border-bottom: 2px solid var(--ui-border);
+    padding-bottom: 15px;
+  }
   
-  .meta { font-size: 0.8rem; font-weight: 800; color: var(--text-muted); text-align: right; padding-top: 10px; }
-  .entry-title { font-family: var(--font-serif); font-size: 2.1rem; line-height: 1.25; margin: 0 0 10px; transition: color 0.2s; }
-  .entry:hover .entry-title { color: var(--accent-blue); }
+  .entry { display: grid; grid-template-columns: var(--spine) 1fr; gap: 100px; padding: 60px 0; border-bottom: 1px solid var(--ui-border); text-decoration: none; color: inherit; transition: 0.3s; }
+  .entry:hover { background: #f8fafc; }
+  
+  .meta-spine { font-size: 0.8rem; font-weight: 800; color: var(--text-muted); text-align: right; letter-spacing: 1px; }
+  .entry-title { font-family: var(--font-serif); font-size: 2.4rem; line-height: 1.1; margin: 0 0 15px; letter-spacing: -1px; }
 
-  @media (max-width: 900px) { .hero-home, .entry { grid-template-columns: 1fr; gap: 30px; } .meta { text-align: left; } }
+  @media (max-width: 900px) { .hero-home, .entry { grid-template-columns: 1fr; gap: 40px; } .meta-spine { text-align: left; } }
 </style>
 
 <div class="wrap">
   <header>
     <nav>
-      <a href="/notes">Notes</a>
+      <a href="/notes" class="nav-notes">Notes</a>
       <a href="/playbooks">Playbooks</a>
       <a href="/dossier">Dossier</a>
       <a href="/contact">Contact</a>
@@ -84,28 +105,26 @@
         <img src="/assets/img/profile.jpg" alt="Hadi Noori">
       </div>
       <div class="hero-content">
-        <a href="/" class="name-link">Hadi Noori</a>
+        <a href="/" class="name-home-link">Hadi Noori</a>
         <h1 class="statement">
-          Intelligence is fragile.<br>
-          Governance is its armor.
+          Intelligence is <em>fragile</em>.<br>
+          Governance is its <em>armor</em>.
         </h1>
-        <p class="lead-text">
+        <div class="lead-text">
           Bridging sociopolitical theory and digital reality to build auditable, compliant, and fair AI systems.
-        </p>
+        </div>
       </div>
     </section>
 
-    <section style="padding-bottom: 100px;">
-      <span class="section-label">Featured Thinking</span>
-      <div style="border-bottom: 1px solid var(--ui-border);">
-          <a href="/notes/failure" class="entry">
-            <div class="meta">DEC 2025 / RESEARCH</div>
-            <div class="item-body">
-              <h3 class="entry-title">The Sociopolitical Failure of Digital Transformation</h3>
-              <p style="color: var(--text-muted); font-size: 1.1rem; max-width: 52ch; margin:0;">Analysis of institutional collapse within technical projects.</p>
-            </div>
-          </a>
-      </div>
+    <section style="padding-bottom: 120px;">
+      <span class="section-label">Selected Thinking</span>
+      <a href="/notes/failure" class="entry">
+        <div class="meta-spine">DEC 2025 / RESEARCH</div>
+        <div class="item-body">
+          <h3 class="entry-title">The Sociopolitical Failure of Digital Transformation</h3>
+          <p style="color: var(--text-muted); font-size: 1.2rem; max-width: 50ch; line-height: 1.5;">Analysis of institutional collapse within technical projects.</p>
+        </div>
+      </a>
     </section>
   </main>
 </div>
