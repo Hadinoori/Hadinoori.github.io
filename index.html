@@ -7,13 +7,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lora:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* Palette: Strict & Institutional */
-            --bg-main: #fafafa;      /* Soft paper white */
-            --text-primary: #111111; /* Sharp black */
-            --text-secondary: #555555; /* Neutral gray */
-            --text-meta: #767676;    /* Lighter gray for dates */
-            --accent-blue: #1e3a8a;  /* Royal Blue */
-            --ui-border: #e5e5e5;    /* Subtle divider */
+            /* Palette: Institutional & Mature */
+            --bg-main: #fafafa;      
+            --text-primary: #111111; 
+            --text-secondary: #444444; 
+            --text-meta: #767676;    
+            --accent-blue: #1e3a8a;  
+            --ui-border: #e5e5e5;    
             
             /* Typography */
             --font-serif: 'Lora', Georgia, serif;
@@ -21,10 +21,10 @@
             
             /* Layout */
             --spine-width: 180px;
-            --max-width: 960px;
+            --max-width: 980px;
         }
 
-        /* Reset & Base */
+        /* Base & Accessibility */
         * { box-sizing: border-box; }
         body { 
             background-color: var(--bg-main); 
@@ -35,6 +35,13 @@
             -webkit-font-smoothing: antialiased; 
         }
 
+        /* Accessibility Focus State - Vital for AI Ethics Profile */
+        :focus-visible {
+            outline: 2px solid var(--accent-blue);
+            outline-offset: 4px;
+            border-radius: 2px;
+        }
+
         /* Layout Container */
         .wrap { 
             max-width: var(--max-width); 
@@ -42,46 +49,47 @@
             padding: 0 40px; 
         }
 
-        /* Header */
+        /* Header - Tight & Official */
         header { 
             display: flex; 
             justify-content: space-between; 
-            align-items: flex-start; 
-            padding: 80px 0 60px; 
+            align-items: flex-end; 
+            padding: 60px 0 40px; 
         }
 
         .header-brand { 
             text-decoration: none; 
             display: flex;
             flex-direction: column;
-            gap: 4px;
+            gap: 2px;
         }
 
         .brand-name { 
             font-family: var(--font-sans);
             font-size: 1rem; 
-            font-weight: 600; 
+            font-weight: 700; 
             text-transform: uppercase; 
             letter-spacing: 2px; 
             color: var(--text-primary);
         }
 
         .brand-sub { 
-            font-size: 0.7rem; 
+            font-size: 0.65rem; 
             font-weight: 500; 
             text-transform: uppercase; 
             letter-spacing: 1px; 
-            color: var(--text-secondary); 
+            color: var(--text-meta); 
         }
 
-        nav { display: flex; gap: 30px; }
+        /* Navigation - Adjusted Letter Spacing */
+        nav { display: flex; gap: 30px; padding-bottom: 2px; }
         nav a { 
             text-decoration: none; 
-            font-size: 0.75rem; 
-            font-weight: 500; 
+            font-size: 0.7rem; 
+            font-weight: 600; 
             color: var(--text-secondary); 
             text-transform: uppercase; 
-            letter-spacing: 1.5px; 
+            letter-spacing: 0.5px; /* Tightened from 1px */
             transition: color 0.3s ease;
         }
         nav a:hover { color: var(--accent-blue); }
@@ -91,7 +99,7 @@
         
         /* Hero Section */
         .hero { 
-            padding: 60px 0 100px; 
+            padding: 20px 0 100px; 
             display: grid; 
             grid-template-columns: var(--spine-width) 1fr; 
             gap: 60px; 
@@ -100,19 +108,20 @@
 
         .hero-portrait img { 
             width: 100%; 
-            max-width: 140px;
+            max-width: 130px; 
             filter: grayscale(100%) contrast(1.1); 
             display: block; 
             border-radius: 2px;
         }
 
+        /* Hero Text - Optically Aligned */
         .statement { 
             font-family: var(--font-serif); 
-            font-size: 3.5rem; 
+            font-size: 3.2rem; 
             line-height: 1.1; 
             font-weight: 600; 
-            letter-spacing: -1px; 
-            margin: 0 0 24px; 
+            letter-spacing: -0.5px; 
+            margin: -0.15em 0 24px; 
             color: var(--text-primary);
         }
 
@@ -124,10 +133,11 @@
         }
 
         .sub-statement { 
-            font-size: 1.25rem; 
+            font-size: 1.2rem; 
             color: var(--text-secondary); 
-            max-width: 40ch; 
+            max-width: 42ch; 
             font-weight: 400; 
+            line-height: 1.7;
         }
 
         /* Section Styling */
@@ -140,9 +150,8 @@
             text-transform: uppercase; 
             color: var(--accent-blue); 
             margin-bottom: 20px; 
-            display: block; 
-            border-bottom: 2px solid var(--accent-blue);
             display: inline-block;
+            border-bottom: 1px solid rgba(30, 58, 138, 0.3); /* Subtle opacity */
             padding-bottom: 4px;
         }
 
@@ -154,10 +163,9 @@
             padding: 30px 0; 
             border-top: 1px solid var(--ui-border); 
             align-items: baseline;
-            animation: fadeIn 0.5s ease-in-out;
+            animation: fadeIn 0.4s ease-out; /* Faster, sharper animation */
         }
 
-        /* The Spine (Left Column) */
         .meta-spine { 
             font-family: var(--font-sans);
             font-size: 0.75rem; 
@@ -176,12 +184,11 @@
             letter-spacing: 1px;
         }
 
-        /* Content (Right Column) */
         .entry-title { 
             font-family: var(--font-serif); 
-            font-size: 1.8rem; 
-            line-height: 1.2; 
-            margin: 0 0 12px; 
+            font-size: 1.6rem; 
+            line-height: 1.25; 
+            margin: 0 0 10px; 
             font-weight: 600; 
         }
 
@@ -200,7 +207,7 @@
 
         .entry-desc { 
             color: var(--text-secondary); 
-            font-size: 1.05rem; 
+            font-size: 1rem; 
             max-width: 55ch; 
             margin: 0; 
             line-height: 1.6; 
@@ -208,17 +215,18 @@
 
         /* Loading State */
         .loading-state {
-            opacity: 0.5;
-            animation: pulse 1.5s infinite;
+            opacity: 0.6;
+            animation: pulse 2s infinite;
             font-family: var(--font-sans);
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             letter-spacing: 1px;
+            text-transform: uppercase;
         }
 
-        /* Footer */
+        /* Footer - Subtle Border */
         footer { 
-            padding: 60px 0 80px; 
-            border-top: 1px solid var(--text-primary); 
+            padding: 40px 0 80px; 
+            border-top: 1px solid var(--ui-border); /* Softer border */
             display: flex; 
             justify-content: flex-end; 
         }
@@ -228,38 +236,50 @@
             color: var(--text-primary); 
             letter-spacing: 2px; 
             text-transform: uppercase; 
+            opacity: 0.8;
         }
+        .footer-link:hover { opacity: 1; }
 
         /* Animations */
-        @keyframes pulse { 0% { opacity: 0.4; } 50% { opacity: 0.8; } 100% { opacity: 0.4; } }
+        @keyframes pulse { 0% { opacity: 0.3; } 50% { opacity: 0.7; } 100% { opacity: 0.3; } }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
 
         /* Mobile Responsive */
         @media (max-width: 768px) {
             .wrap { padding: 0 25px; }
-            header { flex-direction: column; gap: 30px; padding: 40px 0; }
+            header { flex-direction: column; align-items: flex-start; gap: 20px; padding: 40px 0; }
+            nav { width: 100%; justify-content: space-between; border-bottom: 1px solid var(--ui-border); padding-bottom: 15px;}
             
             .hero { 
                 grid-template-columns: 1fr; 
-                gap: 30px; 
+                gap: 20px; 
+                padding-top: 20px;
             }
-            .hero-portrait { display: none; /* Optional: Hide photo on mobile for strict minimalism, or keep it */ }
-            .statement { font-size: 2.5rem; }
+            
+            /* Mobile Portrait: Small, restrained, human */
+            .hero-portrait { display: block; margin-bottom: 10px; }
+            .hero-portrait img { width: 64px; border-radius: 50%; }
+
+            .statement { font-size: 2.2rem; margin-top: 0; }
+            .sub-statement { font-size: 1.1rem; }
 
             .entry { 
                 grid-template-columns: 1fr; 
-                gap: 10px; 
+                gap: 12px; 
                 padding: 25px 0;
             }
             .meta-spine { 
                 text-align: left; 
                 display: flex;
-                gap: 10px;
+                flex-direction: row;
+                gap: 12px;
                 align-items: center;
-                opacity: 0.8;
+                border-left: 2px solid var(--accent-blue);
+                padding-left: 12px;
+                margin-bottom: 4px;
             }
-            .meta-spine .tag { margin-top: 0; margin-left: 10px; border-left: 1px solid var(--ui-border); padding-left: 10px;}
-            .entry-title { font-size: 1.5rem; }
+            .meta-spine .tag { margin-top: 0; }
+            .entry-title { font-size: 1.4rem; }
         }
     </style>
 </head>
@@ -295,7 +315,7 @@
                 <div class="entry">
                     <div class="meta-spine">...</div>
                     <div class="entry-content">
-                        <div class="loading-state">INITIALIZING SECURE CONNECTION...</div>
+                        <div class="loading-state">Initializing secure connection...</div>
                     </div>
                 </div>
             </div>
@@ -344,18 +364,15 @@
             if (!res.ok) throw new Error('API Sync Failed');
             
             const files = await res.json();
-            // Filter .md files and simple reverse sort (assuming filenames have dates or recent is top)
             const mdFiles = files.filter(f => f.name.endsWith('.md')).reverse();
             
             let htmlBuffer = '';
             let foundCount = 0;
 
             for (const file of mdFiles) {
-                // Fetch raw content
                 const fileRes = await fetch(file.download_url);
                 const raw = await fileRes.text();
                 
-                // Helper to extract Frontmatter
                 const getVal = (key) => {
                     const regex = new RegExp(`${key}:\\s*["']?(.*?)["']?(\\s*\\n|\\s*\\r|$)`, 'i');
                     const match = raw.match(regex);
@@ -368,13 +385,12 @@
                     foundCount++;
                     const title = getVal('title') || "Untitled Protocol";
                     const dateRaw = getVal('date');
-                    const desc = getVal('description') || "Restricted access or no description available.";
+                    const desc = getVal('description') || "";
                     const extUrl = getVal('external_url');
                     
                     const dateObj = dateRaw ? new Date(dateRaw) : new Date();
                     const displayDate = dateObj.toLocaleDateString('en-US', {month:'short', year:'numeric'}).toUpperCase();
 
-                    // Logic: Use external URL if exists, else link to internal page
                     const link = (extUrl && extUrl.length > 5) ? extUrl : `insights/${file.name.replace('.md', '.html')}`;
                     const target = (extUrl && extUrl.length > 5) ? 'target="_blank"' : '';
 
@@ -393,21 +409,17 @@
                 }
             }
             
-            // Inject content with fade effect
             if (foundCount > 0) {
                 container.innerHTML = htmlBuffer;
             } else {
-                container.innerHTML = '<div class="entry"><div class="meta-spine">STATUS</div><div class="entry-content"><p class="entry-desc">No public insights currently available.</p></div></div>';
+                container.innerHTML = '<div class="entry"><div class="meta-spine">STATUS</div><div class="entry-content"><p class="entry-desc" style="opacity:0.6;">No public insights currently available.</p></div></div>';
             }
             
         } catch (e) { 
             console.error("Sync Error:", e);
-            // Elegant error state - subtle, not alarming
             container.innerHTML = '<div class="entry"><div class="meta-spine">OFFLINE</div><div class="entry-content"><p class="entry-desc">Secure connection to archive unavailable.</p></div></div>';
         }
     }
-
-    // Initialize
     window.addEventListener('DOMContentLoaded', syncInsights);
 </script>
 </body>
