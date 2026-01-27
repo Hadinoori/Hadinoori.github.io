@@ -3,9 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hadi Noori | Strategic AI Governance</title>
     
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%231e3a8a%22/></svg>">
+    <title>Hadi Noori | Strategic AI Governance</title>
+    <meta name="description" content="Strategic AI Governance protocols and insights. Developing accountable frameworks for high-stakes AI deployment.">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Hadi Noori">
+    
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Hadi Noori | Strategic AI Governance">
+    <meta property="og:description" content="Developing accountable protocols for high-stakes AI deployment.">
+    <meta property="og:url" content="https://hadinoori.ca">
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Hadi Noori",
+      "jobTitle": "Strategic AI Governance Specialist",
+      "url": "https://hadinoori.ca",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Independent Research"
+      },
+      "knowsAbout": ["AI Ethics", "Algorithmic Accountability", "Digital Transformation", "Risk Assessment"]
+    }
+    </script>
+
+    <link rel="icon" type="image/png" href="/assets/img/sidebar-logo.png">
     
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lora:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
     
@@ -23,13 +47,14 @@
             --font-serif: 'Lora', Georgia, serif;
             --font-sans: 'Inter', sans-serif;
             
-            /* Layout */
-            --spine-width: 180px;
+            /* Fluid Dimensions (Clamp) */
+            --spine-width: clamp(140px, 15vw, 180px);
             --max-width: 980px;
         }
 
-        /* Base & Accessibility */
+        /* Base & Reset */
         * { box-sizing: border-box; }
+        
         body { 
             background-color: var(--bg-main); 
             font-family: var(--font-sans); 
@@ -42,12 +67,22 @@
             min-height: 100vh; 
         }
 
+        /* Accessibility: Focus States */
         :focus-visible {
             outline: 2px solid var(--accent-blue);
             outline-offset: 4px;
             border-radius: 2px;
         }
 
+        /* Accessibility: Reduced Motion Preference */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation: none !important;
+                transition: none !important;
+            }
+        }
+
+        /* Layout */
         .wrap { 
             max-width: var(--max-width); 
             margin: 0 auto; 
@@ -102,9 +137,9 @@
 
         a { color: inherit; text-decoration: none; transition: all 0.2s ease; }
         
-        /* Hero */
+        /* Hero Section */
         .hero { 
-            padding: 20px 0 100px; 
+            padding: 20px 0 80px; 
             display: grid; 
             grid-template-columns: var(--spine-width) 1fr; 
             gap: 60px; 
@@ -119,9 +154,10 @@
             border-radius: 2px;
         }
 
+        /* Fluid Typography for Statement */
         .statement { 
             font-family: var(--font-serif); 
-            font-size: 3.2rem; 
+            font-size: clamp(2.2rem, 4vw, 3.2rem); 
             line-height: 1.1; 
             font-weight: 600; 
             letter-spacing: -0.5px; 
@@ -137,7 +173,7 @@
         }
 
         .sub-statement { 
-            font-size: 1.2rem; 
+            font-size: clamp(1rem, 1.5vw, 1.2rem); 
             color: var(--text-secondary); 
             max-width: 42ch; 
             font-weight: 400; 
@@ -145,7 +181,7 @@
         }
 
         /* Section Styling */
-        section { margin-bottom: 80px; }
+        section { margin-bottom: 60px; }
 
         .section-label { 
             font-size: 0.7rem; 
@@ -272,9 +308,8 @@
             .hero-portrait { display: block; margin-bottom: 10px; }
             .hero-portrait img { width: 64px; border-radius: 50%; }
 
-            .statement { font-size: 2.2rem; margin-top: 0; }
-            .sub-statement { font-size: 1.1rem; }
-
+            .statement { margin-top: 0; }
+            
             .entry { grid-template-columns: 1fr; gap: 12px; padding: 25px 0; }
             .meta-spine { text-align: left; display: flex; gap: 12px; align-items: center; border-left: 2px solid var(--accent-blue); padding-left: 12px; margin-bottom: 4px; }
             .entry-title { font-size: 1.4rem; }
@@ -289,19 +324,19 @@
 <body>
 
 <div class="wrap">
-    <header>
+    <header role="banner">
         <a href="index.html" class="header-brand">
             <span class="brand-name">Hadi Noori</span>
             <span class="brand-sub">Strategic AI Governance</span>
         </a>
-        <nav>
+        <nav role="navigation" aria-label="Primary Navigation">
             <a href="insights.html">Insights</a>
             <a href="projects.html">Projects</a>
             <a href="contact.html">Inquiry</a>
         </nav>
     </header>
 
-    <main>
+    <main id="content">
         <section class="hero">
             <div class="hero-portrait">
                 <img src="/assets/img/profile.jpg" alt="Hadi Noori">
@@ -323,37 +358,10 @@
                 </div>
             </div>
         </section>
-
-        <section id="selected-projects">
-            <span class="section-label">Protocols</span>
-            
-            <article class="entry">
-                <div class="meta-spine">
-                    <span class="year">2024</span>
-                    <span class="tag">System</span>
-                </div>
-                <div class="entry-content">
-                    <h3 class="entry-title"><a href="#">Automated Risk Assessment</a></h3>
-                    <p class="entry-desc">Architecting auditing protocols for decision-support systems in Canadian public institutions.</p>
-                </div>
-            </article>
-
-            <article class="entry">
-                <div class="meta-spine">
-                    <span class="year">2025</span>
-                    <span class="tag">Framework</span>
-                </div>
-                <div class="entry-content">
-                    <h3 class="entry-title"><a href="#">The Ethics of Failure</a></h3>
-                    <p class="entry-desc">A comparative study on digital transformation breakdowns in rigid organizational structures.</p>
-                </div>
-            </article>
-
-        </section>
     </main>
 </div>
 
-<footer class="site-footer">
+<footer class="site-footer" role="contentinfo">
     <div class="footer-content">
         <div class="footer-col-left">© 2026 Hadi Noori</div>
         <div class="footer-col-center">Vancouver, BC</div>
@@ -365,6 +373,54 @@
 </footer>
 
 <script>
+    /**
+     * Security: Sanitizes HTML to prevent XSS attacks.
+     * Prevents malicious scripts from running if injected in Markdown.
+     */
+    function escapeHTML(str) {
+        if (!str) return '';
+        return str.replace(/[&<>"']/g, m => ({
+            '&': '&amp;', '<': '&lt;', '>': '&gt;', 
+            '"': '&quot;', "'": '&#39;'
+        }[m]));
+    }
+
+    /**
+     * Parsing: Extracts Frontmatter from Markdown manually.
+     * More robust than simple Regex, handles multiline content better.
+     */
+    function parseFrontMatter(raw) {
+        const lines = raw.split('\n');
+        const metadata = {};
+        let inFrontMatter = false;
+
+        for (const line of lines) {
+            const trimmed = line.trim();
+            if (trimmed === '---') {
+                if (!inFrontMatter) {
+                    inFrontMatter = true; // Start
+                    continue;
+                } else {
+                    break; // End
+                }
+            }
+            
+            if (inFrontMatter) {
+                const colonIndex = trimmed.indexOf(':');
+                if (colonIndex !== -1) {
+                    const key = trimmed.slice(0, colonIndex).trim();
+                    let value = trimmed.slice(colonIndex + 1).trim();
+                    // Remove quotes if present
+                    if (value.startsWith('"') && value.endsWith('"')) {
+                        value = value.slice(1, -1);
+                    }
+                    metadata[key] = value;
+                }
+            }
+        }
+        return metadata;
+    }
+
     async function syncInsights() {
         const container = document.getElementById('insights-container');
         const REPO = 'hadinoori/hadinoori.github.io';
@@ -376,34 +432,40 @@
             const files = await res.json();
             const mdFiles = files.filter(f => f.name.endsWith('.md')).reverse();
             
+            // PERFORMANCE: Fetch first 5 files in PARALLEL using Promise.all
+            // This avoids the "N+1" fetch problem and loads faster.
+            const fetchPromises = mdFiles.slice(0, 5).map(async (file) => {
+                const fileRes = await fetch(file.download_url);
+                return {
+                    text: await fileRes.text(),
+                    filename: file.name
+                };
+            });
+
+            const loadedFiles = await Promise.all(fetchPromises);
+            
             let htmlBuffer = '';
             let foundCount = 0;
 
-            for (const file of mdFiles) {
-                const fileRes = await fetch(file.download_url);
-                const raw = await fileRes.text();
-                
-                const getVal = (key) => {
-                    const regex = new RegExp(`${key}:\\s*["']?(.*?)["']?(\\s*\\n|\\s*\\r|$)`, 'i');
-                    const match = raw.match(regex);
-                    return match ? match[1].trim() : null;
-                };
+            for (const fileData of loadedFiles) {
+                if (foundCount >= 2) break; // Limit to 2 items
 
-                const isSelected = getVal('selected_dispatch');
-                
-                if (isSelected === 'true') {
+                const meta = parseFrontMatter(fileData.text);
+
+                if (meta.selected_dispatch === 'true') {
                     foundCount++;
-                    const title = getVal('title') || "Untitled Protocol";
-                    const dateRaw = getVal('date');
-                    const desc = getVal('description') || "";
-                    const extUrl = getVal('external_url');
+                    const title = meta.title || "Untitled Protocol";
+                    const dateRaw = meta.date;
+                    const desc = meta.description || "";
+                    const extUrl = meta.external_url;
                     
                     const dateObj = dateRaw ? new Date(dateRaw) : new Date();
                     const displayDate = dateObj.toLocaleDateString('en-US', {month:'short', year:'numeric'}).toUpperCase();
 
-                    const link = (extUrl && extUrl.length > 5) ? extUrl : `insights/${file.name.replace('.md', '.html')}`;
+                    const link = (extUrl && extUrl.length > 5) ? extUrl : `insights/${fileData.filename.replace('.md', '.html')}`;
                     const target = (extUrl && extUrl.length > 5) ? 'target="_blank"' : '';
 
+                    // Using escapeHTML for security on user-provided content
                     htmlBuffer += `
                         <article class="entry">
                             <div class="meta-spine">
@@ -411,8 +473,8 @@
                                 <span class="tag">Dispatch</span>
                             </div>
                             <div class="entry-content">
-                                <h3 class="entry-title"><a href="${link}" ${target}>${title}</a></h3>
-                                <p class="entry-desc">${desc}</p>
+                                <h3 class="entry-title"><a href="${link}" ${target}>${escapeHTML(title)}</a></h3>
+                                <p class="entry-desc">${escapeHTML(desc)}</p>
                             </div>
                         </article>
                     `;
