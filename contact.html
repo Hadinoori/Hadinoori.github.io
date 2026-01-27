@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <title>Inquiry | Hadi Noori</title>
-    <meta name="description" content="Secure communication channels for professional inquiries regarding AI governance and strategic consulting.">
+    <meta name="description" content="Secure communication channels for professional inquiries regarding AI governance.">
     <meta name="robots" content="index, follow">
     
     <link rel="icon" type="image/png" href="/assets/img/sidebar-logo.png">
@@ -128,7 +128,7 @@
             max-width: 60ch;
         }
 
-        /* Inquiry Entries */
+        /* Entries */
         .entry { 
             display: grid; 
             grid-template-columns: var(--spine-width) 1fr; 
@@ -180,7 +180,6 @@
             line-height: 1.7; 
         }
 
-        /* Email Link Styling */
         .secure-link {
             font-size: 0.9rem;
             font-weight: 600;
@@ -192,7 +191,6 @@
         }
         .secure-link:hover { border-bottom-color: var(--accent-blue); }
 
-        /* PGP Block */
         .pgp-block {
             font-family: monospace;
             font-size: 0.75rem;
@@ -233,23 +231,12 @@
 
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* Mobile */
         @media (max-width: 768px) {
             .wrap, .footer-content { padding: 0 25px; }
             header { flex-direction: column; align-items: flex-start; gap: 20px; padding: 40px 0; }
             nav { width: 100%; justify-content: space-between; border-bottom: 1px solid var(--ui-border); padding-bottom: 15px;}
-            
             .entry { grid-template-columns: 1fr; gap: 20px; padding: 30px 0; }
-            
-            .meta-spine { 
-                text-align: left; 
-                display: flex; 
-                gap: 15px; 
-                align-items: baseline; 
-                border-left: 2px solid var(--accent-blue); 
-                padding-left: 12px; 
-            }
-            
+            .meta-spine { text-align: left; display: flex; gap: 15px; align-items: baseline; border-left: 2px solid var(--accent-blue); padding-left: 12px; }
             .footer-content { grid-template-columns: 1fr; gap: 20px; }
             .footer-col-right { text-align: left; }
             .footer-link { margin-left: 0; margin-right: 20px; }
@@ -277,70 +264,8 @@
             <p class="page-desc">Information regarding consultation availability, speaking engagements, and secure communication protocols.</p>
         </div>
 
-        <div id="inquiry-list">
-            
-            <article class="entry">
-                <div class="meta-spine">
-                    <span class="meta-label">Primary</span>
-                    <span class="meta-value">Direct Line</span>
-                </div>
-                <div class="entry-content">
-                    <h3 class="entry-title">Professional Correspondence</h3>
-                    <p class="entry-desc">
-                        For inquiries regarding strategic consulting, governance audits, or academic collaboration. 
-                        Please prioritize clear subject lines for efficient routing.
-                    </p>
-                    <a id="email-link" class="secure-link">Reveal Email Address</a>
-                </div>
-            </article>
-
-            <article class="entry">
-                <div class="meta-spine">
-                    <span class="meta-label">Status</span>
-                    <span class="meta-value" id="current-date">2026</span>
-                </div>
-                <div class="entry-content">
-                    <h3 class="entry-title">Current Availability</h3>
-                    <p class="entry-desc">
-                        Currently accepting limited advisory roles for <strong>Q3/Q4 2026</strong>. 
-                        Priority is given to public sector projects and institutional governance frameworks.
-                    </p>
-                </div>
-            </article>
-
-            <article class="entry">
-                <div class="meta-spine">
-                    <span class="meta-label">Network</span>
-                    <span class="meta-value">Social</span>
-                </div>
-                <div class="entry-content">
-                    <h3 class="entry-title">Professional Network</h3>
-                    <p class="entry-desc">
-                        Connect via LinkedIn for professional updates, or GitHub for technical protocols and open-source contributions.
-                    </p>
-                    <div style="display: flex; gap: 20px;">
-                        <a href="https://www.linkedin.com/in/hadinoori" target="_blank" class="secure-link">LinkedIn Profile</a>
-                        <a href="https://github.com/hadinoori" target="_blank" class="secure-link">GitHub Profile</a>
-                    </div>
-                </div>
-            </article>
-
-            <article class="entry" style="border-bottom: none;">
-                <div class="meta-spine">
-                    <span class="meta-label">Security</span>
-                    <span class="meta-value">PGP Key</span>
-                </div>
-                <div class="entry-content">
-                    <h3 class="entry-title">Cryptographic Verification</h3>
-                    <p class="entry-desc">
-                        Use the following fingerprint to verify the integrity of sensitive communications.
-                    </p>
-                    <div class="pgp-block">
-                        8F3D 2A1B 9C4E 5F6G 7H8I 9J0K L1M2 N3O4
-                    </div>
-                </div>
-            </article>
-
+        <div id="inquiry-container">
+            <div style="padding: 40px 0; opacity: 0.6; font-size: 0.8rem; text-transform: uppercase;">Establishing secure channel...</div>
         </div>
     </main>
 </div>
@@ -357,17 +282,94 @@
 </footer>
 
 <script>
-    // Security: Simple email obfuscation
-    // This prevents basic bots from scraping the mailto link from source code
-    document.getElementById('email-link').addEventListener('click', function() {
-        const user = 'contact';
-        const domain = 'hadinoori.ca';
-        window.location.href = `mailto:${user}@${domain}`;
-    });
+    function escapeHTML(str) {
+        if (!str) return '';
+        return str.replace(/[&<>"']/g, m => ({
+            '&': '&amp;', '<': '&lt;', '>': '&gt;', 
+            '"': '&quot;', "'": '&#39;'
+        }[m]));
+    }
 
-    // Dynamic Date
-    document.getElementById('current-date').textContent = new Date().getFullYear();
+    async function loadInquiry() {
+        const container = document.getElementById('inquiry-container');
+        
+        try {
+            const res = await fetch('/data/inquiry.json');
+            if (!res.ok) throw new Error(`Status: ${res.status}`);
+            const data = await res.json();
+            
+            // Build Social Links
+            const socialLinks = data.socials.map(s => 
+                `<a href="${escapeHTML(s.url)}" target="_blank" class="secure-link">${escapeHTML(s.name)}</a>`
+            ).join('<span style="margin:0 10px; color:#ccc">|</span>');
+
+            let html = `
+                <article class="entry">
+                    <div class="meta-spine">
+                        <span class="meta-label">Primary</span>
+                        <span class="meta-value">Direct Line</span>
+                    </div>
+                    <div class="entry-content">
+                        <h3 class="entry-title">Professional Correspondence</h3>
+                        <p class="entry-desc">${escapeHTML(data.email.desc)}</p>
+                        <a id="email-revealer" class="secure-link">Reveal Email Address</a>
+                    </div>
+                </article>
+
+                <article class="entry">
+                    <div class="meta-spine">
+                        <span class="meta-label">Status</span>
+                        <span class="meta-value">${escapeHTML(data.availability.year)}</span>
+                    </div>
+                    <div class="entry-content">
+                        <h3 class="entry-title">${escapeHTML(data.availability.status)}</h3>
+                        <p class="entry-desc">${escapeHTML(data.availability.message)}</p>
+                    </div>
+                </article>
+
+                <article class="entry">
+                    <div class="meta-spine">
+                        <span class="meta-label">Network</span>
+                        <span class="meta-value">Social</span>
+                    </div>
+                    <div class="entry-content">
+                        <h3 class="entry-title">Professional Network</h3>
+                        <p class="entry-desc">Connect for professional updates or technical contributions.</p>
+                        <div style="display: flex; gap: 0;">
+                            ${socialLinks}
+                        </div>
+                    </div>
+                </article>
+
+                <article class="entry" style="border-bottom: none;">
+                    <div class="meta-spine">
+                        <span class="meta-label">Security</span>
+                        <span class="meta-value">PGP Key</span>
+                    </div>
+                    <div class="entry-content">
+                        <h3 class="entry-title">Cryptographic Verification</h3>
+                        <p class="entry-desc">Use the following fingerprint to verify the integrity of sensitive communications.</p>
+                        <div class="pgp-block">${escapeHTML(data.security.fingerprint)}</div>
+                    </div>
+                </article>
+            `;
+            
+            container.innerHTML = html;
+
+            // Activate Email Obfuscation Logic
+            document.getElementById('email-revealer').addEventListener('click', function() {
+                const user = data.email.user;
+                const domain = data.email.domain;
+                window.location.href = `mailto:${user}@${domain}`;
+            });
+            
+        } catch (e) {
+            console.error("Inquiry Load Error:", e);
+            container.innerHTML = '<div style="padding: 40px 0; color: #a00;">Secure channel currently unavailable.</div>';
+        }
+    }
+    
+    window.addEventListener('DOMContentLoaded', loadInquiry);
 </script>
-
 </body>
 </html>
