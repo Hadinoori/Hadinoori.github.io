@@ -61,7 +61,7 @@
             flex: 1; 
         }
 
-        /* Header (Same as Index) */
+        /* Header */
         header { 
             display: flex; 
             justify-content: space-between; 
@@ -138,8 +138,6 @@
             align-items: baseline;
             animation: fadeIn 0.4s ease-out;
         }
-        
-        /* Last item needs no border if desired, or keep for consistency */
         
         .meta-spine { 
             font-family: var(--font-sans);
@@ -245,7 +243,7 @@
 
 <div class="wrap">
     <header role="banner">
-        <a href="index.html" class="header-brand">
+        <a href="/" class="header-brand">
             <span class="brand-name">Hadi Noori</span>
             <span class="brand-sub">Strategic AI Governance</span>
         </a>
@@ -343,7 +341,7 @@
             for (const fileData of loadedFiles) {
                 const meta = parseFrontMatter(fileData.text);
                 
-                // Show ALL posts in archive, not just selected ones
+                // Show ALL posts in archive
                 count++;
                 const title = meta.title || "Untitled Dispatch";
                 const dateRaw = meta.date;
