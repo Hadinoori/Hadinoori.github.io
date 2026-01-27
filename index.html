@@ -4,10 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hadi Noori | Strategic AI Governance</title>
+    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%231e3a8a%22/></svg>">
+    
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lora:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
     <style>
         :root {
-            /* Palette: Institutional & Mature */
+            /* Palette */
             --bg-main: #fafafa;      
             --text-primary: #111111; 
             --text-secondary: #444444; 
@@ -33,23 +37,26 @@
             margin: 0; 
             line-height: 1.6;
             -webkit-font-smoothing: antialiased; 
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; 
         }
 
-        /* Accessibility Focus State - Vital for AI Ethics Profile */
         :focus-visible {
             outline: 2px solid var(--accent-blue);
             outline-offset: 4px;
             border-radius: 2px;
         }
 
-        /* Layout Container */
         .wrap { 
             max-width: var(--max-width); 
             margin: 0 auto; 
             padding: 0 40px; 
+            width: 100%;
+            flex: 1; 
         }
 
-        /* Header - Tight & Official */
+        /* Header */
         header { 
             display: flex; 
             justify-content: space-between; 
@@ -81,7 +88,6 @@
             color: var(--text-meta); 
         }
 
-        /* Navigation - Adjusted Letter Spacing */
         nav { display: flex; gap: 30px; padding-bottom: 2px; }
         nav a { 
             text-decoration: none; 
@@ -89,15 +95,14 @@
             font-weight: 600; 
             color: var(--text-secondary); 
             text-transform: uppercase; 
-            letter-spacing: 0.5px; /* Tightened from 1px */
+            letter-spacing: 0.5px; 
             transition: color 0.3s ease;
         }
         nav a:hover { color: var(--accent-blue); }
 
-        /* Typography Utilities */
         a { color: inherit; text-decoration: none; transition: all 0.2s ease; }
         
-        /* Hero Section */
+        /* Hero */
         .hero { 
             padding: 20px 0 100px; 
             display: grid; 
@@ -114,7 +119,6 @@
             border-radius: 2px;
         }
 
-        /* Hero Text - Optically Aligned */
         .statement { 
             font-family: var(--font-serif); 
             font-size: 3.2rem; 
@@ -151,7 +155,7 @@
             color: var(--accent-blue); 
             margin-bottom: 20px; 
             display: inline-block;
-            border-bottom: 1px solid rgba(30, 58, 138, 0.3); /* Subtle opacity */
+            border-bottom: 1px solid rgba(30, 58, 138, 0.3); 
             padding-bottom: 4px;
         }
 
@@ -163,7 +167,7 @@
             padding: 30px 0; 
             border-top: 1px solid var(--ui-border); 
             align-items: baseline;
-            animation: fadeIn 0.4s ease-out; /* Faster, sharper animation */
+            animation: fadeIn 0.4s ease-out;
         }
 
         .meta-spine { 
@@ -213,7 +217,6 @@
             line-height: 1.6; 
         }
 
-        /* Loading State */
         .loading-state {
             opacity: 0.6;
             animation: pulse 2s infinite;
@@ -223,63 +226,63 @@
             text-transform: uppercase;
         }
 
-        /* Footer - Subtle Border */
-        footer { 
-            padding: 40px 0 80px; 
-            border-top: 1px solid var(--ui-border); /* Softer border */
-            display: flex; 
-            justify-content: flex-end; 
+        /* Footer Layout */
+        .site-footer {
+            border-top: 1px solid var(--ui-border);
+            padding: 40px 0 60px;
+            margin-top: auto;
+            background-color: var(--bg-main);
         }
+        
+        .footer-content {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 40px;
+            display: grid;
+            grid-template-columns: var(--spine-width) 1fr auto;
+            gap: 60px;
+            align-items: baseline;
+            font-size: 0.7rem;
+            color: var(--text-meta);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 500;
+        }
+
+        .footer-col-right { text-align: right; }
+        
         .footer-link { 
-            font-size: 0.7rem; 
-            font-weight: 600;
             color: var(--text-primary); 
-            letter-spacing: 2px; 
-            text-transform: uppercase; 
-            opacity: 0.8;
+            font-weight: 600;
+            margin-left: 20px;
         }
-        .footer-link:hover { opacity: 1; }
+        .footer-link:hover { color: var(--accent-blue); }
 
         /* Animations */
         @keyframes pulse { 0% { opacity: 0.3; } 50% { opacity: 0.7; } 100% { opacity: 0.3; } }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* Mobile Responsive */
+        /* Mobile */
         @media (max-width: 768px) {
-            .wrap { padding: 0 25px; }
+            .wrap, .footer-content { padding: 0 25px; }
             header { flex-direction: column; align-items: flex-start; gap: 20px; padding: 40px 0; }
             nav { width: 100%; justify-content: space-between; border-bottom: 1px solid var(--ui-border); padding-bottom: 15px;}
             
-            .hero { 
-                grid-template-columns: 1fr; 
-                gap: 20px; 
-                padding-top: 20px;
-            }
-            
-            /* Mobile Portrait: Small, restrained, human */
+            .hero { grid-template-columns: 1fr; gap: 20px; padding-top: 20px; }
             .hero-portrait { display: block; margin-bottom: 10px; }
             .hero-portrait img { width: 64px; border-radius: 50%; }
 
             .statement { font-size: 2.2rem; margin-top: 0; }
             .sub-statement { font-size: 1.1rem; }
 
-            .entry { 
-                grid-template-columns: 1fr; 
-                gap: 12px; 
-                padding: 25px 0;
-            }
-            .meta-spine { 
-                text-align: left; 
-                display: flex;
-                flex-direction: row;
-                gap: 12px;
-                align-items: center;
-                border-left: 2px solid var(--accent-blue);
-                padding-left: 12px;
-                margin-bottom: 4px;
-            }
-            .meta-spine .tag { margin-top: 0; }
+            .entry { grid-template-columns: 1fr; gap: 12px; padding: 25px 0; }
+            .meta-spine { text-align: left; display: flex; gap: 12px; align-items: center; border-left: 2px solid var(--accent-blue); padding-left: 12px; margin-bottom: 4px; }
             .entry-title { font-size: 1.4rem; }
+
+            /* Footer Mobile */
+            .footer-content { grid-template-columns: 1fr; gap: 20px; }
+            .footer-col-right { text-align: left; }
+            .footer-link { margin-left: 0; margin-right: 20px; }
         }
     </style>
 </head>
@@ -322,7 +325,7 @@
         </section>
 
         <section id="selected-projects">
-            <span class="section-label">Selected Protocols</span>
+            <span class="section-label">Protocols</span>
             
             <article class="entry">
                 <div class="meta-spine">
@@ -348,11 +351,18 @@
 
         </section>
     </main>
-
-    <footer>
-        <a href="dossier.html" class="footer-link">Full Dossier</a>
-    </footer>
 </div>
+
+<footer class="site-footer">
+    <div class="footer-content">
+        <div class="footer-col-left">© 2026 Hadi Noori</div>
+        <div class="footer-col-center">Vancouver, BC</div>
+        <div class="footer-col-right">
+            <a href="mailto:contact@hadinoori.ca" class="footer-link">Contact</a>
+            <a href="dossier.html" class="footer-link">Full Dossier</a>
+        </div>
+    </div>
+</footer>
 
 <script>
     async function syncInsights() {
