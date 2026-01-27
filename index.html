@@ -4,65 +4,267 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hadi Noori | Strategic AI Governance</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Lora:italic,wght@0,700;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lora:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-main: #fcfcfc;
-            --text-primary: #0a0a0a;
-            --text-muted: #666666;
-            --accent-blue: #1e3a8a; 
-            --ui-border: #eeeeee;
+            /* Palette: Strict & Institutional */
+            --bg-main: #fafafa;      /* Soft paper white */
+            --text-primary: #111111; /* Sharp black */
+            --text-secondary: #555555; /* Neutral gray */
+            --text-meta: #767676;    /* Lighter gray for dates */
+            --accent-blue: #1e3a8a;  /* Royal Blue */
+            --ui-border: #e5e5e5;    /* Subtle divider */
+            
+            /* Typography */
             --font-serif: 'Lora', Georgia, serif;
             --font-sans: 'Inter', sans-serif;
-            --spine-width: 200px;
+            
+            /* Layout */
+            --spine-width: 180px;
+            --max-width: 960px;
         }
 
+        /* Reset & Base */
         * { box-sizing: border-box; }
-        body { background-color: var(--bg-main); font-family: var(--font-sans); color: var(--text-primary); margin: 0; -webkit-font-smoothing: antialiased; }
-        .wrap { max-width: 1100px; margin: 0 auto; padding: 0 40px; }
-        
+        body { 
+            background-color: var(--bg-main); 
+            font-family: var(--font-sans); 
+            color: var(--text-primary); 
+            margin: 0; 
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased; 
+        }
+
+        /* Layout Container */
+        .wrap { 
+            max-width: var(--max-width); 
+            margin: 0 auto; 
+            padding: 0 40px; 
+        }
+
         /* Header */
-        header { display: flex; justify-content: space-between; align-items: flex-start; padding: 60px 0 40px; }
-        .header-brand { text-decoration: none; color: var(--text-primary); transition: opacity 0.2s; }
-        .header-brand:hover { opacity: 0.7; }
-        .brand-name { font-size: 0.95rem; font-weight: 900; text-transform: uppercase; letter-spacing: 3px; display: block; }
-        .brand-sub { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-muted); margin-top: 5px; display: block; }
-        
-        nav { display: flex; gap: 40px; }
-        nav a { text-decoration: none; font-size: 0.75rem; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px; transition: color 0.2s; }
-        nav a:hover { color: var(--text-primary); }
+        header { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: flex-start; 
+            padding: 80px 0 60px; 
+        }
 
+        .header-brand { 
+            text-decoration: none; 
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .brand-name { 
+            font-family: var(--font-sans);
+            font-size: 1rem; 
+            font-weight: 600; 
+            text-transform: uppercase; 
+            letter-spacing: 2px; 
+            color: var(--text-primary);
+        }
+
+        .brand-sub { 
+            font-size: 0.7rem; 
+            font-weight: 500; 
+            text-transform: uppercase; 
+            letter-spacing: 1px; 
+            color: var(--text-secondary); 
+        }
+
+        nav { display: flex; gap: 30px; }
+        nav a { 
+            text-decoration: none; 
+            font-size: 0.75rem; 
+            font-weight: 500; 
+            color: var(--text-secondary); 
+            text-transform: uppercase; 
+            letter-spacing: 1.5px; 
+            transition: color 0.3s ease;
+        }
+        nav a:hover { color: var(--accent-blue); }
+
+        /* Typography Utilities */
+        a { color: inherit; text-decoration: none; transition: all 0.2s ease; }
+        
         /* Hero Section */
-        .hero { padding: 80px 0 120px; display: grid; grid-template-columns: var(--spine-width) 1fr; gap: 80px; align-items: flex-start; }
-        .hero-portrait img { width: 100%; filter: grayscale(100%); border-radius: 2px; display: block; }
-        .statement { font-family: var(--font-serif); font-size: 4rem; line-height: 1.05; font-weight: 700; letter-spacing: -2.5px; margin: 0 0 30px; }
-        .statement em { font-style: italic; font-weight: 400; color: var(--accent-blue); }
-        .sub-statement { font-size: 1.4rem; color: var(--text-muted); line-height: 1.5; max-width: 35ch; font-weight: 400; }
+        .hero { 
+            padding: 60px 0 100px; 
+            display: grid; 
+            grid-template-columns: var(--spine-width) 1fr; 
+            gap: 60px; 
+            align-items: start; 
+        }
 
-        /* Shared Entry Styles */
-        .section-label { font-size: 0.75rem; font-weight: 900; letter-spacing: 4px; text-transform: uppercase; color: var(--accent-blue); margin: 60px 0 40px; display: block; }
-        .entry { display: grid; grid-template-columns: var(--spine-width) 1fr; gap: 80px; padding: 50px 0; border-top: 1px solid var(--ui-border); }
-        .meta-spine { font-size: 0.75rem; font-weight: 800; color: var(--text-muted); text-align: right; line-height: 1.8; letter-spacing: 1px; }
-        .meta-spine .tag { color: var(--accent-blue); display: block; text-transform: uppercase; }
-        
-        .entry-title { font-family: var(--font-serif); font-size: 2.2rem; line-height: 1.2; margin: 0; font-weight: 700; }
-        .entry-title a { text-decoration: none; color: inherit; transition: color 0.2s; }
-        .entry-title a:hover { color: var(--accent-blue); }
-        .entry-desc { color: var(--text-muted); font-size: 1.2rem; max-width: 55ch; margin: 18px 0 0; line-height: 1.6; }
+        .hero-portrait img { 
+            width: 100%; 
+            max-width: 140px;
+            filter: grayscale(100%) contrast(1.1); 
+            display: block; 
+            border-radius: 2px;
+        }
 
-        footer { padding: 100px 0 60px; border-top: 1px solid var(--ui-border); display: flex; justify-content: flex-end; }
-        .footer-link { font-size: 0.7rem; color: var(--text-muted); text-decoration: none; letter-spacing: 2px; text-transform: uppercase; opacity: 0.6; transition: opacity 0.2s; }
-        .footer-link:hover { opacity: 1; color: var(--text-primary); }
+        .statement { 
+            font-family: var(--font-serif); 
+            font-size: 3.5rem; 
+            line-height: 1.1; 
+            font-weight: 600; 
+            letter-spacing: -1px; 
+            margin: 0 0 24px; 
+            color: var(--text-primary);
+        }
 
+        .statement em { 
+            font-family: var(--font-serif);
+            font-style: italic; 
+            font-weight: 400; 
+            color: var(--accent-blue); 
+        }
+
+        .sub-statement { 
+            font-size: 1.25rem; 
+            color: var(--text-secondary); 
+            max-width: 40ch; 
+            font-weight: 400; 
+        }
+
+        /* Section Styling */
+        section { margin-bottom: 80px; }
+
+        .section-label { 
+            font-size: 0.7rem; 
+            font-weight: 600; 
+            letter-spacing: 2px; 
+            text-transform: uppercase; 
+            color: var(--accent-blue); 
+            margin-bottom: 20px; 
+            display: block; 
+            border-bottom: 2px solid var(--accent-blue);
+            display: inline-block;
+            padding-bottom: 4px;
+        }
+
+        /* Entry / List Items */
+        .entry { 
+            display: grid; 
+            grid-template-columns: var(--spine-width) 1fr; 
+            gap: 60px; 
+            padding: 30px 0; 
+            border-top: 1px solid var(--ui-border); 
+            align-items: baseline;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        /* The Spine (Left Column) */
+        .meta-spine { 
+            font-family: var(--font-sans);
+            font-size: 0.75rem; 
+            font-weight: 500; 
+            color: var(--text-meta); 
+            text-align: right; 
+            line-height: 1.6; 
+            letter-spacing: 0.5px; 
+        }
+        .meta-spine .tag { 
+            color: var(--accent-blue); 
+            display: block; 
+            font-size: 0.65rem;
+            text-transform: uppercase; 
+            margin-top: 4px;
+            letter-spacing: 1px;
+        }
+
+        /* Content (Right Column) */
+        .entry-title { 
+            font-family: var(--font-serif); 
+            font-size: 1.8rem; 
+            line-height: 1.2; 
+            margin: 0 0 12px; 
+            font-weight: 600; 
+        }
+
+        .entry-title a { 
+            background-image: linear-gradient(var(--text-primary), var(--text-primary));
+            background-position: 0% 100%;
+            background-repeat: no-repeat;
+            background-size: 0% 1px;
+            transition: background-size 0.3s;
+        }
+        .entry-title a:hover { 
+            color: var(--accent-blue); 
+            background-size: 100% 1px;
+            background-image: linear-gradient(var(--accent-blue), var(--accent-blue));
+        }
+
+        .entry-desc { 
+            color: var(--text-secondary); 
+            font-size: 1.05rem; 
+            max-width: 55ch; 
+            margin: 0; 
+            line-height: 1.6; 
+        }
+
+        /* Loading State */
+        .loading-state {
+            opacity: 0.5;
+            animation: pulse 1.5s infinite;
+            font-family: var(--font-sans);
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+        }
+
+        /* Footer */
+        footer { 
+            padding: 60px 0 80px; 
+            border-top: 1px solid var(--text-primary); 
+            display: flex; 
+            justify-content: flex-end; 
+        }
+        .footer-link { 
+            font-size: 0.7rem; 
+            font-weight: 600;
+            color: var(--text-primary); 
+            letter-spacing: 2px; 
+            text-transform: uppercase; 
+        }
+
+        /* Animations */
+        @keyframes pulse { 0% { opacity: 0.4; } 50% { opacity: 0.8; } 100% { opacity: 0.4; } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Mobile Responsive */
         @media (max-width: 768px) {
-            .hero, .entry { grid-template-columns: 1fr; gap: 20px; }
-            .hero-portrait { width: 150px; }
-            .meta-spine { text-align: left; }
-            .statement { font-size: 2.8rem; }
+            .wrap { padding: 0 25px; }
+            header { flex-direction: column; gap: 30px; padding: 40px 0; }
+            
+            .hero { 
+                grid-template-columns: 1fr; 
+                gap: 30px; 
+            }
+            .hero-portrait { display: none; /* Optional: Hide photo on mobile for strict minimalism, or keep it */ }
+            .statement { font-size: 2.5rem; }
+
+            .entry { 
+                grid-template-columns: 1fr; 
+                gap: 10px; 
+                padding: 25px 0;
+            }
+            .meta-spine { 
+                text-align: left; 
+                display: flex;
+                gap: 10px;
+                align-items: center;
+                opacity: 0.8;
+            }
+            .meta-spine .tag { margin-top: 0; margin-left: 10px; border-left: 1px solid var(--ui-border); padding-left: 10px;}
+            .entry-title { font-size: 1.5rem; }
         }
     </style>
 </head>
 <body>
+
 <div class="wrap">
     <header>
         <a href="index.html" class="header-brand">
@@ -72,82 +274,65 @@
         <nav>
             <a href="insights.html">Insights</a>
             <a href="projects.html">Projects</a>
-            <a href="contact.html">Contact</a>
+            <a href="contact.html">Inquiry</a>
         </nav>
     </header>
 
     <main>
         <section class="hero">
-            <div class="hero-portrait"><img src="/assets/img/profile.jpg" alt="Hadi Noori"></div>
+            <div class="hero-portrait">
+                <img src="/assets/img/profile.jpg" alt="Hadi Noori">
+            </div>
             <div class="hero-content">
                 <h1 class="statement">Intelligence is <em>fragile</em>.<br>Governance is its <em>armor</em>.</h1>
-                <p class="sub-statement">Designing accountable AI governance systems.</p>
+                <p class="sub-statement">Developing accountable protocols for high-stakes AI deployment.</p>
             </div>
         </section>
 
         <section id="selected-insights">
-            <h2 class="section-label">Selected Insights</h2>
+            <span class="section-label">Selected Insights</span>
             <div id="insights-container">
-                <div class="entry"><div class="meta-spine">SYNC</div><div class="entry-content"><h3 class="entry-title">Connecting...</h3></div></div>
+                <div class="entry">
+                    <div class="meta-spine">...</div>
+                    <div class="entry-content">
+                        <div class="loading-state">INITIALIZING SECURE CONNECTION...</div>
+                    </div>
+                </div>
             </div>
         </section>
 
         <section id="selected-projects">
-            <h2 class="section-label">Selected Projects</h2>
-            <div class="entry">
-                <div class="meta-spine"><span class="year">2024</span><span class="tag">System</span></div>
-                <div class="entry-content">
-                    <h3 class="entry-title"><a href="#">Automated Risk Assessment Protocols</a></h3>
-                    <p class="entry-desc">Design of auditing protocols for decision-support systems in public institutions.</p>
+            <span class="section-label">Selected Protocols</span>
+            
+            <article class="entry">
+                <div class="meta-spine">
+                    <span class="year">2024</span>
+                    <span class="tag">System</span>
                 </div>
-            </div>
+                <div class="entry-content">
+                    <h3 class="entry-title"><a href="#">Automated Risk Assessment</a></h3>
+                    <p class="entry-desc">Architecting auditing protocols for decision-support systems in Canadian public institutions.</p>
+                </div>
+            </article>
+
+            <article class="entry">
+                <div class="meta-spine">
+                    <span class="year">2025</span>
+                    <span class="tag">Framework</span>
+                </div>
+                <div class="entry-content">
+                    <h3 class="entry-title"><a href="#">The Ethics of Failure</a></h3>
+                    <p class="entry-desc">A comparative study on digital transformation breakdowns in rigid organizational structures.</p>
+                </div>
+            </article>
+
         </section>
     </main>
 
-    <footer><a href="dossier.html" class="footer-link">Dossier</a></footer>
+    <footer>
+        <a href="dossier.html" class="footer-link">Full Dossier</a>
+    </footer>
 </div>
-
-<script>
-    async function syncInsights() {
-        const container = document.getElementById('insights-container');
-        const REPO = 'hadinoori/hadinoori.github.io';
-        try {
-            const res = await fetch(`https://api.github.com/repos/${REPO}/contents/_insights`);
-            const files = await res.json();
-            const mdFiles = files.filter(f => f.name.endsWith('.md')).reverse();
-            let htmlBuffer = '';
-            let found = false;
-
-            for (const file of mdFiles) {
-                const fileRes = await fetch(file.download_url);
-                const raw = await fileRes.text();
-                const parse = (key) => {
-                    const r = new RegExp(`${key}:\\s*["']?(.*?)["']?(\\n|\\r|$)`, 'i');
-                    return raw.match(r)?.[1] || null;
-                };
-
-                if (parse('selected_dispatch') === 'true') {
-                    found = true;
-                    const date = parse('date') ? new Date(parse('date')).toLocaleDateString('en-US', {month:'short', year:'numeric'}).toUpperCase() : "RECENT";
-                    const link = (parse('external_url') && parse('external_url') !== '""') ? parse('external_url') : `insights/${file.name.replace('.md', '.html')}`;
-                    
-                    htmlBuffer += `
-                        <article class="entry">
-                            <div class="meta-spine"><span>${date}</span><span class="tag">Insight</span></div>
-                            <div class="entry-content">
-                                <h3 class="entry-title"><a href="${link}">${parse('title')}</a></h3>
-                                <p class="entry-desc">${parse('description') || ""}</p>
-                            </div>
-                        </article>`;
-                }
-            }
-            container.innerHTML = found ? htmlBuffer : '<div class="entry"><div class="meta-spine">EMPTY</div><div class="entry-content"><h3 class="entry-title">No selected dispatches.</h3></div></div>';
-        } catch (e) { container.innerHTML = 'Error syncing insights.'; }
-    }
-    window.addEventListener('DOMContentLoaded', syncInsights);
-</script>
-</body>
-</html>
 
 <script>
     async function syncInsights() {
@@ -155,22 +340,22 @@
         const REPO = 'hadinoori/hadinoori.github.io';
         
         try {
-            // Fetching the list of files from your _insights folder
             const res = await fetch(`https://api.github.com/repos/${REPO}/contents/_insights`);
-            if (!res.ok) throw new Error('API Access Denied');
+            if (!res.ok) throw new Error('API Sync Failed');
             
             const files = await res.json();
-            // Filtering for markdown and reversing for newest first
+            // Filter .md files and simple reverse sort (assuming filenames have dates or recent is top)
             const mdFiles = files.filter(f => f.name.endsWith('.md')).reverse();
             
             let htmlBuffer = '';
             let foundCount = 0;
 
             for (const file of mdFiles) {
+                // Fetch raw content
                 const fileRes = await fetch(file.download_url);
                 const raw = await fileRes.text();
                 
-                // Flexible regex to catch values regardless of formatting
+                // Helper to extract Frontmatter
                 const getVal = (key) => {
                     const regex = new RegExp(`${key}:\\s*["']?(.*?)["']?(\\s*\\n|\\s*\\r|$)`, 'i');
                     const match = raw.match(regex);
@@ -179,26 +364,25 @@
 
                 const isSelected = getVal('selected_dispatch');
                 
-                // Logic: show only if selected_dispatch is explicitly true
                 if (isSelected === 'true') {
                     foundCount++;
-                    const title = getVal('title') || "Untitled";
+                    const title = getVal('title') || "Untitled Protocol";
                     const dateRaw = getVal('date');
-                    const desc = getVal('description') || "";
+                    const desc = getVal('description') || "Restricted access or no description available.";
                     const extUrl = getVal('external_url');
                     
                     const dateObj = dateRaw ? new Date(dateRaw) : new Date();
                     const displayDate = dateObj.toLocaleDateString('en-US', {month:'short', year:'numeric'}).toUpperCase();
 
-                    // Priority: External URL -> Internal Page
-                    const link = (extUrl && extUrl !== '""' && extUrl !== 'null') ? extUrl : `insights/${file.name.replace('.md', '.html')}`;
-                    const target = (extUrl && extUrl !== '""') ? 'target="_blank"' : '';
+                    // Logic: Use external URL if exists, else link to internal page
+                    const link = (extUrl && extUrl.length > 5) ? extUrl : `insights/${file.name.replace('.md', '.html')}`;
+                    const target = (extUrl && extUrl.length > 5) ? 'target="_blank"' : '';
 
                     htmlBuffer += `
                         <article class="entry">
                             <div class="meta-spine">
                                 <span class="year">${displayDate}</span>
-                                <span class="tag">Insight</span>
+                                <span class="tag">Dispatch</span>
                             </div>
                             <div class="entry-content">
                                 <h3 class="entry-title"><a href="${link}" ${target}>${title}</a></h3>
@@ -209,12 +393,22 @@
                 }
             }
             
-            container.innerHTML = foundCount > 0 ? htmlBuffer : '<div class="entry"><div class="meta-spine">NOTICE</div><div class="entry-content"><h3>No dispatches marked for Home display.</h3></div></div>';
+            // Inject content with fade effect
+            if (foundCount > 0) {
+                container.innerHTML = htmlBuffer;
+            } else {
+                container.innerHTML = '<div class="entry"><div class="meta-spine">STATUS</div><div class="entry-content"><p class="entry-desc">No public insights currently available.</p></div></div>';
+            }
             
         } catch (e) { 
             console.error("Sync Error:", e);
-            container.innerHTML = '<div class="entry"><div class="meta-spine">ERROR</div><div class="entry-content"><h3>Unable to sync with the archive.</h3></div></div>';
+            // Elegant error state - subtle, not alarming
+            container.innerHTML = '<div class="entry"><div class="meta-spine">OFFLINE</div><div class="entry-content"><p class="entry-desc">Secure connection to archive unavailable.</p></div></div>';
         }
     }
+
+    // Initialize
     window.addEventListener('DOMContentLoaded', syncInsights);
 </script>
+</body>
+</html>
