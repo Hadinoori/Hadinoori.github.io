@@ -6,7 +6,9 @@
     
     <title>Personnel Dossier | Hadi Noori</title>
     <meta name="description" content="Professional biography, academic credentials, and operational history of Hadi Noori.">
-    <meta name="robots" content="noindex, nofollow"> <link rel="icon" type="image/png" href="/assets/img/sidebar-logo.png">
+    <meta name="robots" content="noindex, nofollow">
+    
+    <link rel="icon" type="image/png" href="/assets/img/sidebar-logo.png">
     
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lora:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
     
@@ -37,7 +39,7 @@
             font-family: var(--font-sans); 
             color: var(--text-primary); 
             margin: 0; 
-            line-height: 1.7; /* Slightly more breathable for reading bio */
+            line-height: 1.7;
             -webkit-font-smoothing: antialiased; 
             display: flex;
             flex-direction: column;
@@ -103,7 +105,7 @@
         }
         nav a:hover, nav a.active { color: var(--accent-blue); }
 
-        /* Page Title */
+        /* Dossier Specifics */
         .dossier-header {
             border-bottom: 1px solid var(--ui-border);
             padding-bottom: 40px;
@@ -137,7 +139,6 @@
             font-weight: 400;
         }
 
-        /* Dossier Sections */
         .section-block {
             display: grid; 
             grid-template-columns: var(--spine-width) 1fr; 
@@ -155,7 +156,7 @@
             color: var(--accent-blue);
             text-align: right;
             position: sticky;
-            top: 20px; /* Nice effect: label sticks as you scroll */
+            top: 20px; 
         }
 
         .section-content {
@@ -165,7 +166,6 @@
 
         .bio-text p { margin: 0 0 20px; text-align: justify; }
 
-        /* Timeline Items (Education/Work) */
         .timeline-item {
             margin-bottom: 40px;
             border-left: 2px solid var(--ui-border);
@@ -196,7 +196,6 @@
             margin-bottom: 10px;
         }
 
-        /* Competencies Grid */
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -254,10 +253,10 @@
         .footer-link { color: var(--text-primary); font-weight: 600; margin-left: 20px; }
         .footer-link:hover { color: var(--accent-blue); }
 
-        /* PRINT STYLES - The Secret Weapon */
+        /* Print Styles */
         @media print {
             body { background: white; color: black; }
-            header, nav, footer, .footer-link { display: none; } /* Hide UI */
+            header, nav, footer, .footer-link { display: none; }
             .wrap { max-width: 100%; padding: 0; margin: 0; }
             .section-block { break-inside: avoid; gap: 30px; margin-bottom: 40px; }
             .section-title { text-align: left; position: static; color: black; border-bottom: 1px solid #ccc; padding-bottom: 5px; margin-bottom: 10px;}
@@ -274,11 +273,9 @@
             
             .section-block { grid-template-columns: 1fr; gap: 20px; margin-bottom: 60px; }
             .section-title { text-align: left; position: static; border-bottom: 1px solid var(--ui-border); padding-bottom: 5px; margin-bottom: 15px; }
-            
             .footer-content { grid-template-columns: 1fr; gap: 20px; }
             .footer-col-right { text-align: left; }
             .footer-link { margin-left: 0; margin-right: 20px; }
-            
             .skills-grid { grid-template-columns: 1fr; }
         }
     </style>
@@ -299,85 +296,11 @@
     </header>
 
     <main id="content">
-        <div class="dossier-header">
-            <span class="doc-id">Dossier ID: HN-2026-VAN</span>
-            <h1 class="full-name">Hadi Noori</h1>
-            <h2 class="role-title">Strategic AI Governance Specialist & Researcher</h2>
+        <div id="dossier-content">
+            <div style="padding: 100px 0; opacity: 0.5; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px;">
+                Decrypting personnel file...
+            </div>
         </div>
-
-        <section class="section-block">
-            <div class="section-title">Profile</div>
-            <div class="section-content bio-text">
-                <p>
-                    Specializing in the intersection of artificial intelligence, organizational accountability, and system governance. 
-                    My work focuses on architecting protocols that bridge the gap between technical deployment and ethical compliance 
-                    in high-stakes environments.
-                </p>
-                <p>
-                    Based in Vancouver, BC, I leverage a background in Information Systems Management to analyze the socio-political 
-                    failure modes of digital transformation projects.
-                </p>
-            </div>
-        </section>
-
-        <section class="section-block">
-            <div class="section-title">Credentials</div>
-            <div class="section-content">
-                <div class="timeline-item">
-                    <span class="timeline-date">2023 — Present</span>
-                    <h3 class="timeline-role">DBA, Information Systems Management</h3>
-                    <span class="timeline-org">Specialization in AI Ethics</span>
-                </div>
-                <div class="timeline-item">
-                    <span class="timeline-date">2020</span>
-                    <h3 class="timeline-role">Master of Business Administration</h3>
-                    <span class="timeline-org">Strategic Management</span>
-                </div>
-            </div>
-        </section>
-
-        <section class="section-block">
-            <div class="section-title">Competencies</div>
-            <div class="section-content">
-                <div class="skills-grid">
-                    <div class="skill-col">
-                        <h4>Governance & Ethics</h4>
-                        <ul class="skill-list">
-                            <li>Algorithmic Impact Assessment (AIA)</li>
-                            <li>Risk Mitigation Frameworks</li>
-                            <li>Compliance Auditing</li>
-                            <li>Digital Transformation Policy</li>
-                        </ul>
-                    </div>
-                    <div class="skill-col">
-                        <h4>Technical & Systems</h4>
-                        <ul class="skill-list">
-                            <li>Python & Data Analysis</li>
-                            <li>System Architecture Design</li>
-                            <li>Web Development (Architectural)</li>
-                            <li>GitHub & Version Control</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="section-block">
-            <div class="section-title">Key Output</div>
-            <div class="section-content">
-                <div class="timeline-item">
-                    <span class="timeline-date">2026</span>
-                    <h3 class="timeline-role">The AI Ethics Playbook</h3>
-                    <span class="timeline-org">Author / Lead Developer</span>
-                </div>
-                <div class="timeline-item">
-                    <span class="timeline-date">2025</span>
-                    <h3 class="timeline-role">Digital Failure Analysis</h3>
-                    <span class="timeline-org">Research Thesis</span>
-                </div>
-            </div>
-        </section>
-
     </main>
 </div>
 
@@ -392,5 +315,64 @@
     </div>
 </footer>
 
-</body>
-</html>
+<script>
+    function escapeHTML(str) {
+        if (!str) return '';
+        if (Array.isArray(str)) return str.map(escapeHTML); 
+        return str.replace(/[&<>"']/g, m => ({
+            '&': '&amp;', '<': '&lt;', '>': '&gt;', 
+            '"': '&quot;', "'": '&#39;'
+        }[m]));
+    }
+
+    async function loadDossier() {
+        const container = document.getElementById('dossier-content');
+        
+        try {
+            const res = await fetch('/data/dossier.json');
+            if (!res.ok) throw new Error(`Status: ${res.status}`);
+            const data = await res.json();
+            
+            // Build the HTML
+            let html = `
+                <div class="dossier-header">
+                    <span class="doc-id">Dossier ID: ${escapeHTML(data.profile.id)}</span>
+                    <h1 class="full-name">${escapeHTML(data.profile.name)}</h1>
+                    <h2 class="role-title">${escapeHTML(data.profile.role)}</h2>
+                </div>
+
+                <section class="section-block">
+                    <div class="section-title">Profile</div>
+                    <div class="section-content bio-text">
+                        <p>${escapeHTML(data.profile.bio_p1)}</p>
+                        <p>${escapeHTML(data.profile.bio_p2)}</p>
+                    </div>
+                </section>
+
+                <section class="section-block">
+                    <div class="section-title">Credentials</div>
+                    <div class="section-content">
+                        ${data.credentials.map(cred => `
+                            <div class="timeline-item">
+                                <span class="timeline-date">${escapeHTML(cred.year)}</span>
+                                <h3 class="timeline-role">${escapeHTML(cred.degree)}</h3>
+                                <span class="timeline-org">${escapeHTML(cred.meta)}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                </section>
+
+                <section class="section-block">
+                    <div class="section-title">Competencies</div>
+                    <div class="section-content">
+                        <div class="skills-grid">
+                            <div class="skill-col">
+                                <h4>${escapeHTML(data.competencies.col1_title)}</h4>
+                                <ul class="skill-list">
+                                    ${data.competencies.col1_items.map(item => `<li>${escapeHTML(item)}</li>`).join('')}
+                                </ul>
+                            </div>
+                            <div class="skill-col">
+                                <h4>${escapeHTML(data.competencies.col2_title)}</h4>
+                                <ul class="skill-list">
+                                    ${data.competencies.col2_items.map(item => `<li>${escape
