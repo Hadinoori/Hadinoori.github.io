@@ -284,7 +284,7 @@
 
 <div class="wrap">
     <header role="banner">
-        <a href="index.html" class="header-brand">
+        <a href="/" class="header-brand">
             <span class="brand-name">Hadi Noori</span>
             <span class="brand-sub">Strategic AI Governance</span>
         </a>
@@ -375,4 +375,36 @@
                             <div class="skill-col">
                                 <h4>${escapeHTML(data.competencies.col2_title)}</h4>
                                 <ul class="skill-list">
-                                    ${data.competencies.col2_items.map(item => `<li>${escape
+                                    ${data.competencies.col2_items.map(item => `<li>${escapeHTML(item)}</li>`).join('')}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section-block">
+                    <div class="section-title">Key Output</div>
+                    <div class="section-content">
+                        ${data.outputs.map(out => `
+                            <div class="timeline-item">
+                                <span class="timeline-date">${escapeHTML(out.year)}</span>
+                                <h3 class="timeline-role">${escapeHTML(out.title)}</h3>
+                                <span class="timeline-org">${escapeHTML(out.role)}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                </section>
+            `;
+            
+            container.innerHTML = html;
+            
+        } catch (e) {
+            console.error("Dossier Load Error:", e);
+            container.innerHTML = '<div style="padding: 40px 0; color: #a00;">Failed to decrypt personnel file. Data access denied.</div>';
+        }
+    }
+
+    window.addEventListener('DOMContentLoaded', loadDossier);
+</script>
+</body>
+</html>
