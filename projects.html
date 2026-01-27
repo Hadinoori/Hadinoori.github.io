@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Projects | Hadi Noori</title>
+    <meta name="description" content="Portfolio of AI governance protocols, risk assessment frameworks, and algorithmic auditing projects.">
+    <meta name="robots" content="index, follow">
+    
+    <link rel="icon" type="image/png" href="/assets/img/sidebar-logo.png">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lora:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* Palette - V4.0 Standard */
+            --bg-main: #fafafa;      
+            --text-primary: #111111; 
+            --text-secondary: #444444; 
+            --text-meta: #767676;    
+            --accent-blue: #1e3a8a;  
+            --ui-border: #e5e5e5;    
+            
+            /* Typography */
+            --font-serif: 'Lora', Georgia, serif;
+            --font-sans: 'Inter', sans-serif;
+            
+            /* Layout */
+            --spine-width: clamp(140px, 15vw, 180px);
+            --max-width: 980px;
+        }
+
+        /* Base & Reset */
+        * { box-sizing: border-box; }
+        
+        body { 
+            background-color: var(--bg-main); 
+            font-family: var(--font-sans); 
+            color: var(--text-primary); 
+            margin: 0; 
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased; 
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; 
+        }
+
+        :focus-visible {
+            outline: 2px solid var(--accent-blue);
+            outline-offset: 4px;
+            border-radius: 2px;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * { animation: none !important; transition: none !important; }
+        }
+
+        /* Layout */
+        .wrap { 
+            max-width: var(--max-width); 
+            margin: 0 auto; 
+            padding: 0 40px; 
+            width: 100%;
+            flex: 1; 
+        }
+
+        /* Header */
+        header { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: flex-end; 
+            padding: 60px 0 40px; 
+        }
+
+        .header-brand { 
+            text-decoration: none; 
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .brand-name { 
+            font-family: var(--font-sans);
+            font-size: 1rem; 
+            font-weight: 700; 
+            text-transform: uppercase; 
+            letter-spacing: 2px; 
+            color: var(--text-primary);
+        }
+
+        .brand-sub { 
+            font-size: 0.65rem; 
+            font-weight: 500; 
+            text-transform: uppercase; 
+            letter-spacing: 1px; 
+            color: var(--text-meta); 
+        }
+
+        nav { display: flex; gap: 30px; padding-bottom: 2px; }
+        nav a { 
+            text-decoration: none; 
+            font-size: 0.7rem; 
+            font-weight: 600; 
+            color: var(--text-secondary); 
+            text-transform: uppercase; 
+            letter-spacing: 0.5px; 
+            transition: color 0.3s ease;
+        }
+        nav a:hover, nav a.active { color: var(--accent-blue); }
+
+        /* Page Header */
+        .page-header {
+            padding: 40px 0 60px;
+            border-bottom: 1px solid var(--ui-border);
+            margin-bottom: 40px;
+        }
+
+        .page-title {
+            font-family: var(--font-serif);
+            font-size: clamp(2rem, 3vw, 2.5rem);
+            font-weight: 600;
+            margin: 0;
+            color: var(--text-primary);
+        }
+
+        .page-desc {
+            font-family: var(--font-sans);
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-top: 10px;
+            max-width: 60ch;
+        }
+
+        /* Project Entries */
+        .entry { 
+            display: grid; 
+            grid-template-columns: var(--spine-width) 1fr; 
+            gap: 60px; 
+            padding: 40px 0; 
+            border-bottom: 1px solid var(--ui-border); 
+            align-items: start;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        /* Metadata Spine */
+        .meta-spine { 
+            font-family: var(--font-sans);
+            font-size: 0.75rem; 
+            font-weight: 500; 
+            color: var(--text-meta); 
+            text-align: right; 
+            line-height: 1.6; 
+            letter-spacing: 0.5px; 
+        }
+        
+        .meta-spine .year {
+            display: block;
+            margin-bottom: 4px;
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .meta-spine .role { 
+            color: var(--accent-blue); 
+            display: block; 
+            font-size: 0.65rem;
+            text-transform: uppercase; 
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+        }
+        
+        .meta-spine .status {
+            display: block;
+            font-size: 0.65rem;
+            opacity: 0.8;
+            font-style: italic;
+        }
+
+        /* Content */
+        .entry-title { 
+            font-family: var(--font-serif); 
+            font-size: 1.6rem; 
+            line-height: 1.25; 
+            margin: 0 0 16px; 
+            font-weight: 600; 
+        }
+
+        .entry-desc { 
+            color: var(--text-secondary); 
+            font-size: 1rem; 
+            max-width: 58ch; 
+            margin: 0 0 24px; 
+            line-height: 1.7; 
+        }
+
+        /* Project Actions / Links */
+        .project-links {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .project-link {
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--accent-blue);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s;
+        }
+        .project-link:hover { border-bottom-color: var(--accent-blue); }
+
+        /* Footer */
+        .site-footer {
+            border-top: 1px solid var(--ui-border);
+            padding: 40px 0 60px;
+            margin-top: auto;
+            background-color: var(--bg-main);
+        }
+        
+        .footer-content {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 40px;
+            display: grid;
+            grid-template-columns: var(--spine-width) 1fr auto;
+            gap: 60px;
+            align-items: baseline;
+            font-size: 0.7rem;
+            color: var(--text-meta);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 500;
+        }
+
+        .footer-col-right { text-align: right; }
+        .footer-link { color: var(--text-primary); font-weight: 600; margin-left: 20px; }
+        .footer-link:hover { color: var(--accent-blue); }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .wrap, .footer-content { padding: 0 25px; }
+            header { flex-direction: column; align-items: flex-start; gap: 20px; padding: 40px 0; }
+            nav { width: 100%; justify-content: space-between; border-bottom: 1px solid var(--ui-border); padding-bottom: 15px;}
+            
+            .entry { grid-template-columns: 1fr; gap: 20px; padding: 30px 0; }
+            
+            .meta-spine { 
+                text-align: left; 
+                display: flex; 
+                gap: 15px; 
+                align-items: baseline; 
+                border-left: 2px solid var(--accent-blue); 
+                padding-left: 12px; 
+            }
+            
+            .footer-content { grid-template-columns: 1fr; gap: 20px; }
+            .footer-col-right { text-align: left; }
+            .footer-link { margin-left: 0; margin-right: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="wrap">
+    <header role="banner">
+        <a href="index.html" class="header-brand">
+            <span class="brand-name">Hadi Noori</span>
+            <span class="brand-sub">Strategic AI Governance</span>
+        </a>
+        <nav role="navigation">
+            <a href="insights.html">Insights</a>
+            <a href="projects.html" class="active">Projects</a>
+            <a href="contact.html">Inquiry</a>
+        </nav>
+    </header>
+
+    <main id="content">
+        <div class="page-header">
+            <h1 class="page-title">Governance Protocols</h1>
+            <p class="page-desc">Applied frameworks and technical systems designed for algorithmic accountability and risk mitigation.</p>
+        </div>
+
+        <div id="projects-list">
+            
+            <article class="entry">
+                <div class="meta-spine">
+                    <span class="year">2025</span>
+                    <span class="role">Lead Architect</span>
+                    <span class="status">In Development</span>
+                </div>
+                <div class="entry-content">
+                    <h3 class="entry-title">Algorithmic Auditing Framework</h3>
+                    <p class="entry-desc">
+                        Developing a comprehensive auditing methodology for Canadian public sector AI deployments. 
+                        The framework integrates technical bias testing with sociotechnical impact analysis to ensure 
+                        compliance with Directive on Automated Decision-Making.
+                    </p>
+                    <div class="project-links">
+                        <a href="#" class="project-link">View Documentation</a>
+                        </div>
+                </div>
+            </article>
+
+            <article class="entry">
+                <div class="meta-spine">
+                    <span class="year">2024</span>
+                    <span class="role">Researcher</span>
+                    <span class="status">Published</span>
+                </div>
+                <div class="entry-content">
+                    <h3 class="entry-title">Automated Risk Assessment Protocols</h3>
+                    <p class="entry-desc">
+                        A comparative analysis of risk scoring algorithms used in border control systems. 
+                        This project mapped failure modes in "human-in-the-loop" oversight mechanisms and 
+                        proposed a new tiered-review protocol.
+                    </p>
+                    <div class="project-links">
+                        <a href="#" class="project-link">Read Abstract</a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="entry">
+                <div class="meta-spine">
+                    <span class="year">2024</span>
+                    <span class="role">Author</span>
+                    <span class="status">Academic</span>
+                </div>
+                <div class="entry-content">
+                    <h3 class="entry-title">The Ethics of Failure</h3>
+                    <p class="entry-desc">
+                        Investigation into digital transformation breakdowns within rigid organizational structures. 
+                        Identified key friction points where technical deployment outpaced governance capacity.
+                    </p>
+                    <div class="project-links">
+                        <a href="#" class="project-link">Access Paper</a>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+    </main>
+</div>
+
+<footer class="site-footer" role="contentinfo">
+    <div class="footer-content">
+        <div class="footer-col-left">© 2026 Hadi Noori</div>
+        <div class="footer-col-center">Vancouver, BC</div>
+        <div class="footer-col-right">
+            <a href="mailto:contact@hadinoori.ca" class="footer-link">Contact</a>
+            <a href="dossier.html" class="footer-link">Full Dossier</a>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
