@@ -8,6 +8,8 @@
 <meta name="description" content="Strategic AI Governance. Designing accountable protocols for high-stakes AI deployment where legitimacy matters.">
 <meta name="robots" content="index, follow">
 
+<link rel="icon" type="image/png" href="assets/img/sidebar-logo.png">
+
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lora:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
 
 <style>
@@ -99,26 +101,59 @@ body{
 /* Hero */
 .hero-section{
   display:grid;
-  grid-template-columns:280px 1fr;
+  grid-template-columns:240px 1fr;
   gap:60px;
   margin-bottom:90px;
 }
 
 .hero-image{
-  max-width:280px;
-  aspect-ratio:1;
+  width:240px;
+  aspect-ratio:4/5;
   background:#eee;
   overflow:hidden;
+  border-radius:6px;
+  border:1px solid var(--ui-border);
 }
 
 .hero-image img{
   width:100%;
   height:100%;
   object-fit:cover;
-  filter:none !important;
-  -webkit-filter:none !important;
+  object-position:50% 25%;
+  filter:none!important;
 }
 
+/* Identity */
+.hero-identity{margin-top:12px}
+
+.hero-brand{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.hero-brand img{
+  width:18px;
+  height:18px;
+  opacity:.85;
+}
+
+.hero-name{
+  font-family:var(--font-serif);
+  font-weight:700;
+  font-size:1rem;
+}
+
+.hero-title{
+  margin-top:4px;
+  font-size:.75rem;
+  font-weight:600;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  color:var(--text-meta);
+}
+
+/* Hero text */
 .hero-text h1{
   font-family:var(--font-serif);
   font-size:clamp(2.5rem,4vw,3.8rem);
@@ -185,45 +220,6 @@ body{
   color:var(--text-secondary);
 }
 
-.insight-item{
-  display:grid;
-  grid-template-columns:80px 1fr;
-  gap:30px;
-  padding:25px 0;
-  border-bottom:1px solid var(--ui-border);
-}
-
-.insight-meta{
-  font-size:.75rem;
-  color:var(--text-meta);
-}
-
-.insight-content h3{
-  font-family:var(--font-serif);
-  font-size:1.35rem;
-  margin-bottom:8px;
-}
-
-.insight-content h3 a{
-  text-decoration:none;
-  color:var(--text-primary);
-}
-
-.insight-content h3 a:hover{color:var(--accent-blue)}
-
-.insight-description{
-  font-size:.95rem;
-  color:var(--text-secondary);
-  margin-bottom:8px;
-}
-
-.tag{
-  font-size:.7rem;
-  letter-spacing:1px;
-  text-transform:uppercase;
-  color:var(--text-meta);
-}
-
 /* Mobile */
 @media(max-width:768px){
   .grid-layout{grid-template-columns:1fr}
@@ -238,7 +234,7 @@ body{
 
 <aside class="spine">
   <div>
-    <a href="/" class="spine-logo">Hadi Noori</a>
+    <a href="/" class="spine-logo">Home</a>
     <nav class="spine-nav">
       <a href="insights.html">Insights</a>
       <a href="projects.html">Projects</a>
@@ -246,8 +242,7 @@ body{
     </nav>
   </div>
   <div class="spine-footer">
-    © 2026 Hadi Noori<br>Vancouver, BC<br>
-    <a href="contact.html">Contact</a> | <a href="dossier.html">Full Dossier</a>
+    © 2026 Hadi Noori<br>Vancouver, BC
   </div>
 </aside>
 
@@ -259,11 +254,25 @@ body{
 </header>
 
 <section class="hero-section">
-  <div class="hero-image">
-    <img src="assets/img/home-profile.jpg?v=2" alt="Hadi Noori">
+  <div>
+    <div class="hero-image">
+      <img src="assets/img/home-profile.jpg?v=2" alt="Hadi Noori">
+    </div>
+
+    <div class="hero-identity">
+      <div class="hero-brand">
+        <img src="assets/img/sidebar-logo.png" alt="">
+        <div class="hero-name">Hadi Noori</div>
+      </div>
+      <div class="hero-title">Strategic AI Governance</div>
+    </div>
   </div>
+
   <div class="hero-text">
-    <h1>Intelligence is <span class="highlight">fragile</span>.<br>Governance is its <span class="highlight">armor</span>.</h1>
+    <h1>
+      Intelligence is <span class="highlight">fragile</span>.<br>
+      Governance is its <span class="highlight">armor</span>.
+    </h1>
     <p class="hero-subtitle">
       Building accountable protocols for high-stakes AI deployment —
       where technical performance is not enough, and legitimacy matters.
@@ -283,11 +292,6 @@ body{
   <p class="section-note">
     Selections update when positions evolve — not on a fixed schedule.
   </p>
-  <div id="insights-container">
-    <div class="insight-description">
-      Selected positions are available in the archive.
-    </div>
-  </div>
 </section>
 
 </main>
