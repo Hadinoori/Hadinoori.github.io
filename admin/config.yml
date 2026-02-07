@@ -1,0 +1,27 @@
+backend:
+  name: github
+  repo: hadinoori/hadinoori.github.io
+  branch: main
+
+media_folder: "assets/img"
+public_folder: "/assets/img"
+
+collections:
+  - name: "insights"
+    label: "Insights"
+    folder: "_insights"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "Layout", name: "layout", widget: "hidden", default: "post" }
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Publish Date", name: "date", widget: "datetime" }
+      
+      # Logic for Home Page Visibility
+      - { label: "Add to Selected Dispatch?", name: "selected_dispatch", widget: "boolean", default: false }
+      
+      # Logic for External Curated Content
+      - { label: "External URL (Optional)", name: "external_url", widget: "string", required: false }
+      
+      - { label: "Summary", name: "description", widget: "text" }
+      - { label: "Body Content", name: "body", widget: "markdown", required: false }

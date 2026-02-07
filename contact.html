@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Inquiry | Hadi Noori</title>
+    <meta name="description" content="Secure communication channels for professional inquiries regarding AI governance.">
+    <meta name="robots" content="index, follow">
+    
+    <link rel="icon" type="image/png" href="/assets/img/sidebar-logo.png">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lora:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* Palette - V4.0 Standard */
+            --bg-main: #fafafa;      
+            --text-primary: #111111; 
+            --text-secondary: #444444; 
+            --text-meta: #767676;    
+            --accent-blue: #1e3a8a;  
+            --ui-border: #e5e5e5;    
+            
+            /* Typography */
+            --font-serif: 'Lora', Georgia, serif;
+            --font-sans: 'Inter', sans-serif;
+            
+            /* Layout */
+            --spine-width: clamp(140px, 15vw, 180px);
+            --max-width: 980px;
+        }
+
+        /* Base & Reset */
+        * { box-sizing: border-box; }
+        
+        body { 
+            background-color: var(--bg-main); 
+            font-family: var(--font-sans); 
+            color: var(--text-primary); 
+            margin: 0; 
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased; 
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; 
+        }
+
+        :focus-visible {
+            outline: 2px solid var(--accent-blue);
+            outline-offset: 4px;
+            border-radius: 2px;
+        }
+
+        /* Layout */
+        .wrap { 
+            max-width: var(--max-width); 
+            margin: 0 auto; 
+            padding: 0 40px; 
+            width: 100%;
+            flex: 1; 
+        }
+
+        /* Header */
+        header { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: flex-end; 
+            padding: 60px 0 40px; 
+        }
+
+        .header-brand { 
+            text-decoration: none; 
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .brand-name { 
+            font-family: var(--font-sans);
+            font-size: 1rem; 
+            font-weight: 700; 
+            text-transform: uppercase; 
+            letter-spacing: 2px; 
+            color: var(--text-primary);
+        }
+
+        .brand-sub { 
+            font-size: 0.65rem; 
+            font-weight: 500; 
+            text-transform: uppercase; 
+            letter-spacing: 1px; 
+            color: var(--text-meta); 
+        }
+
+        nav { display: flex; gap: 30px; padding-bottom: 2px; }
+        nav a { 
+            text-decoration: none; 
+            font-size: 0.7rem; 
+            font-weight: 600; 
+            color: var(--text-secondary); 
+            text-transform: uppercase; 
+            letter-spacing: 0.5px; 
+            transition: color 0.3s ease;
+        }
+        nav a:hover, nav a.active { color: var(--accent-blue); }
+
+        /* Page Header */
+        .page-header {
+            padding: 40px 0 60px;
+            border-bottom: 1px solid var(--ui-border);
+            margin-bottom: 40px;
+        }
+
+        .page-title {
+            font-family: var(--font-serif);
+            font-size: clamp(2rem, 3vw, 2.5rem);
+            font-weight: 600;
+            margin: 0;
+            color: var(--text-primary);
+        }
+
+        .page-desc {
+            font-family: var(--font-sans);
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-top: 10px;
+            max-width: 60ch;
+        }
+
+        /* Entries */
+        .entry { 
+            display: grid; 
+            grid-template-columns: var(--spine-width) 1fr; 
+            gap: 60px; 
+            padding: 40px 0; 
+            border-bottom: 1px solid var(--ui-border); 
+            align-items: start;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .meta-spine { 
+            font-family: var(--font-sans);
+            font-size: 0.75rem; 
+            font-weight: 500; 
+            color: var(--text-meta); 
+            text-align: right; 
+            line-height: 1.6; 
+            letter-spacing: 0.5px; 
+        }
+        
+        .meta-label {
+            display: block;
+            margin-bottom: 4px;
+            color: var(--text-primary);
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .meta-value { 
+            color: var(--text-secondary); 
+            display: block; 
+            font-size: 0.7rem;
+            margin-bottom: 4px;
+        }
+
+        .entry-title { 
+            font-family: var(--font-serif); 
+            font-size: 1.4rem; 
+            line-height: 1.25; 
+            margin: 0 0 16px; 
+            font-weight: 600; 
+        }
+
+        .entry-desc { 
+            color: var(--text-secondary); 
+            font-size: 1rem; 
+            max-width: 55ch; 
+            margin: 0 0 20px; 
+            line-height: 1.7; 
+        }
+
+        .secure-link {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--accent-blue);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s;
+            cursor: pointer;
+        }
+        .secure-link:hover { border-bottom-color: var(--accent-blue); }
+
+        .pgp-block {
+            font-family: monospace;
+            font-size: 0.75rem;
+            background: #f0f0f0;
+            padding: 15px;
+            border-radius: 2px;
+            color: #333;
+            display: inline-block;
+            letter-spacing: 0.5px;
+        }
+
+        /* Footer */
+        .site-footer {
+            border-top: 1px solid var(--ui-border);
+            padding: 40px 0 60px;
+            margin-top: auto;
+            background-color: var(--bg-main);
+        }
+        
+        .footer-content {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 40px;
+            display: grid;
+            grid-template-columns: var(--spine-width) 1fr auto;
+            gap: 60px;
+            align-items: baseline;
+            font-size: 0.7rem;
+            color: var(--text-meta);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 500;
+        }
+
+        .footer-col-right { text-align: right; }
+        .footer-link { color: var(--text-primary); font-weight: 600; margin-left: 20px; }
+        .footer-link:hover { color: var(--accent-blue); }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        @media (max-width: 768px) {
+            .wrap, .footer-content { padding: 0 25px; }
+            header { flex-direction: column; align-items: flex-start; gap: 20px; padding: 40px 0; }
+            nav { width: 100%; justify-content: space-between; border-bottom: 1px solid var(--ui-border); padding-bottom: 15px;}
+            .entry { grid-template-columns: 1fr; gap: 20px; padding: 30px 0; }
+            .meta-spine { text-align: left; display: flex; gap: 15px; align-items: baseline; border-left: 2px solid var(--accent-blue); padding-left: 12px; }
+            .footer-content { grid-template-columns: 1fr; gap: 20px; }
+            .footer-col-right { text-align: left; }
+            .footer-link { margin-left: 0; margin-right: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="wrap">
+    <header role="banner">
+        <a href="/" class="header-brand">
+            <span class="brand-name">Hadi Noori</span>
+            <span class="brand-sub">Strategic AI Governance</span>
+        </a>
+        <nav role="navigation">
+            <a href="insights.html">Insights</a>
+            <a href="projects.html">Projects</a>
+            <a href="contact.html" class="active">Inquiry</a>
+        </nav>
+    </header>
+
+    <main id="content">
+        <div class="page-header">
+            <h1 class="page-title">Engagement Channels</h1>
+            <p class="page-desc">Information regarding consultation availability, speaking engagements, and secure communication protocols.</p>
+        </div>
+
+        <div id="inquiry-container">
+            <div style="padding: 40px 0; opacity: 0.6; font-size: 0.8rem; text-transform: uppercase;">Establishing secure channel...</div>
+        </div>
+    </main>
+</div>
+
+<footer class="site-footer" role="contentinfo">
+    <div class="footer-content">
+        <div class="footer-col-left">© 2026 Hadi Noori</div>
+        <div class="footer-col-center">Vancouver, BC</div>
+        <div class="footer-col-right">
+            <a href="contact.html" class="footer-link">Contact</a>
+            <a href="dossier.html" class="footer-link">Full Dossier</a>
+        </div>
+    </div>
+</footer>
+
+<script>
+    function escapeHTML(str) {
+        if (!str) return '';
+        return str.replace(/[&<>"']/g, m => ({
+            '&': '&amp;', '<': '&lt;', '>': '&gt;', 
+            '"': '&quot;', "'": '&#39;'
+        }[m]));
+    }
+
+    async function loadInquiry() {
+        const container = document.getElementById('inquiry-container');
+        
+        try {
+            const res = await fetch('/data/inquiry.json');
+            if (!res.ok) throw new Error(`Status: ${res.status}`);
+            const data = await res.json();
+            
+            // Build Social Links
+            const socialLinks = data.socials.map(s => 
+                `<a href="${escapeHTML(s.url)}" target="_blank" class="secure-link">${escapeHTML(s.name)}</a>`
+            ).join('<span style="margin:0 10px; color:#ccc">|</span>');
+
+            let html = `
+                <article class="entry">
+                    <div class="meta-spine">
+                        <span class="meta-label">Primary</span>
+                        <span class="meta-value">Direct Line</span>
+                    </div>
+                    <div class="entry-content">
+                        <h3 class="entry-title">Professional Correspondence</h3>
+                        <p class="entry-desc">${escapeHTML(data.email.desc)}</p>
+                        <a id="email-revealer" class="secure-link">Reveal Email Address</a>
+                    </div>
+                </article>
+
+                <article class="entry">
+                    <div class="meta-spine">
+                        <span class="meta-label">Status</span>
+                        <span class="meta-value">${escapeHTML(data.availability.year)}</span>
+                    </div>
+                    <div class="entry-content">
+                        <h3 class="entry-title">${escapeHTML(data.availability.status)}</h3>
+                        <p class="entry-desc">${escapeHTML(data.availability.message)}</p>
+                    </div>
+                </article>
+
+                <article class="entry">
+                    <div class="meta-spine">
+                        <span class="meta-label">Network</span>
+                        <span class="meta-value">Social</span>
+                    </div>
+                    <div class="entry-content">
+                        <h3 class="entry-title">Professional Network</h3>
+                        <p class="entry-desc">Connect for professional updates or technical contributions.</p>
+                        <div style="display: flex; gap: 0;">
+                            ${socialLinks}
+                        </div>
+                    </div>
+                </article>
+
+                <article class="entry" style="border-bottom: none;">
+                    <div class="meta-spine">
+                        <span class="meta-label">Security</span>
+                        <span class="meta-value">PGP Key</span>
+                    </div>
+                    <div class="entry-content">
+                        <h3 class="entry-title">Cryptographic Verification</h3>
+                        <p class="entry-desc">Use the following fingerprint to verify the integrity of sensitive communications.</p>
+                        <div class="pgp-block">${escapeHTML(data.security.fingerprint)}</div>
+                    </div>
+                </article>
+            `;
+            
+            container.innerHTML = html;
+
+            // Activate Email Obfuscation Logic
+            document.getElementById('email-revealer').addEventListener('click', function() {
+                const user = data.email.user;
+                const domain = data.email.domain;
+                window.location.href = `mailto:${user}@${domain}`;
+            });
+            
+        } catch (e) {
+            console.error("Inquiry Load Error:", e);
+            container.innerHTML = '<div style="padding: 40px 0; color: #a00;">Secure channel currently unavailable.</div>';
+        }
+    }
+    
+    window.addEventListener('DOMContentLoaded', loadInquiry);
+</script>
+</body>
+</html>

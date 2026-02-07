@@ -1,0 +1,14 @@
+/* Reset the theme's forced constraints */
+.container {
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+#about, article {
+    max-width: 900px !important;
+    margin: 0 auto !important;
+    padding: 40px 20px !important;
+}
+
+.sidebar { display: none !important; }
