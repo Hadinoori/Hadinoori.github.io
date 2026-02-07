@@ -92,18 +92,6 @@
       position: relative;
       min-height: 600px; /* Ensure height for image composition */
     }
-    
-    /* Blue vertical line - at hero-grid level so it's behind everything */
-    .hero-grid::before {
-      content: '';
-      position: absolute;
-      right: 32%; /* Positioned behind left shoulder of image */
-      top: 0;
-      bottom: 0; 
-      width: 4px; 
-      background: var(--accent);
-      z-index: 0; /* Behind everything */
-    }
 
     /* --- TYPOGRAPHY SIDE --- */
     .identity-block {
@@ -188,10 +176,22 @@
       display: flex;
       align-items: flex-end; 
       justify-content: center;
-      overflow: visible; /* Allow blue line to extend beyond */
+      overflow: visible;
     }
 
-    /* The Grounding Shadow (Behind Image) - More subtle */
+    /* 1. The Vertical Spine (Blue Line) - BEHIND the image */
+    .image-container::before {
+      content: '';
+      position: absolute;
+      left: 18%; /* Original position - slightly behind left shoulder */
+      top: -100px;
+      bottom: 0; 
+      width: 4px; 
+      background: var(--accent);
+      z-index: -1; /* CHANGED: negative z-index to be truly behind image */
+    }
+
+    /* 2. The Grounding Shadow (Behind Image) - More subtle */
     .image-container::after {
       content: '';
       position: absolute;
@@ -199,14 +199,13 @@
       left: 10%;
       width: 80%;
       height: 60px;
-      /* Very soft shadow underneath */
       background: radial-gradient(ellipse at center, rgba(0,0,0,0.08) 0%, transparent 70%);
-      z-index: 0;
+      z-index: -1;
     }
 
     .hero-image-wrapper {
       position: relative;
-      z-index: 2; /* Above the blue line and shadow */
+      z-index: 1; /* Positive z-index to be above the blue line (which is -1) */
       width: 100%;
       height: 100%;
       display: flex;
