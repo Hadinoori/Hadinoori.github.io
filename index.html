@@ -148,7 +148,6 @@
       background: #fff;
       border-radius: 6px;
       overflow: hidden;
-      /* "Picture Frame" effect */
       box-shadow: 0 0 0 8px #fff, 0 10px 40px -5px rgba(0,0,0,0.15);
       border: 1px solid var(--border-color);
     }
@@ -229,7 +228,6 @@
       box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     }
 
-    /* Improved Secondary Button */
     .btn-secondary {
       color: var(--text-main);
       text-decoration: none;
@@ -246,7 +244,7 @@
       background: #fff;
     }
 
-    /* --- NEW SECTION: FOCUS AREAS (Visual Interest) --- */
+    /* --- FOCUS AREAS --- */
     .focus-section {
       margin-bottom: 100px;
     }
@@ -259,9 +257,7 @@
       border-top: 1px solid var(--border-color);
     }
 
-    .focus-card {
-      padding: 20px 0;
-    }
+    .focus-card { padding: 20px 0; }
 
     .focus-icon {
       color: var(--accent-blue);
@@ -361,56 +357,33 @@
       margin-bottom: 20px;
     }
 
-    /* --- PROFESSIONAL FOOTER --- */
+    /* --- MINIMAL FOOTER (REVERTED) --- */
     .site-footer {
-      background: #111; /* Dark professional footer */
-      color: #fff;
-      padding: 60px 0;
+      padding: 40px 0;
       margin-top: auto;
+      background: #fff;
+      border-top: 1px solid var(--border-color);
     }
-
-    .footer-container {
+    
+    .footer-content {
       display: flex;
       justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 40px;
+      align-items: center;
+      font-size: 0.85rem;
+      color: var(--text-light);
     }
 
-    .footer-col h4 {
-      font-family: var(--font-serif);
-      font-size: 1.1rem;
-      margin-bottom: 20px;
-      color: #fff;
-    }
-
-    .footer-col p {
-      color: #999;
-      font-size: 0.9rem;
-      max-width: 300px;
-    }
-
-    .footer-nav {
+    .social-links {
       display: flex;
-      flex-direction: column;
-      gap: 12px;
+      gap: 20px;
     }
-    .footer-nav a {
-      color: #999;
+
+    .social-links a {
+      color: var(--text-muted);
       text-decoration: none;
-      font-size: 0.9rem;
       transition: color 0.2s;
     }
-    .footer-nav a:hover { color: #fff; }
-
-    .footer-bottom {
-      border-top: 1px solid #333;
-      margin-top: 50px;
-      padding-top: 20px;
-      display: flex;
-      justify-content: space-between;
-      color: #555;
-      font-size: 0.8rem;
-    }
+    .social-links a:hover { color: var(--accent-blue); }
 
     /* --- RESPONSIVE --- */
     @media (max-width: 900px) {
@@ -423,9 +396,9 @@
       .focus-grid { grid-template-columns: 1fr; }
       
       .site-header { flex-direction: column; gap: 20px; align-items: flex-start; }
-      .nav-links { flex-wrap: wrap; width: 100%; }
+      .nav-links { flex-wrap: wrap; width: 100%; gap: 20px; }
       
-      .footer-container { flex-direction: column; }
+      .footer-content { flex-direction: column; gap: 16px; }
     }
   </style>
 </head>
@@ -524,43 +497,20 @@
 
   <footer class="site-footer">
     <div class="container">
-      <div class="footer-container">
-        
-        <div class="footer-col">
-          <h4>Hadi Noori</h4>
-          <p>Strategic advisor on AI governance, ethics, and digital transformation protocols.</p>
+      <div class="footer-content">
+        <div>
+          &copy; 2026 Hadi Noori. Vancouver, BC.
         </div>
-
-        <div class="footer-col">
-          <h4>Navigation</h4>
-          <nav class="footer-nav">
-            <a href="/">Home</a>
-            <a href="insights.html">Insights</a>
-            <a href="projects.html">Projects</a>
-            <a href="dossier.html">Full Dossier</a>
-          </nav>
+        <div class="social-links">
+          <a href="https://linkedin.com/in/hadinoori" target="_blank">LinkedIn</a>
+          <a href="https://github.com/hadinoori" target="_blank">GitHub</a>
+          <a href="mailto:contact@hadinoori.ca">Email</a>
         </div>
-
-        <div class="footer-col">
-          <h4>Connect</h4>
-          <nav class="footer-nav">
-            <a href="https://linkedin.com/in/hadinoori" target="_blank">LinkedIn</a>
-            <a href="https://github.com/hadinoori" target="_blank">GitHub</a>
-            <a href="mailto:contact@hadinoori.ca">Email Inquiry</a>
-          </nav>
-        </div>
-
-      </div>
-
-      <div class="footer-bottom">
-        <div>&copy; 2026 Hadi Noori. All rights reserved.</div>
-        <div>Based in Vancouver, BC.</div>
       </div>
     </div>
   </footer>
 
   <script>
-    // Hybrid Strategy: Try API, if empty or fail, show Static Placeholders
     async function loadSelectedInsights() {
       const container = document.getElementById('intel-container');
       const p1 = document.getElementById('placeholder-1');
@@ -587,7 +537,6 @@
           const fm = fmMatch[1];
           if (!/selected_dispatch:\s*["']?true["']?/i.test(fm)) continue;
 
-          // Extractor...
           const title = (fm.match(/title:\s*["']?(.*?)["']?\s*$/m) || [])[1] || 'Untitled';
           const desc = (fm.match(/description:\s*["']?(.*?)["']?\s*$/m) || [])[1] || '';
           const type = (fm.match(/type:\s*["']?(.*?)["']?\s*$/m) || [])[1] || 'Dispatch';
@@ -607,13 +556,11 @@
         if (count > 0) {
           container.innerHTML = html;
         } else {
-          // SHOW STATIC FALLBACKS
           p1.style.display = 'flex';
           p2.style.display = 'flex';
         }
 
       } catch (e) {
-        // ON ERROR: SHOW STATIC FALLBACKS
         p1.style.display = 'flex';
         p2.style.display = 'flex';
       }
