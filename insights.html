@@ -1,9 +1,12 @@
+---
+layout: none
+---
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>Insights | Hadi Noori</title>
   <meta name="description" content="Archive of dispatches, protocols, and strategic analysis on AI governance.">
   <meta name="robots" content="index, follow">
@@ -12,399 +15,72 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lora:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
 
   <style>
-    :root{
-      --bg-main:#fafafa;
-      --text-primary:#111111;
-      --text-secondary:#444444;
-      --text-meta:#767676;
-      --accent-blue:#1e3a8a;
-      --ui-border:#e5e5e5;
-
-      --font-serif:'Lora', Georgia, serif;
-      --font-sans:'Inter', sans-serif;
-
-      --spine-width:clamp(140px, 15vw, 180px);
-      --max-width:980px;
-    }
-
-    *{ box-sizing:border-box; }
-
-    body{
-      background-color:var(--bg-main);
-      font-family:var(--font-sans);
-      color:var(--text-primary);
-      margin:0;
-      line-height:1.6;
-      -webkit-font-smoothing:antialiased;
-      display:flex;
-      flex-direction:column;
-      min-height:100vh;
-    }
-
-    .wrap{
-      max-width:var(--max-width);
-      margin:0 auto;
-      padding:0 40px;
-      width:100%;
-      flex:1;
-    }
-
-    header{
-      display:flex;
-      justify-content:space-between;
-      align-items:flex-end;
-      padding:60px 0 40px;
-    }
-
-    .header-brand{
-      text-decoration:none;
-      display:flex;
-      flex-direction:column;
-      gap:2px;
-    }
-
-    .brand-name{
-      font-size:1rem;
-      font-weight:700;
-      text-transform:uppercase;
-      letter-spacing:2px;
-      color:var(--text-primary);
-    }
-
-    .brand-sub{
-      font-size:0.65rem;
-      font-weight:500;
-      text-transform:uppercase;
-      letter-spacing:1px;
-      color:var(--text-meta);
-    }
-
-    nav{ display:flex; gap:30px; padding-bottom:2px; }
-    nav a{
-      text-decoration:none;
-      font-size:0.7rem;
-      font-weight:600;
-      color:var(--text-secondary);
-      text-transform:uppercase;
-      letter-spacing:0.5px;
-      transition:color 0.3s ease;
-    }
-    nav a:hover, nav a.active{ color:var(--accent-blue); }
-
-    .page-header{
-      padding:40px 0 60px;
-      border-bottom:1px solid var(--ui-border);
-      margin-bottom:40px;
-    }
-
-    .page-title{
-      font-family:var(--font-serif);
-      font-size:clamp(2rem, 3vw, 2.5rem);
-      font-weight:600;
-      margin:0;
-    }
-
-    .page-desc{
-      font-size:1rem;
-      color:var(--text-secondary);
-      margin-top:10px;
-      max-width:60ch;
-    }
-
-    .helper-note{
-      margin:0 0 30px;
-      color:var(--text-meta);
-      font-size:0.9rem;
-      max-width:65ch;
-    }
-
-    .entry{
-      display:grid;
-      grid-template-columns:var(--spine-width) 1fr;
-      gap:60px;
-      padding:30px 0;
-      border-bottom:1px solid var(--ui-border);
-      align-items:baseline;
-    }
-
-    .meta-spine{
-      font-size:0.75rem;
-      font-weight:500;
-      color:var(--text-meta);
-      text-align:right;
-      line-height:1.6;
-      letter-spacing:0.5px;
-    }
-
-    .meta-spine .tag{
-      color:var(--accent-blue);
-      display:block;
-      font-size:0.65rem;
-      text-transform:uppercase;
-      margin-top:4px;
-      letter-spacing:1px;
-    }
-
-    .entry-title{
-      font-family:var(--font-serif);
-      font-size:1.6rem;
-      line-height:1.25;
-      margin:0 0 10px;
-      font-weight:600;
-    }
-
-    .entry-title a{
-      color:inherit;
-      text-decoration:none;
-      background-image:linear-gradient(var(--text-primary), var(--text-primary));
-      background-position:0% 100%;
-      background-repeat:no-repeat;
-      background-size:0% 1px;
-      transition:background-size 0.3s, color 0.3s;
-    }
-    .entry-title a:hover{
-      color:var(--accent-blue);
-      background-size:100% 1px;
-      background-image:linear-gradient(var(--accent-blue), var(--accent-blue));
-    }
-
-    .entry-desc{
-      color:var(--text-secondary);
-      font-size:1rem;
-      max-width:55ch;
-      margin:0;
-      line-height:1.6;
-    }
-
-    .loading-state{
-      padding:20px 0 10px;
-      opacity:0.7;
-      font-size:0.75rem;
-      letter-spacing:1px;
-      text-transform:uppercase;
-      color:var(--text-meta);
-    }
-
-    .site-footer{
-      border-top:1px solid var(--ui-border);
-      padding:40px 0 60px;
-      margin-top:auto;
-      background-color:var(--bg-main);
-    }
-
-    .footer-content{
-      max-width:var(--max-width);
-      margin:0 auto;
-      padding:0 40px;
-      display:grid;
-      grid-template-columns:var(--spine-width) 1fr auto;
-      gap:60px;
-      align-items:baseline;
-      font-size:0.7rem;
-      color:var(--text-meta);
-      text-transform:uppercase;
-      letter-spacing:1px;
-      font-weight:500;
-    }
-
-    .footer-col-right{ text-align:right; }
-    .footer-link{ color:var(--text-primary); font-weight:600; margin-left:20px; text-decoration:none; }
-    .footer-link:hover{ color:var(--accent-blue); }
-
+    :root{--bg-main:#fafafa;--text-primary:#111;--text-secondary:#444;--text-meta:#767676;--accent-blue:#1e3a8a;--ui-border:#e5e5e5;--font-serif:'Lora',Georgia,serif;--font-sans:'Inter',sans-serif;--spine-width:clamp(140px,15vw,180px);--max-width:980px;}
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg-main);color:var(--text-primary);font-family:var(--font-sans);line-height:1.6;-webkit-font-smoothing:antialiased}
+    .wrap{max-width:var(--max-width);margin:0 auto;padding:0 40px}
+    header{display:flex;justify-content:space-between;align-items:flex-end;padding:60px 0 40px}
+    .header-brand{text-decoration:none;display:flex;flex-direction:column;gap:2px}
+    .brand-name{font-size:1rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--text-primary)}
+    .brand-sub{font-size:.65rem;font-weight:500;text-transform:uppercase;letter-spacing:1px;color:var(--text-meta)}
+    nav{display:flex;gap:30px;padding-bottom:2px}
+    nav a{text-decoration:none;font-size:.7rem;font-weight:600;color:var(--text-secondary);text-transform:uppercase;letter-spacing:.5px}
+    nav a:hover, nav a.active{color:var(--accent-blue)}
+    .page-header{padding:40px 0 60px;border-bottom:1px solid var(--ui-border);margin-bottom:40px}
+    .page-title{font-family:var(--font-serif);font-size:clamp(2rem,3vw,2.5rem);font-weight:600;margin:0}
+    .page-desc{color:var(--text-secondary);margin-top:10px;max-width:60ch}
+    .entry{display:grid;grid-template-columns:var(--spine-width) 1fr;gap:60px;padding:30px 0;border-bottom:1px solid var(--ui-border);align-items:baseline}
+    .meta-spine{font-size:.75rem;font-weight:500;color:var(--text-meta);text-align:right;letter-spacing:.5px}
+    .meta-spine .tag{color:var(--accent-blue);display:block;font-size:.65rem;text-transform:uppercase;margin-top:4px;letter-spacing:1px}
+    .entry-title{font-family:var(--font-serif);font-size:1.6rem;line-height:1.25;margin:0 0 10px;font-weight:600}
+    .entry-title a{color:inherit;text-decoration:none}
+    .entry-title a:hover{color:var(--accent-blue)}
+    .entry-desc{color:var(--text-secondary);max-width:55ch;margin:0}
     @media (max-width:768px){
-      .wrap, .footer-content{ padding:0 25px; }
-      header{ flex-direction:column; align-items:flex-start; gap:20px; padding:40px 0; }
-      nav{ width:100%; justify-content:space-between; border-bottom:1px solid var(--ui-border); padding-bottom:15px; }
-
-      .entry{ grid-template-columns:1fr; gap:12px; padding:25px 0; }
-      .meta-spine{
-        text-align:left;
-        display:flex;
-        gap:12px;
-        align-items:center;
-        border-left:2px solid var(--accent-blue);
-        padding-left:12px;
-        margin-bottom:4px;
-      }
-
-      .footer-content{ grid-template-columns:1fr; gap:20px; }
-      .footer-col-right{ text-align:left; }
-      .footer-link{ margin-left:0; margin-right:20px; }
+      .wrap{padding:0 25px}
+      header{flex-direction:column;align-items:flex-start;gap:20px;padding:40px 0}
+      nav{width:100%;justify-content:space-between;border-bottom:1px solid var(--ui-border);padding-bottom:15px}
+      .entry{grid-template-columns:1fr;gap:12px;padding:25px 0}
+      .meta-spine{text-align:left;display:flex;gap:12px;align-items:center;border-left:2px solid var(--accent-blue);padding-left:12px;margin-bottom:4px}
     }
   </style>
 </head>
 
 <body>
   <div class="wrap">
-    <header role="banner">
+    <header>
       <a href="/" class="header-brand">
         <span class="brand-name">Hadi Noori</span>
         <span class="brand-sub">Strategic AI Governance</span>
       </a>
-      <nav role="navigation">
-        <a href="insights.html" class="active">Insights</a>
-        <a href="projects.html">Projects</a>
-        <a href="contact.html">Inquiry</a>
+      <nav>
+        <a href="/">Home</a>
+        <a href="/insights.html" class="active">Insights</a>
+        <a href="/projects.html">Projects</a>
+        <a href="/contact.html">Inquiry</a>
       </nav>
     </header>
 
-    <main id="content">
+    <main>
       <div class="page-header">
         <h1 class="page-title">Intelligence Archive</h1>
         <p class="page-desc">Dispatches, protocols, and strategic analysis on the governance of artificial intelligence.</p>
       </div>
 
-      <p class="helper-note">Selected entries are shown below. If the live archive fails to load, this page remains readable.</p>
-
-      <section id="archive-container" aria-live="polite">
-        <!-- FALLBACK: replace with 2–3 links you know exist -->
+      {% assign posts = site.insights | sort: "date" | reverse %}
+      {% for p in posts %}
         <article class="entry">
           <div class="meta-spine">
-            <span class="year">JAN 2026</span>
-            <span class="tag">DISPATCH</span>
+            <span class="year">{{ p.date | date: "%b %Y" | upcase }}</span>
+            <span class="tag">{{ p.type | default: "Dispatch" }}</span>
           </div>
           <div class="entry-content">
-            <h3 class="entry-title"><a href="dossier.html">Governance Playbook: From Policy to Operational Controls</a></h3>
-            <p class="entry-desc">A practical architecture for turning governance principles into implementable controls and audit-ready documentation.</p>
+            <h3 class="entry-title"><a href="{{ p.url | relative_url }}">{{ p.title }}</a></h3>
+            <p class="entry-desc">{{ p.description | default: "" }}</p>
           </div>
         </article>
-
-        <div class="loading-state" id="archive-status">Loading live archive…</div>
-      </section>
+      {% endfor %}
     </main>
   </div>
-
-  <footer class="site-footer" role="contentinfo">
-    <div class="footer-content">
-      <div class="footer-col-left">© 2026 Hadi Noori</div>
-      <div class="footer-col-center">Vancouver, BC</div>
-      <div class="footer-col-right">
-        <a href="contact.html" class="footer-link">Contact</a>
-        <a href="dossier.html" class="footer-link">Full Dossier</a>
-      </div>
-    </div>
-  </footer>
-
-  <script>
-    function escapeHTML(str){
-      if(!str) return '';
-      return str.replace(/[&<>"']/g, m => ({
-        '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
-      }[m]));
-    }
-
-    function parseFrontMatter(raw){
-      const lines = raw.split('\n');
-      const metadata = {};
-      let inFrontMatter = false;
-
-      for(const line of lines){
-        const trimmed = line.trim();
-        if(trimmed === '---'){
-          if(!inFrontMatter) inFrontMatter = true;
-          else break;
-          continue;
-        }
-        if(inFrontMatter){
-          const i = trimmed.indexOf(':');
-          if(i !== -1){
-            const key = trimmed.slice(0, i).trim();
-            let value = trimmed.slice(i + 1).trim();
-            if(value.startsWith('"') && value.endsWith('"')) value = value.slice(1, -1);
-            metadata[key] = value;
-          }
-        }
-      }
-      return metadata;
-    }
-
-    function safeParseISODate(dateRaw){
-      if(!dateRaw) return 0;
-      const s = String(dateRaw).trim();
-      const m = s.match(/^(\d{4})-(\d{2})-(\d{2})$/);
-      if(m){
-        const y = Number(m[1]), mo = Number(m[2]) - 1, d = Number(m[3]);
-        return Date.UTC(y, mo, d);
-      }
-      const t = Date.parse(s);
-      return Number.isFinite(t) ? t : 0;
-    }
-
-    function formatMonthYear(ts){
-      if(!ts) return '—';
-      const d = new Date(ts);
-      return d.toLocaleDateString('en-US', {month:'short', year:'numeric'}).toUpperCase();
-    }
-
-    async function syncArchive(){
-      const container = document.getElementById('archive-container');
-      const statusEl = document.getElementById('archive-status');
-
-      const REPO = 'hadinoori/hadinoori.github.io';
-      const API = `https://api.github.com/repos/${REPO}/contents/_insights`;
-
-      try{
-        const res = await fetch(API, { headers: { 'Accept': 'application/vnd.github+json' } });
-        if(!res.ok) throw new Error(`Archive fetch failed (${res.status})`);
-
-        const files = await res.json();
-        const mdFiles = files.filter(f => f && f.name && f.name.endsWith('.md'));
-
-        const loaded = await Promise.all(mdFiles.map(async (file) => {
-          const fileRes = await fetch(file.download_url);
-          const text = await fileRes.text();
-          const meta = parseFrontMatter(text);
-          const ts = safeParseISODate(meta.date);
-          return { filename: file.name, meta, ts };
-        }));
-
-        loaded.sort((a, b) => (b.ts - a.ts) || (a.filename < b.filename ? 1 : -1));
-
-        let html = '';
-        for(const item of loaded){
-          const meta = item.meta || {};
-          const title = meta.title || 'Untitled Dispatch';
-          const desc = meta.description || '';
-          const type = meta.type || 'Dispatch';
-          const extUrl = meta.external_url && String(meta.external_url).trim();
-
-          const displayDate = formatMonthYear(item.ts);
-
-          const link = (extUrl && extUrl.length > 5) ? extUrl : `insights/${item.filename.replace('.md', '.html')}`;
-          const isExternal = (extUrl && extUrl.length > 5);
-          const target = isExternal ? ' target="_blank" rel="noopener noreferrer"' : '';
-
-          html += `
-            <article class="entry">
-              <div class="meta-spine">
-                <span class="year">${escapeHTML(displayDate)}</span>
-                <span class="tag">${escapeHTML(type)}</span>
-              </div>
-              <div class="entry-content">
-                <h3 class="entry-title"><a href="${escapeHTML(link)}"${target}>${escapeHTML(title)}</a></h3>
-                <p class="entry-desc">${escapeHTML(desc)}</p>
-              </div>
-            </article>
-          `;
-        }
-
-        // remove fallback entry + status
-        container.querySelectorAll('.entry').forEach(e => e.remove());
-        if(statusEl) statusEl.remove();
-
-        if(loaded.length > 0){
-          container.insertAdjacentHTML('afterbegin', html);
-        } else {
-          container.insertAdjacentHTML('beforeend', '<div class="loading-state">Archive is empty.</div>');
-        }
-
-      } catch(e){
-        console.error('Archive Error:', e);
-        if(statusEl) statusEl.textContent = 'Live archive unavailable — showing selected entries.';
-      }
-    }
-
-    window.addEventListener('DOMContentLoaded', syncArchive);
-  </script>
 </body>
 </html>
