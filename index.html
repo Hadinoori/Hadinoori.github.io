@@ -1,250 +1,444 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hadi Noori | Strategic AI Governance</title>
-  <meta name="description" content="Strategic AI Governance. Designing accountable protocols for high-stakes AI deployment." />
   
-  <link rel="icon" type="image/png" href="assets/img/sidebar-logo.png" />
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Anybody:wght@300;700;900&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+  
   <style>
     :root {
-      /* --- PALETTE: Editorial --- */
-      --bg-body: #ffffff;
-      --text-main: #0a0a0a;   /* Ink Black */
-      --text-muted: #525252;  
-      
-      /* The "Spine" Color - Navy Blue */
-      --accent: #1e3a8a; 
-      
-      --container-width: 1140px;
+      --navy: #0a1628;
+      --blue: #1e3a8a;
+      --cyan: #06b6d4;
+      --slate: #64748b;
+      --white: #ffffff;
+      --grid-color: rgba(30, 58, 138, 0.08);
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
     body {
-      font-family: 'Inter', sans-serif;
-      background: var(--bg-body);
-      color: var(--text-main);
-      line-height: 1.6;
+      font-family: 'IBM Plex Mono', monospace;
+      background: var(--white);
+      color: var(--navy);
       overflow-x: hidden;
     }
 
+    /* CRITICAL: Grid system that creates structure */
     .container {
-      max-width: var(--container-width);
+      max-width: 1400px;
       margin: 0 auto;
-      padding: 0 32px;
-      width: 100%;
+      padding: 0 40px;
       position: relative;
     }
 
-    /* --- NAVIGATION --- */
-    .top-nav {
-      padding: 40px 0;
+    /* Background grid - creates systematic feel */
+    .grid-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: 
+        linear-gradient(var(--grid-color) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+      background-size: 60px 60px;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.6;
+    }
+
+    /* Navigation */
+    nav {
+      position: relative;
+      z-index: 100;
+      padding: 30px 0;
       display: flex;
-      justify-content: flex-end;
+      justify-content: space-between;
       align-items: center;
-      margin-bottom: 60px;
+      border-bottom: 1px solid var(--grid-color);
+    }
+
+    .nav-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--blue);
     }
 
     .nav-links {
       display: flex;
-      gap: 32px;
-      align-items: center;
-    }
-
-    .nav-item {
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: var(--text-muted);
-      text-decoration: none;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      transition: color 0.3s;
-    }
-    .nav-item:hover { color: var(--accent); }
-    
-    .nav-cta {
-      background-color: var(--text-main);
-      color: #fff !important;
-      padding: 12px 28px;
-      font-weight: 600;
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      transition: all 0.3s;
-    }
-    .nav-cta:hover { background-color: var(--accent); }
-
-    /* --- HERO: The Editorial Composition --- */
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr; 
       gap: 40px;
       align-items: center;
-      margin-bottom: 120px;
-      position: relative;
-      min-height: 600px; /* Ensure height for image composition */
     }
 
-    /* --- TYPOGRAPHY SIDE --- */
-    .identity-block {
-      z-index: 10;
-      padding-right: 20px;
-      position: relative; /* Ensure z-index works */
-    }
-
-    .role-label {
-      font-family: 'Inter', sans-serif;
-      font-size: 0.8rem;
-      font-weight: 800;
+    .nav-links a {
+      font-size: 0.75rem;
+      font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 2.5px;
-      color: var(--accent);
-      margin-bottom: 24px;
+      letter-spacing: 2px;
+      color: var(--slate);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: var(--blue);
+    }
+
+    .nav-cta {
+      background: var(--navy);
+      color: var(--white) !important;
+      padding: 10px 24px;
+    }
+
+    /* HERO - The New System-Focused Design */
+    .hero {
+      position: relative;
+      z-index: 10;
+      min-height: 85vh;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 80px;
+      align-items: center;
+      padding: 80px 0;
+    }
+
+    /* Left: Content */
+    .hero-content {
+      position: relative;
+    }
+
+    .role {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 40px;
       display: flex;
       align-items: center;
-      gap: 12px;
-    }
-    .role-label::before {
-      content: '';
-      width: 32px;
-      height: 3px; 
-      background: var(--accent);
+      gap: 16px;
     }
 
-    .super-title {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(4.5rem, 8.5vw, 8rem); 
+    .role::before {
+      content: '';
+      width: 40px;
+      height: 2px;
+      background: var(--blue);
+    }
+
+    .hero-title {
+      font-family: 'Anybody', sans-serif;
+      font-size: clamp(4rem, 10vw, 9rem);
       font-weight: 900;
-      line-height: 0.85; 
-      color: var(--text-main);
-      letter-spacing: -0.03em;
-      margin-bottom: 40px;
-      margin-left: -3px; 
+      line-height: 0.9;
+      letter-spacing: -0.04em;
+      margin-bottom: 50px;
+      color: var(--navy);
+      text-transform: uppercase;
+    }
+
+    /* CRITICAL: Stagger animation */
+    .hero-title span {
+      display: inline-block;
+      animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+    }
+
+    .hero-title span:nth-child(1) { animation-delay: 0.1s; }
+    .hero-title span:nth-child(2) { animation-delay: 0.2s; }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
     }
 
     .hero-desc {
-      font-size: 1.15rem;
-      color: var(--text-muted);
-      max-width: 42ch;
-      margin-bottom: 48px;
-      font-weight: 400;
-      line-height: 1.6;
+      font-size: 1.1rem;
+      line-height: 1.7;
+      color: var(--slate);
+      max-width: 500px;
+      margin-bottom: 50px;
+      animation: fadeIn 1s 0.4s backwards;
     }
 
-    /* CTA Group */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+    }
+
     .cta-group {
       display: flex;
+      gap: 24px;
       align-items: center;
-      gap: 32px;
+      animation: fadeIn 1s 0.6s backwards;
+    }
+
+    .btn {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      padding: 18px 36px;
+      text-decoration: none;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      display: inline-block;
     }
 
     .btn-primary {
-      background-color: var(--text-main);
-      color: #fff;
-      padding: 16px 36px;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 0.9rem;
-      transition: background 0.3s;
-    }
-    .btn-primary:hover { background-color: var(--accent); }
-
-    .btn-secondary {
-      font-weight: 600;
-      color: var(--text-main);
-      text-decoration: none;
-      border-bottom: 2px solid #e5e5e5;
-      padding-bottom: 4px;
-      font-size: 0.9rem;
-      transition: all 0.3s;
-    }
-    .btn-secondary:hover { color: var(--accent); border-color: var(--accent); }
-
-
-    /* --- THE VISUAL SIDE: Improved Image Treatment --- */
-    .image-container {
+      background: var(--navy);
+      color: var(--white);
       position: relative;
-      height: 600px; 
-      display: flex;
-      align-items: flex-end; 
-      justify-content: center;
-      overflow: visible;
+      overflow: hidden;
     }
 
-    /* 1. The Vertical Spine (Blue Line) - 1cm inside image, top to shoulder */
-    .image-container::before {
+    .btn-primary::before {
       content: '';
       position: absolute;
-      left: 3%; /* About 1cm inside image area */
-      top: 0; /* Start from top (level with head) */
-      height: 80%; /* Extended to 80% as requested */
-      width: 4px; 
-      background: var(--accent);
-      z-index: -1; /* Behind image */
-    }
-
-    /* 2. The Grounding Shadow (Behind Image) - More subtle */
-    .image-container::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 10%;
-      width: 80%;
-      height: 60px;
-      background: radial-gradient(ellipse at center, rgba(0,0,0,0.08) 0%, transparent 70%);
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: var(--blue);
+      transition: left 0.3s cubic-bezier(0.16, 1, 0.3, 1);
       z-index: -1;
     }
 
-    .hero-image-wrapper {
+    .btn-primary:hover::before {
+      left: 0;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--navy);
+      border: 2px solid var(--navy);
       position: relative;
-      z-index: 1; /* Positive z-index to be above the blue line (which is -1) */
+    }
+
+    .btn-secondary:hover {
+      background: var(--navy);
+      color: var(--white);
+    }
+
+    /* Right: System Visualization (ABSTRACT, not portrait) */
+    .hero-visual {
+      position: relative;
+      height: 600px;
+      animation: fadeIn 1.2s 0.3s backwards;
+    }
+
+    /* Governance Network Visualization */
+    .network-viz {
+      position: relative;
       width: 100%;
       height: 100%;
+    }
+
+    /* Central node */
+    .network-viz::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 120px;
+      height: 120px;
+      border: 3px solid var(--blue);
+      border-radius: 50%;
+      animation: pulse 3s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+      }
+      50% {
+        transform: translate(-50%, -50%) scale(1.1);
+        opacity: 0.7;
+      }
+    }
+
+    /* Network nodes */
+    .node {
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      border: 2px solid var(--cyan);
+      border-radius: 50%;
       display: flex;
-      align-items: flex-end;
-      
-      /* IMPROVED MASK: Start fade much lower so coat is visible */
-      -webkit-mask-image: linear-gradient(to bottom, 
-        black 0%, 
-        black 75%, 
-        rgba(0,0,0,0.9) 85%,
-        rgba(0,0,0,0.5) 93%, 
-        transparent 100%
-      );
-      mask-image: linear-gradient(to bottom, 
-        black 0%, 
-        black 75%, 
-        rgba(0,0,0,0.9) 85%,
-        rgba(0,0,0,0.5) 93%, 
-        transparent 100%
-      );
+      align-items: center;
+      justify-content: center;
+      background: var(--white);
+      animation: float 4s ease-in-out infinite;
     }
 
-    .hero-image-wrapper img {
-      width: 100%;
-      height: 100%;
-      /* Use cover to fill the space better */
-      object-fit: cover; 
-      object-position: top center;
-      
-      /* Convert to grayscale and add subtle enhancements + shadow */
-      filter: grayscale(100%) contrast(105%) brightness(102%) drop-shadow(0 8px 20px rgba(0,0,0,0.12));
-      transition: filter 0.5s ease;
+    .node::before {
+      content: '';
+      width: 20px;
+      height: 20px;
+      background: var(--cyan);
+      border-radius: 50%;
     }
 
-    /* --- FOCUS AREAS --- */
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+
+    .node:nth-child(1) {
+      top: 10%;
+      left: 20%;
+      animation-delay: 0s;
+    }
+
+    .node:nth-child(2) {
+      top: 15%;
+      right: 15%;
+      animation-delay: 0.5s;
+    }
+
+    .node:nth-child(3) {
+      bottom: 20%;
+      left: 10%;
+      animation-delay: 1s;
+    }
+
+    .node:nth-child(4) {
+      bottom: 15%;
+      right: 20%;
+      animation-delay: 1.5s;
+    }
+
+    .node:nth-child(5) {
+      top: 45%;
+      right: 5%;
+      animation-delay: 2s;
+    }
+
+    .node:nth-child(6) {
+      top: 40%;
+      left: 5%;
+      animation-delay: 2.5s;
+    }
+
+    /* Connection lines */
+    .connection {
+      position: absolute;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+      transform-origin: left center;
+      opacity: 0.3;
+      animation: flow 3s ease-in-out infinite;
+    }
+
+    @keyframes flow {
+      0%, 100% { opacity: 0.2; }
+      50% { opacity: 0.5; }
+    }
+
+    .connection:nth-child(7) {
+      top: 25%;
+      left: 23%;
+      width: 200px;
+      transform: rotate(20deg);
+    }
+
+    .connection:nth-child(8) {
+      top: 30%;
+      right: 18%;
+      width: 180px;
+      transform: rotate(-25deg);
+      animation-delay: 0.5s;
+    }
+
+    .connection:nth-child(9) {
+      bottom: 25%;
+      left: 15%;
+      width: 220px;
+      transform: rotate(-20deg);
+      animation-delay: 1s;
+    }
+
+    .connection:nth-child(10) {
+      bottom: 22%;
+      right: 22%;
+      width: 160px;
+      transform: rotate(15deg);
+      animation-delay: 1.5s;
+    }
+
+    /* Data labels floating */
+    .data-label {
+      position: absolute;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--blue);
+      background: var(--white);
+      padding: 6px 12px;
+      border: 1px solid var(--grid-color);
+      animation: fadeSlide 1s backwards;
+    }
+
+    @keyframes fadeSlide {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+    }
+
+    .data-label:nth-child(11) {
+      top: 8%;
+      left: 15%;
+      animation-delay: 0.8s;
+    }
+
+    .data-label:nth-child(12) {
+      top: 12%;
+      right: 10%;
+      animation-delay: 1s;
+    }
+
+    .data-label:nth-child(13) {
+      bottom: 18%;
+      left: 8%;
+      animation-delay: 1.2s;
+    }
+
+    .data-label:nth-child(14) {
+      bottom: 12%;
+      right: 15%;
+      animation-delay: 1.4s;
+    }
+
+    /* Focus Areas - System View */
     .focus-section {
-      margin-bottom: 120px;
-      border-top: 1px solid var(--text-main); 
-      padding-top: 60px;
+      position: relative;
+      z-index: 10;
+      padding: 120px 0;
+      border-top: 2px solid var(--navy);
+    }
+
+    .focus-header {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 60px;
     }
 
     .focus-grid {
@@ -253,248 +447,176 @@
       gap: 60px;
     }
 
+    .focus-item {
+      position: relative;
+      padding-left: 30px;
+    }
+
+    .focus-item::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 3px;
+      height: 100%;
+      background: linear-gradient(to bottom, var(--cyan), transparent);
+    }
+
     .focus-num {
-      font-family: 'Playfair Display', serif;
-      font-size: 3rem;
-      font-weight: 700;
-      color: #e5e5e5;
+      font-family: 'Anybody', sans-serif;
+      font-size: 3.5rem;
+      font-weight: 900;
+      color: rgba(30, 58, 138, 0.1);
       line-height: 1;
       margin-bottom: 20px;
     }
 
     .focus-title {
-      font-size: 1rem;
-      font-weight: 700;
-      margin-bottom: 12px;
-      color: var(--text-main);
+      font-size: 0.85rem;
+      font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 0.5px;
+      letter-spacing: 2px;
+      margin-bottom: 16px;
+      color: var(--navy);
     }
 
     .focus-desc {
       font-size: 0.95rem;
-      color: var(--text-muted);
-      line-height: 1.6;
+      line-height: 1.7;
+      color: var(--slate);
     }
 
-    /* --- INTELLIGENCE SECTION --- */
-    .intel-section {
-      background: #f8fafc;
-      padding: 100px 0;
-    }
-    
-    .section-head { 
-      margin-bottom: 60px; 
-      display: flex; 
-      justify-content: space-between; 
-      align-items: baseline; 
-    }
-    
-    .sec-label { 
-      font-weight: 800; 
-      text-transform: uppercase; 
-      letter-spacing: 2px; 
-      font-size: 0.8rem; 
-      color: var(--accent);
-    }
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 60px;
+      }
 
-    .intel-list {
-      display: flex;
-      flex-direction: column;
-    }
+      .hero-visual {
+        height: 400px;
+      }
 
-    .intel-row {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      align-items: center;
-      padding: 32px 0;
-      border-top: 1px solid #e2e8f0;
-      text-decoration: none;
-      color: inherit;
-      transition: padding 0.3s ease;
-    }
-    .intel-row:last-child { border-bottom: 1px solid #e2e8f0; }
-    .intel-row:hover { padding-left: 20px; background: #fff; }
-
-    .intel-content h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 600; margin-bottom: 6px;}
-    .intel-meta { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--accent); font-weight: 700; margin-bottom: 6px; display:block;}
-    .arrow-icon { opacity: 0; transition: opacity 0.3s; color: var(--accent); font-size: 1.2rem;}
-    .intel-row:hover .arrow-icon { opacity: 1; }
-
-    /* --- FOOTER --- */
-    footer { padding: 60px 0; border-top: 1px solid #e5e5e5; font-size: 0.8rem; color: #888; text-transform: uppercase; letter-spacing: 1px;}
-
-    /* --- RESPONSIVE --- */
-    @media (max-width: 900px) {
-      .hero-grid { grid-template-columns: 1fr; gap: 60px; text-align: left; }
-      .super-title { font-size: 13vw; letter-spacing: -2px; }
-      .image-container { height: 450px; justify-content: flex-start; }
-      .image-container::before { left: 20px; }
-      .focus-grid { grid-template-columns: 1fr; gap: 40px; }
-      .top-nav { justify-content: center; }
-      .nav-links { gap: 16px; flex-wrap: wrap; justify-content: center; }
-    }
-  </style>
-</head>
-
-<body>
-
-  <div class="container">
-    
-    <nav class="top-nav">
-      <div class="nav-links">
-        <a href="/" class="nav-item">Home</a>
-        <a href="insights.html" class="nav-item">Insights</a>
-        <a href="projects.html" class="nav-item">Projects</a>
-        <a href="dossier.html" class="nav-item">Dossier</a>
-        <a href="contact.html" class="nav-cta">Inquiry</a>
-      </div>
-    </nav>
-
-    <main>
-      <section class="hero-grid">
-        
-        <div class="identity-block">
-          <span class="role-label">Strategic AI Governance</span>
-          
-          <h1 class="super-title">
-            HADI<br>NOORI
-          </h1>
-
-          <p class="hero-desc">
-            Building accountable protocols for high-stakes AI deployment. 
-            Moving beyond technical performance to ensure legitimacy and trust in complex systems.
-          </p>
-
-          <div class="cta-group">
-            <a href="contact.html" class="btn-primary">Initiate Inquiry</a>
-            <a href="projects.html" class="btn-secondary">Review Protocols →</a>
-          </div>
-        </div>
-
-        <div class="image-container">
-          <div class="hero-image-wrapper">
-            <!-- Using home-profile.jpg which has transparent background -->
-            <img src="assets/img/home-profile.jpg" alt="Hadi Noori">
-          </div>
-        </div>
-
-      </section>
-
-      <section class="focus-section">
-        <div class="focus-grid">
-          <div class="focus-item">
-            <div class="focus-num">01</div>
-            <div class="focus-title">Algorithmic Accountability</div>
-            <div class="focus-desc">Designing auditing frameworks that ensure AI systems remain compliant with emerging global regulations.</div>
-          </div>
-          <div class="focus-item">
-            <div class="focus-num">02</div>
-            <div class="focus-title">Digital Transformation</div>
-            <div class="focus-desc">Guiding organizations through the ethical complexities of large-scale digital adoption.</div>
-          </div>
-          <div class="focus-item">
-            <div class="focus-num">03</div>
-            <div class="focus-title">Policy & Ethics</div>
-            <div class="focus-desc">Bridging the gap between technical capabilities and human-centric policy to build trust.</div>
-          </div>
-        </div>
-      </section>
-
-    </main>
-  </div>
-
-  <section class="intel-section">
-    <div class="container">
-      <div class="section-head">
-        <span class="sec-label">Latest Intelligence</span>
-        <a href="insights.html" class="nav-item">View Full Archive</a>
-      </div>
-
-      <div id="intel-container" class="intel-list">
-        <a href="#" class="intel-row" id="placeholder-1" style="display:none;">
-          <div class="intel-content">
-            <span class="intel-meta">Doctoral Research</span>
-            <h3>Digital Transformation in High-Stakes Environments</h3>
-          </div>
-          <span class="arrow-icon">→</span>
-        </a>
-        <a href="#" class="intel-row" id="placeholder-2" style="display:none;">
-          <div class="intel-content">
-            <span class="intel-meta">Academic Paper</span>
-            <h3>Press Freedom & Algorithmic Curation</h3>
-          </div>
-          <span class="arrow-icon">→</span>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    <div class="container">
-      &copy; 2026 Hadi Noori. Vancouver, BC.
-    </div>
-  </footer>
-
-  <script>
-    async function loadSelectedInsights() {
-      const container = document.getElementById('intel-container');
-      const p1 = document.getElementById('placeholder-1');
-      const p2 = document.getElementById('placeholder-2');
-      
-      try {
-        const response = await fetch('https://api.github.com/repos/hadinoori/hadinoori.ca/contents/_insights');
-        if (!response.ok) throw new Error('API Error');
-
-        const files = await response.json();
-        const markdownFiles = files
-          .filter(f => f.name.endsWith('.md'))
-          .sort((a, b) => b.name.localeCompare(a.name));
-
-        let html = '';
-        let count = 0;
-
-        for (const file of markdownFiles) {
-          if (count >= 3) break; 
-          const fileRes = await fetch(file.download_url);
-          const content = await fileRes.text();
-          const fmMatch = content.match(/^---\s*([\s\S]*?)\s*---/);
-          if (!fmMatch) continue;
-          const fm = fmMatch[1];
-          if (!/selected_dispatch:\s*["']?true["']?/i.test(fm)) continue;
-
-          const title = (fm.match(/title:\s*["']?(.*?)["']?\s*$/m) || [])[1] || 'Untitled';
-          const type = (fm.match(/type:\s*["']?(.*?)["']?\s*$/m) || [])[1] || 'Dispatch';
-          const extUrl = (fm.match(/external_url:\s*["']?(.*?)["']?\s*$/m) || [])[1];
-          const link = extUrl ? extUrl : `insights/${file.name.replace('.md', '.html')}`;
-          
-          html += `
-            <a href="${link}" class="intel-row">
-              <div class="intel-content">
-                <span class="intel-meta">${type}</span>
-                <h3>${title}</h3>
-              </div>
-              <span class="arrow-icon">→</span>
-            </a>
-          `;
-          count++;
-        }
-
-        if (count > 0) {
-          container.innerHTML = html;
-        } else {
-          p1.style.display = 'grid';
-          p2.style.display = 'grid';
-        }
-
-      } catch (e) {
-        p1.style.display = 'grid';
-        p2.style.display = 'grid';
+      .focus-grid {
+        grid-template-columns: 1fr;
+        gap: 50px;
       }
     }
 
-    document.addEventListener('DOMContentLoaded', loadSelectedInsights);
-  </script>
+    @media (max-width: 768px) {
+      .hero-title {
+        font-size: 3.5rem;
+      }
+
+      .cta-group {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-links {
+        gap: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Grid background -->
+  <div class="grid-bg"></div>
+
+  <div class="container">
+    <!-- Navigation -->
+    <nav>
+      <div class="nav-label">Strategic AI Governance</div>
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/insights">Insights</a>
+        <a href="/projects">Projects</a>
+        <a href="/dossier">Dossier</a>
+        <a href="/contact" class="nav-cta">Inquiry</a>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <!-- Content -->
+      <div class="hero-content">
+        <div class="role">System Governance</div>
+        
+        <h1 class="hero-title">
+          <span>HADI</span><br>
+          <span>NOORI</span>
+        </h1>
+
+        <p class="hero-desc">
+          Building accountable protocols for high-stakes AI deployment. 
+          Moving beyond technical performance to ensure legitimacy and trust in complex systems.
+        </p>
+
+        <div class="cta-group">
+          <a href="/contact" class="btn btn-primary">Initiate Inquiry</a>
+          <a href="/projects" class="btn btn-secondary">Review Protocols</a>
+        </div>
+      </div>
+
+      <!-- Abstract Visualization (NOT portrait) -->
+      <div class="hero-visual">
+        <div class="network-viz">
+          <!-- Nodes -->
+          <div class="node"></div>
+          <div class="node"></div>
+          <div class="node"></div>
+          <div class="node"></div>
+          <div class="node"></div>
+          <div class="node"></div>
+          
+          <!-- Connections -->
+          <div class="connection"></div>
+          <div class="connection"></div>
+          <div class="connection"></div>
+          <div class="connection"></div>
+          
+          <!-- Data labels -->
+          <div class="data-label">Accountability</div>
+          <div class="data-label">Trust</div>
+          <div class="data-label">Legitimacy</div>
+          <div class="data-label">Control</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Focus Areas -->
+    <section class="focus-section">
+      <div class="focus-header">Core Systems</div>
+      
+      <div class="focus-grid">
+        <div class="focus-item">
+          <div class="focus-num">01</div>
+          <div class="focus-title">Algorithmic Accountability</div>
+          <div class="focus-desc">
+            Designing auditing frameworks that ensure AI systems remain compliant with emerging global regulations.
+          </div>
+        </div>
+
+        <div class="focus-item">
+          <div class="focus-num">02</div>
+          <div class="focus-title">Digital Transformation</div>
+          <div class="focus-desc">
+            Guiding organizations through the ethical complexities of large-scale digital adoption.
+          </div>
+        </div>
+
+        <div class="focus-item">
+          <div class="focus-num">03</div>
+          <div class="focus-title">Policy & Ethics</div>
+          <div class="focus-desc">
+            Bridging the gap between technical capabilities and human-centric policy to build trust.
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
 
 </body>
 </html>
