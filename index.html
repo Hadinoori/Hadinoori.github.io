@@ -179,16 +179,16 @@
       overflow: visible;
     }
 
-    /* 1. The Vertical Spine (Blue Line) - exactly as in reference image */
+    /* 1. The Vertical Spine (Blue Line) - 1cm inside image, top to shoulder */
     .image-container::before {
       content: '';
       position: absolute;
-      left: 8%; /* Left side of image area, behind left edge of person */
-      top: 0; /* Start from top of container */
-      height: 55%; /* Extend to about shoulder/neck area */
+      left: 3%; /* About 1cm inside image area */
+      top: 0; /* Start from top (level with head) */
+      height: 50%; /* Extend to shoulder level */
       width: 4px; 
       background: var(--accent);
-      z-index: -1; /* Behind person so it doesn't show on body */
+      z-index: 1; /* Normal layer - no conflict since it stops at shoulder */
     }
 
     /* 2. The Grounding Shadow (Behind Image) - More subtle */
