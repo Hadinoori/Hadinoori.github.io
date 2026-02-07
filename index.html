@@ -101,96 +101,97 @@
     /* Hero */
     .hero{
       display:grid;
-      grid-template-columns: 140px 1fr;
-      gap: 50px;
-      align-items: start;
-      padding: 30px 0 40px;
+      grid-template-columns:150px 1fr;
+      gap:50px;
+      align-items:start;
+      padding:30px 0 40px;
     }
 
     .portrait{
-      width:120px;
-      height:120px;
-      border-radius: 6px;
+      width:150px;
+      height:150px;
+      border-radius:10px;
       overflow:hidden;
       border:1px solid var(--ui-border);
       background:#fff;
     }
 
-    /* === BLACK & WHITE → COLOR ON HOVER === */
     .portrait img{
       width:100%;
       height:100%;
       object-fit:cover;
+      object-position:50% 35%;
       display:block;
-      filter: grayscale(100%) contrast(1.05);
-      transition: filter 0.45s ease;
+      filter:grayscale(100%) contrast(1.05) brightness(0.95);
+      transition:filter 0.45s ease;
     }
 
     .portrait:hover img{
-      filter: grayscale(0%);
+      filter:grayscale(0%);
     }
 
     .hero-title{
       font-family:var(--font-serif);
-      font-size: clamp(2.2rem, 4vw, 3.1rem);
+      font-size:clamp(2.2rem, 4vw, 3.1rem);
       line-height:1.05;
       margin:0 0 14px;
       font-weight:700;
-      letter-spacing:-0.2px;
     }
 
     .hero-title em{
-      font-style: italic;
-      color: var(--accent-blue);
-      font-weight: 600;
+      font-style:italic;
+      color:var(--accent-blue);
+      font-weight:600;
     }
 
     .hero-sub{
       margin:0;
       color:var(--text-secondary);
       font-size:1.05rem;
-      max-width: 62ch;
+      max-width:62ch;
     }
 
     .cta-row{
       display:flex;
       gap:14px;
-      margin-top: 18px;
-      flex-wrap: wrap;
+      margin-top:18px;
+      flex-wrap:wrap;
     }
 
     .btn{
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      padding: 10px 14px;
-      border-radius: 8px;
+      padding:10px 14px;
+      border-radius:8px;
       border:1px solid var(--ui-border);
       text-decoration:none;
       font-size:0.85rem;
       font-weight:600;
       letter-spacing:0.2px;
-      text-transform: uppercase;
+      text-transform:uppercase;
     }
 
     .btn-primary{
-      background: var(--text-primary);
+      background:var(--text-primary);
       color:#fff;
-      border-color: var(--text-primary);
+      border-color:var(--text-primary);
     }
+
     .btn-primary:hover{ opacity:0.9; }
 
     .btn-secondary{
-      background: transparent;
-      color: var(--text-primary);
+      background:transparent;
+      color:var(--text-primary);
     }
+
     .btn-secondary:hover{
-      border-color: var(--text-primary);
+      border-color:var(--text-primary);
     }
 
     .divider{
       border-top:1px solid var(--ui-border);
-      margin: 40px 0;
+      margin:40px 0;
     }
 
     /* What I do */
@@ -199,37 +200,34 @@
       font-weight:700;
       letter-spacing:2px;
       text-transform:uppercase;
-      color: var(--accent-blue);
+      color:var(--accent-blue);
       margin:0 0 14px;
     }
 
     .cards{
       display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-      padding-bottom: 10px;
+      grid-template-columns:repeat(3, 1fr);
+      gap:18px;
     }
 
     .card{
       border:1px solid var(--ui-border);
-      border-radius: 10px;
-      padding: 16px 16px 14px;
-      background: #fff;
+      border-radius:10px;
+      padding:16px;
+      background:#fff;
     }
 
     .card h3{
-      font-family: var(--font-serif);
+      font-family:var(--font-serif);
       margin:0 0 6px;
-      font-size: 1.1rem;
-      font-weight: 700;
-      line-height:1.2;
+      font-size:1.1rem;
+      font-weight:700;
     }
 
     .card p{
       margin:0;
-      color: var(--text-secondary);
-      font-size: 0.95rem;
-      max-width: 55ch;
+      color:var(--text-secondary);
+      font-size:0.95rem;
     }
 
     /* Footer */
@@ -237,7 +235,6 @@
       border-top:1px solid var(--ui-border);
       padding:40px 0 60px;
       margin-top:auto;
-      background-color:var(--bg-main);
     }
 
     .footer-content{
@@ -247,7 +244,6 @@
       display:grid;
       grid-template-columns:var(--spine-width) 1fr auto;
       gap:60px;
-      align-items:baseline;
       font-size:0.7rem;
       color:var(--text-meta);
       text-transform:uppercase;
@@ -256,23 +252,28 @@
     }
 
     .footer-col-right{ text-align:right; }
-    .footer-link{ color:var(--text-primary); font-weight:600; margin-left:20px; text-decoration:none; }
+    .footer-link{
+      color:var(--text-primary);
+      font-weight:600;
+      margin-left:20px;
+      text-decoration:none;
+    }
     .footer-link:hover{ color:var(--accent-blue); }
 
     /* Mobile */
-    @media (max-width: 900px){
-      .cards{ grid-template-columns: 1fr; }
+    @media (max-width:900px){
+      .cards{ grid-template-columns:1fr; }
     }
 
-    @media (max-width: 768px){
+    @media (max-width:768px){
       .wrap, .footer-content{ padding:0 25px; }
-      header{ flex-direction:column; align-items:flex-start; gap:20px; padding:40px 0; }
+      header{ flex-direction:column; gap:20px; padding:40px 0; }
       nav{ width:100%; justify-content:space-between; border-bottom:1px solid var(--ui-border); padding-bottom:15px; }
 
-      .hero{ grid-template-columns: 1fr; gap: 18px; padding-top: 10px; }
-      .portrait{ width: 110px; height: 110px; }
+      .hero{ grid-template-columns:1fr; gap:18px; }
+      .portrait{ width:120px; height:120px; }
 
-      .footer-content{ grid-template-columns: 1fr; gap:20px; }
+      .footer-content{ grid-template-columns:1fr; gap:20px; }
       .footer-col-right{ text-align:left; }
       .footer-link{ margin-left:0; margin-right:20px; }
     }
@@ -281,12 +282,12 @@
 
 <body>
   <div class="wrap">
-    <header role="banner">
+    <header>
       <a href="/" class="header-brand">
         <span class="brand-name">Hadi Noori</span>
         <span class="brand-sub">Strategic AI Governance</span>
       </a>
-      <nav role="navigation">
+      <nav>
         <a href="index.html" class="active">Home</a>
         <a href="insights.html">Insights</a>
         <a href="projects.html">Projects</a>
@@ -294,15 +295,20 @@
       </nav>
     </header>
 
-    <main id="content">
+    <main>
       <section class="hero">
         <div class="portrait">
           <img src="/assets/img/home-profile.jpg" alt="Portrait of Hadi Noori">
         </div>
 
         <div>
-          <h1 class="hero-title">Intelligence is <em>fragile</em>.<br>Governance is its <em>armor</em>.</h1>
-          <p class="hero-sub">Developing accountable protocols for high-stakes AI deployment.</p>
+          <h1 class="hero-title">
+            Intelligence is <em>fragile</em>.<br>
+            Governance is its <em>armor</em>.
+          </h1>
+          <p class="hero-sub">
+            Developing accountable protocols for high-stakes AI deployment.
+          </p>
 
           <div class="cta-row">
             <a class="btn btn-primary" href="contact.html">Request Assessment</a>
@@ -333,10 +339,10 @@
     </main>
   </div>
 
-  <footer class="site-footer" role="contentinfo">
+  <footer class="site-footer">
     <div class="footer-content">
-      <div class="footer-col-left">© 2026 Hadi Noori</div>
-      <div class="footer-col-center">Vancouver, BC</div>
+      <div>© 2026 Hadi Noori</div>
+      <div>Vancouver, BC</div>
       <div class="footer-col-right">
         <a href="contact.html" class="footer-link">Contact</a>
         <a href="dossier.html" class="footer-link">Full Dossier</a>
