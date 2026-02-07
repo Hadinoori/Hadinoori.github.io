@@ -1,300 +1,368 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<title>Hadi Noori | Strategic AI Governance</title>
-<meta name="description" content="Strategic AI Governance. Designing accountable protocols for high-stakes AI deployment where legitimacy matters.">
-<meta name="robots" content="index, follow">
+  <title>Hadi Noori | Strategic AI Governance</title>
+  <meta name="description" content="Strategic AI Governance. Designing accountable protocols for high-stakes AI deployment where legitimacy matters." />
+  <meta name="robots" content="index, follow" />
 
-<link rel="icon" type="image/png" href="assets/img/sidebar-logo.png">
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/img/sidebar-logo.png" />
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lora:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lora:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
 
-<style>
-:root{
-  --bg-main:#fafafa;
-  --text-primary:#111;
-  --text-secondary:#444;
-  --text-meta:#767676;
-  --accent-blue:#1e3a8a;
-  --ui-border:#e5e5e5;
+  <style>
+    :root{
+      --bg-main:#fafafa;
+      --text-primary:#111;
+      --text-secondary:#444;
+      --text-meta:#767676;
+      --accent-blue:#1e3a8a;
+      --ui-border:#e5e5e5;
 
-  --font-serif:'Lora',Georgia,serif;
-  --font-sans:'Inter',sans-serif;
+      --font-serif:'Lora',Georgia,serif;
+      --font-sans:'Inter',sans-serif;
 
-  --spine-width:clamp(140px,15vw,180px);
-  --content-pad:clamp(40px,5vw,60px);
-}
+      --spine-width:clamp(140px,15vw,180px);
+      --content-pad:clamp(40px,5vw,60px);
+    }
 
-*{margin:0;padding:0;box-sizing:border-box}
+    *{margin:0;padding:0;box-sizing:border-box}
 
-body{
-  font-family:var(--font-sans);
-  background:var(--bg-main);
-  color:var(--text-primary);
-  line-height:1.4;
-}
+    body{
+      font-family:var(--font-sans);
+      background:var(--bg-main);
+      color:var(--text-primary);
+      line-height:1.4;
+      min-height:100vh;
+    }
 
-/* Layout */
-.grid-layout{
-  display:grid;
-  grid-template-columns:var(--spine-width) 1fr;
-  min-height:100vh;
-}
+    /* Layout */
+    .grid-layout{
+      display:grid;
+      grid-template-columns:var(--spine-width) 1fr;
+      min-height:100vh;
+    }
 
-/* Spine */
-.spine{
-  padding:40px 20px;
-  border-right:1px solid var(--ui-border);
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
-}
+    /* Spine */
+    .spine{
+      padding:40px 20px;
+      border-right:1px solid var(--ui-border);
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+    }
 
-.spine-logo{
-  font-family:var(--font-serif);
-  font-weight:700;
-  text-decoration:none;
-  color:var(--text-primary);
-}
+    .spine-logo{
+      font-family:var(--font-serif);
+      font-weight:700;
+      text-decoration:none;
+      color:var(--text-primary);
+      letter-spacing:0.2px;
+    }
 
-.spine-nav a{
-  display:block;
-  margin:14px 0;
-  font-size:.75rem;
-  text-transform:uppercase;
-  letter-spacing:1px;
-  text-decoration:none;
-  color:var(--text-meta);
-}
+    .spine-nav{
+      margin-top:50px;
+    }
 
-.spine-nav a:hover{color:var(--text-primary)}
+    .spine-nav a{
+      display:block;
+      padding:12px 0;
+      font-size:.75rem;
+      font-weight:600;
+      text-transform:uppercase;
+      letter-spacing:1px;
+      text-decoration:none;
+      color:var(--text-meta);
+      transition:color .2s ease;
+    }
 
-.spine-footer{
-  font-size:.75rem;
-  color:var(--text-meta);
-}
+    .spine-nav a:hover{ color:var(--text-primary); }
 
-/* Main */
-.main-content{
-  padding:40px var(--content-pad);
-}
+    .spine-footer{
+      font-size:.75rem;
+      color:var(--text-meta);
+    }
 
-/* Header */
-.site-header{
-  display:flex;
-  justify-content:flex-end;
-  gap:30px;
-  margin-bottom:60px;
-}
+    /* Main */
+    .main-content{
+      padding:40px var(--content-pad);
+    }
 
-.site-header a{
-  font-size:.8rem;
-  text-decoration:none;
-  color:var(--text-meta);
-}
+    /* Header */
+    .site-header{
+      display:flex;
+      justify-content:flex-end;
+      gap:30px;
+      margin-bottom:40px; /* tightened */
+    }
 
-.site-header a:hover{color:var(--accent-blue)}
+    .site-header a{
+      font-size:.8rem;
+      font-weight:500;
+      text-decoration:none;
+      color:var(--text-meta);
+      transition:color .2s ease;
+    }
 
-/* Hero */
-.hero-section{
-  display:grid;
-  grid-template-columns:240px 1fr;
-  gap:60px;
-  margin-bottom:90px;
-}
+    .site-header a:hover{ color:var(--accent-blue); }
 
-.hero-image{
-  width:240px;
-  aspect-ratio:4/5;
-  background:#eee;
-  overflow:hidden;
-  border-radius:6px;
-  border:1px solid var(--ui-border);
-}
+    /* Hero */
+    .hero-section{
+      display:grid;
+      grid-template-columns:240px 1fr;
+      gap:60px;
+      margin-bottom:55px; /* tightened */
+      align-items:start;
+    }
 
-.hero-image img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  object-position:50% 25%;
-  filter:none!important;
-}
+    .hero-image{
+      width:240px;
+      aspect-ratio:4 / 5;
+      background:#f2f2f2;
+      overflow:hidden;
+      border-radius:6px;
+      border:1px solid var(--ui-border);
+    }
 
-/* Identity */
-.hero-identity{margin-top:12px}
+    .hero-image img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      object-position:50% 25%;
+      filter:none !important;
+      -webkit-filter:none !important;
+    }
 
-.hero-brand{
-  display:flex;
-  align-items:center;
-  gap:8px;
-}
+    /* Brand line (moves Hadi Noori into the center of gravity) */
+    .brandline{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      margin-bottom:16px;
+    }
 
-.hero-brand img{
-  width:18px;
-  height:18px;
-  opacity:.85;
-}
+    .brandline img{
+      width:22px;
+      height:22px;
+      opacity:.9;
+    }
 
-.hero-name{
-  font-family:var(--font-serif);
-  font-weight:700;
-  font-size:1rem;
-}
+    .brandname{
+      font-family:var(--font-serif);
+      font-weight:700;
+      font-size:1.15rem;
+      line-height:1.1;
+    }
 
-.hero-title{
-  margin-top:4px;
-  font-size:.75rem;
-  font-weight:600;
-  letter-spacing:1px;
-  text-transform:uppercase;
-  color:var(--text-meta);
-}
+    .brandtitle{
+      margin-top:4px;
+      font-size:.72rem;
+      font-weight:700;
+      letter-spacing:1.2px;
+      text-transform:uppercase;
+      color:var(--text-meta);
+    }
 
-/* Hero text */
-.hero-text h1{
-  font-family:var(--font-serif);
-  font-size:clamp(2.5rem,4vw,3.8rem);
-  line-height:1.1;
-  margin-bottom:25px;
-}
+    .hero-text h1{
+      font-family:var(--font-serif);
+      font-size:clamp(2.5rem,4vw,3.8rem);
+      font-weight:600;
+      line-height:1.1;
+      margin-bottom:22px;
+    }
 
-.hero-text .highlight{font-style:italic;font-weight:400}
+    .hero-text .highlight{
+      font-style:italic;
+      font-weight:400;
+    }
 
-.hero-subtitle{
-  max-width:55ch;
-  font-size:1.05rem;
-  color:var(--text-secondary);
-  margin-bottom:30px;
-}
+    .hero-subtitle{
+      max-width:58ch;
+      font-size:1.05rem;
+      color:var(--text-secondary);
+      margin-bottom:26px;
+    }
 
-.hero-links a{
-  margin-right:25px;
-  font-size:.9rem;
-  font-weight:600;
-  text-decoration:none;
-  color:var(--text-primary);
-  border-bottom:1px solid var(--text-primary);
-}
+    .hero-links a{
+      display:inline-block;
+      margin-right:25px;
+      font-size:.9rem;
+      font-weight:600;
+      text-decoration:none;
+      color:var(--text-primary);
+      border-bottom:1px solid var(--text-primary);
+      padding-bottom:2px;
+      transition:color .2s ease, border-color .2s ease;
+    }
 
-.hero-links a:hover{
-  color:var(--accent-blue);
-  border-color:var(--accent-blue);
-}
+    .hero-links a:hover{
+      color:var(--accent-blue);
+      border-color:var(--accent-blue);
+    }
 
-/* Selected Intelligence */
-#selected-insights{
-  border-top:1px solid var(--ui-border);
-  padding-top:40px;
-}
+    /* Selected Intelligence — compact editorial bar */
+    #selected-insights{
+      border-top:1px solid var(--ui-border);
+      padding-top:18px;
+    }
 
-.section-head{
-  display:flex;
-  justify-content:space-between;
-  align-items:baseline;
-}
+    .section-head{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+    }
 
-.section-label{
-  font-size:.7rem;
-  font-weight:700;
-  letter-spacing:1.5px;
-  text-transform:uppercase;
-  color:var(--text-meta);
-}
+    .section-left{
+      display:flex;
+      align-items:baseline;
+      gap:16px;
+      flex-wrap:wrap;
+    }
 
-.section-link{
-  font-size:.7rem;
-  text-transform:uppercase;
-  color:var(--text-meta);
-  text-decoration:none;
-}
+    .section-label{
+      font-size:.7rem;
+      font-weight:700;
+      text-transform:uppercase;
+      letter-spacing:1.5px;
+      color:var(--text-meta);
+      white-space:nowrap;
+    }
 
-.section-link:hover{color:var(--accent-blue)}
+    .section-note{
+      margin:0;
+      font-size:.9rem;
+      color:var(--text-secondary);
+      max-width:75ch;
+    }
 
-.section-note{
-  margin:10px 0 30px;
-  max-width:65ch;
-  font-size:.9rem;
-  color:var(--text-secondary);
-}
+    .section-link{
+      font-size:.7rem;
+      font-weight:600;
+      text-transform:uppercase;
+      letter-spacing:.5px;
+      color:var(--text-meta);
+      text-decoration:none;
+      white-space:nowrap;
+      transition:color .2s ease;
+    }
 
-/* Mobile */
-@media(max-width:768px){
-  .grid-layout{grid-template-columns:1fr}
-  .spine{border-right:none;border-bottom:1px solid var(--ui-border)}
-  .hero-section{grid-template-columns:1fr}
-}
-</style>
+    .section-link:hover{ color:var(--accent-blue); }
+
+    /* Mobile */
+    @media (max-width: 768px){
+      .grid-layout{ grid-template-columns:1fr; }
+
+      .spine{
+        border-right:none;
+        border-bottom:1px solid var(--ui-border);
+        padding:20px;
+      }
+
+      .spine-nav{
+        margin-top:0;
+        display:flex;
+        gap:18px;
+        flex-wrap:wrap;
+      }
+
+      .spine-nav a{
+        padding:0;
+        font-size:.7rem;
+      }
+
+      .spine-footer{ display:none; }
+
+      .main-content{ padding:20px; }
+
+      .site-header{
+        justify-content:flex-start;
+        margin-bottom:28px;
+      }
+
+      .hero-section{
+        grid-template-columns:1fr;
+        gap:28px;
+        margin-bottom:40px;
+      }
+
+      .hero-image{ width:220px; }
+    }
+  </style>
 </head>
 
 <body>
-<div class="grid-layout">
+  <div class="grid-layout">
 
-<aside class="spine">
-  <div>
-    <a href="/" class="spine-logo">Home</a>
-    <nav class="spine-nav">
-      <a href="insights.html">Insights</a>
-      <a href="projects.html">Projects</a>
-      <a href="contact.html">Inquiry</a>
-    </nav>
-  </div>
-  <div class="spine-footer">
-    © 2026 Hadi Noori<br>Vancouver, BC
-  </div>
-</aside>
+    <aside class="spine">
+      <div>
+        <a href="/" class="spine-logo">Home</a>
 
-<main class="main-content">
-
-<header class="site-header">
-  <a href="contact.html">Contact</a>
-  <a href="dossier.html">Full Dossier</a>
-</header>
-
-<section class="hero-section">
-  <div>
-    <div class="hero-image">
-      <img src="assets/img/home-profile.jpg?v=2" alt="Hadi Noori">
-    </div>
-
-    <div class="hero-identity">
-      <div class="hero-brand">
-        <img src="assets/img/sidebar-logo.png" alt="">
-        <div class="hero-name">Hadi Noori</div>
+        <nav class="spine-nav">
+          <a href="insights.html">Insights</a>
+          <a href="projects.html">Projects</a>
+          <a href="contact.html">Inquiry</a>
+        </nav>
       </div>
-      <div class="hero-title">Strategic AI Governance</div>
-    </div>
-  </div>
 
-  <div class="hero-text">
-    <h1>
-      Intelligence is <span class="highlight">fragile</span>.<br>
-      Governance is its <span class="highlight">armor</span>.
-    </h1>
-    <p class="hero-subtitle">
-      Building accountable protocols for high-stakes AI deployment —
-      where technical performance is not enough, and legitimacy matters.
-    </p>
-    <div class="hero-links">
-      <a href="contact.html">Start a Conversation</a>
-      <a href="dossier.html">View Full Dossier</a>
-    </div>
-  </div>
-</section>
+      <footer class="spine-footer">
+        © 2026 Hadi Noori<br>
+        Vancouver, BC
+      </footer>
+    </aside>
 
-<section id="selected-insights">
-  <div class="section-head">
-    <span class="section-label">Selected Intelligence</span>
-    <a href="insights.html" class="section-link">View Archive →</a>
-  </div>
-  <p class="section-note">
-    Selections update when positions evolve — not on a fixed schedule.
-  </p>
-</section>
+    <main class="main-content">
+      <header class="site-header">
+        <a href="contact.html">Contact</a>
+        <a href="dossier.html">Full Dossier</a>
+      </header>
 
-</main>
-</div>
+      <section class="hero-section">
+        <div class="hero-image">
+          <img src="assets/img/home-profile.jpg?v=2" alt="Hadi Noori">
+        </div>
+
+        <div class="hero-text">
+          <!-- Brand anchored where it matters -->
+          <div class="brandline">
+            <img src="assets/img/sidebar-logo.png" alt="">
+            <div>
+              <div class="brandname">Hadi Noori</div>
+              <div class="brandtitle">Strategic AI Governance</div>
+            </div>
+          </div>
+
+          <h1>
+            Intelligence is <span class="highlight">fragile</span>.<br>
+            Governance is its <span class="highlight">armor</span>.
+          </h1>
+
+          <p class="hero-subtitle">
+            Building accountable protocols for high-stakes AI deployment —
+            where technical performance is not enough, and legitimacy matters.
+          </p>
+
+          <div class="hero-links">
+            <a href="contact.html">Start a Conversation</a>
+            <a href="dossier.html">View Full Dossier</a>
+          </div>
+        </div>
+      </section>
+
+      <section id="selected-insights">
+        <div class="section-head">
+          <div class="section-left">
+            <span class="section-label">Selected Intelligence</span>
+            <p class="section-note">Selections update when positions evolve — not on a fixed schedule.</p>
+          </div>
+          <a href="insights.html" class="section-link">View Archive →</a>
+        </div>
+      </section>
+
+    </main>
+  </div>
 </body>
 </html>
