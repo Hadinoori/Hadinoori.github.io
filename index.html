@@ -85,7 +85,7 @@
     /* --- HERO: The Editorial Composition --- */
     .hero-grid {
       display: grid;
-      grid-template-columns: 1.1fr 0.9fr; /* Asymmetric balance */
+      grid-template-columns: 1.1fr 0.9fr; 
       gap: 40px;
       align-items: center;
       margin-bottom: 120px;
@@ -167,7 +167,7 @@
     .btn-secondary:hover { color: var(--accent); border-color: var(--accent); }
 
 
-    /* --- THE VISUAL SIDE: Spine + Fade + Shadow --- */
+    /* --- THE VISUAL SIDE: Restored Depth --- */
     .image-container {
       position: relative;
       height: 600px; 
@@ -176,30 +176,29 @@
       justify-content: center;
     }
 
-    /* 1. The Vertical Spine (Blue Line) */
+    /* 1. The Vertical Spine */
     .image-container::before {
       content: '';
       position: absolute;
       left: 15%; 
       top: -20px;
-      bottom: 80px; /* Stops before the very bottom to let fade breathe */
+      bottom: 60px; /* Slightly adjusted */
       width: 4px; 
       background: var(--accent);
       z-index: 0;
     }
 
-    /* 2. The Grounding Shadow (Behind Image) */
+    /* 2. The Soft Grounding Shadow (Exactly what you asked for) */
     .image-container::after {
       content: '';
       position: absolute;
       bottom: 0;
-      left: 10%;
-      right: 10%;
-      height: 80px;
-      /* Soft radial shadow to create depth/floor */
-      background: radial-gradient(ellipse at center, rgba(0,0,0,0.12) 0%, transparent 70%);
+      left: 5%;
+      right: 5%;
+      height: 100px; /* Taller for softer spread */
+      /* Very soft radial shadow to create depth */
+      background: radial-gradient(ellipse at center bottom, rgba(0,0,0,0.1) 0%, transparent 70%);
       z-index: 0;
-      transform: translateY(10px);
     }
 
     .hero-image-wrapper {
@@ -209,10 +208,11 @@
       height: 100%;
       display: flex;
       align-items: flex-end;
-      /* CSS MASKING: The key to the soft fade */
-      /* Fades from black (visible) to transparent (invisible) starting at 60% down */
-      -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 95%);
-      mask-image: linear-gradient(to bottom, black 50%, transparent 95%);
+      
+      /* REVERTED MASK: Fades only the very bottom (last 15%) */
+      /* This ensures the COAT is fully visible and provides depth */
+      -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
+      mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
     }
 
     .hero-image-wrapper img {
@@ -221,8 +221,8 @@
       object-fit: contain; 
       object-position: bottom center;
       
-      /* Grayscale Filter */
-      filter: grayscale(100%) contrast(110%);
+      /* ADJUSTED FILTER: Less brightness boost to keep coat texture visible */
+      filter: grayscale(100%) contrast(105%);
       transition: filter 0.5s ease;
     }
 
