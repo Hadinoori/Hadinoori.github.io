@@ -11,20 +11,19 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      /* --- PALETTE: Authority Monochrome + Navy Accent --- */
+      /* --- PALETTE: Editorial High-Contrast --- */
       --bg-body: #ffffff;
-      --text-main: #0a0a0a;   /* Absolute Black */
-      --text-muted: #525252;  /* Dark Gray */
+      --text-main: #000000;   /* Ink Black */
+      --text-muted: #525252;  
       
-      /* New Accent from Critique */
-      --accent: #1e40af; /* Navy Blue */
+      /* The "Spine" Color */
+      --accent: #1e3a8a; /* Deep Navy */
       
-      --border-color: #e5e5e5;
-      --container-width: 1140px; /* Slightly wider for better breathing room */
+      --container-width: 1200px;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -34,192 +33,206 @@
       background: var(--bg-body);
       color: var(--text-main);
       line-height: 1.6;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-      -webkit-font-smoothing: antialiased; /* Crisp text */
+      overflow-x: hidden; /* For the dynamic layout */
     }
 
     .container {
       max-width: var(--container-width);
       margin: 0 auto;
-      padding: 0 32px;
+      padding: 0 40px;
       width: 100%;
       position: relative;
     }
 
-    /* --- TOP NAVIGATION (Minimal, Right Aligned) --- */
+    /* --- NAVIGATION: Minimal & Clean --- */
     .top-nav {
       padding: 40px 0;
       display: flex;
-      justify-content: flex-end; /* Pushed to right */
+      justify-content: flex-end;
       align-items: center;
-      margin-bottom: 80px;
+      margin-bottom: 60px;
     }
 
     .nav-links {
       display: flex;
-      gap: 40px;
+      gap: 32px;
       align-items: center;
     }
 
     .nav-item {
-      font-size: 0.85rem;
-      font-weight: 500;
+      font-size: 0.8rem;
+      font-weight: 600;
       color: var(--text-muted);
       text-decoration: none;
-      transition: color 0.2s;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: color 0.3s;
     }
     .nav-item:hover { color: var(--accent); }
     
     .nav-cta {
       background-color: var(--text-main);
       color: #fff !important;
-      padding: 12px 24px;
+      padding: 12px 28px;
       font-weight: 600;
-      font-size: 0.85rem;
-      transition: background-color 0.2s;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    .nav-cta:hover { background-color: var(--accent); }
+    .nav-cta:hover { 
+      background-color: var(--accent); 
+      transform: translateY(-2px);
+    }
 
-
-    /* --- MASTHEAD HERO SECTION --- */
+    /* --- HERO: The Post-Modern Layout --- */
     .hero-grid {
       display: grid;
-      /* Grid Ratio: Text gets slightly more space */
-      grid-template-columns: 1.2fr 0.8fr; 
-      gap: 80px;
-      align-items: start; /* Align tops of text and image */
-      margin-bottom: 160px;
+      grid-template-columns: 1.1fr 0.9fr; /* Asymmetric grid */
+      gap: 40px;
+      align-items: center;
+      margin-bottom: 140px;
+      position: relative;
     }
 
-    /* IDENTITY BLOCK */
+    /* --- TYPOGRAPHY: The "Heavy" Side --- */
     .identity-block {
-      display: flex;
-      flex-direction: column;
-      padding-top: 10px; /* Micro-adjustment to align with image top */
+      z-index: 10; /* Text sits ON TOP of graphic elements if needed */
     }
 
     .role-label {
       font-family: 'Inter', sans-serif;
-      font-size: 0.8rem;
-      font-weight: 700;
+      font-size: 0.85rem;
+      font-weight: 800;
       text-transform: uppercase;
-      letter-spacing: 2px;
+      letter-spacing: 3px;
       color: var(--accent);
-      margin-bottom: 24px;
+      margin-bottom: 32px;
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 16px;
     }
     .role-label::before {
       content: '';
-      display: block;
-      width: 20px;
-      height: 2px;
+      width: 40px;
+      height: 4px; /* Thick accent line */
       background: var(--accent);
     }
 
-    /* THE NAME (Massive, Tight, Dominant) */
     .super-title {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(4.5rem, 8vw, 7.5rem); 
+      font-size: clamp(5rem, 9.5vw, 8.5rem); 
       font-weight: 900;
-      /* TIGHTER LINE HEIGHT (Critique Fix) */
-      line-height: 0.85; 
+      line-height: 0.8; 
       color: var(--text-main);
-      letter-spacing: -0.03em;
+      letter-spacing: -0.04em;
       margin-bottom: 48px;
-      text-transform: uppercase;
+      margin-left: -4px; /* Optical alignment */
     }
 
-    /* Description (Larger & More Readable) */
     .hero-desc {
-      font-size: 1.15rem; /* Larger size (Critique Fix) */
+      font-size: 1.25rem;
       color: var(--text-muted);
-      max-width: 46ch; /* Optimal line length */
+      max-width: 44ch;
       margin-bottom: 56px;
       font-weight: 400;
-      line-height: 1.7;
+      line-height: 1.6;
     }
 
-    /* CTA HIERARCHY (Critique Fix) */
+    /* CTA Group */
     .cta-group {
       display: flex;
       align-items: center;
       gap: 32px;
     }
 
-    /* Primary: Solid Black Block */
     .btn-primary {
       background-color: var(--text-main);
       color: #fff;
-      padding: 16px 36px;
+      padding: 18px 40px;
       text-decoration: none;
       font-weight: 600;
       font-size: 0.95rem;
-      transition: background 0.2s;
+      transition: all 0.3s;
     }
-    .btn-primary:hover { background-color: var(--accent); }
+    .btn-primary:hover { background-color: var(--accent); box-shadow: 0 10px 30px rgba(30, 58, 138, 0.2); }
 
-    /* Secondary: Text Only + Underline */
     .btn-secondary {
-      font-weight: 500;
-      color: var(--text-muted);
+      font-weight: 600;
+      color: var(--text-main);
       text-decoration: none;
-      border-bottom: 1px solid #ccc;
-      padding-bottom: 2px;
+      border-bottom: 2px solid #e5e5e5;
+      padding-bottom: 4px;
       font-size: 0.95rem;
-      transition: all 0.2s;
+      transition: all 0.3s;
     }
     .btn-secondary:hover { color: var(--accent); border-color: var(--accent); }
 
 
-    /* --- THE PHOTO (Framed & Treated) --- */
-    .image-block {
+    /* --- THE VISUAL: The "Cutout" & "Spine" --- */
+    .image-container {
       position: relative;
-      /* Increasing width slightly per critique */
-      width: 100%; 
-      max-width: 480px; 
-      margin-left: auto; /* Push to right edge */
+      height: 600px; /* Fixed height to control the composition */
+      display: flex;
+      align-items: flex-end; /* Align bottom */
+      justify-content: center;
     }
 
-    .image-frame {
-      width: 100%;
-      aspect-ratio: 4/5;
-      background: #f5f5f5; 
-      /* THE FRAME FIX: White border + Shadow */
-      border: 12px solid #fff;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.12); 
-      overflow: hidden;
-      position: relative;
-    }
-
-    /* Grain Texture Overlay (Subtle) */
-    .image-frame::after {
-      content: "";
+    /* 1. The Vertical Spine (Editorial Line) */
+    .image-container::before {
+      content: '';
       position: absolute;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.1'/%3E%3C/svg%3E");
-      pointer-events: none;
-      opacity: 0.4;
-      mix-blend-mode: overlay;
+      left: 15%; /* Positioned asymmetrically */
+      top: -40px;
+      bottom: 40px;
+      width: 6px; /* The "Spine" width */
+      background: var(--accent);
+      z-index: 0;
     }
 
-    .image-frame img {
+    /* 2. The Horizontal Grounding Line (Gradient) */
+    .image-container::after {
+      content: '';
+      position: absolute;
+      bottom: 60px;
+      left: 10%;
+      right: -20%; /* Bleeds off to the right */
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent) 0%, transparent 80%);
+      z-index: 0;
+    }
+
+    /* 3. The Image Wrapper (No Box, Just Position) */
+    .hero-image-wrapper {
+      position: relative;
+      z-index: 1; /* Sits ON TOP of the lines */
       width: 100%;
       height: 100%;
-      object-fit: cover;
-      display: block;
-      /* High Contrast B&W (Noir Style) */
-      filter: grayscale(100%) contrast(115%) brightness(95%); 
+      display: flex;
+      align-items: flex-end;
     }
 
+    /* 4. The Image Treatment (High Drama) */
+    .hero-image-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain; /* Important for PNG cutout */
+      object-position: bottom center;
+      
+      /* THE MAGIC FILTER: High Contrast + Drop Shadow on Subject */
+      filter: 
+        grayscale(100%) 
+        contrast(120%) 
+        brightness(105%) 
+        drop-shadow(20px 20px 30px rgba(0,0,0,0.25)); /* Creates the 3D float */
+        
+      transition: filter 0.5s ease;
+    }
 
-    /* --- FOCUS AREAS (Restored) --- */
+    /* --- FOCUS AREAS (Minimal Grid) --- */
     .focus-section {
       margin-bottom: 140px;
-      border-top: 1px solid var(--text-main); /* Strong structural line */
+      border-top: 1px solid var(--text-main); 
       padding-top: 60px;
     }
 
@@ -231,8 +244,9 @@
 
     .focus-num {
       font-family: 'Playfair Display', serif;
-      font-size: 3.5rem;
-      color: #e0e0e0; /* Subtle numbering */
+      font-size: 3rem;
+      font-weight: 700;
+      color: #e5e5e5;
       line-height: 1;
       margin-bottom: 24px;
     }
@@ -242,6 +256,8 @@
       font-weight: 700;
       margin-bottom: 16px;
       color: var(--text-main);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
 
     .focus-desc {
@@ -250,10 +266,9 @@
       line-height: 1.6;
     }
 
-
-    /* --- INTELLIGENCE (List View) --- */
+    /* --- INTELLIGENCE (Clean List) --- */
     .intel-section {
-      background: #f8fafc; /* Very light grey/blue tint */
+      background: #f8fafc;
       padding: 100px 0;
     }
     
@@ -265,19 +280,11 @@
     }
     
     .sec-label { 
-      font-weight: 700; 
+      font-weight: 800; 
       text-transform: uppercase; 
-      letter-spacing: 1.5px; 
+      letter-spacing: 2px; 
       font-size: 0.85rem; 
       color: var(--accent);
-    }
-    
-    .view-all-link {
-      font-size: 0.9rem;
-      color: var(--text-main);
-      text-decoration: none;
-      font-weight: 600;
-      border-bottom: 1px solid #ccc;
     }
 
     .intel-list {
@@ -293,52 +300,28 @@
       border-top: 1px solid #e2e8f0;
       text-decoration: none;
       color: inherit;
-      transition: all 0.3s ease;
-      position: relative;
+      transition: padding 0.3s ease;
     }
     .intel-row:last-child { border-bottom: 1px solid #e2e8f0; }
     .intel-row:hover { padding-left: 24px; background: #fff; }
 
-    .intel-content h3 { 
-      font-family: 'Playfair Display', serif; 
-      font-size: 1.5rem; 
-      font-weight: 600; 
-      margin-bottom: 8px;
-      color: var(--text-main);
-    }
-    
-    .intel-meta { 
-      font-size: 0.75rem; 
-      text-transform: uppercase; 
-      letter-spacing: 1.5px; 
-      color: var(--text-muted); 
-      font-weight: 600; 
-      margin-bottom: 8px; 
-      display: block;
-    }
-    
-    .arrow-icon { opacity: 0; transition: opacity 0.3s; color: var(--accent); font-size: 1.2rem;}
+    .intel-content h3 { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 600; margin-bottom: 8px;}
+    .intel-meta { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--accent); font-weight: 700; margin-bottom: 8px; display:block;}
+    .arrow-icon { opacity: 0; transition: opacity 0.3s; color: var(--accent); font-size: 1.5rem;}
     .intel-row:hover .arrow-icon { opacity: 1; }
 
     /* --- FOOTER --- */
-    footer { 
-      padding: 60px 0; 
-      border-top: 1px solid #e5e5e5; 
-      font-size: 0.85rem; 
-      color: #888; 
-      text-align: left;
-    }
+    footer { padding: 60px 0; border-top: 1px solid #e5e5e5; font-size: 0.85rem; color: #888; }
 
     /* --- RESPONSIVE --- */
     @media (max-width: 900px) {
-      .hero-grid { grid-template-columns: 1fr; gap: 60px; }
-      .super-title { font-size: 15vw; letter-spacing: -2px; }
-      .image-block { max-width: 100%; margin: 0; }
+      .hero-grid { grid-template-columns: 1fr; gap: 60px; text-align: left; }
+      .super-title { font-size: 14vw; letter-spacing: -2px; }
+      .image-container { height: 400px; justify-content: flex-start; }
+      .image-container::before { left: 20px; }
       .focus-grid { grid-template-columns: 1fr; gap: 40px; }
-      .top-nav { justify-content: center; padding: 20px 0; }
+      .top-nav { justify-content: center; }
       .nav-links { gap: 20px; flex-wrap: wrap; justify-content: center; }
-      .intel-row { grid-template-columns: 1fr; gap: 10px; }
-      .arrow-icon { display: none; }
     }
   </style>
 </head>
@@ -349,6 +332,7 @@
     
     <nav class="top-nav">
       <div class="nav-links">
+        <a href="/" class="nav-item">Home</a>
         <a href="insights.html" class="nav-item">Insights</a>
         <a href="projects.html" class="nav-item">Projects</a>
         <a href="dossier.html" class="nav-item">Dossier</a>
@@ -377,8 +361,8 @@
           </div>
         </div>
 
-        <div class="image-block">
-          <div class="image-frame">
+        <div class="image-container">
+          <div class="hero-image-wrapper">
             <img src="assets/img/home-profile.jpg?v=2" alt="Hadi Noori">
           </div>
         </div>
@@ -412,7 +396,7 @@
     <div class="container">
       <div class="section-head">
         <span class="sec-label">Latest Intelligence</span>
-        <a href="insights.html" class="view-all-link">View Full Archive</a>
+        <a href="insights.html" class="nav-item">View Full Archive</a>
       </div>
 
       <div id="intel-container" class="intel-list">
@@ -441,7 +425,7 @@
   </footer>
 
   <script>
-    /* Javascript to fetch content - Identical logic, new classes */
+    /* Content Loading Script */
     async function loadSelectedInsights() {
       const container = document.getElementById('intel-container');
       const p1 = document.getElementById('placeholder-1');
