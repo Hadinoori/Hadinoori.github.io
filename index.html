@@ -96,7 +96,7 @@
       display:flex;
       justify-content:flex-end;
       gap:30px;
-      margin-bottom:40px; /* tightened */
+      margin-bottom:34px;
     }
 
     .site-header a{
@@ -114,7 +114,7 @@
       display:grid;
       grid-template-columns:240px 1fr;
       gap:60px;
-      margin-bottom:55px; /* tightened */
+      margin-bottom:34px;
       align-items:start;
     }
 
@@ -123,7 +123,7 @@
       aspect-ratio:4 / 5;
       background:#f2f2f2;
       overflow:hidden;
-      border-radius:6px;
+      border-radius:10px;
       border:1px solid var(--ui-border);
     }
 
@@ -136,32 +136,45 @@
       -webkit-filter:none !important;
     }
 
-    /* Brand line (moves Hadi Noori into the center of gravity) */
+    /* Brand lockup (this is the center of gravity) */
     .brandline{
       display:flex;
       align-items:center;
-      gap:10px;
+      gap:12px;
       margin-bottom:16px;
     }
 
-    .brandline img{
-      width:22px;
-      height:22px;
-      opacity:.9;
+    .brandmark{
+      width:40px;
+      height:40px;
+      border-radius:12px;
+      border:1px solid var(--ui-border);
+      background:#fff;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      box-shadow: 0 1px 0 rgba(0,0,0,0.03);
+      flex:0 0 auto;
+    }
+
+    .brandmark img{
+      width:20px;
+      height:20px;
+      opacity:.95;
     }
 
     .brandname{
       font-family:var(--font-serif);
       font-weight:700;
-      font-size:1.15rem;
-      line-height:1.1;
+      font-size:1.55rem; /* bigger */
+      line-height:1.05;
     }
 
     .brandtitle{
-      margin-top:4px;
-      font-size:.72rem;
+      margin-top:6px;
+      font-size:.76rem;
       font-weight:700;
-      letter-spacing:1.2px;
+      letter-spacing:1.4px;
       text-transform:uppercase;
       color:var(--text-meta);
     }
@@ -171,7 +184,7 @@
       font-size:clamp(2.5rem,4vw,3.8rem);
       font-weight:600;
       line-height:1.1;
-      margin-bottom:22px;
+      margin-bottom:18px;
     }
 
     .hero-text .highlight{
@@ -180,10 +193,10 @@
     }
 
     .hero-subtitle{
-      max-width:58ch;
+      max-width:60ch;
       font-size:1.05rem;
       color:var(--text-secondary);
-      margin-bottom:26px;
+      margin-bottom:22px;
     }
 
     .hero-links a{
@@ -203,54 +216,105 @@
       border-color:var(--accent-blue);
     }
 
-    /* Selected Intelligence — compact editorial bar */
-    #selected-insights{
+    /* Divider line aligned to the right column rhythm */
+    .divider{
       border-top:1px solid var(--ui-border);
-      padding-top:18px;
+      margin: 26px 0 18px;
     }
 
-    .section-head{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:20px;
+    /* Selected Intelligence as a compact CARD (not a section) */
+    .selected-card{
+      max-width: 760px;
+      border:1px solid var(--ui-border);
+      border-radius:12px;
+      background:#fff;
+      padding:18px 18px 14px;
+      box-shadow: 0 1px 0 rgba(0,0,0,0.02);
     }
 
-    .section-left{
+    .card-head{
       display:flex;
       align-items:baseline;
+      justify-content:space-between;
       gap:16px;
-      flex-wrap:wrap;
+      margin-bottom:10px;
     }
 
-    .section-label{
-      font-size:.7rem;
-      font-weight:700;
+    .card-label{
+      font-size:.72rem;
+      font-weight:800;
       text-transform:uppercase;
-      letter-spacing:1.5px;
+      letter-spacing:1.6px;
       color:var(--text-meta);
       white-space:nowrap;
     }
 
-    .section-note{
-      margin:0;
-      font-size:.9rem;
-      color:var(--text-secondary);
-      max-width:75ch;
-    }
-
-    .section-link{
-      font-size:.7rem;
-      font-weight:600;
+    .card-link{
+      font-size:.72rem;
+      font-weight:700;
       text-transform:uppercase;
-      letter-spacing:.5px;
+      letter-spacing:.6px;
       color:var(--text-meta);
       text-decoration:none;
       white-space:nowrap;
       transition:color .2s ease;
     }
 
-    .section-link:hover{ color:var(--accent-blue); }
+    .card-link:hover{ color:var(--accent-blue); }
+
+    .card-note{
+      margin:0 0 14px 0;
+      color:var(--text-secondary);
+      font-size:.92rem;
+      max-width: 72ch;
+    }
+
+    .selected-list{
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      margin-top:6px;
+    }
+
+    .sel-item{
+      padding-top:10px;
+      border-top:1px solid var(--ui-border);
+    }
+
+    .sel-item:first-child{
+      border-top:none;
+      padding-top:0;
+    }
+
+    .sel-title{
+      font-family:var(--font-serif);
+      font-size:1.05rem;
+      font-weight:700;
+      line-height:1.25;
+      margin-bottom:4px;
+    }
+
+    .sel-title a{
+      color:var(--text-primary);
+      text-decoration:none;
+    }
+
+    .sel-title a:hover{ color:var(--accent-blue); }
+
+    .sel-desc{
+      color:var(--text-secondary);
+      font-size:.92rem;
+      max-width: 70ch;
+    }
+
+    .sel-meta{
+      margin-top:6px;
+      font-size:.72rem;
+      font-weight:700;
+      letter-spacing:1.1px;
+      text-transform:uppercase;
+      color:var(--text-meta);
+    }
 
     /* Mobile */
     @media (max-width: 768px){
@@ -280,16 +344,18 @@
 
       .site-header{
         justify-content:flex-start;
-        margin-bottom:28px;
+        margin-bottom:26px;
       }
 
       .hero-section{
         grid-template-columns:1fr;
-        gap:28px;
-        margin-bottom:40px;
+        gap:22px;
+        margin-bottom:22px;
       }
 
       .hero-image{ width:220px; }
+
+      .selected-card{ padding:16px; }
     }
   </style>
 </head>
@@ -326,9 +392,11 @@
         </div>
 
         <div class="hero-text">
-          <!-- Brand anchored where it matters -->
+          <!-- Brand lockup -->
           <div class="brandline">
-            <img src="assets/img/sidebar-logo.png" alt="">
+            <div class="brandmark" aria-hidden="true">
+              <img src="assets/img/sidebar-logo.png" alt="">
+            </div>
             <div>
               <div class="brandname">Hadi Noori</div>
               <div class="brandtitle">Strategic AI Governance</div>
@@ -352,15 +420,99 @@
         </div>
       </section>
 
-      <section id="selected-insights">
-        <div class="section-head">
-          <div class="section-left">
-            <span class="section-label">Selected Intelligence</span>
-            <p class="section-note">Selections update when positions evolve — not on a fixed schedule.</p>
+      <div class="divider"></div>
+
+      <!-- Selected Intelligence (compact card) -->
+      <section class="selected-card" aria-label="Selected Intelligence">
+        <div class="card-head">
+          <div class="card-label">Selected Intelligence</div>
+          <a class="card-link" href="insights.html">View Archive →</a>
+        </div>
+
+        <p class="card-note">Selections update when positions evolve — not on a fixed schedule.</p>
+
+        <div id="selected-container" class="selected-list">
+          <!-- Fallback content (will be replaced if API loads) -->
+          <div class="sel-item">
+            <div class="sel-title"><a href="insights.html">View selected positions in the archive</a></div>
+            <div class="sel-desc">A curated set of briefs and position papers — updated as needed.</div>
+            <div class="sel-meta">Archive</div>
           </div>
-          <a href="insights.html" class="section-link">View Archive →</a>
         </div>
       </section>
+
+      <script>
+        // Load 2 selected items from GitHub _insights (titles + short desc only)
+        async function loadSelected() {
+          const container = document.getElementById('selected-container');
+
+          try {
+            const response = await fetch('https://api.github.com/repos/hadinoori/hadinoori.ca/contents/_insights');
+            if (!response.ok) throw new Error('Insights fetch failed');
+
+            const files = await response.json();
+
+            const markdownFiles = files
+              .filter(f => f.name.endsWith('.md'))
+              .sort((a, b) => b.name.localeCompare(a.name));
+
+            let html = '';
+            let found = 0;
+
+            for (const file of markdownFiles) {
+              if (found >= 2) break;
+
+              const fileResponse = await fetch(file.download_url);
+              const content = await fileResponse.text();
+
+              const frontMatterMatch = content.match(/^---\s*([\s\S]*?)\s*---/);
+              if (!frontMatterMatch) continue;
+
+              const fm = frontMatterMatch[1];
+              const titleMatch = fm.match(/title:\s*["']?(.*?)["']?\s*$/m);
+              const descriptionMatch = fm.match(/description:\s*["']?(.*?)["']?\s*$/m);
+              const selectedMatch = fm.match(/selected_dispatch:\s*["']?(.*?)["']?\s*$/m);
+              const externalUrlMatch = fm.match(/external_url:\s*["']?(.*?)["']?\s*$/m);
+              const typeMatch = fm.match(/type:\s*["']?(.*?)["']?\s*$/m);
+
+              if (!(selectedMatch && selectedMatch[1].toLowerCase() === 'true')) continue;
+
+              found++;
+
+              const title = titleMatch ? titleMatch[1] : 'Untitled';
+              const desc = descriptionMatch ? descriptionMatch[1] : '';
+              const externalUrl = externalUrlMatch ? externalUrlMatch[1] : null;
+              const type = typeMatch ? typeMatch[1] : 'Dispatch';
+
+              const link = externalUrl ? externalUrl : `insights/${file.name.replace('.md', '.html')}`;
+              const target = externalUrl ? ' target="_blank" rel="noopener noreferrer"' : '';
+
+              html += `
+                <div class="sel-item">
+                  <div class="sel-title"><a href="${link}"${target}>${escapeHTML(title)}</a></div>
+                  <div class="sel-desc">${escapeHTML(desc)}</div>
+                  <div class="sel-meta">${escapeHTML(type)}</div>
+                </div>
+              `;
+            }
+
+            if (found > 0) {
+              container.innerHTML = html;
+            }
+          } catch (e) {
+            // Keep fallback (do nothing) — authority-safe
+          }
+        }
+
+        function escapeHTML(str) {
+          if (!str) return '';
+          return str.replace(/[&<>"']/g, m => ({
+            '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+          }[m]));
+        }
+
+        document.addEventListener('DOMContentLoaded', loadSelected);
+      </script>
 
     </main>
   </div>
