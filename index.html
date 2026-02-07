@@ -168,7 +168,7 @@
     .btn-secondary:hover { color: var(--accent); border-color: var(--accent); }
 
 
-    /* --- THE VISUAL SIDE: The Exact Sample Style --- */
+    /* --- THE VISUAL SIDE: Improved Image Treatment --- */
     .image-container {
       position: relative;
       height: 600px; 
@@ -183,22 +183,22 @@
       position: absolute;
       left: 18%; /* Positioned slightly behind left shoulder */
       top: 0;
-      bottom: 60px; 
+      bottom: 0; 
       width: 4px; 
       background: var(--accent);
       z-index: 0;
     }
 
-    /* 2. The Grounding Shadow (Behind Image) */
+    /* 2. The Grounding Shadow (Behind Image) - More subtle */
     .image-container::after {
       content: '';
       position: absolute;
       bottom: 0;
       left: 10%;
       width: 80%;
-      height: 40px;
+      height: 60px;
       /* Very soft shadow underneath */
-      background: radial-gradient(ellipse at center, rgba(0,0,0,0.15) 0%, transparent 70%);
+      background: radial-gradient(ellipse at center, rgba(0,0,0,0.08) 0%, transparent 70%);
       z-index: 0;
     }
 
@@ -210,21 +210,32 @@
       display: flex;
       align-items: flex-end;
       
-      /* MASK: Only fade the absolute bottom so coat is visible */
-      -webkit-mask-image: linear-gradient(to bottom, black 90%, transparent 100%);
-      mask-image: linear-gradient(to bottom, black 90%, transparent 100%);
+      /* IMPROVED MASK: Smooth gradient fade from 60% to 100% */
+      -webkit-mask-image: linear-gradient(to bottom, 
+        black 0%, 
+        black 60%, 
+        rgba(0,0,0,0.8) 75%,
+        rgba(0,0,0,0.4) 90%, 
+        transparent 100%
+      );
+      mask-image: linear-gradient(to bottom, 
+        black 0%, 
+        black 60%, 
+        rgba(0,0,0,0.8) 75%,
+        rgba(0,0,0,0.4) 90%, 
+        transparent 100%
+      );
     }
 
     .hero-image-wrapper img {
       width: 100%;
       height: 100%;
-      object-fit: contain; 
-      object-position: bottom center;
+      /* Use cover to fill the space better */
+      object-fit: cover; 
+      object-position: top center;
       
-      /* FORCE GRAYSCALE like the sample */
-      filter: grayscale(100%) contrast(105%) brightness(102%);
-      /* Slight drop shadow on the person for pop */
-      filter: drop-shadow(0 5px 15px rgba(0,0,0,0.08));
+      /* Convert to grayscale and add subtle enhancements + shadow */
+      filter: grayscale(100%) contrast(105%) brightness(102%) drop-shadow(0 8px 20px rgba(0,0,0,0.12));
       transition: filter 0.5s ease;
     }
 
@@ -362,7 +373,8 @@
 
         <div class="image-container">
           <div class="hero-image-wrapper">
-            <img src="assets/img/home-profile.jpg?v=2" alt="Hadi Noori">
+            <!-- IMPORTANT: Make sure this image includes the coat/jacket -->
+            <img src="assets/img/home-profile.jpg?v=3" alt="Hadi Noori">
           </div>
         </div>
 
