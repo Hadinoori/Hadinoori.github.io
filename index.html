@@ -177,7 +177,7 @@
       justify-content: center;
     }
 
-    /* 1. The Vertical Spine (Blue Line) */
+    /* 1. The Vertical Spine (Blue Line) - BEHIND the image */
     .image-container::before {
       content: '';
       position: absolute;
@@ -186,7 +186,7 @@
       bottom: 0; 
       width: 4px; 
       background: var(--accent);
-      z-index: 0;
+      z-index: 0; /* Behind everything */
     }
 
     /* 2. The Grounding Shadow (Behind Image) - More subtle */
@@ -204,7 +204,7 @@
 
     .hero-image-wrapper {
       position: relative;
-      z-index: 1; 
+      z-index: 2; /* Above the blue line and shadow */
       width: 100%;
       height: 100%;
       display: flex;
@@ -373,8 +373,8 @@
 
         <div class="image-container">
           <div class="hero-image-wrapper">
-            <!-- IMPORTANT: Make sure this image includes the coat/jacket -->
-            <img src="assets/img/home-profile.jpg?v=3" alt="Hadi Noori">
+            <!-- Updated to use new profile image with coat -->
+            <img src="assets/img/new-profile.jpg" alt="Hadi Noori">
           </div>
         </div>
 
