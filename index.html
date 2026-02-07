@@ -15,15 +15,15 @@
 
   <style>
     :root {
-      /* --- PALETTE: Editorial High-Contrast --- */
+      /* --- PALETTE: Editorial --- */
       --bg-body: #ffffff;
-      --text-main: #000000;   /* Ink Black */
+      --text-main: #0a0a0a;   /* Ink Black */
       --text-muted: #525252;  
       
-      /* The "Spine" Color */
-      --accent: #1e3a8a; /* Deep Navy */
+      /* The "Spine" Color - Navy Blue */
+      --accent: #1e3a8a; 
       
-      --container-width: 1200px;
+      --container-width: 1140px;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -33,18 +33,18 @@
       background: var(--bg-body);
       color: var(--text-main);
       line-height: 1.6;
-      overflow-x: hidden; /* For the dynamic layout */
+      overflow-x: hidden;
     }
 
     .container {
       max-width: var(--container-width);
       margin: 0 auto;
-      padding: 0 40px;
+      padding: 0 32px;
       width: 100%;
       position: relative;
     }
 
-    /* --- NAVIGATION: Minimal & Clean --- */
+    /* --- NAVIGATION --- */
     .top-nav {
       padding: 40px 0;
       display: flex;
@@ -78,63 +78,61 @@
       font-size: 0.8rem;
       text-transform: uppercase;
       letter-spacing: 1px;
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: all 0.3s;
     }
-    .nav-cta:hover { 
-      background-color: var(--accent); 
-      transform: translateY(-2px);
-    }
+    .nav-cta:hover { background-color: var(--accent); }
 
-    /* --- HERO: The Post-Modern Layout --- */
+    /* --- HERO: The Editorial Composition --- */
     .hero-grid {
       display: grid;
-      grid-template-columns: 1.1fr 0.9fr; /* Asymmetric grid */
+      grid-template-columns: 1.1fr 0.9fr; /* Asymmetric balance */
       gap: 40px;
       align-items: center;
-      margin-bottom: 140px;
+      margin-bottom: 120px;
       position: relative;
     }
 
-    /* --- TYPOGRAPHY: The "Heavy" Side --- */
+    /* --- TYPOGRAPHY SIDE --- */
     .identity-block {
-      z-index: 10; /* Text sits ON TOP of graphic elements if needed */
+      z-index: 10;
+      padding-right: 20px;
     }
 
     .role-label {
       font-family: 'Inter', sans-serif;
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       font-weight: 800;
       text-transform: uppercase;
-      letter-spacing: 3px;
+      letter-spacing: 2.5px;
       color: var(--accent);
-      margin-bottom: 32px;
+      margin-bottom: 24px;
       display: flex;
       align-items: center;
-      gap: 16px;
+      gap: 12px;
     }
     .role-label::before {
       content: '';
-      width: 40px;
-      height: 4px; /* Thick accent line */
+      width: 32px;
+      height: 3px; 
       background: var(--accent);
     }
 
     .super-title {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(5rem, 9.5vw, 8.5rem); 
+      font-size: clamp(4.5rem, 8.5vw, 8rem); 
       font-weight: 900;
-      line-height: 0.8; 
+      line-height: 0.85; 
       color: var(--text-main);
-      letter-spacing: -0.04em;
-      margin-bottom: 48px;
-      margin-left: -4px; /* Optical alignment */
+      letter-spacing: -0.03em;
+      margin-bottom: 40px;
+      margin-left: -3px; 
     }
 
     .hero-desc {
-      font-size: 1.25rem;
+      font-size: 1.15rem;
       color: var(--text-muted);
-      max-width: 44ch;
-      margin-bottom: 56px;
+      max-width: 42ch;
+      margin-bottom: 48px;
       font-weight: 400;
       line-height: 1.6;
     }
@@ -149,13 +147,13 @@
     .btn-primary {
       background-color: var(--text-main);
       color: #fff;
-      padding: 18px 40px;
+      padding: 16px 36px;
       text-decoration: none;
       font-weight: 600;
-      font-size: 0.95rem;
-      transition: all 0.3s;
+      font-size: 0.9rem;
+      transition: background 0.3s;
     }
-    .btn-primary:hover { background-color: var(--accent); box-shadow: 0 10px 30px rgba(30, 58, 138, 0.2); }
+    .btn-primary:hover { background-color: var(--accent); }
 
     .btn-secondary {
       font-weight: 600;
@@ -163,75 +161,74 @@
       text-decoration: none;
       border-bottom: 2px solid #e5e5e5;
       padding-bottom: 4px;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       transition: all 0.3s;
     }
     .btn-secondary:hover { color: var(--accent); border-color: var(--accent); }
 
 
-    /* --- THE VISUAL: The "Cutout" & "Spine" --- */
+    /* --- THE VISUAL SIDE: Spine + Fade + Shadow --- */
     .image-container {
       position: relative;
-      height: 600px; /* Fixed height to control the composition */
+      height: 600px; 
       display: flex;
-      align-items: flex-end; /* Align bottom */
+      align-items: flex-end; 
       justify-content: center;
     }
 
-    /* 1. The Vertical Spine (Editorial Line) */
+    /* 1. The Vertical Spine (Blue Line) */
     .image-container::before {
       content: '';
       position: absolute;
-      left: 15%; /* Positioned asymmetrically */
-      top: -40px;
-      bottom: 40px;
-      width: 6px; /* The "Spine" width */
+      left: 15%; 
+      top: -20px;
+      bottom: 80px; /* Stops before the very bottom to let fade breathe */
+      width: 4px; 
       background: var(--accent);
       z-index: 0;
     }
 
-    /* 2. The Horizontal Grounding Line (Gradient) */
+    /* 2. The Grounding Shadow (Behind Image) */
     .image-container::after {
       content: '';
       position: absolute;
-      bottom: 60px;
+      bottom: 0;
       left: 10%;
-      right: -20%; /* Bleeds off to the right */
-      height: 2px;
-      background: linear-gradient(90deg, var(--accent) 0%, transparent 80%);
+      right: 10%;
+      height: 80px;
+      /* Soft radial shadow to create depth/floor */
+      background: radial-gradient(ellipse at center, rgba(0,0,0,0.12) 0%, transparent 70%);
       z-index: 0;
+      transform: translateY(10px);
     }
 
-    /* 3. The Image Wrapper (No Box, Just Position) */
     .hero-image-wrapper {
       position: relative;
-      z-index: 1; /* Sits ON TOP of the lines */
+      z-index: 1; 
       width: 100%;
       height: 100%;
       display: flex;
       align-items: flex-end;
+      /* CSS MASKING: The key to the soft fade */
+      /* Fades from black (visible) to transparent (invisible) starting at 60% down */
+      -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 95%);
+      mask-image: linear-gradient(to bottom, black 50%, transparent 95%);
     }
 
-    /* 4. The Image Treatment (High Drama) */
     .hero-image-wrapper img {
       width: 100%;
       height: 100%;
-      object-fit: contain; /* Important for PNG cutout */
+      object-fit: contain; 
       object-position: bottom center;
       
-      /* THE MAGIC FILTER: High Contrast + Drop Shadow on Subject */
-      filter: 
-        grayscale(100%) 
-        contrast(120%) 
-        brightness(105%) 
-        drop-shadow(20px 20px 30px rgba(0,0,0,0.25)); /* Creates the 3D float */
-        
+      /* Grayscale Filter */
+      filter: grayscale(100%) contrast(110%);
       transition: filter 0.5s ease;
     }
 
-    /* --- FOCUS AREAS (Minimal Grid) --- */
+    /* --- FOCUS AREAS --- */
     .focus-section {
-      margin-bottom: 140px;
+      margin-bottom: 120px;
       border-top: 1px solid var(--text-main); 
       padding-top: 60px;
     }
@@ -248,25 +245,25 @@
       font-weight: 700;
       color: #e5e5e5;
       line-height: 1;
-      margin-bottom: 24px;
+      margin-bottom: 20px;
     }
 
     .focus-title {
-      font-size: 1.1rem;
+      font-size: 1rem;
       font-weight: 700;
-      margin-bottom: 16px;
+      margin-bottom: 12px;
       color: var(--text-main);
       text-transform: uppercase;
       letter-spacing: 0.5px;
     }
 
     .focus-desc {
-      font-size: 1rem;
+      font-size: 0.95rem;
       color: var(--text-muted);
       line-height: 1.6;
     }
 
-    /* --- INTELLIGENCE (Clean List) --- */
+    /* --- INTELLIGENCE SECTION --- */
     .intel-section {
       background: #f8fafc;
       padding: 100px 0;
@@ -283,7 +280,7 @@
       font-weight: 800; 
       text-transform: uppercase; 
       letter-spacing: 2px; 
-      font-size: 0.85rem; 
+      font-size: 0.8rem; 
       color: var(--accent);
     }
 
@@ -296,32 +293,32 @@
       display: grid;
       grid-template-columns: 1fr auto;
       align-items: center;
-      padding: 40px 0;
+      padding: 32px 0;
       border-top: 1px solid #e2e8f0;
       text-decoration: none;
       color: inherit;
       transition: padding 0.3s ease;
     }
     .intel-row:last-child { border-bottom: 1px solid #e2e8f0; }
-    .intel-row:hover { padding-left: 24px; background: #fff; }
+    .intel-row:hover { padding-left: 20px; background: #fff; }
 
-    .intel-content h3 { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 600; margin-bottom: 8px;}
-    .intel-meta { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--accent); font-weight: 700; margin-bottom: 8px; display:block;}
-    .arrow-icon { opacity: 0; transition: opacity 0.3s; color: var(--accent); font-size: 1.5rem;}
+    .intel-content h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 600; margin-bottom: 6px;}
+    .intel-meta { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--accent); font-weight: 700; margin-bottom: 6px; display:block;}
+    .arrow-icon { opacity: 0; transition: opacity 0.3s; color: var(--accent); font-size: 1.2rem;}
     .intel-row:hover .arrow-icon { opacity: 1; }
 
     /* --- FOOTER --- */
-    footer { padding: 60px 0; border-top: 1px solid #e5e5e5; font-size: 0.85rem; color: #888; }
+    footer { padding: 60px 0; border-top: 1px solid #e5e5e5; font-size: 0.8rem; color: #888; text-transform: uppercase; letter-spacing: 1px;}
 
     /* --- RESPONSIVE --- */
     @media (max-width: 900px) {
       .hero-grid { grid-template-columns: 1fr; gap: 60px; text-align: left; }
-      .super-title { font-size: 14vw; letter-spacing: -2px; }
+      .super-title { font-size: 13vw; letter-spacing: -2px; }
       .image-container { height: 400px; justify-content: flex-start; }
       .image-container::before { left: 20px; }
       .focus-grid { grid-template-columns: 1fr; gap: 40px; }
       .top-nav { justify-content: center; }
-      .nav-links { gap: 20px; flex-wrap: wrap; justify-content: center; }
+      .nav-links { gap: 16px; flex-wrap: wrap; justify-content: center; }
     }
   </style>
 </head>
@@ -425,7 +422,6 @@
   </footer>
 
   <script>
-    /* Content Loading Script */
     async function loadSelectedInsights() {
       const container = document.getElementById('intel-container');
       const p1 = document.getElementById('placeholder-1');
