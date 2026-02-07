@@ -175,14 +175,15 @@
       display: flex;
       align-items: flex-end; 
       justify-content: center;
+      overflow: visible; /* Allow blue line to extend beyond */
     }
 
-    /* 1. The Vertical Spine (Blue Line) - BEHIND the image */
+    /* 1. The Vertical Spine (Blue Line) - BEHIND the image, from TOP to BOTTOM */
     .image-container::before {
       content: '';
       position: absolute;
       left: 18%; /* Positioned slightly behind left shoulder */
-      top: 0;
+      top: -100px; /* Extended above to ensure it starts from top */
       bottom: 0; 
       width: 4px; 
       background: var(--accent);
@@ -210,19 +211,19 @@
       display: flex;
       align-items: flex-end;
       
-      /* IMPROVED MASK: Smooth gradient fade from 60% to 100% */
+      /* IMPROVED MASK: Start fade much lower so coat is visible */
       -webkit-mask-image: linear-gradient(to bottom, 
         black 0%, 
-        black 60%, 
-        rgba(0,0,0,0.8) 75%,
-        rgba(0,0,0,0.4) 90%, 
+        black 75%, 
+        rgba(0,0,0,0.9) 85%,
+        rgba(0,0,0,0.5) 93%, 
         transparent 100%
       );
       mask-image: linear-gradient(to bottom, 
         black 0%, 
-        black 60%, 
-        rgba(0,0,0,0.8) 75%,
-        rgba(0,0,0,0.4) 90%, 
+        black 75%, 
+        rgba(0,0,0,0.9) 85%,
+        rgba(0,0,0,0.5) 93%, 
         transparent 100%
       );
     }
