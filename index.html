@@ -30,7 +30,7 @@
       --surface-hover: #fafafa;
 
       /* Spacing */
-      --container-width: 1080px;
+      --container-width: 1100px;
       
       /* Typography */
       --font-serif: 'Lora', Georgia, serif;
@@ -58,30 +58,31 @@
       position: relative;
     }
 
-    /* --- HEADER --- */
+    /* --- HEADER (Fixed Layout) --- */
     .site-header {
-      padding: 30px 0;
+      padding: 24px 0;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 60px;
+      margin-bottom: 80px; /* Space between header and hero */
       position: relative;
-      z-index: 100;
+      z-index: 100; /* Ensures header is above everything */
     }
 
+    /* Brand in Top Left (Standard) */
     .brand-group {
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 12px;
       text-decoration: none;
     }
 
     .header-logo-img {
-      width: 44px;
-      height: 44px;
-      border-radius: 8px;
+      width: 40px;
+      height: 40px;
+      border-radius: 6px;
       border: 1px solid var(--border-color);
-      padding: 3px;
+      padding: 2px;
     }
 
     .header-text {
@@ -93,18 +94,18 @@
     .brand-name {
       font-family: var(--font-serif);
       font-weight: 700;
-      font-size: 1.15rem;
+      font-size: 1.1rem;
       color: var(--text-main);
     }
 
     .brand-tagline {
       font-family: var(--font-sans);
-      font-size: 0.7rem;
+      font-size: 0.65rem;
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.5px;
       color: var(--text-light);
-      margin-top: 3px;
+      margin-top: 2px;
     }
 
     .nav-links {
@@ -125,7 +126,7 @@
     .nav-cta {
       background-color: var(--text-main);
       color: #fff !important;
-      padding: 10px 22px;
+      padding: 10px 20px;
       border-radius: 6px;
       font-weight: 500;
       font-size: 0.9rem;
@@ -170,7 +171,26 @@
       justify-content: center;
     }
 
-    /* Removed .eyebrow style as it is deleted from HTML */
+    /* Eyebrow Text (Only Text, No Logo) */
+    .eyebrow {
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #888;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    .eyebrow::before {
+      content: '';
+      display: block;
+      width: 20px;
+      height: 2px;
+      background: var(--accent-blue);
+    }
 
     h1 {
       font-family: var(--font-serif);
@@ -347,7 +367,7 @@
     
     .intel-item h3 a { text-decoration: none; color: inherit; }
     
-    /* Full card clickable fix */
+    /* CLICK FIX: Makes entire card clickable */
     .intel-item h3 a::before { 
       content: ''; 
       position: absolute; 
@@ -362,7 +382,7 @@
       margin-bottom: 20px;
     }
 
-    /* --- MINIMAL FOOTER --- */
+    /* --- FOOTER --- */
     .site-footer {
       padding: 40px 0;
       margin-top: auto;
@@ -440,6 +460,8 @@
         </div>
 
         <div class="hero-content">
+          <span class="eyebrow">Strategic AI Governance</span>
+          
           <h1>
             Intelligence is <em>fragile</em>.<br>
             Governance is its <em>armor</em>.
