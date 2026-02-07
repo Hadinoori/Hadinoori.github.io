@@ -23,8 +23,8 @@
       
       /* Accents */
       --accent-blue: #1e3a8a;
-      --accent-fragile: #ea580c; /* Orange */
-      --accent-armor: #854d0e;   /* Bronze */
+      --accent-fragile: #ea580c; 
+      --accent-armor: #854d0e;   
       
       --border-color: #e5e5e5;
       --surface-hover: #fafafa;
@@ -55,6 +55,7 @@
       margin: 0 auto;
       padding: 0 24px;
       width: 100%;
+      position: relative;
     }
 
     /* --- HEADER --- */
@@ -64,6 +65,8 @@
       align-items: center;
       justify-content: space-between;
       margin-bottom: 60px;
+      position: relative;
+      z-index: 100;
     }
 
     .brand-group {
@@ -140,6 +143,8 @@
       gap: 80px;
       align-items: center;
       margin-bottom: 100px;
+      position: relative;
+      z-index: 1;
     }
 
     .hero-image-wrapper {
@@ -165,25 +170,7 @@
       justify-content: center;
     }
 
-    .eyebrow {
-      font-size: 0.75rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      color: #666;
-      margin-bottom: 24px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    
-    .eyebrow::before {
-      content: '';
-      display: block;
-      width: 12px;
-      height: 2px;
-      background: var(--accent-blue);
-    }
+    /* Removed .eyebrow style as it is deleted from HTML */
 
     h1 {
       font-family: var(--font-serif);
@@ -221,6 +208,8 @@
       font-weight: 500;
       font-size: 1rem;
       transition: all 0.2s;
+      position: relative;
+      z-index: 2;
     }
     .btn-primary:hover {
       background-color: #000;
@@ -238,6 +227,8 @@
       border: 2px solid var(--border-color); 
       background: transparent;
       transition: all 0.2s;
+      position: relative;
+      z-index: 2;
     }
     .btn-secondary:hover {
       border-color: var(--text-main);
@@ -247,6 +238,8 @@
     /* --- FOCUS AREAS --- */
     .focus-section {
       margin-bottom: 100px;
+      position: relative;
+      z-index: 1;
     }
     
     .focus-grid {
@@ -285,6 +278,8 @@
       background: #fafafa;
       border-top: 1px solid var(--border-color);
       padding: 80px 0;
+      position: relative;
+      z-index: 1;
     }
 
     .section-header {
@@ -324,7 +319,9 @@
       display: flex;
       flex-direction: column;
       height: 100%;
+      position: relative;
     }
+    
     .intel-item:hover {
       border-color: var(--accent-blue);
       transform: translateY(-4px);
@@ -347,8 +344,16 @@
       line-height: 1.35;
       color: var(--text-main);
     }
+    
     .intel-item h3 a { text-decoration: none; color: inherit; }
-    .intel-item h3 a::before { content: ''; position: absolute; inset: 0; }
+    
+    /* Full card clickable fix */
+    .intel-item h3 a::before { 
+      content: ''; 
+      position: absolute; 
+      inset: 0; 
+      z-index: 5;
+    }
 
     .intel-item p {
       font-size: 0.95rem;
@@ -357,12 +362,14 @@
       margin-bottom: 20px;
     }
 
-    /* --- MINIMAL FOOTER (REVERTED) --- */
+    /* --- MINIMAL FOOTER --- */
     .site-footer {
       padding: 40px 0;
       margin-top: auto;
       background: #fff;
       border-top: 1px solid var(--border-color);
+      position: relative;
+      z-index: 1;
     }
     
     .footer-content {
@@ -376,6 +383,8 @@
     .social-links {
       display: flex;
       gap: 20px;
+      position: relative;
+      z-index: 10;
     }
 
     .social-links a {
@@ -431,8 +440,6 @@
         </div>
 
         <div class="hero-content">
-          <span class="eyebrow">Strategic AI Governance</span>
-          
           <h1>
             Intelligence is <em>fragile</em>.<br>
             Governance is its <em>armor</em>.
@@ -544,7 +551,7 @@
           const link = extUrl ? extUrl : `insights/${file.name.replace('.md', '.html')}`;
           
           html += `
-            <article class="intel-item" style="position:relative;">
+            <article class="intel-item">
               <div class="intel-meta">${type}</div>
               <h3><a href="${link}">${title}</a></h3>
               <p>${desc}</p>
