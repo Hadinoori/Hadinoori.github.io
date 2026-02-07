@@ -1,541 +1,296 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title>Hadi Noori | Strategic AI Governance</title>
-    <meta name="description" content="Strategic AI Governance protocols and insights. Developing accountable frameworks for high-stakes AI deployment.">
-    <meta name="robots" content="index, follow">
-    <meta name="author" content="Hadi Noori">
-    
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Hadi Noori | Strategic AI Governance">
-    <meta property="og:description" content="Developing accountable protocols for high-stakes AI deployment.">
-    <meta property="og:url" content="https://hadinoori.ca">
-    
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Hadi Noori",
-      "jobTitle": "Strategic AI Governance Specialist",
-      "url": "https://hadinoori.ca",
-      "worksFor": {
-        "@type": "Organization",
-        "name": "Independent Research"
-      },
-      "knowsAbout": ["AI Ethics", "Algorithmic Accountability", "Digital Transformation", "Risk Assessment"]
-    }
-    </script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="icon" type="image/png" href="/assets/img/sidebar-logo.png">
-    
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lora:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
-    
-    <style>
-        :root {
-            /* Palette */
-            --bg-main: #fafafa;      
-            --text-primary: #111111; 
-            --text-secondary: #444444; 
-            --text-meta: #767676;    
-            --accent-blue: #1e3a8a;  
-            --ui-border: #e5e5e5;    
-            
-            /* Typography */
-            --font-serif: 'Lora', Georgia, serif;
-            --font-sans: 'Inter', sans-serif;
-            
-            /* Fluid Dimensions (Clamp) */
-            --spine-width: clamp(140px, 15vw, 180px);
-            --content-pad: clamp(40px, 5vw, 60px);
-        }
+<title>Hadi Noori | Strategic AI Governance</title>
+<meta name="description" content="Strategic AI Governance. Designing accountable protocols for high-stakes AI deployment where legitimacy matters.">
+<meta name="robots" content="index, follow">
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lora:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
 
-        body {
-            font-family: var(--font-sans);
-            background-color: var(--bg-main);
-            color: var(--text-primary);
-            line-height: 1.4;
-            min-height: 100vh;
-        }
+<style>
+:root{
+  --bg-main:#fafafa;
+  --text-primary:#111;
+  --text-secondary:#444;
+  --text-meta:#767676;
+  --accent-blue:#1e3a8a;
+  --ui-border:#e5e5e5;
 
-        /* Main grid layout */
-        .grid-layout {
-            display: grid;
-            grid-template-columns: var(--spine-width) 1fr;
-            min-height: 100vh;
-        }
+  --font-serif:'Lora',Georgia,serif;
+  --font-sans:'Inter',sans-serif;
 
-        /* Left spine */
-        .spine {
-            padding: 40px 20px;
-            border-right: 1px solid var(--ui-border);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
+  --spine-width:clamp(140px,15vw,180px);
+  --content-pad:clamp(40px,5vw,60px);
+}
 
-        .spine-logo {
-            font-family: var(--font-serif);
-            font-size: 1.1rem;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-            text-decoration: none;
-            color: var(--text-primary);
-        }
+*{margin:0;padding:0;box-sizing:border-box}
 
-        .spine-nav {
-            margin-top: 60px;
-        }
+body{
+  font-family:var(--font-sans);
+  background:var(--bg-main);
+  color:var(--text-primary);
+  line-height:1.4;
+}
 
-        .nav-item {
-            display: block;
-            padding: 12px 0;
-            font-size: 0.8rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            text-decoration: none;
-            color: var(--text-meta);
-            transition: color 0.2s ease;
-        }
+/* Layout */
+.grid-layout{
+  display:grid;
+  grid-template-columns:var(--spine-width) 1fr;
+  min-height:100vh;
+}
 
-        .nav-item:hover,
-        .nav-item.active {
-            color: var(--text-primary);
-        }
+/* Spine */
+.spine{
+  padding:40px 20px;
+  border-right:1px solid var(--ui-border);
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
 
-        .spine-footer {
-            font-size: 0.75rem;
-            color: var(--text-meta);
-        }
+.spine-logo{
+  font-family:var(--font-serif);
+  font-weight:700;
+  text-decoration:none;
+  color:var(--text-primary);
+}
 
-        .spine-footer a {
-            color: var(--text-meta);
-            text-decoration: none;
-        }
+.spine-nav a{
+  display:block;
+  margin:14px 0;
+  font-size:.75rem;
+  text-transform:uppercase;
+  letter-spacing:1px;
+  text-decoration:none;
+  color:var(--text-meta);
+}
 
-        .spine-footer a:hover {
-            color: var(--accent-blue);
-        }
+.spine-nav a:hover{color:var(--text-primary)}
 
-        /* Main content */
-        .main-content {
-            padding: 40px var(--content-pad);
-        }
+.spine-footer{
+  font-size:.75rem;
+  color:var(--text-meta);
+}
 
-        /* Header */
-        .site-header {
-            display: flex;
-            justify-content: flex-end;
-            margin-bottom: 60px;
-        }
+/* Main */
+.main-content{
+  padding:40px var(--content-pad);
+}
 
-        .header-links {
-            display: flex;
-            gap: 30px;
-        }
+/* Header */
+.site-header{
+  display:flex;
+  justify-content:flex-end;
+  gap:30px;
+  margin-bottom:60px;
+}
 
-        .header-link {
-            font-size: 0.8rem;
-            font-weight: 500;
-            text-decoration: none;
-            color: var(--text-meta);
-            transition: color 0.2s ease;
-        }
+.site-header a{
+  font-size:.8rem;
+  text-decoration:none;
+  color:var(--text-meta);
+}
 
-        .header-link:hover {
-            color: var(--accent-blue);
-        }
+.site-header a:hover{color:var(--accent-blue)}
 
-        /* Hero section */
-        .hero-section {
-            display: grid;
-            grid-template-columns: 280px 1fr;
-            gap: 60px;
-            margin-bottom: 80px;
-            align-items: start;
-        }
+/* Hero */
+.hero-section{
+  display:grid;
+  grid-template-columns:280px 1fr;
+  gap:60px;
+  margin-bottom:90px;
+}
 
-        .hero-image {
-            width: 100%;
-            max-width: 280px;
-            aspect-ratio: 1;
-            border-radius: 4px;
-            overflow: hidden;
-            background: #f0f0f0;
-        }
+.hero-image{
+  max-width:280px;
+  aspect-ratio:1;
+  background:#eee;
+  overflow:hidden;
+}
 
-        .hero-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+.hero-image img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  filter:none !important;
+  -webkit-filter:none !important;
+}
 
-        .hero-text h1 {
-            font-family: var(--font-serif);
-            font-size: clamp(2.5rem, 4vw, 3.8rem);
-            font-weight: 600;
-            line-height: 1.1;
-            margin-bottom: 25px;
-        }
+.hero-text h1{
+  font-family:var(--font-serif);
+  font-size:clamp(2.5rem,4vw,3.8rem);
+  line-height:1.1;
+  margin-bottom:25px;
+}
 
-        .hero-text .highlight {
-            font-style: italic;
-            font-weight: 400;
-        }
+.hero-text .highlight{font-style:italic;font-weight:400}
 
-        .hero-subtitle {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            max-width: 52ch;
-            margin-bottom: 35px;
-        }
+.hero-subtitle{
+  max-width:55ch;
+  font-size:1.05rem;
+  color:var(--text-secondary);
+  margin-bottom:30px;
+}
 
-        .hero-links {
-            display: flex;
-            gap: 25px;
-        }
+.hero-links a{
+  margin-right:25px;
+  font-size:.9rem;
+  font-weight:600;
+  text-decoration:none;
+  color:var(--text-primary);
+  border-bottom:1px solid var(--text-primary);
+}
 
-        .hero-link {
-            font-size: 0.9rem;
-            font-weight: 600;
-            text-decoration: none;
-            color: var(--text-primary);
-            border-bottom: 1px solid var(--text-primary);
-            padding-bottom: 2px;
-            transition: color 0.2s ease, border-color 0.2s ease;
-        }
+.hero-links a:hover{
+  color:var(--accent-blue);
+  border-color:var(--accent-blue);
+}
 
-        .hero-link:hover {
-            color: var(--accent-blue);
-            border-color: var(--accent-blue);
-        }
+/* Selected Intelligence */
+#selected-insights{
+  border-top:1px solid var(--ui-border);
+  padding-top:40px;
+}
 
-        /* Selected Insights section */
-        #selected-insights {
-            margin-top: 80px;
-            padding-top: 40px;
-            border-top: 1px solid var(--ui-border);
-        }
+.section-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:baseline;
+}
 
-        .section-label {
-            font-size: 0.7rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: var(--text-meta);
-        }
+.section-label{
+  font-size:.7rem;
+  font-weight:700;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  color:var(--text-meta);
+}
 
-        /* ✅ Added for editorial header + archive link */
-        .section-head{
-            display:flex;
-            align-items:baseline;
-            justify-content:space-between;
-            margin-bottom:10px;
-        }
-        .section-link{
-            font-size:0.7rem;
-            font-weight:600;
-            text-transform:uppercase;
-            letter-spacing:0.5px;
-            color:var(--text-meta);
-            text-decoration:none;
-            transition: color 0.2s ease;
-        }
-        .section-link:hover{ color:var(--accent-blue); }
-        .section-note{
-            margin:0 0 25px 0;
-            font-size:0.9rem;
-            color:var(--text-secondary);
-            max-width:65ch;
-        }
+.section-link{
+  font-size:.7rem;
+  text-transform:uppercase;
+  color:var(--text-meta);
+  text-decoration:none;
+}
 
-        .insight-item {
-            display: grid;
-            grid-template-columns: 80px 1fr;
-            gap: 30px;
-            padding: 25px 0;
-            border-bottom: 1px solid var(--ui-border);
-        }
+.section-link:hover{color:var(--accent-blue)}
 
-        .insight-meta {
-            font-size: 0.75rem;
-            color: var(--text-meta);
-            font-weight: 500;
-        }
+.section-note{
+  margin:10px 0 30px;
+  max-width:65ch;
+  font-size:.9rem;
+  color:var(--text-secondary);
+}
 
-        .insight-content h3 {
-            font-family: var(--font-serif);
-            font-size: 1.4rem;
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
+.insight-item{
+  display:grid;
+  grid-template-columns:80px 1fr;
+  gap:30px;
+  padding:25px 0;
+  border-bottom:1px solid var(--ui-border);
+}
 
-        .insight-content h3 a {
-            color: var(--text-primary);
-            text-decoration: none;
-        }
+.insight-meta{
+  font-size:.75rem;
+  color:var(--text-meta);
+}
 
-        .insight-content h3 a:hover {
-            color: var(--accent-blue);
-        }
+.insight-content h3{
+  font-family:var(--font-serif);
+  font-size:1.35rem;
+  margin-bottom:8px;
+}
 
-        .insight-description {
-            font-size: 0.95rem;
-            color: var(--text-secondary);
-            margin-bottom: 10px;
-            max-width: 70ch;
-        }
+.insight-content h3 a{
+  text-decoration:none;
+  color:var(--text-primary);
+}
 
-        .tag {
-            display: inline-block;
-            font-size: 0.7rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--text-meta);
-        }
+.insight-content h3 a:hover{color:var(--accent-blue)}
 
-        /* Mobile responsive */
-        @media (max-width: 768px) {
-            .grid-layout {
-                grid-template-columns: 1fr;
-            }
-            
-            .spine {
-                border-right: none;
-                border-bottom: 1px solid var(--ui-border);
-                padding: 20px;
-                flex-direction: row;
-                align-items: center;
-            }
-            
-            .spine-nav {
-                margin-top: 0;
-                display: flex;
-                gap: 20px;
-            }
-            
-            .nav-item {
-                padding: 0;
-                font-size: 0.7rem;
-            }
-            
-            .spine-footer {
-                display: none;
-            }
-            
-            .main-content {
-                padding: 20px;
-            }
-            
-            .hero-section {
-                grid-template-columns: 1fr;
-                gap: 30px;
-            }
-            
-            .hero-image {
-                max-width: 200px;
-            }
-            
-            .site-header {
-                justify-content: flex-start;
-                margin-bottom: 40px;
-            }
-            
-            .insight-item {
-                grid-template-columns: 1fr;
-                gap: 15px;
-            }
-        }
-    </style>
+.insight-description{
+  font-size:.95rem;
+  color:var(--text-secondary);
+  margin-bottom:8px;
+}
+
+.tag{
+  font-size:.7rem;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  color:var(--text-meta);
+}
+
+/* Mobile */
+@media(max-width:768px){
+  .grid-layout{grid-template-columns:1fr}
+  .spine{border-right:none;border-bottom:1px solid var(--ui-border)}
+  .hero-section{grid-template-columns:1fr}
+}
+</style>
 </head>
+
 <body>
-    <div class="grid-layout">
-        <!-- Left spine -->
-        <aside class="spine">
-            <div>
-                <a href="/" class="spine-logo">Hadi Noori</a>
-                
-                <nav class="spine-nav">
-                    <a href="insights.html" class="nav-item">Insights</a>
-                    <a href="projects.html" class="nav-item">Projects</a>
-                    <a href="contact.html" class="nav-item">Inquiry</a>
-                </nav>
-            </div>
-            
-            <footer class="spine-footer">
-                <div>© 2026 Hadi Noori</div>
-                <div>Vancouver, BC</div>
-                <div style="margin-top: 10px;">
-                    <a href="contact.html">Contact</a> | 
-                    <a href="dossier.html">Full Dossier</a>
-                </div>
-            </footer>
-        </aside>
+<div class="grid-layout">
 
-        <!-- Main content -->
-        <main class="main-content">
-            <!-- Header links -->
-            <header class="site-header">
-                <div class="header-links">
-                    <a href="contact.html" class="header-link">Contact</a>
-                    <a href="dossier.html" class="header-link">Full Dossier</a>
-                </div>
-            </header>
+<aside class="spine">
+  <div>
+    <a href="/" class="spine-logo">Hadi Noori</a>
+    <nav class="spine-nav">
+      <a href="insights.html">Insights</a>
+      <a href="projects.html">Projects</a>
+      <a href="contact.html">Inquiry</a>
+    </nav>
+  </div>
+  <div class="spine-footer">
+    © 2026 Hadi Noori<br>Vancouver, BC<br>
+    <a href="contact.html">Contact</a> | <a href="dossier.html">Full Dossier</a>
+  </div>
+</aside>
 
-            <!-- Hero section -->
-            <section class="hero-section">
-                <div class="hero-image">
-                    <img src="/assets/img/hadi-profile.jpg" alt="Hadi Noori">
-                </div>
-                
-                <div class="hero-text">
-                    <h1>
-                        Intelligence is <span class="highlight">fragile</span>.<br>
-                        Governance is its <span class="highlight">armor</span>.
-                    </h1>
-                    
-                    <p class="hero-subtitle">
-                        Building accountable protocols for high-stakes AI deployment—where technical performance is not enough, and legitimacy matters.
-                    </p>
-                    
-                    <div class="hero-links">
-                        <a href="contact.html" class="hero-link">Start a Conversation</a>
-                        <a href="dossier.html" class="hero-link">View Full Dossier</a>
-                    </div>
-                </div>
-            </section>
+<main class="main-content">
 
-            <!-- Selected Insights -->
-            <section id="selected-insights">
-                <!-- ✅ Updated heading (title + archive link) -->
-                <div class="section-head">
-                    <span class="section-label">Selected Intelligence</span>
-                    <a class="section-link" href="insights.html">View Archive →</a>
-                </div>
-                <!-- ✅ Editorial policy line -->
-                <p class="section-note">Selections update when positions evolve — not on a fixed schedule.</p>
+<header class="site-header">
+  <a href="contact.html">Contact</a>
+  <a href="dossier.html">Full Dossier</a>
+</header>
 
-                <div id="insights-container">
-                    <!-- Insights will be loaded here -->
-                    <div style="color: var(--text-meta); font-size: 0.9rem;">Loading insights...</div>
-                </div>
-            </section>
-        </main>
+<section class="hero-section">
+  <div class="hero-image">
+    <img src="assets/img/home-profile.jpg?v=2" alt="Hadi Noori">
+  </div>
+  <div class="hero-text">
+    <h1>Intelligence is <span class="highlight">fragile</span>.<br>Governance is its <span class="highlight">armor</span>.</h1>
+    <p class="hero-subtitle">
+      Building accountable protocols for high-stakes AI deployment —
+      where technical performance is not enough, and legitimacy matters.
+    </p>
+    <div class="hero-links">
+      <a href="contact.html">Start a Conversation</a>
+      <a href="dossier.html">View Full Dossier</a>
     </div>
+  </div>
+</section>
 
-    <script>
-        // Load selected insights from GitHub
-        async function loadSelectedInsights() {
-            const container = document.getElementById('insights-container');
-            
-            try {
-                const response = await fetch('https://api.github.com/repos/hadinoori/hadinoori.ca/contents/_insights');
-                
-                if (!response.ok) {
-                    throw new Error('Failed to fetch insights');
-                }
-                
-                const files = await response.json();
-                
-                // Filter for markdown files and sort by name (date)
-                const markdownFiles = files
-                    .filter(file => file.name.endsWith('.md'))
-                    .sort((a, b) => b.name.localeCompare(a.name));
-                
-                let insightsHTML = '';
-                let foundCount = 0;
-                
-                for (const file of markdownFiles) {
-                    if (foundCount >= 2) break;
-                    
-                    const fileResponse = await fetch(file.download_url);
-                    const content = await fileResponse.text();
-                    
-                    // Parse front matter
-                    const frontMatterMatch = content.match(/^---\s*([\s\S]*?)\s*---/);
-                    if (!frontMatterMatch) continue;
-                    
-                    const frontMatter = frontMatterMatch[1];
-                    const titleMatch = frontMatter.match(/title:\s*["']?(.*?)["']?\s*$/m);
-                    const descriptionMatch = frontMatter.match(/description:\s*["']?(.*?)["']?\s*$/m);
-                    const dateMatch = frontMatter.match(/date:\s*["']?(.*?)["']?\s*$/m);
-                    const selectedMatch = frontMatter.match(/selected_dispatch:\s*["']?(.*?)["']?\s*$/m);
-                    const externalUrlMatch = frontMatter.match(/external_url:\s*["']?(.*?)["']?\s*$/m);
-                    const typeMatch = frontMatter.match(/type:\s*["']?(.*?)["']?\s*$/m);
-                    
-                    if (selectedMatch && selectedMatch[1].toLowerCase() === 'true') {
-                        foundCount++;
-                        
-                        const title = titleMatch ? titleMatch[1] : 'Untitled';
-                        const description = descriptionMatch ? descriptionMatch[1] : '';
-                        const date = dateMatch ? dateMatch[1] : '';
-                        const externalUrl = externalUrlMatch ? externalUrlMatch[1] : null;
+<section id="selected-insights">
+  <div class="section-head">
+    <span class="section-label">Selected Intelligence</span>
+    <a href="insights.html" class="section-link">View Archive →</a>
+  </div>
+  <p class="section-note">
+    Selections update when positions evolve — not on a fixed schedule.
+  </p>
+  <div id="insights-container">
+    <div class="insight-description">
+      Selected positions are available in the archive.
+    </div>
+  </div>
+</section>
 
-                        // ✅ Use type if present; otherwise default to Dispatch
-                        const type = typeMatch ? typeMatch[1] : 'Dispatch';
-                        
-                        // Format date
-                        const formattedDate = date ? new Date(date).toLocaleDateString('en-US', {
-                            year: 'numeric',
-                            month: 'short'
-                        }).toUpperCase() : '';
-                        
-                        // Create link - external if specified, otherwise internal
-                        const link = externalUrl ? externalUrl : `insights/${file.name.replace('.md', '.html')}`;
-                        const target = externalUrl ? ' target="_blank" rel="noopener noreferrer"' : '';
-                        
-                        insightsHTML += `
-                            <article class="insight-item">
-                                <div class="insight-meta">${formattedDate}</div>
-                                <div class="insight-content">
-                                    <h3><a href="${link}"${target}>${escapeHTML(title)}</a></h3>
-                                    <p class="insight-description">${escapeHTML(description)}</p>
-                                    <span class="tag">${escapeHTML(type)}</span>
-                                </div>
-                            </article>
-                        `;
-                    }
-                }
-                
-                if (foundCount === 0) {
-                    insightsHTML = '<div style="color: var(--text-meta); font-size: 0.9rem;">No selected insights available.</div>';
-                }
-                
-                container.innerHTML = insightsHTML;
-                
-            } catch (error) {
-                console.error('Error loading insights:', error);
-                container.innerHTML = '<div style="color: var(--text-meta); font-size: 0.9rem;">Unable to load insights at this time.</div>';
-            }
-        }
-        
-        // Escape HTML to prevent XSS
-        function escapeHTML(str) {
-            if (!str) return '';
-            return str.replace(/[&<>"']/g, function(match) {
-                const escape = {
-                    '&': '&amp;',
-                    '<': '&lt;',
-                    '>': '&gt;',
-                    '"': '&quot;',
-                    "'": '&#39;'
-                };
-                return escape[match];
-            });
-        }
-        
-        // Load insights when page loads
-        document.addEventListener('DOMContentLoaded', loadSelectedInsights);
-    </script>
+</main>
+</div>
 </body>
 </html>
