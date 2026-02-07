@@ -1,29 +1,463 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>Hadi Noori | Strategic AI Governance</title>
-  <meta name="description" content="Strategic AI governance, accountability, and operational ethics." />
+  <meta name="description" content="Developing accountable protocols for high-stakes AI deployment." />
+  <meta name="robots" content="index, follow" />
+
+  <link rel="icon" type="image/png" href="/assets/img/sidebar-logo.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lora:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet" />
+
   <style>
-    body { font-family: system-ui, -apple-system, sans-serif; margin: 0; padding: 60px 40px; background: #fafafa; color: #111; }
-    nav a { margin-right: 20px; text-decoration: none; color: #1e3a8a; font-weight: 600; }
-    h1 { font-size: 2.4rem; margin: 40px 0 8px; }
-    p { max-width: 65ch; line-height: 1.6; margin: 0 0 14px; }
-    .note { margin-top: 30px; color: #666; font-size: 0.95rem; }
+    :root{
+      --bg-main:#fafafa;
+      --text-primary:#111111;
+      --text-secondary:#444444;
+      --text-meta:#767676;
+      --accent-blue:#1e3a8a;
+      --ui-border:#e5e5e5;
+
+      --font-serif:'Lora', Georgia, serif;
+      --font-sans:'Inter', sans-serif;
+
+      --spine-width:clamp(140px, 15vw, 180px);
+      --max-width:980px;
+    }
+
+    *{ box-sizing:border-box; }
+
+    body{
+      background-color:var(--bg-main);
+      font-family:var(--font-sans);
+      color:var(--text-primary);
+      margin:0;
+      line-height:1.6;
+      -webkit-font-smoothing:antialiased;
+      display:flex;
+      flex-direction:column;
+      min-height:100vh;
+    }
+
+    :focus-visible{
+      outline:2px solid var(--accent-blue);
+      outline-offset:4px;
+      border-radius:2px;
+    }
+
+    .wrap{
+      max-width:var(--max-width);
+      margin:0 auto;
+      padding:0 40px;
+      width:100%;
+      flex:1;
+    }
+
+    /* Header */
+    header{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-end;
+      padding:60px 0 40px;
+    }
+
+    .header-brand{
+      text-decoration:none;
+      display:flex;
+      flex-direction:column;
+      gap:2px;
+    }
+
+    .brand-name{
+      font-size:1rem;
+      font-weight:700;
+      text-transform:uppercase;
+      letter-spacing:2px;
+      color:var(--text-primary);
+    }
+
+    .brand-sub{
+      font-size:0.65rem;
+      font-weight:500;
+      text-transform:uppercase;
+      letter-spacing:1px;
+      color:var(--text-meta);
+    }
+
+    nav{ display:flex; gap:30px; padding-bottom:2px; }
+    nav a{
+      text-decoration:none;
+      font-size:0.7rem;
+      font-weight:600;
+      color:var(--text-secondary);
+      text-transform:uppercase;
+      letter-spacing:0.5px;
+      transition:color 0.3s ease;
+    }
+    nav a:hover, nav a.active{ color:var(--accent-blue); }
+
+    /* Hero */
+    .hero{
+      display:grid;
+      grid-template-columns: 140px 1fr;
+      gap: 50px;
+      align-items: start;
+      padding: 30px 0 40px;
+    }
+
+    .portrait{
+      width:120px;
+      height:120px;
+      border-radius: 6px;
+      overflow:hidden;
+      border:1px solid var(--ui-border);
+      background:#fff;
+    }
+    .portrait img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+      filter: grayscale(100%);
+    }
+
+    .hero-title{
+      font-family:var(--font-serif);
+      font-size: clamp(2.2rem, 4vw, 3.1rem);
+      line-height:1.05;
+      margin:0 0 14px;
+      font-weight:700;
+      letter-spacing:-0.2px;
+    }
+
+    .hero-title em{
+      font-style: italic;
+      color: var(--accent-blue);
+      font-weight: 600;
+    }
+
+    .hero-sub{
+      margin:0;
+      color:var(--text-secondary);
+      font-size:1.05rem;
+      max-width: 62ch;
+    }
+
+    .cta-row{
+      display:flex;
+      gap:14px;
+      margin-top: 18px;
+      flex-wrap: wrap;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding: 10px 14px;
+      border-radius: 8px;
+      border:1px solid var(--ui-border);
+      text-decoration:none;
+      font-size:0.85rem;
+      font-weight:600;
+      letter-spacing:0.2px;
+      text-transform: uppercase;
+    }
+
+    .btn-primary{
+      background: var(--text-primary);
+      color:#fff;
+      border-color: var(--text-primary);
+    }
+    .btn-primary:hover{ opacity:0.9; }
+
+    .btn-secondary{
+      background: transparent;
+      color: var(--text-primary);
+    }
+    .btn-secondary:hover{
+      border-color: var(--text-primary);
+    }
+
+    .divider{
+      border-top:1px solid var(--ui-border);
+      margin: 40px 0;
+    }
+
+    /* What I do */
+    .section-title{
+      font-size:0.75rem;
+      font-weight:700;
+      letter-spacing:2px;
+      text-transform:uppercase;
+      color: var(--accent-blue);
+      margin:0 0 14px;
+    }
+
+    .cards{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      padding-bottom: 10px;
+    }
+
+    .card{
+      border:1px solid var(--ui-border);
+      border-radius: 10px;
+      padding: 16px 16px 14px;
+      background: #fff;
+    }
+
+    .card h3{
+      font-family: var(--font-serif);
+      margin:0 0 6px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      line-height:1.2;
+    }
+
+    .card p{
+      margin:0;
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      max-width: 55ch;
+    }
+
+    /* Selected insights (static links) */
+    .entry{
+      display:grid;
+      grid-template-columns: var(--spine-width) 1fr;
+      gap: 60px;
+      padding: 26px 0;
+      border-bottom: 1px solid var(--ui-border);
+      align-items: baseline;
+    }
+
+    .meta-spine{
+      font-size:0.75rem;
+      font-weight:500;
+      color:var(--text-meta);
+      text-align:right;
+      line-height:1.6;
+      letter-spacing:0.5px;
+    }
+
+    .meta-spine .tag{
+      color:var(--accent-blue);
+      display:block;
+      font-size:0.65rem;
+      text-transform:uppercase;
+      margin-top:4px;
+      letter-spacing:1px;
+    }
+
+    .entry-title{
+      font-family:var(--font-serif);
+      font-size:1.45rem;
+      line-height:1.25;
+      margin:0 0 8px;
+      font-weight:700;
+    }
+
+    .entry-title a{
+      color: inherit;
+      text-decoration: none;
+      background-image: linear-gradient(var(--text-primary), var(--text-primary));
+      background-position: 0% 100%;
+      background-repeat: no-repeat;
+      background-size: 0% 1px;
+      transition: background-size 0.3s, color 0.3s;
+    }
+    .entry-title a:hover{
+      color: var(--accent-blue);
+      background-size: 100% 1px;
+      background-image: linear-gradient(var(--accent-blue), var(--accent-blue));
+    }
+
+    .entry-desc{
+      color: var(--text-secondary);
+      font-size: 1rem;
+      max-width: 62ch;
+      margin: 0;
+    }
+
+    .view-all{
+      display:inline-block;
+      margin-top: 16px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--accent-blue);
+      text-decoration: none;
+    }
+    .view-all:hover{ text-decoration: underline; }
+
+    /* Footer */
+    .site-footer{
+      border-top:1px solid var(--ui-border);
+      padding:40px 0 60px;
+      margin-top:auto;
+      background-color:var(--bg-main);
+    }
+
+    .footer-content{
+      max-width:var(--max-width);
+      margin:0 auto;
+      padding:0 40px;
+      display:grid;
+      grid-template-columns:var(--spine-width) 1fr auto;
+      gap:60px;
+      align-items:baseline;
+      font-size:0.7rem;
+      color:var(--text-meta);
+      text-transform:uppercase;
+      letter-spacing:1px;
+      font-weight:500;
+    }
+
+    .footer-col-right{ text-align:right; }
+    .footer-link{ color:var(--text-primary); font-weight:600; margin-left:20px; text-decoration:none; }
+    .footer-link:hover{ color:var(--accent-blue); }
+
+    /* Mobile */
+    @media (max-width: 900px){
+      .cards{ grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 768px){
+      .wrap, .footer-content{ padding:0 25px; }
+      header{ flex-direction:column; align-items:flex-start; gap:20px; padding:40px 0; }
+      nav{ width:100%; justify-content:space-between; border-bottom:1px solid var(--ui-border); padding-bottom:15px; }
+
+      .hero{ grid-template-columns: 1fr; gap: 18px; padding-top: 10px; }
+      .portrait{ width: 110px; height: 110px; }
+
+      .entry{ grid-template-columns: 1fr; gap:12px; }
+      .meta-spine{
+        text-align:left;
+        display:flex;
+        gap:12px;
+        align-items:center;
+        border-left:2px solid var(--accent-blue);
+        padding-left:12px;
+        margin-bottom:4px;
+      }
+
+      .footer-content{ grid-template-columns: 1fr; gap:20px; }
+      .footer-col-right{ text-align:left; }
+      .footer-link{ margin-left:0; margin-right:20px; }
+    }
   </style>
 </head>
+
 <body>
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="insights.html">Insights</a>
-    <a href="projects.html">Projects</a>
-    <a href="contact.html">Contact</a>
-  </nav>
+  <div class="wrap">
+    <header role="banner">
+      <a href="/" class="header-brand">
+        <span class="brand-name">Hadi Noori</span>
+        <span class="brand-sub">Strategic AI Governance</span>
+      </a>
+      <nav role="navigation">
+        <a href="index.html" class="active">Home</a>
+        <a href="insights.html">Insights</a>
+        <a href="projects.html">Projects</a>
+        <a href="contact.html">Inquiry</a>
+      </nav>
+    </header>
 
-  <h1>Intelligence is fragile.</h1>
-  <p><strong>Governance is its armor.</strong></p>
+    <main id="content">
+      <section class="hero" aria-label="Hero">
+        <div class="portrait">
+          <!-- OPTIONAL: set the correct path to your portrait image -->
+          <img src="/assets/img/portrait.jpg" alt="Portrait of Hadi Noori">
+        </div>
 
-  <p class="note">Recovery build — if you see this, GitHub Pages + routing are working.</p>
+        <div>
+          <h1 class="hero-title">Intelligence is <em>fragile</em>.<br>Governance is its <em>armor</em>.</h1>
+          <p class="hero-sub">Developing accountable protocols for high-stakes AI deployment.</p>
+
+          <div class="cta-row">
+            <a class="btn btn-primary" href="contact.html">Request Assessment</a>
+            <a class="btn btn-secondary" href="dossier.html">View Dossier</a>
+          </div>
+        </div>
+      </section>
+
+      <div class="divider"></div>
+
+      <section aria-label="What I do">
+        <div class="section-title">What I work on</div>
+        <div class="cards">
+          <div class="card">
+            <h3>AI Governance Architecture</h3>
+            <p>Designing governance systems that connect policy, risk, and engineering into executable controls.</p>
+          </div>
+          <div class="card">
+            <h3>Accountability & Auditability</h3>
+            <p>Making AI decisions defensible through documentation, oversight mechanisms, and risk-based review.</p>
+          </div>
+          <div class="card">
+            <h3>Ethics × Security Integration</h3>
+            <p>Operationalizing ethical requirements with security-by-design and high-stakes deployment discipline.</p>
+          </div>
+        </div>
+      </section>
+
+      <div class="divider"></div>
+
+      <section aria-label="Selected Insights">
+        <div class="section-title">Selected insights</div>
+
+        <article class="entry">
+          <div class="meta-spine">
+            <span class="year">JAN 2026</span>
+            <span class="tag">DISPATCH</span>
+          </div>
+          <div class="entry-content">
+            <h3 class="entry-title"><a href="insights.html">The Imperative of Ethical Governance in the Age of Generative AI</a></h3>
+            <p class="entry-desc">Why institutional accountability is no longer optional for regulated industries adopting AI.</p>
+          </div>
+        </article>
+
+        <article class="entry">
+          <div class="meta-spine">
+            <span class="year">DEC 2025</span>
+            <span class="tag">PROTOCOL</span>
+          </div>
+          <div class="entry-content">
+            <h3 class="entry-title"><a href="dossier.html">Governance Playbook: From Policy to Operational Controls</a></h3>
+            <p class="entry-desc">A practical architecture for turning governance principles into implementable controls.</p>
+          </div>
+        </article>
+
+        <article class="entry">
+          <div class="meta-spine">
+            <span class="year">NOV 2025</span>
+            <span class="tag">ANALYSIS</span>
+          </div>
+          <div class="entry-content">
+            <h3 class="entry-title"><a href="insights.html">Why Ethical AI Fails in Practice</a></h3>
+            <p class="entry-desc">A critique of principle-first approaches—and a roadmap for governance that survives reality.</p>
+          </div>
+        </article>
+
+        <a class="view-all" href="insights.html">View full archive →</a>
+      </section>
+    </main>
+  </div>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-content">
+      <div class="footer-col-left">© 2026 Hadi Noori</div>
+      <div class="footer-col-center">Vancouver, BC</div>
+      <div class="footer-col-right">
+        <a href="contact.html" class="footer-link">Contact</a>
+        <a href="dossier.html" class="footer-link">Full Dossier</a>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>
