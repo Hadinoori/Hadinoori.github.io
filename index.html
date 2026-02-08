@@ -36,123 +36,195 @@
     }
     .container { max-width: 1320px; margin: 0 auto; padding: 0 40px; position: relative; z-index: 1; }
     
-    /* OPTIMIZED NAVIGATION - کاهش padding و margin */
+    /* ============================================
+       NAVIGATION - OPTIMIZED
+       ============================================ */
     nav {
-      padding: 20px 0; /* کاهش از 32px */
+      padding: 20px 0;
       display: flex; 
       justify-content: space-between; 
       align-items: center;
       border-bottom: 1px solid rgba(10, 22, 40, 0.1); 
-      margin-bottom: 40px; /* کاهش از 80px - صرفه‌جویی 40px */
-      position: sticky; /* اضافه شده برای بهتر دیده شدن */
+      margin-bottom: 40px;
+      position: sticky;
       top: 0;
       background: rgba(255, 255, 255, 0.95);
       backdrop-filter: blur(10px);
       z-index: 100;
     }
     .nav-brand {
-      font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; font-weight: 600;
-      letter-spacing: 3px; text-transform: uppercase; color: var(--blue);
+      font-family: 'IBM Plex Mono', monospace; 
+      font-size: 0.7rem; 
+      font-weight: 600;
+      letter-spacing: 3px; 
+      text-transform: uppercase; 
+      color: var(--blue);
     }
     .nav-links { display: flex; gap: 36px; align-items: center; }
     .nav-links a {
-      font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; font-weight: 600;
-      text-transform: uppercase; letter-spacing: 2px; color: var(--slate);
-      text-decoration: none; transition: color 0.3s ease;
+      font-family: 'IBM Plex Mono', monospace; 
+      font-size: 0.7rem; 
+      font-weight: 600;
+      text-transform: uppercase; 
+      letter-spacing: 2px; 
+      color: var(--slate);
+      text-decoration: none; 
+      transition: color 0.3s ease;
     }
     .nav-links a:hover { color: var(--blue); }
-    .nav-cta { background: var(--navy); color: var(--white) !important; padding: 11px 26px; }
+    .nav-cta { 
+      background: var(--navy); 
+      color: var(--white) !important; 
+      padding: 11px 26px; 
+    }
     .nav-cta:hover { background: var(--blue); }
     
-    /* OPTIMIZED HERO SECTION - حذف min-height و کاهش padding */
+    /* ============================================
+       HERO SECTION - FIXED SPACING
+       ============================================ */
     .hero {
       display: grid; 
       grid-template-columns: 1.15fr 0.85fr; 
       gap: 100px;
-      align-items: center; 
-      /* min-height: 75vh; - REMOVED! این مشکل اصلی بود */
-      padding: 20px 0 60px; /* کاهش از 60px 0 100px - صرفه‌جویی 80px */
+      align-items: center;
+      padding: 20px 0 60px;
     }
     .hero-content { position: relative; }
     
-    /* OPTIMIZED SPACING - کاهش margin های غیرضروری */
     .category {
-      font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; font-weight: 600;
-      letter-spacing: 4px; text-transform: uppercase; color: var(--blue);
-      margin-bottom: 24px; /* کاهش از 36px - صرفه‌جویی 12px */
-      display: flex; align-items: center; gap: 14px;
+      font-family: 'IBM Plex Mono', monospace; 
+      font-size: 0.65rem; 
+      font-weight: 600;
+      letter-spacing: 4px; 
+      text-transform: uppercase; 
+      color: var(--blue);
+      margin-bottom: 24px;
+      display: flex; 
+      align-items: center; 
+      gap: 14px;
     }
-    .category::before { content: ''; width: 32px; height: 2px; background: var(--blue); }
+    .category::before { 
+      content: ''; 
+      width: 32px; 
+      height: 2px; 
+      background: var(--blue); 
+    }
     
     .hero-title {
       font-family: 'IBM Plex Sans', sans-serif;
-      font-size: clamp(3rem, 7vw, 6rem); /* کاهش max از 7.5rem به 6rem */
+      font-size: clamp(3rem, 7vw, 6rem);
       font-weight: 700; 
       line-height: 0.95; 
       letter-spacing: -0.03em;
-      margin-bottom: 32px; /* کاهش از 48px - صرفه‌جویی 16px */
+      margin-bottom: 32px;
       color: var(--navy);
     }
     .hero-title-line { display: block; }
     
     .hero-description {
-      font-size: 1rem; /* کاهش از 1.05rem */
-      line-height: 1.7; /* کاهش از 1.75 */
+      font-size: 1rem;
+      line-height: 1.7;
       color: var(--slate);
-      max-width: 480px; /* کاهش از 520px */
-      margin-bottom: 36px; /* کاهش از 48px - صرفه‌جویی 12px */
+      max-width: 480px;
+      margin-bottom: 36px;
     }
     
     .cta-wrapper { display: flex; gap: 20px; align-items: center; }
     .btn {
-      font-family: 'IBM Plex Mono', monospace; font-size: 0.8rem; font-weight: 600;
-      text-transform: uppercase; letter-spacing: 2px; padding: 17px 34px;
-      text-decoration: none; transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-      display: inline-block; cursor: pointer;
+      font-family: 'IBM Plex Mono', monospace; 
+      font-size: 0.8rem; 
+      font-weight: 600;
+      text-transform: uppercase; 
+      letter-spacing: 2px; 
+      padding: 17px 34px;
+      text-decoration: none; 
+      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      display: inline-block; 
+      cursor: pointer;
     }
     .btn-primary {
-      background: var(--navy); color: var(--white); position: relative; overflow: hidden;
+      background: var(--navy); 
+      color: var(--white); 
+      position: relative; 
+      overflow: hidden;
     }
     .btn-primary::after {
-      content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
-      background: var(--blue); transition: left 0.35s cubic-bezier(0.4, 0, 0.2, 1); z-index: -1;
+      content: ''; 
+      position: absolute; 
+      top: 0; 
+      left: -100%; 
+      width: 100%; 
+      height: 100%;
+      background: var(--blue); 
+      transition: left 0.35s cubic-bezier(0.4, 0, 0.2, 1); 
+      z-index: -1;
     }
     .btn-primary:hover::after { left: 0; }
     .btn-secondary {
-      background: transparent; color: var(--navy); border: 2px solid var(--navy);
+      background: transparent; 
+      color: var(--navy); 
+      border: 2px solid var(--navy);
     }
-    .btn-secondary:hover { background: var(--navy); color: var(--white); }
+    .btn-secondary:hover { 
+      background: var(--navy); 
+      color: var(--white); 
+    }
     
-    /* HERO VISUAL - کاهش ارتفاع */
+    /* ============================================
+       HERO VISUAL - NETWORK DIAGRAM
+       ============================================ */
     .hero-visual { 
       position: relative; 
-      height: 500px; /* کاهش از 560px */
+      height: 500px;
     }
-    .system-network { position: relative; width: 100%; height: 100%; }
+    .system-network { 
+      position: relative; 
+      width: 100%; 
+      height: 100%; 
+    }
     .central-node {
-      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-      width: 140px; height: 140px; border: 3px solid var(--blue);
-      border-radius: 50%; background: var(--white);
+      position: absolute; 
+      top: 50%; 
+      left: 50%; 
+      transform: translate(-50%, -50%);
+      width: 140px; 
+      height: 140px; 
+      border: 3px solid var(--blue);
+      border-radius: 50%; 
+      background: var(--white);
       animation: systemPulse 4s ease-in-out infinite;
     }
     @keyframes systemPulse {
       0%, 100% {
-        transform: translate(-50%, -50%) scale(1); opacity: 1;
+        transform: translate(-50%, -50%) scale(1); 
+        opacity: 1;
         box-shadow: 0 0 0 0 rgba(30, 58, 138, 0.4);
       }
       50% {
-        transform: translate(-50%, -50%) scale(1.05); opacity: 0.95;
+        transform: translate(-50%, -50%) scale(1.05); 
+        opacity: 0.95;
         box-shadow: 0 0 0 20px rgba(30, 58, 138, 0);
       }
     }
     .node {
-      position: absolute; width: 54px; height: 54px; border: 2px solid var(--cyan);
-      border-radius: 50%; background: var(--white); display: flex;
-      align-items: center; justify-content: center; opacity: 0;
+      position: absolute; 
+      width: 54px; 
+      height: 54px; 
+      border: 2px solid var(--cyan);
+      border-radius: 50%; 
+      background: var(--white); 
+      display: flex;
+      align-items: center; 
+      justify-content: center; 
+      opacity: 0;
       animation: nodeEmerge 1.2s ease-out forwards;
     }
     .node::before {
-      content: ''; width: 16px; height: 16px; background: var(--cyan); border-radius: 50%;
+      content: ''; 
+      width: 16px; 
+      height: 16px; 
+      background: var(--cyan); 
+      border-radius: 50%;
     }
     @keyframes nodeEmerge {
       from { opacity: 0; transform: scale(0.3); }
@@ -166,9 +238,11 @@
     .node:nth-child(7) { top: 42%; left: 0%; animation-delay: 1.3s; }
     
     .connection {
-      position: absolute; height: 1px;
+      position: absolute; 
+      height: 1px;
       background: linear-gradient(90deg, transparent, rgba(8,145,178,0.4) 20%, rgba(8,145,178,0.6) 50%, rgba(8,145,178,0.4) 80%, transparent);
-      transform-origin: left center; opacity: 0;
+      transform-origin: left center; 
+      opacity: 0;
       animation: connectionFlow 2s ease-in-out forwards;
     }
     @keyframes connectionFlow {
@@ -181,11 +255,19 @@
     .connection:nth-child(11) { bottom: 24%; right: 20%; --line-width: 150px; transform: rotate(16deg); animation-delay: 2.1s; }
     
     .data-point {
-      position: absolute; font-family: 'IBM Plex Mono', monospace;
-      font-size: 0.6rem; font-weight: 600; letter-spacing: 2.5px;
-      text-transform: uppercase; color: var(--blue); background: var(--white);
-      padding: 7px 14px; border: 1px solid rgba(30,58,138,0.15);
-      white-space: nowrap; opacity: 0; animation: labelReveal 0.8s ease-out forwards;
+      position: absolute; 
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.6rem; 
+      font-weight: 600; 
+      letter-spacing: 2.5px;
+      text-transform: uppercase; 
+      color: var(--blue); 
+      background: var(--white);
+      padding: 7px 14px; 
+      border: 1px solid rgba(30,58,138,0.15);
+      white-space: nowrap; 
+      opacity: 0; 
+      animation: labelReveal 0.8s ease-out forwards;
     }
     @keyframes labelReveal {
       from { opacity: 0; transform: translateY(12px); }
@@ -196,83 +278,273 @@
     .data-point:nth-child(14) { bottom: 14%; left: 4%; animation-delay: 2.7s; }
     .data-point:nth-child(15) { bottom: 10%; right: 10%; animation-delay: 2.9s; }
     
-    /* OPTIMIZED FOCUS SECTION - کاهش padding و margin */
+    /* ============================================
+       FOCUS SECTION - FIXED TRANSITION
+       ============================================ */
     .focus-section {
-      padding: 80px 0 100px; /* کاهش از 100px 0 120px */
-      border-top: 2px solid var(--navy); 
-      margin-top: 60px; /* کاهش از 80px */
+      padding: 64px 0 96px; /* کاهش از 100/120 */
+      margin-top: 0; /* حذف margin اضافی */
     }
-    .section-header {
-      font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; font-weight: 600;
-      letter-spacing: 4px; text-transform: uppercase; color: var(--blue); margin-bottom: 60px; /* کاهش از 70px */
-    }
-    .focus-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 60px; /* کاهش از 70px */ }
-    .focus-card { position: relative; padding-left: 28px; }
-    .focus-card::before {
-      content: ''; position: absolute; left: 0; top: 0; width: 3px; height: 100%;
-      background: linear-gradient(to bottom, var(--cyan), transparent);
-    }
-    .focus-number {
-      font-family: 'IBM Plex Sans', sans-serif; font-size: 3rem; font-weight: 700;
-      color: rgba(30,58,138,0.08); line-height: 1; margin-bottom: 22px;
-    }
-    .focus-label {
-      font-family: 'IBM Plex Mono', monospace; font-size: 0.8rem; font-weight: 600;
-      text-transform: uppercase; letter-spacing: 2px; margin-bottom: 18px; color: var(--navy);
-    }
-    .focus-text { font-size: 0.95rem; line-height: 1.75; color: var(--slate); }
     
-    /* IMPROVED RESPONSIVE DESIGN */
+    .section-header {
+      font-family: 'IBM Plex Mono', monospace; 
+      font-size: 0.75rem; /* افزایش از 0.65rem */
+      font-weight: 700; /* افزایش از 600 */
+      letter-spacing: 4px; 
+      text-transform: uppercase; 
+      color: var(--navy); /* تغییر از blue */
+      margin-bottom: 56px;
+      padding-top: 28px; /* فاصله از خط */
+      border-top: 2px solid var(--navy); /* خط به header منتقل شد */
+    }
+    
+    .focus-grid { 
+      display: grid; 
+      grid-template-columns: repeat(3, 1fr); 
+      gap: 60px;
+    }
+    
+    .focus-card { 
+      position: relative; 
+      padding-left: 28px; 
+    }
+    .focus-card::before {
+      content: ''; 
+      position: absolute; 
+      left: 0; 
+      top: 0; 
+      width: 4px; /* افزایش از 3px */
+      height: 100%;
+      background: linear-gradient(to bottom, var(--cyan) 0%, rgba(8,145,178,0.3) 100%);
+    }
+    
+    .focus-number {
+      font-family: 'IBM Plex Sans', sans-serif; 
+      font-size: 3.5rem; /* افزایش از 3rem */
+      font-weight: 700;
+      color: rgba(30,58,138,0.15); /* افزایش از 0.08 */
+      line-height: 1; 
+      margin-bottom: 20px;
+    }
+    
+    .focus-label {
+      font-family: 'IBM Plex Mono', monospace; 
+      font-size: 0.8rem; 
+      font-weight: 600;
+      text-transform: uppercase; 
+      letter-spacing: 2px; 
+      margin-bottom: 16px; /* کاهش از 18px */
+      color: var(--navy);
+    }
+    
+    .focus-text { 
+      font-size: 0.95rem; 
+      line-height: 1.75; 
+      color: var(--slate); 
+    }
+    
+    /* ============================================
+       FOOTER - MINIMAL BUT GROUNDED
+       ============================================ */
+    footer {
+      margin-top: 80px; /* فاصله تنفس قبل از پایان */
+      padding: 40px 0;
+      border-top: 1px solid rgba(10, 22, 40, 0.12);
+      background: var(--white);
+    }
+    
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+    
+    .footer-brand {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    
+    .footer-brand-name {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--blue);
+    }
+    
+    .footer-location {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 1.5px;
+      color: var(--slate);
+    }
+    
+    .footer-links {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+    }
+    
+    .footer-links a {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--slate);
+      text-decoration: none;
+      transition: color 0.3s ease;
+      position: relative;
+    }
+    
+    .footer-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--cyan);
+      transition: width 0.3s ease;
+    }
+    
+    .footer-links a:hover {
+      color: var(--blue);
+    }
+    
+    .footer-links a:hover::after {
+      width: 100%;
+    }
+    
+    .footer-meta {
+      width: 100%;
+      margin-top: 24px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(10, 22, 40, 0.08);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    
+    .footer-copyright {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 1px;
+      color: var(--slate);
+      opacity: 0.7;
+    }
+    
+    .footer-legal {
+      display: flex;
+      gap: 20px;
+    }
+    
+    .footer-legal a {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 1px;
+      color: var(--slate);
+      text-decoration: none;
+      opacity: 0.7;
+      transition: opacity 0.3s ease;
+    }
+    
+    .footer-legal a:hover {
+      opacity: 1;
+      color: var(--blue);
+    }
+    
+    /* ============================================
+       RESPONSIVE DESIGN
+       ============================================ */
     @media (max-width: 1100px) {
       .hero { 
         grid-template-columns: 1fr; 
-        gap: 50px; /* کاهش از 70px */
+        gap: 50px;
       }
       .hero-visual { 
-        height: 400px; /* کاهش از 450px */
-        order: -1; /* visual به بالای محتوا می‌رود */
+        height: 400px;
+        order: -1;
       }
       .focus-grid { 
         grid-template-columns: 1fr; 
-        gap: 50px; /* کاهش از 60px */
+        gap: 50px;
       }
     }
     
     @media (max-width: 768px) {
       .container { padding: 0 24px; }
+      
       nav {
         padding: 16px 0;
         margin-bottom: 30px;
       }
+      
+      .nav-links {
+        gap: 16px;
+      }
+      
+      .nav-links a {
+        font-size: 0.65rem;
+      }
+      
       .hero {
         padding: 15px 0 40px;
       }
+      
       .hero-title { 
         font-size: 2.5rem;
         margin-bottom: 24px;
       }
+      
       .hero-description {
         margin-bottom: 28px;
       }
+      
       .cta-wrapper { 
         flex-direction: column; 
         align-items: flex-start;
         gap: 16px;
       }
+      
       .btn {
         width: 100%;
         text-align: center;
       }
-      .nav-links { 
-        gap: 20px;
-        flex-wrap: wrap;
-      }
+      
       .hero-visual {
         height: 350px;
       }
+      
       .focus-section {
-        padding: 60px 0 80px;
-        margin-top: 40px;
+        padding: 50px 0 70px;
+      }
+      
+      .section-header {
+        margin-bottom: 40px;
+      }
+      
+      .footer-content {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+      }
+      
+      .footer-links {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+      }
+      
+      .footer-meta {
+        flex-direction: column;
+        align-items: flex-start;
       }
     }
 
@@ -281,18 +553,24 @@
         font-size: 0.6rem;
         letter-spacing: 2px;
       }
-      .nav-links a {
-        font-size: 0.65rem;
-      }
+      
       .hero-title {
         font-size: 2rem;
+      }
+      
+      .focus-number {
+        font-size: 2.5rem;
       }
     }
   </style>
 </head>
 <body>
   <div class="grid-overlay"></div>
+  
   <div class="container">
+    <!-- ============================================
+         NAVIGATION
+         ============================================ -->
     <nav>
       <div class="nav-brand">Strategic AI Governance</div>
       <div class="nav-links">
@@ -304,6 +582,9 @@
       </div>
     </nav>
     
+    <!-- ============================================
+         HERO SECTION
+         ============================================ -->
     <section class="hero">
       <div class="hero-content">
         <div class="category">System Governance</div>
@@ -342,6 +623,9 @@
       </div>
     </section>
     
+    <!-- ============================================
+         CORE SYSTEMS SECTION
+         ============================================ -->
     <section class="focus-section">
       <div class="section-header">Core Systems</div>
       <div class="focus-grid">
@@ -369,5 +653,34 @@
       </div>
     </section>
   </div>
+  
+  <!-- ============================================
+       FOOTER - MINIMAL BUT GROUNDED
+       ============================================ -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <div class="footer-brand-name">Strategic AI Governance</div>
+          <div class="footer-location">Vancouver, BC</div>
+        </div>
+        
+        <div class="footer-links">
+          <a href="/contact">Inquiry</a>
+          <a href="https://linkedin.com/in/hadinoori" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="/dossier">Dossier</a>
+        </div>
+      </div>
+      
+      <div class="footer-meta">
+        <div class="footer-copyright">© 2026 Hadi Noori. All rights reserved.</div>
+        <div class="footer-legal">
+          <a href="/privacy">Privacy Policy</a>
+          <a href="/terms">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  
 </body>
 </html>
