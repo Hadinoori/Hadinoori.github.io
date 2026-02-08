@@ -282,47 +282,68 @@
     .data-point:nth-child(15) { bottom: 10%; right: 10%; animation-delay: 2.9s; }
     
     /* ============================================
-       SELECTED INSIGHT (The "Interruption" Layer)
+       INTELLIGENCE GRID (Double Slot - New)
        ============================================ */
     .insight-wrapper {
       padding: 60px 0;
       border-top: 1px solid rgba(10, 22, 40, 0.1);
       border-bottom: 1px solid rgba(10, 22, 40, 0.1);
       margin-bottom: 80px;
-      display: none; /* Hidden until content loads */
+      display: none; /* Hidden until loaded */
       opacity: 0;
       animation: fadeIn 1s ease-out forwards 0.5s;
     }
 
-    .insight-container {
-      max-width: 800px; /* Narrower focus for reading */
+    .insight-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px; /* Space between columns */
+    }
+
+    .insight-col {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    /* Vertical Divider Line */
+    .insight-col:first-child::after {
+      content: '';
+      position: absolute;
+      right: -40px; /* Half of gap */
+      top: 10%;
+      height: 80%;
+      width: 1px;
+      background: rgba(10, 22, 40, 0.1);
     }
 
     .insight-label {
       font-family: 'IBM Plex Mono', monospace;
       font-size: 0.65rem;
       font-weight: 600;
-      color: var(--cyan); /* A calm accent */
+      color: var(--cyan);
       text-transform: uppercase;
       letter-spacing: 2px;
-      margin-bottom: 24px;
+      margin-bottom: 20px;
       display: block;
     }
 
     .insight-quote {
       font-family: 'IBM Plex Sans', sans-serif;
-      font-size: 1.25rem; /* Larger than body, smaller than headings */
+      font-size: 1.1rem; /* Slightly smaller to fit two */
       font-weight: 500;
       color: var(--navy);
       line-height: 1.6;
       margin: 0 0 24px 0;
       padding: 0;
       border: none;
+      flex-grow: 1; /* Pushes source to bottom */
     }
 
     .insight-source {
       font-family: 'IBM Plex Mono', monospace;
-      font-size: 0.75rem;
+      font-size: 0.7rem;
       color: var(--slate);
       text-decoration: none;
       border-bottom: 1px solid transparent;
@@ -330,6 +351,7 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
+      align-self: flex-start;
     }
 
     .insight-source:hover {
@@ -337,13 +359,6 @@
       border-bottom-color: var(--blue);
     }
     
-    .insight-arrow {
-      font-size: 1rem;
-      line-height: 0;
-      position: relative;
-      top: -1px;
-    }
-
     @keyframes fadeIn {
         from { opacity: 0; transform: translateY(10px); }
         to { opacity: 1; transform: translateY(0); }
@@ -550,6 +565,12 @@
       }
     }
     
+    @media (max-width: 900px) {
+      .insight-grid { grid-template-columns: 1fr; gap: 40px; }
+      .insight-col:first-child::after { display: none; } /* Remove line on mobile */
+      .insight-wrapper { padding: 40px 0; }
+    }
+    
     @media (max-width: 768px) {
       .container { padding: 0 24px; }
       
@@ -594,9 +615,6 @@
         height: 350px;
       }
       
-      .insight-wrapper { padding: 40px 0; margin-bottom: 60px; }
-      .insight-quote { font-size: 1.1rem; }
-
       .focus-section {
         padding: 50px 0 70px;
       }
@@ -694,17 +712,26 @@
     </section>
 
     <div id="insight-interruption" class="insight-wrapper">
-      <div class="container insight-container">
-        <span class="insight-label">Selected Insight</span>
-        
-        <blockquote class="insight-quote" id="insight-text">
-          Decrypting strategic analysis...
-        </blockquote>
-        
-        <a href="insights.html" id="insight-source-link" class="insight-source">
-          <span id="insight-title">Loading Source</span>
-          <span class="insight-arrow">→</span>
-        </a>
+      <div class="container">
+        <div class="insight-grid">
+          
+          <div class="insight-col">
+            <span class="insight-label">Primary Signal</span>
+            <blockquote class="insight-quote" id="slot1-text">Decrypting...</blockquote>
+            <a href="#" id="slot1-link" class="insight-source">
+              <span id="slot1-title">Loading...</span> →
+            </a>
+          </div>
+
+          <div class="insight-col">
+            <span class="insight-label">Secondary Signal</span>
+            <blockquote class="insight-quote" id="slot2-text">Decrypting...</blockquote>
+            <a href="#" id="slot2-link" class="insight-source">
+              <span id="slot2-title">Loading...</span> →
+            </a>
+          </div>
+
+        </div>
       </div>
     </div>
     
@@ -762,12 +789,9 @@
   </footer>
 
   <script>
-    // --- STRATEGIC INSIGHT ENGINE ---
-    async function loadStrategicInsight() {
+    // --- DUAL INSIGHT ENGINE ---
+    async function loadDualInsights() {
       const container = document.getElementById('insight-interruption');
-      const textEl = document.getElementById('insight-text');
-      const titleEl = document.getElementById('insight-title');
-      const linkEl = document.getElementById('insight-source-link');
       
       const CONFIG = {
         repo: 'hadinoori/hadinoori.github.io', 
@@ -805,53 +829,62 @@
         const files = await res.json();
         const mdFiles = files.filter(f => f.name.endsWith('.md')).reverse();
 
-        let targetPost = null;
-
-        // Scan for the manually selected insight
-        for (const file of mdFiles) {
+        // 1. Find Manually Selected Posts
+        let selectedPosts = [];
+        
+        const scanLimit = Math.min(mdFiles.length, 8);
+        const fetchPromises = mdFiles.slice(0, scanLimit).map(async file => {
             const contentRes = await fetch(file.download_url);
             const text = await contentRes.text();
-            const meta = parseFrontMatter(text);
-            
-            // CHECK FOR 'selected_insight' (Updated Field Name)
-            if (meta.selected_insight === true || meta.selected_insight === 'true') {
-                targetPost = { meta, filename: file.name };
-                break; // Found the one, stop looking
-            }
+            return { meta: parseFrontMatter(text), filename: file.name };
+        });
+
+        const loadedPosts = await Promise.all(fetchPromises);
+
+        // Filter for 'selected_insight: true'
+        selectedPosts = loadedPosts.filter(p => p.meta.selected_insight === true || p.meta.selected_insight === 'true');
+
+        // 2. Fallback Logic: Fill empty slots with latest posts
+        if (selectedPosts.length < 2) {
+            const remainingNeeded = 2 - selectedPosts.length;
+            const fillers = loadedPosts.filter(p => !selectedPosts.includes(p)).slice(0, remainingNeeded);
+            selectedPosts = [...selectedPosts, ...fillers];
         }
 
-        // Fallback: If nothing selected, use the absolute latest
-        if (!targetPost && mdFiles.length > 0) {
-             const file = mdFiles[0];
-             const contentRes = await fetch(file.download_url);
-             const text = await contentRes.text();
-             targetPost = { meta: parseFrontMatter(text), filename: file.name };
-        }
-
-        if (targetPost) {
-            // Apply Content
-            // We use 'description' as the Insight Quote, and 'title' as the Source Reference
-            textEl.textContent = targetPost.meta.description || "System accountability requires clear attribution of decision-making protocols.";
-            titleEl.textContent = "— " + (targetPost.meta.title || "The Architecture of Accountability");
+        // 3. Render Slots (Maximum 2)
+        if (selectedPosts.length > 0) {
+            // Fill Slot 1
+            if (selectedPosts[0]) renderSlot(1, selectedPosts[0]);
             
-            // Set Link
-            if (targetPost.meta.external_url) {
-                linkEl.href = targetPost.meta.external_url;
-                linkEl.target = "_blank";
-            } else {
-                linkEl.href = `insights/${targetPost.filename.replace('.md', '.html')}`;
-            }
+            // Fill Slot 2 (if available)
+            if (selectedPosts[1]) renderSlot(2, selectedPosts[1]);
             
-            // Reveal
             container.style.display = "block";
         }
 
       } catch (e) {
-        console.log("Strategic Insight: Data stream silent.");
+        console.log("Insight Grid: Silent.");
+      }
+
+      function renderSlot(slotNum, post) {
+        const textEl = document.getElementById(`slot${slotNum}-text`);
+        const titleEl = document.getElementById(`slot${slotNum}-title`);
+        const linkEl = document.getElementById(`slot${slotNum}-link`);
+
+        // Use Description as Quote, Title as Source
+        textEl.textContent = post.meta.description || "System accountability requires clear attribution.";
+        titleEl.textContent = "— " + (post.meta.title || "Field Dispatch");
+
+        if (post.meta.external_url) {
+            linkEl.href = post.meta.external_url;
+            linkEl.target = "_blank";
+        } else {
+            linkEl.href = `insights/${post.filename.replace('.md', '.html')}`;
+        }
       }
     }
 
-    document.addEventListener('DOMContentLoaded', loadStrategicInsight);
+    document.addEventListener('DOMContentLoaded', loadDualInsights);
   </script>
 </body>
 </html>
