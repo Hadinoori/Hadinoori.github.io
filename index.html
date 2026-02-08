@@ -56,12 +56,12 @@
       z-index: 100;
     }
 
-    /* BRAND LOCKUP (Architectural Style) */
+    /* BRAND LOCKUP (Header) */
     .nav-brand {
       display: flex;
       align-items: center;
-      text-decoration: none;
       gap: 14px; 
+      cursor: default;
     }
 
     .nav-logo {
@@ -103,11 +103,7 @@
       display: block;
     }
 
-    /* Hover Effect */
-    .nav-brand:hover .brand-top { color: var(--blue); }
-    .nav-brand:hover .brand-divider { background-color: var(--blue); }
-    .nav-brand:hover .nav-logo { opacity: 0.9; }
-
+    /* Navigation Links */
     .nav-links { display: flex; gap: 36px; align-items: center; }
     .nav-links a {
       font-family: 'IBM Plex Mono', monospace; 
@@ -219,7 +215,7 @@
     }
     
     /* ============================================
-        HERO VISUAL - NETWORK DIAGRAM
+        HERO VISUAL
        ============================================ */
     .hero-visual { 
       position: relative; 
@@ -243,16 +239,8 @@
       animation: systemPulse 4s ease-in-out infinite;
     }
     @keyframes systemPulse {
-      0%, 100% {
-        transform: translate(-50%, -50%) scale(1); 
-        opacity: 1;
-        box-shadow: 0 0 0 0 rgba(30, 58, 138, 0.4);
-      }
-      50% {
-        transform: translate(-50%, -50%) scale(1.05); 
-        opacity: 0.95;
-        box-shadow: 0 0 0 20px rgba(30, 58, 138, 0);
-      }
+      0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 1; box-shadow: 0 0 0 0 rgba(30, 58, 138, 0.4); }
+      50% { transform: translate(-50%, -50%) scale(1.05); opacity: 0.95; box-shadow: 0 0 0 20px rgba(30, 58, 138, 0); }
     }
     .node {
       position: absolute; 
@@ -261,23 +249,11 @@
       border: 2px solid var(--cyan);
       border-radius: 50%; 
       background: var(--white); 
-      display: flex;
-      align-items: center; 
-      justify-content: center; 
-      opacity: 0;
-      animation: nodeEmerge 1.2s ease-out forwards;
+      display: flex; align-items: center; justify-content: center; 
+      opacity: 0; animation: nodeEmerge 1.2s ease-out forwards;
     }
-    .node::before {
-      content: ''; 
-      width: 16px; 
-      height: 16px; 
-      background: var(--cyan); 
-      border-radius: 50%;
-    }
-    @keyframes nodeEmerge {
-      from { opacity: 0; transform: scale(0.3); }
-      to { opacity: 1; transform: scale(1); }
-    }
+    .node::before { content: ''; width: 16px; height: 16px; background: var(--cyan); border-radius: 50%; }
+    @keyframes nodeEmerge { from { opacity: 0; transform: scale(0.3); } to { opacity: 1; transform: scale(1); } }
     .node:nth-child(2) { top: 12%; left: 18%; animation-delay: 0.3s; }
     .node:nth-child(3) { top: 18%; right: 12%; animation-delay: 0.5s; }
     .node:nth-child(4) { bottom: 22%; left: 8%; animation-delay: 0.7s; }
@@ -289,14 +265,9 @@
       position: absolute; 
       height: 1px;
       background: linear-gradient(90deg, transparent, rgba(8,145,178,0.4) 20%, rgba(8,145,178,0.6) 50%, rgba(8,145,178,0.4) 80%, transparent);
-      transform-origin: left center; 
-      opacity: 0;
-      animation: connectionFlow 2s ease-in-out forwards;
+      transform-origin: left center; opacity: 0; animation: connectionFlow 2s ease-in-out forwards;
     }
-    @keyframes connectionFlow {
-      from { opacity: 0; width: 0; }
-      to { opacity: 0.5; width: var(--line-width); }
-    }
+    @keyframes connectionFlow { from { opacity: 0; width: 0; } to { opacity: 0.5; width: var(--line-width); } }
     .connection:nth-child(8) { top: 26%; left: 22%; --line-width: 180px; transform: rotate(18deg); animation-delay: 1.5s; }
     .connection:nth-child(9) { top: 32%; right: 16%; --line-width: 160px; transform: rotate(-22deg); animation-delay: 1.7s; }
     .connection:nth-child(10) { bottom: 28%; left: 12%; --line-width: 200px; transform: rotate(-18deg); animation-delay: 1.9s; }
@@ -304,23 +275,11 @@
     
     .data-point {
       position: absolute; 
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 0.6rem; 
-      font-weight: 600; 
-      letter-spacing: 2.5px;
-      text-transform: uppercase; 
-      color: var(--blue); 
-      background: var(--white);
-      padding: 7px 14px; 
-      border: 1px solid rgba(30,58,138,0.15);
-      white-space: nowrap; 
-      opacity: 0; 
-      animation: labelReveal 0.8s ease-out forwards;
+      font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; font-weight: 600; letter-spacing: 2.5px;
+      text-transform: uppercase; color: var(--blue); background: var(--white); padding: 7px 14px; 
+      border: 1px solid rgba(30,58,138,0.15); white-space: nowrap; opacity: 0; animation: labelReveal 0.8s ease-out forwards;
     }
-    @keyframes labelReveal {
-      from { opacity: 0; transform: translateY(12px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+    @keyframes labelReveal { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
     .data-point:nth-child(12) { top: 6%; left: 12%; animation-delay: 2.3s; }
     .data-point:nth-child(13) { top: 10%; right: 8%; animation-delay: 2.5s; }
     .data-point:nth-child(14) { bottom: 14%; left: 4%; animation-delay: 2.7s; }
@@ -352,131 +311,60 @@
       justify-content: space-between;
     }
 
-    /* Vertical Divider Line */
     .insight-col:first-child::after {
       content: '';
       position: absolute;
-      right: -40px; 
-      top: 10%;
-      height: 80%;
-      width: 1px;
-      background: rgba(10, 22, 40, 0.1);
+      right: -40px; top: 10%; height: 80%; width: 1px; background: rgba(10, 22, 40, 0.1);
     }
 
     .insight-label {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 0.65rem;
-      font-weight: 600;
-      color: var(--cyan);
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      margin-bottom: 20px;
-      display: block;
+      font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; font-weight: 600; color: var(--cyan);
+      text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; display: block;
     }
 
     .insight-quote {
-      font-family: 'IBM Plex Sans', sans-serif;
-      font-size: 1.1rem; 
-      font-weight: 500;
-      color: var(--navy);
-      line-height: 1.6;
-      margin: 0 0 24px 0;
-      padding: 0;
-      border: none;
-      flex-grow: 1; 
+      font-family: 'IBM Plex Sans', sans-serif; font-size: 1.1rem; font-weight: 500; color: var(--navy);
+      line-height: 1.6; margin: 0 0 24px 0; padding: 0; border: none; flex-grow: 1; 
     }
 
     .insight-source {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 0.7rem;
-      color: var(--slate);
-      text-decoration: none;
-      border-bottom: 1px solid transparent;
-      transition: all 0.3s ease;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      align-self: flex-start;
+      font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; color: var(--slate); text-decoration: none;
+      border-bottom: 1px solid transparent; transition: all 0.3s ease; display: inline-flex; align-items: center;
+      gap: 8px; align-self: flex-start;
     }
-
-    .insight-source:hover {
-      color: var(--blue);
-      border-bottom-color: var(--blue);
-    }
+    .insight-source:hover { color: var(--blue); border-bottom-color: var(--blue); }
     
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(10px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
     /* ============================================
-        FOCUS SECTION (CORE SYSTEMS)
+        FOCUS SECTION
        ============================================ */
     .focus-section {
       padding: 64px 0 96px;
       margin-top: 0;
     }
-    
     .section-header {
-      font-family: 'IBM Plex Mono', monospace; 
-      font-size: 0.8rem; 
-      font-weight: 700;
-      letter-spacing: 4px; 
-      text-transform: uppercase; 
-      color: var(--navy);
-      margin-bottom: 56px;
-      padding-top: 50px; 
-      border-top: 2px solid var(--navy);
+      font-family: 'IBM Plex Mono', monospace; font-size: 0.8rem; font-weight: 700; letter-spacing: 4px;
+      text-transform: uppercase; color: var(--navy); margin-bottom: 56px; padding-top: 50px; border-top: 2px solid var(--navy);
     }
-    
-    .focus-grid { 
-      display: grid; 
-      grid-template-columns: repeat(3, 1fr); 
-      gap: 60px;
-    }
-    
-    .focus-card { 
-      position: relative; 
-      padding-left: 28px; 
-    }
-    
+    .focus-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 60px; }
+    .focus-card { position: relative; padding-left: 28px; }
     .focus-card::before {
-      content: ''; 
-      position: absolute; 
-      left: 0; 
-      top: 0; 
-      width: 5px; 
-      height: 100%;
+      content: ''; position: absolute; left: 0; top: 0; width: 5px; height: 100%;
       background: linear-gradient(to bottom, var(--cyan) 0%, rgba(8,145,178,0.4) 100%);
     }
-    
     .focus-number {
-      font-family: 'IBM Plex Sans', sans-serif; 
-      font-size: 3.8rem; 
-      font-weight: 700;
-      color: rgba(30,58,138,0.22); 
-      line-height: 1; 
-      margin-bottom: 20px;
+      font-family: 'IBM Plex Sans', sans-serif; font-size: 3.8rem; font-weight: 700; color: rgba(30,58,138,0.22);
+      line-height: 1; margin-bottom: 20px;
     }
-    
     .focus-label {
-      font-family: 'IBM Plex Mono', monospace; 
-      font-size: 0.8rem; 
-      font-weight: 600;
-      text-transform: uppercase; 
-      letter-spacing: 2px; 
-      margin-bottom: 16px;
-      color: var(--navy);
+      font-family: 'IBM Plex Mono', monospace; font-size: 0.8rem; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 2px; margin-bottom: 16px; color: var(--navy);
     }
-    
-    .focus-text { 
-      font-size: 0.95rem; 
-      line-height: 1.75; 
-      color: var(--slate); 
-    }
+    .focus-text { font-size: 0.95rem; line-height: 1.75; color: var(--slate); }
     
     /* ============================================
-        FOOTER
+        FOOTER (Updated)
        ============================================ */
     footer {
       margin-top: 80px;
@@ -496,17 +384,18 @@
     .footer-brand {
       display: flex;
       flex-direction: column;
-      gap: 6px;
+      gap: 8px; /* Slightly adjusted gap */
     }
     
-    .footer-brand-name {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 0.7rem;
-      font-weight: 700; 
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--navy); 
+    /* Replaced Text with Logo */
+    .footer-logo {
+      height: 32px;
+      width: auto;
+      display: block;
+      opacity: 0.6; /* Subtle elegance */
+      transition: opacity 0.3s ease;
     }
+    .footer-logo:hover { opacity: 1; }
     
     .footer-location {
       font-family: 'IBM Plex Mono', monospace;
@@ -515,191 +404,68 @@
       color: var(--slate);
     }
     
-    .footer-links {
-      display: flex;
-      gap: 28px;
-      align-items: center;
-    }
-    
+    .footer-links { display: flex; gap: 28px; align-items: center; }
     .footer-links a {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 0.65rem;
-      font-weight: 600;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--slate);
-      text-decoration: none;
-      transition: color 0.3s ease;
-      position: relative;
+      font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; font-weight: 600; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--slate); text-decoration: none; transition: color 0.3s ease; position: relative;
     }
-    
     .footer-links a::after {
-      content: '';
-      position: absolute;
-      bottom: -4px;
-      left: 0;
-      width: 0;
-      height: 1px;
-      background: var(--cyan);
-      transition: width 0.3s ease;
+      content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: var(--cyan); transition: width 0.3s ease;
     }
-    
-    .footer-links a:hover {
-      color: var(--blue);
-    }
-    
-    .footer-links a:hover::after {
-      width: 100%;
-    }
+    .footer-links a:hover { color: var(--blue); }
+    .footer-links a:hover::after { width: 100%; }
     
     .footer-meta {
-      width: 100%;
-      margin-top: 20px; 
-      padding-top: 20px; 
-      border-top: 1px solid rgba(10, 22, 40, 0.08);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 16px;
+      width: 100%; margin-top: 20px; padding-top: 20px; border-top: 1px solid rgba(10, 22, 40, 0.08);
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;
     }
-    
     .footer-copyright {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 0.6rem;
-      letter-spacing: 1px;
-      color: var(--slate);
-      opacity: 0.7;
+      font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; letter-spacing: 1px; color: var(--slate); opacity: 0.7;
     }
-    
-    .footer-legal {
-      display: flex;
-      gap: 20px;
-    }
-    
+    .footer-legal { display: flex; gap: 20px; }
     .footer-legal a {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 0.6rem;
-      letter-spacing: 1px;
-      color: var(--slate);
-      text-decoration: none;
-      opacity: 0.7;
-      transition: opacity 0.3s ease;
+      font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; letter-spacing: 1px; color: var(--slate);
+      text-decoration: none; opacity: 0.7; transition: opacity 0.3s ease;
     }
-    
-    .footer-legal a:hover {
-      opacity: 1;
-      color: var(--blue);
-    }
+    .footer-legal a:hover { opacity: 1; color: var(--blue); }
     
     /* ============================================
         RESPONSIVE DESIGN
        ============================================ */
     @media (max-width: 1100px) {
-      .hero { 
-        grid-template-columns: 1fr; 
-        gap: 50px;
-      }
-      .hero-visual { 
-        height: 400px;
-        order: -1;
-      }
-      .focus-grid { 
-        grid-template-columns: 1fr; 
-        gap: 50px;
-      }
+      .hero { grid-template-columns: 1fr; gap: 50px; }
+      .hero-visual { height: 400px; order: -1; }
+      .focus-grid { grid-template-columns: 1fr; gap: 50px; }
     }
-    
     @media (max-width: 900px) {
       .insight-grid { grid-template-columns: 1fr; gap: 40px; }
       .insight-col:first-child::after { display: none; }
       .insight-wrapper { padding: 40px 0; }
     }
-    
     @media (max-width: 768px) {
       .container { padding: 0 24px; }
-      
-      nav {
-        padding: 16px 0;
-        margin-bottom: 30px;
-      }
-      
-      .nav-links {
-        gap: 16px;
-      }
-      
-      .nav-links a {
-        font-size: 0.65rem;
-      }
-      
-      .hero {
-        padding: 15px 0 40px;
-      }
-      
-      .hero-title { 
-        font-size: 2.5rem;
-        margin-bottom: 24px;
-      }
-      
-      .hero-description {
-        margin-bottom: 28px;
-      }
-      
-      .cta-wrapper { 
-        flex-direction: column; 
-        align-items: flex-start;
-        gap: 16px;
-      }
-      
-      .btn {
-        width: 100%;
-        text-align: center;
-      }
-      
-      .hero-visual {
-        height: 350px;
-      }
-      
-      .focus-section {
-        padding: 50px 0 70px;
-      }
-      
-      .section-header {
-        margin-bottom: 40px;
-        padding-top: 40px;
-      }
-      
-      .footer-content {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 20px;
-      }
-      
-      .footer-links {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 16px;
-      }
-      
-      .footer-meta {
-        flex-direction: column;
-        align-items: flex-start;
-      }
+      nav { padding: 16px 0; margin-bottom: 30px; }
+      .nav-links { gap: 16px; }
+      .nav-links a { font-size: 0.65rem; }
+      .hero { padding: 15px 0 40px; }
+      .hero-title { font-size: 2.5rem; margin-bottom: 24px; }
+      .hero-description { margin-bottom: 28px; }
+      .cta-wrapper { flex-direction: column; align-items: flex-start; gap: 16px; }
+      .btn { width: 100%; text-align: center; }
+      .hero-visual { height: 350px; }
+      .focus-section { padding: 50px 0 70px; }
+      .section-header { margin-bottom: 40px; padding-top: 40px; }
+      .footer-content { flex-direction: column; align-items: flex-start; gap: 20px; }
+      .footer-links { flex-direction: column; align-items: flex-start; gap: 16px; }
+      .footer-meta { flex-direction: column; align-items: flex-start; }
     }
-
     @media (max-width: 480px) {
       .nav-logo { height: 32px; }
       .brand-divider { height: 26px; gap: 10px; }
       .brand-top { font-size: 0.6rem; }
       .brand-bottom { font-size: 0.5rem; }
-      
-      .hero-title {
-        font-size: 2rem;
-      }
-      
-      .focus-number {
-        font-size: 3rem;
-      }
+      .hero-title { font-size: 2rem; }
+      .focus-number { font-size: 3rem; }
     }
   </style>
 </head>
@@ -708,14 +474,14 @@
   
   <div class="container">
     <nav>
-      <a href="/" class="nav-brand">
+      <div class="nav-brand">
         <img src="assets/img/sidebar-logo.png" alt="Logo" class="nav-logo">
         <div class="brand-divider"></div>
         <div class="brand-text-col">
           <span class="brand-top">STRATEGIC</span>
           <span class="brand-bottom">AI GOVERNANCE</span>
         </div>
-      </a>
+      </div>
 
       <div class="nav-links">
         <a href="/">Home</a>
@@ -820,7 +586,7 @@
     <div class="container">
       <div class="footer-content">
         <div class="footer-brand">
-          <div class="footer-brand-name">Strategic AI Governance</div>
+          <img src="assets/img/sidebar-logo.png" alt="Hadi Noori Logo" class="footer-logo">
           <div class="footer-location">Vancouver, BC</div>
         </div>
         
