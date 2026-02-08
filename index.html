@@ -56,28 +56,57 @@
       z-index: 100;
     }
 
-    /* Brand Style (Logo + Text) */
+    /* BRAND LOCKUP (Architectural Style) */
     .nav-brand {
       display: flex;
       align-items: center;
-      gap: 12px;
       text-decoration: none;
+      gap: 14px; 
     }
 
     .nav-logo {
-      height: 28px; /* Size matched to text height */
+      height: 38px;
       width: auto;
       display: block;
     }
 
-    .brand-text {
-      font-family: 'IBM Plex Mono', monospace; 
-      font-size: 0.7rem; 
-      font-weight: 600;
-      letter-spacing: 3px; 
-      text-transform: uppercase; 
-      color: var(--blue);
+    .brand-divider {
+      width: 1px;
+      height: 32px;
+      background-color: rgba(30, 58, 138, 0.15);
     }
+
+    .brand-text-col {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      line-height: 1; 
+    }
+
+    .brand-top {
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      color: var(--navy);
+      margin-bottom: 3px;
+      display: block;
+    }
+
+    .brand-bottom {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.55rem;
+      font-weight: 400;
+      letter-spacing: 1.5px;
+      color: var(--slate);
+      text-transform: uppercase;
+      display: block;
+    }
+
+    /* Hover Effect */
+    .nav-brand:hover .brand-top { color: var(--blue); }
+    .nav-brand:hover .brand-divider { background-color: var(--blue); }
+    .nav-brand:hover .nav-logo { opacity: 0.9; }
 
     .nav-links { display: flex; gap: 36px; align-items: center; }
     .nav-links a {
@@ -305,7 +334,7 @@
       border-top: 1px solid rgba(10, 22, 40, 0.1);
       border-bottom: 1px solid rgba(10, 22, 40, 0.1);
       margin-bottom: 80px;
-      display: none; /* Hidden until loaded */
+      display: none; 
       opacity: 0;
       animation: fadeIn 1s ease-out forwards 0.5s;
     }
@@ -313,7 +342,7 @@
     .insight-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 80px; /* Space between columns */
+      gap: 80px; 
     }
 
     .insight-col {
@@ -327,7 +356,7 @@
     .insight-col:first-child::after {
       content: '';
       position: absolute;
-      right: -40px; /* Half of gap */
+      right: -40px; 
       top: 10%;
       height: 80%;
       width: 1px;
@@ -347,14 +376,14 @@
 
     .insight-quote {
       font-family: 'IBM Plex Sans', sans-serif;
-      font-size: 1.1rem; /* Slightly smaller to fit two */
+      font-size: 1.1rem; 
       font-weight: 500;
       color: var(--navy);
       line-height: 1.6;
       margin: 0 0 24px 0;
       padding: 0;
       border: none;
-      flex-grow: 1; /* Pushes source to bottom */
+      flex-grow: 1; 
     }
 
     .insight-source {
@@ -583,7 +612,7 @@
     
     @media (max-width: 900px) {
       .insight-grid { grid-template-columns: 1fr; gap: 40px; }
-      .insight-col:first-child::after { display: none; } /* Remove line on mobile */
+      .insight-col:first-child::after { display: none; }
       .insight-wrapper { padding: 40px 0; }
     }
     
@@ -659,10 +688,10 @@
     }
 
     @media (max-width: 480px) {
-      .brand-text {
-        font-size: 0.6rem;
-        letter-spacing: 2px;
-      }
+      .nav-logo { height: 32px; }
+      .brand-divider { height: 26px; gap: 10px; }
+      .brand-top { font-size: 0.6rem; }
+      .brand-bottom { font-size: 0.5rem; }
       
       .hero-title {
         font-size: 2rem;
@@ -681,7 +710,11 @@
     <nav>
       <a href="/" class="nav-brand">
         <img src="assets/img/sidebar-logo.png" alt="Logo" class="nav-logo">
-        <span class="brand-text">Strategic AI Governance</span>
+        <div class="brand-divider"></div>
+        <div class="brand-text-col">
+          <span class="brand-top">STRATEGIC</span>
+          <span class="brand-bottom">AI GOVERNANCE</span>
+        </div>
       </a>
 
       <div class="nav-links">
