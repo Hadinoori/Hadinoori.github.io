@@ -35,9 +35,20 @@
       z-index: 0; pointer-events: none; opacity: 0.4;
     }
     .container { max-width: 1320px; margin: 0 auto; padding: 0 40px; position: relative; z-index: 1; }
+    
+    /* OPTIMIZED NAVIGATION - کاهش padding و margin */
     nav {
-      padding: 32px 0; display: flex; justify-content: space-between; align-items: center;
-      border-bottom: 1px solid rgba(10, 22, 40, 0.1); margin-bottom: 80px;
+      padding: 20px 0; /* کاهش از 32px */
+      display: flex; 
+      justify-content: space-between; 
+      align-items: center;
+      border-bottom: 1px solid rgba(10, 22, 40, 0.1); 
+      margin-bottom: 40px; /* کاهش از 80px - صرفه‌جویی 40px */
+      position: sticky; /* اضافه شده برای بهتر دیده شدن */
+      top: 0;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      z-index: 100;
     }
     .nav-brand {
       font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; font-weight: 600;
@@ -53,29 +64,45 @@
     .nav-cta { background: var(--navy); color: var(--white) !important; padding: 11px 26px; }
     .nav-cta:hover { background: var(--blue); }
     
+    /* OPTIMIZED HERO SECTION - حذف min-height و کاهش padding */
     .hero {
-      display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 100px;
-      align-items: center; min-height: 75vh; padding: 60px 0 100px;
+      display: grid; 
+      grid-template-columns: 1.15fr 0.85fr; 
+      gap: 100px;
+      align-items: center; 
+      /* min-height: 75vh; - REMOVED! این مشکل اصلی بود */
+      padding: 20px 0 60px; /* کاهش از 60px 0 100px - صرفه‌جویی 80px */
     }
     .hero-content { position: relative; }
+    
+    /* OPTIMIZED SPACING - کاهش margin های غیرضروری */
     .category {
       font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; font-weight: 600;
       letter-spacing: 4px; text-transform: uppercase; color: var(--blue);
-      margin-bottom: 36px; display: flex; align-items: center; gap: 14px;
+      margin-bottom: 24px; /* کاهش از 36px - صرفه‌جویی 12px */
+      display: flex; align-items: center; gap: 14px;
     }
     .category::before { content: ''; width: 32px; height: 2px; background: var(--blue); }
     
     .hero-title {
       font-family: 'IBM Plex Sans', sans-serif;
-      font-size: clamp(3.5rem, 9vw, 7.5rem);
-      font-weight: 700; line-height: 0.95; letter-spacing: -0.03em;
-      margin-bottom: 48px; color: var(--navy);
+      font-size: clamp(3rem, 7vw, 6rem); /* کاهش max از 7.5rem به 6rem */
+      font-weight: 700; 
+      line-height: 0.95; 
+      letter-spacing: -0.03em;
+      margin-bottom: 32px; /* کاهش از 48px - صرفه‌جویی 16px */
+      color: var(--navy);
     }
     .hero-title-line { display: block; }
+    
     .hero-description {
-      font-size: 1.05rem; line-height: 1.75; color: var(--slate);
-      max-width: 520px; margin-bottom: 48px;
+      font-size: 1rem; /* کاهش از 1.05rem */
+      line-height: 1.7; /* کاهش از 1.75 */
+      color: var(--slate);
+      max-width: 480px; /* کاهش از 520px */
+      margin-bottom: 36px; /* کاهش از 48px - صرفه‌جویی 12px */
     }
+    
     .cta-wrapper { display: flex; gap: 20px; align-items: center; }
     .btn {
       font-family: 'IBM Plex Mono', monospace; font-size: 0.8rem; font-weight: 600;
@@ -96,7 +123,11 @@
     }
     .btn-secondary:hover { background: var(--navy); color: var(--white); }
     
-    .hero-visual { position: relative; height: 560px; }
+    /* HERO VISUAL - کاهش ارتفاع */
+    .hero-visual { 
+      position: relative; 
+      height: 500px; /* کاهش از 560px */
+    }
     .system-network { position: relative; width: 100%; height: 100%; }
     .central-node {
       position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
@@ -165,14 +196,17 @@
     .data-point:nth-child(14) { bottom: 14%; left: 4%; animation-delay: 2.7s; }
     .data-point:nth-child(15) { bottom: 10%; right: 10%; animation-delay: 2.9s; }
     
+    /* OPTIMIZED FOCUS SECTION - کاهش padding و margin */
     .focus-section {
-      padding: 100px 0 120px; border-top: 2px solid var(--navy); margin-top: 80px;
+      padding: 80px 0 100px; /* کاهش از 100px 0 120px */
+      border-top: 2px solid var(--navy); 
+      margin-top: 60px; /* کاهش از 80px */
     }
     .section-header {
       font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; font-weight: 600;
-      letter-spacing: 4px; text-transform: uppercase; color: var(--blue); margin-bottom: 70px;
+      letter-spacing: 4px; text-transform: uppercase; color: var(--blue); margin-bottom: 60px; /* کاهش از 70px */
     }
-    .focus-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 70px; }
+    .focus-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 60px; /* کاهش از 70px */ }
     .focus-card { position: relative; padding-left: 28px; }
     .focus-card::before {
       content: ''; position: absolute; left: 0; top: 0; width: 3px; height: 100%;
@@ -188,16 +222,71 @@
     }
     .focus-text { font-size: 0.95rem; line-height: 1.75; color: var(--slate); }
     
+    /* IMPROVED RESPONSIVE DESIGN */
     @media (max-width: 1100px) {
-      .hero { grid-template-columns: 1fr; gap: 70px; }
-      .hero-visual { height: 450px; }
-      .focus-grid { grid-template-columns: 1fr; gap: 60px; }
+      .hero { 
+        grid-template-columns: 1fr; 
+        gap: 50px; /* کاهش از 70px */
+      }
+      .hero-visual { 
+        height: 400px; /* کاهش از 450px */
+        order: -1; /* visual به بالای محتوا می‌رود */
+      }
+      .focus-grid { 
+        grid-template-columns: 1fr; 
+        gap: 50px; /* کاهش از 60px */
+      }
     }
+    
     @media (max-width: 768px) {
       .container { padding: 0 24px; }
-      .hero-title { font-size: 3rem; }
-      .cta-wrapper { flex-direction: column; align-items: flex-start; }
-      .nav-links { gap: 20px; }
+      nav {
+        padding: 16px 0;
+        margin-bottom: 30px;
+      }
+      .hero {
+        padding: 15px 0 40px;
+      }
+      .hero-title { 
+        font-size: 2.5rem;
+        margin-bottom: 24px;
+      }
+      .hero-description {
+        margin-bottom: 28px;
+      }
+      .cta-wrapper { 
+        flex-direction: column; 
+        align-items: flex-start;
+        gap: 16px;
+      }
+      .btn {
+        width: 100%;
+        text-align: center;
+      }
+      .nav-links { 
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+      .hero-visual {
+        height: 350px;
+      }
+      .focus-section {
+        padding: 60px 0 80px;
+        margin-top: 40px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .nav-brand {
+        font-size: 0.6rem;
+        letter-spacing: 2px;
+      }
+      .nav-links a {
+        font-size: 0.65rem;
+      }
+      .hero-title {
+        font-size: 2rem;
+      }
     }
   </style>
 </head>
@@ -214,6 +303,7 @@
         <a href="/contact" class="nav-cta">Inquiry</a>
       </div>
     </nav>
+    
     <section class="hero">
       <div class="hero-content">
         <div class="category">System Governance</div>
@@ -230,6 +320,7 @@
           <a href="/projects" class="btn btn-secondary">Review Protocols</a>
         </div>
       </div>
+      
       <div class="hero-visual">
         <div class="system-network">
           <div class="central-node"></div>
@@ -250,6 +341,7 @@
         </div>
       </div>
     </section>
+    
     <section class="focus-section">
       <div class="section-header">Core Systems</div>
       <div class="focus-grid">
