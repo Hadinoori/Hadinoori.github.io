@@ -62,7 +62,8 @@
       justify-content: space-between; 
       align-items: center;
       border-bottom: 1px solid rgba(10, 22, 40, 0.1); 
-      margin-bottom: 60px;
+      /* Margin increased to separate Nav from the list */
+      margin-bottom: 80px; 
       position: sticky;
       top: 0;
       background: rgba(255, 255, 255, 0.95);
@@ -96,28 +97,11 @@
     }
     .nav-cta:hover { background: var(--blue); }
 
-    /* Page Header */
-    .page-header {
-      padding-bottom: 60px;
-      border-bottom: 2px solid var(--navy);
-      margin-bottom: 60px;
-    }
-    .page-title {
-      font-family: 'IBM Plex Sans', sans-serif;
-      font-size: clamp(2.5rem, 5vw, 4rem);
-      font-weight: 700;
-      color: var(--navy);
-      line-height: 1;
-      margin-bottom: 20px;
-      letter-spacing: -0.02em;
-    }
-    .page-desc {
-      font-family: 'IBM Plex Sans', sans-serif;
-      font-size: 1.1rem;
-      color: var(--slate);
-      max-width: 600px;
-      line-height: 1.7;
-    }
+    /* [HEADER STYLES REMOVED]
+    .page-header { ... }
+    .page-title { ... }
+    .page-desc { ... }
+    */
 
     /* Archive List (The "Focus Section" Style) */
     .entry {
@@ -235,10 +219,10 @@
     /* Responsive */
     @media (max-width: 768px) {
       .container { padding: 0 24px; }
-      nav { padding: 16px 0; margin-bottom: 40px; }
+      nav { padding: 16px 0; margin-bottom: 60px; }
       .nav-links a:not(.active) { display: none; } /* Hide inactive links on mobile to save space */
       
-      .page-title { font-size: 2.5rem; }
+      /* [PAGE TITLE RESPONSIVE STYLE REMOVED] */
       
       .entry { grid-template-columns: 1fr; gap: 16px; margin-bottom: 40px; padding-bottom: 40px;}
       .entry-meta { 
@@ -267,14 +251,6 @@
         <a href="contact.html" class="nav-cta">Inquiry</a>
       </div>
     </nav>
-
-    <header class="page-header">
-      <h1 class="page-title">Intelligence Archive</h1>
-      <p class="page-desc">
-        Strategic dispatches and protocols on AI governance. 
-        Archived analysis from the field.
-      </p>
-    </header>
 
     <main id="archive-container">
       <div class="loading-state">Decrypting Archive...</div>
