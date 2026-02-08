@@ -40,7 +40,7 @@
     .container { max-width: 1320px; margin: 0 auto; padding: 0 40px; position: relative; z-index: 1; }
     
     /* ============================================
-        NAVIGATION
+        NAVIGATION - REFINED
        ============================================ */
     nav {
       padding: 20px 0;
@@ -56,40 +56,35 @@
       z-index: 100;
     }
 
-    /* BRAND LOCKUP (Header) */
+    /* HEADER BRAND LOCKUP (Clean Version) */
     .nav-brand {
       display: flex;
       align-items: center;
-      gap: 14px; 
+      gap: 12px; /* Optimal gap */
       cursor: default;
+      user-select: none;
     }
 
     .nav-logo {
-      height: 38px;
+      height: 34px; /* Fixed height to prevent huge icons */
       width: auto;
       display: block;
-    }
-
-    .brand-divider {
-      width: 1px;
-      height: 32px;
-      background-color: rgba(30, 58, 138, 0.15);
+      border-radius: 4px; /* Subtle rounding if logo is square */
     }
 
     .brand-text-col {
       display: flex;
       flex-direction: column;
       justify-content: center;
-      line-height: 1; 
+      line-height: 1.1; 
     }
 
     .brand-top {
       font-family: 'IBM Plex Sans', sans-serif;
-      font-size: 0.65rem;
+      font-size: 0.7rem;
       font-weight: 700;
-      letter-spacing: 2.5px;
+      letter-spacing: 2px;
       color: var(--navy);
-      margin-bottom: 3px;
       display: block;
     }
 
@@ -97,7 +92,7 @@
       font-family: 'IBM Plex Mono', monospace;
       font-size: 0.55rem;
       font-weight: 400;
-      letter-spacing: 1.5px;
+      letter-spacing: 1px;
       color: var(--slate);
       text-transform: uppercase;
       display: block;
@@ -311,6 +306,7 @@
       justify-content: space-between;
     }
 
+    /* Divider Line */
     .insight-col:first-child::after {
       content: '';
       position: absolute;
@@ -337,7 +333,7 @@
     @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
     /* ============================================
-        FOCUS SECTION
+        FOCUS SECTION (CORE SYSTEMS)
        ============================================ */
     .focus-section {
       padding: 64px 0 96px;
@@ -364,7 +360,7 @@
     .focus-text { font-size: 0.95rem; line-height: 1.75; color: var(--slate); }
     
     /* ============================================
-        FOOTER (Updated)
+        FOOTER (FIXED)
        ============================================ */
     footer {
       margin-top: 80px;
@@ -381,27 +377,28 @@
       gap: 24px;
     }
     
+    /* Footer Brand: Small Logo + Name */
     .footer-brand {
       display: flex;
-      flex-direction: column;
-      gap: 8px; /* Slightly adjusted gap */
+      align-items: center;
+      gap: 12px;
     }
     
-    /* Replaced Text with Logo */
+    /* FIX: Force small size for footer logo */
     .footer-logo {
-      height: 32px;
+      height: 24px; 
       width: auto;
       display: block;
-      opacity: 0.6; /* Subtle elegance */
-      transition: opacity 0.3s ease;
+      opacity: 0.7; 
     }
-    .footer-logo:hover { opacity: 1; }
     
-    .footer-location {
+    .footer-brand-name {
       font-family: 'IBM Plex Mono', monospace;
       font-size: 0.65rem;
-      letter-spacing: 1.5px;
-      color: var(--slate);
+      font-weight: 700; 
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--navy); 
     }
     
     .footer-links { display: flex; gap: 28px; align-items: center; }
@@ -460,8 +457,7 @@
       .footer-meta { flex-direction: column; align-items: flex-start; }
     }
     @media (max-width: 480px) {
-      .nav-logo { height: 32px; }
-      .brand-divider { height: 26px; gap: 10px; }
+      .nav-logo { height: 30px; }
       .brand-top { font-size: 0.6rem; }
       .brand-bottom { font-size: 0.5rem; }
       .hero-title { font-size: 2rem; }
@@ -476,7 +472,6 @@
     <nav>
       <div class="nav-brand">
         <img src="assets/img/sidebar-logo.png" alt="Logo" class="nav-logo">
-        <div class="brand-divider"></div>
         <div class="brand-text-col">
           <span class="brand-top">STRATEGIC</span>
           <span class="brand-bottom">AI GOVERNANCE</span>
@@ -587,7 +582,7 @@
       <div class="footer-content">
         <div class="footer-brand">
           <img src="assets/img/sidebar-logo.png" alt="Hadi Noori Logo" class="footer-logo">
-          <div class="footer-location">Vancouver, BC</div>
+          <div class="footer-brand-name">Hadi Noori</div>
         </div>
         
         <div class="footer-links">
@@ -608,7 +603,6 @@
   </footer>
 
   <script>
-    // --- DUAL INSIGHT ENGINE ---
     async function loadDualInsights() {
       const container = document.getElementById('insight-interruption');
       
@@ -648,9 +642,7 @@
         const files = await res.json();
         const mdFiles = files.filter(f => f.name.endsWith('.md')).reverse();
 
-        // 1. Find Manually Selected Posts
         let selectedPosts = [];
-        
         const scanLimit = Math.min(mdFiles.length, 8);
         const fetchPromises = mdFiles.slice(0, scanLimit).map(async file => {
             const contentRes = await fetch(file.download_url);
@@ -659,25 +651,17 @@
         });
 
         const loadedPosts = await Promise.all(fetchPromises);
-
-        // Filter for 'selected_insight: true'
         selectedPosts = loadedPosts.filter(p => p.meta.selected_insight === true || p.meta.selected_insight === 'true');
 
-        // 2. Fallback Logic: Fill empty slots with latest posts
         if (selectedPosts.length < 2) {
             const remainingNeeded = 2 - selectedPosts.length;
             const fillers = loadedPosts.filter(p => !selectedPosts.includes(p)).slice(0, remainingNeeded);
             selectedPosts = [...selectedPosts, ...fillers];
         }
 
-        // 3. Render Slots (Maximum 2)
         if (selectedPosts.length > 0) {
-            // Fill Slot 1
             if (selectedPosts[0]) renderSlot(1, selectedPosts[0]);
-            
-            // Fill Slot 2 (if available)
             if (selectedPosts[1]) renderSlot(2, selectedPosts[1]);
-            
             container.style.display = "block";
         }
 
@@ -690,7 +674,6 @@
         const titleEl = document.getElementById(`slot${slotNum}-title`);
         const linkEl = document.getElementById(`slot${slotNum}-link`);
 
-        // Use Description as Quote, Title as Source
         textEl.textContent = post.meta.description || "System accountability requires clear attribution.";
         titleEl.textContent = "— " + (post.meta.title || "Field Dispatch");
 
