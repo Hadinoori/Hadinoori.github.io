@@ -55,7 +55,22 @@
       backdrop-filter: blur(10px);
       z-index: 100;
     }
+
+    /* Brand Style (Logo + Text) */
     .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .nav-logo {
+      height: 28px; /* Size matched to text height */
+      width: auto;
+      display: block;
+    }
+
+    .brand-text {
       font-family: 'IBM Plex Mono', monospace; 
       font-size: 0.7rem; 
       font-weight: 600;
@@ -63,6 +78,7 @@
       text-transform: uppercase; 
       color: var(--blue);
     }
+
     .nav-links { display: flex; gap: 36px; align-items: center; }
     .nav-links a {
       font-family: 'IBM Plex Mono', monospace; 
@@ -282,7 +298,7 @@
     .data-point:nth-child(15) { bottom: 10%; right: 10%; animation-delay: 2.9s; }
     
     /* ============================================
-       INTELLIGENCE GRID (Double Slot - New)
+       INTELLIGENCE GRID (Double Slot)
        ============================================ */
     .insight-wrapper {
       padding: 60px 0;
@@ -643,7 +659,7 @@
     }
 
     @media (max-width: 480px) {
-      .nav-brand {
+      .brand-text {
         font-size: 0.6rem;
         letter-spacing: 2px;
       }
@@ -663,7 +679,11 @@
   
   <div class="container">
     <nav>
-      <div class="nav-brand">Strategic AI Governance</div>
+      <a href="/" class="nav-brand">
+        <img src="assets/img/sidebar-logo.png" alt="Logo" class="nav-logo">
+        <span class="brand-text">Strategic AI Governance</span>
+      </a>
+
       <div class="nav-links">
         <a href="/">Home</a>
         <a href="/insights">Insights</a>
