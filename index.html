@@ -40,7 +40,7 @@
     .container { max-width: 1320px; margin: 0 auto; padding: 0 40px; position: relative; z-index: 1; }
     
     /* ============================================
-        NAVIGATION - OPTIMIZED
+        NAVIGATION
        ============================================ */
     nav {
       padding: 20px 0;
@@ -83,7 +83,7 @@
     .nav-cta:hover { background: var(--blue); }
     
     /* ============================================
-        HERO SECTION - FIXED SPACING
+        HERO SECTION
        ============================================ */
     .hero {
       display: grid; 
@@ -282,23 +282,90 @@
     .data-point:nth-child(15) { bottom: 10%; right: 10%; animation-delay: 2.9s; }
     
     /* ============================================
-        FOCUS SECTION - FINAL TWEAKS APPLIED
+       SELECTED INSIGHT (The "Interruption" Layer)
+       ============================================ */
+    .insight-wrapper {
+      padding: 60px 0;
+      border-top: 1px solid rgba(10, 22, 40, 0.1);
+      border-bottom: 1px solid rgba(10, 22, 40, 0.1);
+      margin-bottom: 80px;
+      display: none; /* Hidden until content loads */
+      opacity: 0;
+      animation: fadeIn 1s ease-out forwards 0.5s;
+    }
+
+    .insight-container {
+      max-width: 800px; /* Narrower focus for reading */
+    }
+
+    .insight-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.65rem;
+      font-weight: 600;
+      color: var(--cyan); /* A calm accent */
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 24px;
+      display: block;
+    }
+
+    .insight-quote {
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-size: 1.25rem; /* Larger than body, smaller than headings */
+      font-weight: 500;
+      color: var(--navy);
+      line-height: 1.6;
+      margin: 0 0 24px 0;
+      padding: 0;
+      border: none;
+    }
+
+    .insight-source {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--slate);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .insight-source:hover {
+      color: var(--blue);
+      border-bottom-color: var(--blue);
+    }
+    
+    .insight-arrow {
+      font-size: 1rem;
+      line-height: 0;
+      position: relative;
+      top: -1px;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ============================================
+        FOCUS SECTION (CORE SYSTEMS)
        ============================================ */
     .focus-section {
       padding: 64px 0 96px;
       margin-top: 0;
     }
     
-    /* TWEAK #1: Transition line with more breathing space */
     .section-header {
       font-family: 'IBM Plex Mono', monospace; 
-      font-size: 0.8rem; /* Increased from 0.75rem */
+      font-size: 0.8rem; 
       font-weight: 700;
       letter-spacing: 4px; 
       text-transform: uppercase; 
       color: var(--navy);
       margin-bottom: 56px;
-      padding-top: 50px; /* Increased from 28px → Hero breathes */
+      padding-top: 50px; 
       border-top: 2px solid var(--navy);
     }
     
@@ -313,22 +380,21 @@
       padding-left: 28px; 
     }
     
-    /* TWEAK #2: Core Systems - 10% stronger */
     .focus-card::before {
       content: ''; 
       position: absolute; 
       left: 0; 
       top: 0; 
-      width: 5px; /* Increased from 4px */
+      width: 5px; 
       height: 100%;
-      background: linear-gradient(to bottom, var(--cyan) 0%, rgba(8,145,178,0.4) 100%); /* Stronger than 0.3 */
+      background: linear-gradient(to bottom, var(--cyan) 0%, rgba(8,145,178,0.4) 100%);
     }
     
     .focus-number {
       font-family: 'IBM Plex Sans', sans-serif; 
-      font-size: 3.8rem; /* Increased from 3.5rem */
+      font-size: 3.8rem; 
       font-weight: 700;
-      color: rgba(30,58,138,0.22); /* Increased from 0.15 */
+      color: rgba(30,58,138,0.22); 
       line-height: 1; 
       margin-bottom: 20px;
     }
@@ -350,12 +416,12 @@
     }
     
     /* ============================================
-        FOOTER - FINAL TWEAKS APPLIED
+        FOOTER
        ============================================ */
     footer {
       margin-top: 80px;
-      padding: 36px 0; /* Reduced from 40px - more compact */
-      border-top: 1.5px solid rgba(10, 22, 40, 0.15); /* TWEAK #3: Stronger than 1px/0.12 */
+      padding: 36px 0; 
+      border-top: 1.5px solid rgba(10, 22, 40, 0.15); 
       background: var(--white);
     }
     
@@ -373,14 +439,13 @@
       gap: 6px;
     }
     
-    /* TWEAK #3: Bolder branding */
     .footer-brand-name {
       font-family: 'IBM Plex Mono', monospace;
       font-size: 0.7rem;
-      font-weight: 700; /* Increased from 600 */
+      font-weight: 700; 
       letter-spacing: 3px;
       text-transform: uppercase;
-      color: var(--navy); /* Changed from blue */
+      color: var(--navy); 
     }
     
     .footer-location {
@@ -429,8 +494,8 @@
     
     .footer-meta {
       width: 100%;
-      margin-top: 20px; /* Reduced from 24px */
-      padding-top: 20px; /* Reduced from 24px */
+      margin-top: 20px; 
+      padding-top: 20px; 
       border-top: 1px solid rgba(10, 22, 40, 0.08);
       display: flex;
       justify-content: space-between;
@@ -529,6 +594,9 @@
         height: 350px;
       }
       
+      .insight-wrapper { padding: 40px 0; margin-bottom: 60px; }
+      .insight-quote { font-size: 1.1rem; }
+
       .focus-section {
         padding: 50px 0 70px;
       }
@@ -595,7 +663,8 @@
           <span class="hero-title-line">NOORI</span>
         </h1>
         <p class="hero-description">
-          I work on the governance gaps where accountability quietly disappears.
+          Building accountable protocols for high-stakes AI deployment. 
+          Moving beyond technical performance to ensure legitimacy and trust in complex systems.
         </p>
         <div class="cta-wrapper">
           <a href="/contact" class="btn btn-primary">Initiate Inquiry</a>
@@ -623,6 +692,21 @@
         </div>
       </div>
     </section>
+
+    <div id="insight-interruption" class="insight-wrapper">
+      <div class="container insight-container">
+        <span class="insight-label">Selected Insight</span>
+        
+        <blockquote class="insight-quote" id="insight-text">
+          Decrypting strategic analysis...
+        </blockquote>
+        
+        <a href="insights.html" id="insight-source-link" class="insight-source">
+          <span id="insight-title">Loading Source</span>
+          <span class="insight-arrow">→</span>
+        </a>
+      </div>
+    </div>
     
     <section class="focus-section">
       <div class="section-header">Core Systems</div>
@@ -676,6 +760,98 @@
       </div>
     </div>
   </footer>
-  
+
+  <script>
+    // --- STRATEGIC INSIGHT ENGINE ---
+    async function loadStrategicInsight() {
+      const container = document.getElementById('insight-interruption');
+      const textEl = document.getElementById('insight-text');
+      const titleEl = document.getElementById('insight-title');
+      const linkEl = document.getElementById('insight-source-link');
+      
+      const CONFIG = {
+        repo: 'hadinoori/hadinoori.github.io', 
+        folder: '_insights'
+      };
+
+      function parseFrontMatter(text) {
+        const lines = text.split('\n');
+        const metadata = {};
+        let inFrontMatter = false;
+        for (const line of lines) {
+          const trimmed = line.trim();
+          if (trimmed === '---') {
+            if (!inFrontMatter) inFrontMatter = true;
+            else break; 
+            continue;
+          }
+          if (inFrontMatter) {
+            const colonIndex = trimmed.indexOf(':');
+            if (colonIndex !== -1) {
+              const key = trimmed.slice(0, colonIndex).trim();
+              let value = trimmed.slice(colonIndex + 1).trim();
+              if (value.startsWith('"') && value.endsWith('"')) value = value.slice(1, -1);
+              metadata[key] = value;
+            }
+          }
+        }
+        return metadata;
+      }
+
+      try {
+        const res = await fetch(`https://api.github.com/repos/${CONFIG.repo}/contents/${CONFIG.folder}`);
+        if (!res.ok) return; 
+        
+        const files = await res.json();
+        const mdFiles = files.filter(f => f.name.endsWith('.md')).reverse();
+
+        let targetPost = null;
+
+        // Scan for the manually selected insight
+        for (const file of mdFiles) {
+            const contentRes = await fetch(file.download_url);
+            const text = await contentRes.text();
+            const meta = parseFrontMatter(text);
+            
+            // CHECK FOR 'selected_insight' (Updated Field Name)
+            if (meta.selected_insight === true || meta.selected_insight === 'true') {
+                targetPost = { meta, filename: file.name };
+                break; // Found the one, stop looking
+            }
+        }
+
+        // Fallback: If nothing selected, use the absolute latest
+        if (!targetPost && mdFiles.length > 0) {
+             const file = mdFiles[0];
+             const contentRes = await fetch(file.download_url);
+             const text = await contentRes.text();
+             targetPost = { meta: parseFrontMatter(text), filename: file.name };
+        }
+
+        if (targetPost) {
+            // Apply Content
+            // We use 'description' as the Insight Quote, and 'title' as the Source Reference
+            textEl.textContent = targetPost.meta.description || "System accountability requires clear attribution of decision-making protocols.";
+            titleEl.textContent = "— " + (targetPost.meta.title || "The Architecture of Accountability");
+            
+            // Set Link
+            if (targetPost.meta.external_url) {
+                linkEl.href = targetPost.meta.external_url;
+                linkEl.target = "_blank";
+            } else {
+                linkEl.href = `insights/${targetPost.filename.replace('.md', '.html')}`;
+            }
+            
+            // Reveal
+            container.style.display = "block";
+        }
+
+      } catch (e) {
+        console.log("Strategic Insight: Data stream silent.");
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', loadStrategicInsight);
+  </script>
 </body>
 </html>
