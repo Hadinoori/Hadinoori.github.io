@@ -7,527 +7,205 @@
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Anybody:wght@300;700;900&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
   
   <style>
     :root {
       --navy: #0a1628;
       --blue: #1e3a8a;
-      --cyan: #06b6d4;
-      --slate: #64748b;
+      --cyan: #0891b2;
+      --slate: #475569;
       --white: #ffffff;
-      --grid-color: rgba(30, 58, 138, 0.08);
+      --grid-subtle: rgba(30, 58, 138, 0.06);
     }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      font-family: 'IBM Plex Mono', monospace;
+      font-family: 'IBM Plex Sans', sans-serif;
       background: var(--white);
       color: var(--navy);
       overflow-x: hidden;
+      line-height: 1.6;
     }
-
-    /* CRITICAL: Grid system that creates structure */
-    .container {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 0 40px;
-      position: relative;
-    }
-
-    /* Background grid - creates systematic feel */
-    .grid-bg {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
+    .grid-overlay {
+      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
       background-image: 
-        linear-gradient(var(--grid-color) 1px, transparent 1px),
-        linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
-      background-size: 60px 60px;
-      z-index: 0;
-      pointer-events: none;
-      opacity: 0.6;
+        linear-gradient(var(--grid-subtle) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-subtle) 1px, transparent 1px);
+      background-size: 80px 80px;
+      z-index: 0; pointer-events: none; opacity: 0.4;
     }
-
-    /* Navigation */
+    .container { max-width: 1320px; margin: 0 auto; padding: 0 40px; position: relative; z-index: 1; }
     nav {
-      position: relative;
-      z-index: 100;
-      padding: 30px 0;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid var(--grid-color);
+      padding: 32px 0; display: flex; justify-content: space-between; align-items: center;
+      border-bottom: 1px solid rgba(10, 22, 40, 0.1); margin-bottom: 80px;
     }
-
-    .nav-label {
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--blue);
+    .nav-brand {
+      font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; font-weight: 600;
+      letter-spacing: 3px; text-transform: uppercase; color: var(--blue);
     }
-
-    .nav-links {
-      display: flex;
-      gap: 40px;
-      align-items: center;
-    }
-
+    .nav-links { display: flex; gap: 36px; align-items: center; }
     .nav-links a {
-      font-size: 0.75rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      color: var(--slate);
-      text-decoration: none;
-      transition: color 0.3s;
+      font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 2px; color: var(--slate);
+      text-decoration: none; transition: color 0.3s ease;
     }
-
-    .nav-links a:hover {
-      color: var(--blue);
-    }
-
-    .nav-cta {
-      background: var(--navy);
-      color: var(--white) !important;
-      padding: 10px 24px;
-    }
-
-    /* HERO - The New System-Focused Design */
+    .nav-links a:hover { color: var(--blue); }
+    .nav-cta { background: var(--navy); color: var(--white) !important; padding: 11px 26px; }
+    .nav-cta:hover { background: var(--blue); }
+    
     .hero {
-      position: relative;
-      z-index: 10;
-      min-height: 85vh;
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 80px;
-      align-items: center;
-      padding: 80px 0;
+      display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 100px;
+      align-items: center; min-height: 75vh; padding: 60px 0 100px;
     }
-
-    /* Left: Content */
-    .hero-content {
-      position: relative;
+    .hero-content { position: relative; }
+    .category {
+      font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; font-weight: 600;
+      letter-spacing: 4px; text-transform: uppercase; color: var(--blue);
+      margin-bottom: 36px; display: flex; align-items: center; gap: 14px;
     }
-
-    .role {
-      font-size: 0.7rem;
-      font-weight: 600;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      color: var(--blue);
-      margin-bottom: 40px;
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-
-    .role::before {
-      content: '';
-      width: 40px;
-      height: 2px;
-      background: var(--blue);
-    }
-
+    .category::before { content: ''; width: 32px; height: 2px; background: var(--blue); }
+    
     .hero-title {
-      font-family: 'Anybody', sans-serif;
-      font-size: clamp(4rem, 10vw, 9rem);
-      font-weight: 900;
-      line-height: 0.9;
-      letter-spacing: -0.04em;
-      margin-bottom: 50px;
-      color: var(--navy);
-      text-transform: uppercase;
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-size: clamp(3.5rem, 9vw, 7.5rem);
+      font-weight: 700; line-height: 0.95; letter-spacing: -0.03em;
+      margin-bottom: 48px; color: var(--navy);
     }
-
-    /* CRITICAL: Stagger animation */
-    .hero-title span {
-      display: inline-block;
-      animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+    .hero-title-line { display: block; }
+    .hero-description {
+      font-size: 1.05rem; line-height: 1.75; color: var(--slate);
+      max-width: 520px; margin-bottom: 48px;
     }
-
-    .hero-title span:nth-child(1) { animation-delay: 0.1s; }
-    .hero-title span:nth-child(2) { animation-delay: 0.2s; }
-
-    @keyframes slideUp {
-      from {
-        opacity: 0;
-        transform: translateY(40px);
-      }
-    }
-
-    .hero-desc {
-      font-size: 1.1rem;
-      line-height: 1.7;
-      color: var(--slate);
-      max-width: 500px;
-      margin-bottom: 50px;
-      animation: fadeIn 1s 0.4s backwards;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-    }
-
-    .cta-group {
-      display: flex;
-      gap: 24px;
-      align-items: center;
-      animation: fadeIn 1s 0.6s backwards;
-    }
-
+    .cta-wrapper { display: flex; gap: 20px; align-items: center; }
     .btn {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 0.85rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      padding: 18px 36px;
-      text-decoration: none;
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-      display: inline-block;
+      font-family: 'IBM Plex Mono', monospace; font-size: 0.8rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 2px; padding: 17px 34px;
+      text-decoration: none; transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      display: inline-block; cursor: pointer;
     }
-
     .btn-primary {
-      background: var(--navy);
-      color: var(--white);
-      position: relative;
-      overflow: hidden;
+      background: var(--navy); color: var(--white); position: relative; overflow: hidden;
     }
-
-    .btn-primary::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: var(--blue);
-      transition: left 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-      z-index: -1;
+    .btn-primary::after {
+      content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+      background: var(--blue); transition: left 0.35s cubic-bezier(0.4, 0, 0.2, 1); z-index: -1;
     }
-
-    .btn-primary:hover::before {
-      left: 0;
-    }
-
+    .btn-primary:hover::after { left: 0; }
     .btn-secondary {
-      background: transparent;
-      color: var(--navy);
-      border: 2px solid var(--navy);
-      position: relative;
+      background: transparent; color: var(--navy); border: 2px solid var(--navy);
     }
-
-    .btn-secondary:hover {
-      background: var(--navy);
-      color: var(--white);
+    .btn-secondary:hover { background: var(--navy); color: var(--white); }
+    
+    .hero-visual { position: relative; height: 560px; }
+    .system-network { position: relative; width: 100%; height: 100%; }
+    .central-node {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      width: 140px; height: 140px; border: 3px solid var(--blue);
+      border-radius: 50%; background: var(--white);
+      animation: systemPulse 4s ease-in-out infinite;
     }
-
-    /* Right: System Visualization (ABSTRACT, not portrait) */
-    .hero-visual {
-      position: relative;
-      height: 600px;
-      animation: fadeIn 1.2s 0.3s backwards;
-    }
-
-    /* Governance Network Visualization */
-    .network-viz {
-      position: relative;
-      width: 100%;
-      height: 100%;
-    }
-
-    /* Central node */
-    .network-viz::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 120px;
-      height: 120px;
-      border: 3px solid var(--blue);
-      border-radius: 50%;
-      animation: pulse 3s ease-in-out infinite;
-    }
-
-    @keyframes pulse {
+    @keyframes systemPulse {
       0%, 100% {
-        transform: translate(-50%, -50%) scale(1);
-        opacity: 1;
+        transform: translate(-50%, -50%) scale(1); opacity: 1;
+        box-shadow: 0 0 0 0 rgba(30, 58, 138, 0.4);
       }
       50% {
-        transform: translate(-50%, -50%) scale(1.1);
-        opacity: 0.7;
+        transform: translate(-50%, -50%) scale(1.05); opacity: 0.95;
+        box-shadow: 0 0 0 20px rgba(30, 58, 138, 0);
       }
     }
-
-    /* Network nodes */
     .node {
-      position: absolute;
-      width: 60px;
-      height: 60px;
-      border: 2px solid var(--cyan);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: var(--white);
-      animation: float 4s ease-in-out infinite;
+      position: absolute; width: 54px; height: 54px; border: 2px solid var(--cyan);
+      border-radius: 50%; background: var(--white); display: flex;
+      align-items: center; justify-content: center; opacity: 0;
+      animation: nodeEmerge 1.2s ease-out forwards;
     }
-
     .node::before {
-      content: '';
-      width: 20px;
-      height: 20px;
-      background: var(--cyan);
-      border-radius: 50%;
+      content: ''; width: 16px; height: 16px; background: var(--cyan); border-radius: 50%;
     }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-15px); }
+    @keyframes nodeEmerge {
+      from { opacity: 0; transform: scale(0.3); }
+      to { opacity: 1; transform: scale(1); }
     }
-
-    .node:nth-child(1) {
-      top: 10%;
-      left: 20%;
-      animation-delay: 0s;
-    }
-
-    .node:nth-child(2) {
-      top: 15%;
-      right: 15%;
-      animation-delay: 0.5s;
-    }
-
-    .node:nth-child(3) {
-      bottom: 20%;
-      left: 10%;
-      animation-delay: 1s;
-    }
-
-    .node:nth-child(4) {
-      bottom: 15%;
-      right: 20%;
-      animation-delay: 1.5s;
-    }
-
-    .node:nth-child(5) {
-      top: 45%;
-      right: 5%;
-      animation-delay: 2s;
-    }
-
-    .node:nth-child(6) {
-      top: 40%;
-      left: 5%;
-      animation-delay: 2.5s;
-    }
-
-    /* Connection lines */
+    .node:nth-child(2) { top: 12%; left: 18%; animation-delay: 0.3s; }
+    .node:nth-child(3) { top: 18%; right: 12%; animation-delay: 0.5s; }
+    .node:nth-child(4) { bottom: 22%; left: 8%; animation-delay: 0.7s; }
+    .node:nth-child(5) { bottom: 18%; right: 16%; animation-delay: 0.9s; }
+    .node:nth-child(6) { top: 48%; right: 2%; animation-delay: 1.1s; }
+    .node:nth-child(7) { top: 42%; left: 0%; animation-delay: 1.3s; }
+    
     .connection {
-      position: absolute;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--cyan), transparent);
-      transform-origin: left center;
-      opacity: 0.3;
-      animation: flow 3s ease-in-out infinite;
+      position: absolute; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(8,145,178,0.4) 20%, rgba(8,145,178,0.6) 50%, rgba(8,145,178,0.4) 80%, transparent);
+      transform-origin: left center; opacity: 0;
+      animation: connectionFlow 2s ease-in-out forwards;
     }
-
-    @keyframes flow {
-      0%, 100% { opacity: 0.2; }
-      50% { opacity: 0.5; }
+    @keyframes connectionFlow {
+      from { opacity: 0; width: 0; }
+      to { opacity: 0.5; width: var(--line-width); }
     }
-
-    .connection:nth-child(7) {
-      top: 25%;
-      left: 23%;
-      width: 200px;
-      transform: rotate(20deg);
+    .connection:nth-child(8) { top: 26%; left: 22%; --line-width: 180px; transform: rotate(18deg); animation-delay: 1.5s; }
+    .connection:nth-child(9) { top: 32%; right: 16%; --line-width: 160px; transform: rotate(-22deg); animation-delay: 1.7s; }
+    .connection:nth-child(10) { bottom: 28%; left: 12%; --line-width: 200px; transform: rotate(-18deg); animation-delay: 1.9s; }
+    .connection:nth-child(11) { bottom: 24%; right: 20%; --line-width: 150px; transform: rotate(16deg); animation-delay: 2.1s; }
+    
+    .data-point {
+      position: absolute; font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.6rem; font-weight: 600; letter-spacing: 2.5px;
+      text-transform: uppercase; color: var(--blue); background: var(--white);
+      padding: 7px 14px; border: 1px solid rgba(30,58,138,0.15);
+      white-space: nowrap; opacity: 0; animation: labelReveal 0.8s ease-out forwards;
     }
-
-    .connection:nth-child(8) {
-      top: 30%;
-      right: 18%;
-      width: 180px;
-      transform: rotate(-25deg);
-      animation-delay: 0.5s;
+    @keyframes labelReveal {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
     }
-
-    .connection:nth-child(9) {
-      bottom: 25%;
-      left: 15%;
-      width: 220px;
-      transform: rotate(-20deg);
-      animation-delay: 1s;
-    }
-
-    .connection:nth-child(10) {
-      bottom: 22%;
-      right: 22%;
-      width: 160px;
-      transform: rotate(15deg);
-      animation-delay: 1.5s;
-    }
-
-    /* Data labels floating */
-    .data-label {
-      position: absolute;
-      font-size: 0.65rem;
-      font-weight: 600;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--blue);
-      background: var(--white);
-      padding: 6px 12px;
-      border: 1px solid var(--grid-color);
-      animation: fadeSlide 1s backwards;
-    }
-
-    @keyframes fadeSlide {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-    }
-
-    .data-label:nth-child(11) {
-      top: 8%;
-      left: 15%;
-      animation-delay: 0.8s;
-    }
-
-    .data-label:nth-child(12) {
-      top: 12%;
-      right: 10%;
-      animation-delay: 1s;
-    }
-
-    .data-label:nth-child(13) {
-      bottom: 18%;
-      left: 8%;
-      animation-delay: 1.2s;
-    }
-
-    .data-label:nth-child(14) {
-      bottom: 12%;
-      right: 15%;
-      animation-delay: 1.4s;
-    }
-
-    /* Focus Areas - System View */
+    .data-point:nth-child(12) { top: 6%; left: 12%; animation-delay: 2.3s; }
+    .data-point:nth-child(13) { top: 10%; right: 8%; animation-delay: 2.5s; }
+    .data-point:nth-child(14) { bottom: 14%; left: 4%; animation-delay: 2.7s; }
+    .data-point:nth-child(15) { bottom: 10%; right: 10%; animation-delay: 2.9s; }
+    
     .focus-section {
-      position: relative;
-      z-index: 10;
-      padding: 120px 0;
-      border-top: 2px solid var(--navy);
+      padding: 100px 0 120px; border-top: 2px solid var(--navy); margin-top: 80px;
     }
-
-    .focus-header {
-      font-size: 0.7rem;
-      font-weight: 600;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      color: var(--blue);
-      margin-bottom: 60px;
+    .section-header {
+      font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; font-weight: 600;
+      letter-spacing: 4px; text-transform: uppercase; color: var(--blue); margin-bottom: 70px;
     }
-
-    .focus-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 60px;
-    }
-
-    .focus-item {
-      position: relative;
-      padding-left: 30px;
-    }
-
-    .focus-item::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 3px;
-      height: 100%;
+    .focus-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 70px; }
+    .focus-card { position: relative; padding-left: 28px; }
+    .focus-card::before {
+      content: ''; position: absolute; left: 0; top: 0; width: 3px; height: 100%;
       background: linear-gradient(to bottom, var(--cyan), transparent);
     }
-
-    .focus-num {
-      font-family: 'Anybody', sans-serif;
-      font-size: 3.5rem;
-      font-weight: 900;
-      color: rgba(30, 58, 138, 0.1);
-      line-height: 1;
-      margin-bottom: 20px;
+    .focus-number {
+      font-family: 'IBM Plex Sans', sans-serif; font-size: 3rem; font-weight: 700;
+      color: rgba(30,58,138,0.08); line-height: 1; margin-bottom: 22px;
     }
-
-    .focus-title {
-      font-size: 0.85rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      margin-bottom: 16px;
-      color: var(--navy);
+    .focus-label {
+      font-family: 'IBM Plex Mono', monospace; font-size: 0.8rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 2px; margin-bottom: 18px; color: var(--navy);
     }
-
-    .focus-desc {
-      font-size: 0.95rem;
-      line-height: 1.7;
-      color: var(--slate);
+    .focus-text { font-size: 0.95rem; line-height: 1.75; color: var(--slate); }
+    
+    @media (max-width: 1100px) {
+      .hero { grid-template-columns: 1fr; gap: 70px; }
+      .hero-visual { height: 450px; }
+      .focus-grid { grid-template-columns: 1fr; gap: 60px; }
     }
-
-    /* Responsive */
-    @media (max-width: 1024px) {
-      .hero {
-        grid-template-columns: 1fr;
-        gap: 60px;
-      }
-
-      .hero-visual {
-        height: 400px;
-      }
-
-      .focus-grid {
-        grid-template-columns: 1fr;
-        gap: 50px;
-      }
-    }
-
     @media (max-width: 768px) {
-      .hero-title {
-        font-size: 3.5rem;
-      }
-
-      .cta-group {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .nav-links {
-        gap: 20px;
-      }
+      .container { padding: 0 24px; }
+      .hero-title { font-size: 3rem; }
+      .cta-wrapper { flex-direction: column; align-items: flex-start; }
+      .nav-links { gap: 20px; }
     }
   </style>
 </head>
 <body>
-
-  <!-- Grid background -->
-  <div class="grid-bg"></div>
-
+  <div class="grid-overlay"></div>
   <div class="container">
-    <!-- Navigation -->
     <nav>
-      <div class="nav-label">Strategic AI Governance</div>
+      <div class="nav-brand">Strategic AI Governance</div>
       <div class="nav-links">
         <a href="/">Home</a>
         <a href="/insights">Insights</a>
@@ -536,87 +214,68 @@
         <a href="/contact" class="nav-cta">Inquiry</a>
       </div>
     </nav>
-
-    <!-- Hero Section -->
     <section class="hero">
-      <!-- Content -->
       <div class="hero-content">
-        <div class="role">System Governance</div>
-        
+        <div class="category">System Governance</div>
         <h1 class="hero-title">
-          <span>HADI</span><br>
-          <span>NOORI</span>
+          <span class="hero-title-line">HADI</span>
+          <span class="hero-title-line">NOORI</span>
         </h1>
-
-        <p class="hero-desc">
+        <p class="hero-description">
           Building accountable protocols for high-stakes AI deployment. 
           Moving beyond technical performance to ensure legitimacy and trust in complex systems.
         </p>
-
-        <div class="cta-group">
+        <div class="cta-wrapper">
           <a href="/contact" class="btn btn-primary">Initiate Inquiry</a>
           <a href="/projects" class="btn btn-secondary">Review Protocols</a>
         </div>
       </div>
-
-      <!-- Abstract Visualization (NOT portrait) -->
       <div class="hero-visual">
-        <div class="network-viz">
-          <!-- Nodes -->
+        <div class="system-network">
+          <div class="central-node"></div>
           <div class="node"></div>
           <div class="node"></div>
           <div class="node"></div>
           <div class="node"></div>
           <div class="node"></div>
           <div class="node"></div>
-          
-          <!-- Connections -->
           <div class="connection"></div>
           <div class="connection"></div>
           <div class="connection"></div>
           <div class="connection"></div>
-          
-          <!-- Data labels -->
-          <div class="data-label">Accountability</div>
-          <div class="data-label">Trust</div>
-          <div class="data-label">Legitimacy</div>
-          <div class="data-label">Control</div>
+          <div class="data-point">Accountability</div>
+          <div class="data-point">Trust</div>
+          <div class="data-point">Legitimacy</div>
+          <div class="data-point">Control</div>
         </div>
       </div>
     </section>
-
-    <!-- Focus Areas -->
     <section class="focus-section">
-      <div class="focus-header">Core Systems</div>
-      
+      <div class="section-header">Core Systems</div>
       <div class="focus-grid">
-        <div class="focus-item">
-          <div class="focus-num">01</div>
-          <div class="focus-title">Algorithmic Accountability</div>
-          <div class="focus-desc">
+        <div class="focus-card">
+          <div class="focus-number">01</div>
+          <div class="focus-label">Algorithmic Accountability</div>
+          <div class="focus-text">
             Designing auditing frameworks that ensure AI systems remain compliant with emerging global regulations.
           </div>
         </div>
-
-        <div class="focus-item">
-          <div class="focus-num">02</div>
-          <div class="focus-title">Digital Transformation</div>
-          <div class="focus-desc">
+        <div class="focus-card">
+          <div class="focus-number">02</div>
+          <div class="focus-label">Digital Transformation</div>
+          <div class="focus-text">
             Guiding organizations through the ethical complexities of large-scale digital adoption.
           </div>
         </div>
-
-        <div class="focus-item">
-          <div class="focus-num">03</div>
-          <div class="focus-title">Policy & Ethics</div>
-          <div class="focus-desc">
+        <div class="focus-card">
+          <div class="focus-number">03</div>
+          <div class="focus-label">Policy & Ethics</div>
+          <div class="focus-text">
             Bridging the gap between technical capabilities and human-centric policy to build trust.
           </div>
         </div>
       </div>
     </section>
-
   </div>
-
 </body>
 </html>
