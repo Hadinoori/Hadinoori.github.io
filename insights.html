@@ -1,382 +1,418 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Insights | Hadi Noori</title>
+  <meta name="description" content="Archive of dispatches, protocols, and strategic analysis on AI governance.">
+  
+  <link rel="icon" type="image/png" href="assets/img/sidebar-logo.png">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      /* Palette from Main Page */
+      --navy: #0a1628;
+      --blue: #1e3a8a;
+      --cyan: #0891b2;
+      --slate: #475569;
+      --white: #ffffff;
+      --grid-subtle: rgba(30, 58, 138, 0.06);
+    }
     
-    <title>Insights | Hadi Noori</title>
-    <meta name="description" content="Archive of dispatches, protocols, and strategic analysis on AI governance.">
-    <meta name="robots" content="index, follow">
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     
-    <link rel="icon" type="image/png" href="/assets/img/sidebar-logo.png">
+    body {
+      font-family: 'IBM Plex Sans', sans-serif;
+      background: var(--white);
+      color: var(--navy);
+      overflow-x: hidden;
+      line-height: 1.6;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Background Grid (Same as Main Page) */
+    .grid-overlay {
+      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background-image: 
+        linear-gradient(var(--grid-subtle) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-subtle) 1px, transparent 1px);
+      background-size: 80px 80px;
+      z-index: 0; pointer-events: none; opacity: 0.4;
+    }
+
+    .container { 
+      max-width: 1080px; /* Slightly narrower for reading */
+      margin: 0 auto; 
+      padding: 0 40px; 
+      position: relative; 
+      z-index: 1; 
+      flex: 1;
+    }
+
+    /* Navigation (Identical to Main Page) */
+    nav {
+      padding: 20px 0;
+      display: flex; 
+      justify-content: space-between; 
+      align-items: center;
+      border-bottom: 1px solid rgba(10, 22, 40, 0.1); 
+      margin-bottom: 60px;
+      position: sticky;
+      top: 0;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      z-index: 100;
+    }
+    .nav-brand {
+      font-family: 'IBM Plex Mono', monospace; 
+      font-size: 0.7rem; 
+      font-weight: 600;
+      letter-spacing: 3px; 
+      text-transform: uppercase; 
+      color: var(--blue);
+    }
+    .nav-links { display: flex; gap: 36px; align-items: center; }
+    .nav-links a {
+      font-family: 'IBM Plex Mono', monospace; 
+      font-size: 0.7rem; 
+      font-weight: 600;
+      text-transform: uppercase; 
+      letter-spacing: 2px; 
+      color: var(--slate);
+      text-decoration: none; 
+      transition: color 0.3s ease;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--blue); }
+    .nav-cta { 
+      background: var(--navy); 
+      color: var(--white) !important; 
+      padding: 11px 26px; 
+    }
+    .nav-cta:hover { background: var(--blue); }
+
+    /* Page Header */
+    .page-header {
+      padding-bottom: 60px;
+      border-bottom: 2px solid var(--navy);
+      margin-bottom: 60px;
+    }
+    .page-title {
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1;
+      margin-bottom: 20px;
+      letter-spacing: -0.02em;
+    }
+    .page-desc {
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-size: 1.1rem;
+      color: var(--slate);
+      max-width: 600px;
+      line-height: 1.7;
+    }
+
+    /* Archive List (The "Focus Section" Style) */
+    .entry {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 40px;
+      padding-bottom: 60px;
+      margin-bottom: 60px;
+      border-bottom: 1px solid rgba(10, 22, 40, 0.1);
+      align-items: baseline;
+      animation: fadeIn 0.5s ease-out forwards;
+      opacity: 0;
+    }
+
+    .entry-meta {
+      text-align: right;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--blue);
+    }
+    .entry-date {
+      display: block;
+      font-weight: 600;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+    .entry-tag {
+      display: inline-block;
+      border: 1px solid var(--cyan);
+      color: var(--navy);
+      padding: 4px 8px;
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .entry-content {
+      position: relative;
+    }
     
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lora:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+    .entry-title {
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
     
-    <style>
-        :root {
-            /* Palette - V4.0 Standard */
-            --bg-main: #fafafa;      
-            --text-primary: #111111; 
-            --text-secondary: #444444; 
-            --text-meta: #767676;    
-            --accent-blue: #1e3a8a;  
-            --ui-border: #e5e5e5;    
-            
-            /* Typography */
-            --font-serif: 'Lora', Georgia, serif;
-            --font-sans: 'Inter', sans-serif;
-            
-            /* Layout */
-            --spine-width: clamp(140px, 15vw, 180px);
-            --max-width: 980px;
-        }
+    .entry-title a {
+      color: var(--navy);
+      text-decoration: none;
+      background-image: linear-gradient(var(--navy), var(--navy));
+      background-position: 0% 100%;
+      background-repeat: no-repeat;
+      background-size: 0% 2px;
+      transition: background-size 0.3s, color 0.3s;
+    }
+    .entry-title a:hover {
+      color: var(--blue);
+      background-size: 100% 2px;
+    }
 
-        /* Base & Reset */
-        * { box-sizing: border-box; }
-        
-        body { 
-            background-color: var(--bg-main); 
-            font-family: var(--font-sans); 
-            color: var(--text-primary); 
-            margin: 0; 
-            line-height: 1.6;
-            -webkit-font-smoothing: antialiased; 
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh; 
-        }
+    .entry-summary {
+      color: var(--slate);
+      font-size: 1rem;
+      line-height: 1.7;
+      max-width: 700px;
+    }
 
-        :focus-visible {
-            outline: 2px solid var(--accent-blue);
-            outline-offset: 4px;
-            border-radius: 2px;
-        }
+    .loading-state {
+      font-family: 'IBM Plex Mono', monospace;
+      color: var(--slate);
+      text-align: center;
+      padding: 100px 0;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 0.8rem;
+    }
 
-        /* Layout */
-        .wrap { 
-            max-width: var(--max-width); 
-            margin: 0 auto; 
-            padding: 0 40px; 
-            width: 100%;
-            flex: 1; 
-        }
+    /* Footer (Identical to Main Page) */
+    footer {
+      padding: 36px 0;
+      border-top: 1.5px solid rgba(10, 22, 40, 0.15);
+      background: var(--white);
+      margin-top: auto;
+    }
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer-brand-name {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--navy);
+    }
+    .footer-links a {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--slate);
+      text-decoration: none;
+      margin-left: 24px;
+      transition: color 0.3s ease;
+    }
+    .footer-links a:hover { color: var(--blue); }
 
-        /* Header */
-        header { 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: flex-end; 
-            padding: 60px 0 40px; 
-        }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-        .header-brand { 
-            text-decoration: none; 
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
-        }
-
-        .brand-name { 
-            font-family: var(--font-sans);
-            font-size: 1rem; 
-            font-weight: 700; 
-            text-transform: uppercase; 
-            letter-spacing: 2px; 
-            color: var(--text-primary);
-        }
-
-        .brand-sub { 
-            font-size: 0.65rem; 
-            font-weight: 500; 
-            text-transform: uppercase; 
-            letter-spacing: 1px; 
-            color: var(--text-meta); 
-        }
-
-        nav { display: flex; gap: 30px; padding-bottom: 2px; }
-        nav a { 
-            text-decoration: none; 
-            font-size: 0.7rem; 
-            font-weight: 600; 
-            color: var(--text-secondary); 
-            text-transform: uppercase; 
-            letter-spacing: 0.5px; 
-            transition: color 0.3s ease;
-        }
-        nav a:hover, nav a.active { color: var(--accent-blue); }
-
-        /* Page Title */
-        .page-header {
-            padding: 40px 0 60px;
-            border-bottom: 1px solid var(--ui-border);
-            margin-bottom: 40px;
-        }
-
-        .page-title {
-            font-family: var(--font-serif);
-            font-size: clamp(2rem, 3vw, 2.5rem);
-            font-weight: 600;
-            margin: 0;
-            color: var(--text-primary);
-        }
-
-        .page-desc {
-            font-family: var(--font-sans);
-            font-size: 1rem;
-            color: var(--text-secondary);
-            margin-top: 10px;
-            max-width: 60ch;
-        }
-
-        /* List Items (V4.0 Grid) */
-        .entry { 
-            display: grid; 
-            grid-template-columns: var(--spine-width) 1fr; 
-            gap: 60px; 
-            padding: 30px 0; 
-            border-bottom: 1px solid var(--ui-border); 
-            align-items: baseline;
-            animation: fadeIn 0.4s ease-out;
-        }
-        
-        .meta-spine { 
-            font-family: var(--font-sans);
-            font-size: 0.75rem; 
-            font-weight: 500; 
-            color: var(--text-meta); 
-            text-align: right; 
-            line-height: 1.6; 
-            letter-spacing: 0.5px; 
-        }
-        .meta-spine .tag { 
-            color: var(--accent-blue); 
-            display: block; 
-            font-size: 0.65rem;
-            text-transform: uppercase; 
-            margin-top: 4px;
-            letter-spacing: 1px;
-        }
-
-        .entry-title { 
-            font-family: var(--font-serif); 
-            font-size: 1.6rem; 
-            line-height: 1.25; 
-            margin: 0 0 10px; 
-            font-weight: 600; 
-        }
-
-        .entry-title a { 
-            background-image: linear-gradient(var(--text-primary), var(--text-primary));
-            background-position: 0% 100%;
-            background-repeat: no-repeat;
-            background-size: 0% 1px;
-            transition: background-size 0.3s;
-        }
-        .entry-title a:hover { 
-            color: var(--accent-blue); 
-            background-size: 100% 1px;
-            background-image: linear-gradient(var(--accent-blue), var(--accent-blue));
-        }
-
-        .entry-desc { 
-            color: var(--text-secondary); 
-            font-size: 1rem; 
-            max-width: 55ch; 
-            margin: 0; 
-            line-height: 1.6; 
-        }
-
-        .loading-state {
-            padding: 60px 0;
-            opacity: 0.6;
-            font-family: var(--font-sans);
-            font-size: 0.75rem;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        /* Footer */
-        .site-footer {
-            border-top: 1px solid var(--ui-border);
-            padding: 40px 0 60px;
-            margin-top: auto;
-            background-color: var(--bg-main);
-        }
-        
-        .footer-content {
-            max-width: var(--max-width);
-            margin: 0 auto;
-            padding: 0 40px;
-            display: grid;
-            grid-template-columns: var(--spine-width) 1fr auto;
-            gap: 60px;
-            align-items: baseline;
-            font-size: 0.7rem;
-            color: var(--text-meta);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 500;
-        }
-
-        .footer-col-right { text-align: right; }
-        .footer-link { color: var(--text-primary); font-weight: 600; margin-left: 20px; }
-        .footer-link:hover { color: var(--accent-blue); }
-
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
-
-        /* Mobile */
-        @media (max-width: 768px) {
-            .wrap, .footer-content { padding: 0 25px; }
-            header { flex-direction: column; align-items: flex-start; gap: 20px; padding: 40px 0; }
-            nav { width: 100%; justify-content: space-between; border-bottom: 1px solid var(--ui-border); padding-bottom: 15px;}
-            
-            .entry { grid-template-columns: 1fr; gap: 12px; padding: 25px 0; }
-            .meta-spine { text-align: left; display: flex; gap: 12px; align-items: center; border-left: 2px solid var(--accent-blue); padding-left: 12px; margin-bottom: 4px; }
-            
-            .footer-content { grid-template-columns: 1fr; gap: 20px; }
-            .footer-col-right { text-align: left; }
-            .footer-link { margin-left: 0; margin-right: 20px; }
-        }
-    </style>
+    /* Responsive */
+    @media (max-width: 768px) {
+      .container { padding: 0 24px; }
+      nav { padding: 16px 0; margin-bottom: 40px; }
+      .nav-links a:not(.active) { display: none; } /* Hide inactive links on mobile to save space */
+      
+      .page-title { font-size: 2.5rem; }
+      
+      .entry { grid-template-columns: 1fr; gap: 16px; margin-bottom: 40px; padding-bottom: 40px;}
+      .entry-meta { 
+        text-align: left; 
+        display: flex; 
+        align-items: center; 
+        gap: 12px;
+        padding-left: 12px;
+        border-left: 3px solid var(--cyan);
+      }
+      .entry-date { margin-bottom: 0; }
+      .entry-title { font-size: 1.5rem; }
+    }
+  </style>
 </head>
 <body>
+  <div class="grid-overlay"></div>
 
-<div class="wrap">
-    <header role="banner">
-        <a href="/" class="header-brand">
-            <span class="brand-name">Hadi Noori</span>
-            <span class="brand-sub">Strategic AI Governance</span>
-        </a>
-        <nav role="navigation">
-            <a href="insights.html" class="active">Insights</a>
-            <a href="projects.html">Projects</a>
-            <a href="contact.html">Inquiry</a>
-        </nav>
+  <div class="container">
+    <nav>
+      <div class="nav-brand">Strategic AI Governance</div>
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="insights.html" class="active">Insights</a>
+        <a href="projects.html">Projects</a>
+        <a href="contact.html" class="nav-cta">Inquiry</a>
+      </div>
+    </nav>
+
+    <header class="page-header">
+      <h1 class="page-title">Intelligence Archive</h1>
+      <p class="page-desc">
+        Strategic dispatches and protocols on AI governance. 
+        Archived analysis from the field.
+      </p>
     </header>
 
-    <main id="content">
-        <div class="page-header">
-            <h1 class="page-title">Intelligence Archive</h1>
-            <p class="page-desc">Dispatches, protocols, and strategic analysis on the governance of artificial intelligence.</p>
-        </div>
-
-        <div id="archive-container">
-            <div class="loading-state">Accessing secure archive...</div>
-        </div>
+    <main id="archive-container">
+      <div class="loading-state">Decrypting Archive...</div>
     </main>
-</div>
+  </div>
 
-<footer class="site-footer" role="contentinfo">
-    <div class="footer-content">
-        <div class="footer-col-left">© 2026 Hadi Noori</div>
-        <div class="footer-col-center">Vancouver, BC</div>
-        <div class="footer-col-right">
-            <a href="contact.html" class="footer-link">Contact</a>
-            <a href="dossier.html" class="footer-link">Full Dossier</a>
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand-name">Strategic AI Governance</div>
+        <div class="footer-links">
+          <a href="contact.html">Inquiry</a>
+          <a href="https://linkedin.com/in/hadinoori" target="_blank">LinkedIn</a>
         </div>
+      </div>
     </div>
-</footer>
+  </footer>
 
-<script>
-    // --- V4.0 SECURITY & PARSING ENGINE ---
+  <script>
+    // --- CONNECTING TO YOUR CMS DATA ---
+    
+    // 1. Settings from your config.yml
+    const CONFIG = {
+      repo: 'hadinoori/hadinoori.github.io', 
+      folder: '_insights'
+    };
 
-    function escapeHTML(str) {
-        if (!str) return '';
-        return str.replace(/[&<>"']/g, m => ({
-            '&': '&amp;', '<': '&lt;', '>': '&gt;', 
-            '"': '&quot;', "'": '&#39;'
-        }[m]));
-    }
+    // 2. Simple Front Matter Parser (Extracts YAML from top of MD files)
+    function parseFrontMatter(text) {
+      const lines = text.split('\n');
+      const metadata = {};
+      let inFrontMatter = false;
 
-    function parseFrontMatter(raw) {
-        const lines = raw.split('\n');
-        const metadata = {};
-        let inFrontMatter = false;
-
-        for (const line of lines) {
-            const trimmed = line.trim();
-            if (trimmed === '---') {
-                if (!inFrontMatter) inFrontMatter = true;
-                else break;
-                continue;
-            }
-            if (inFrontMatter) {
-                const colonIndex = trimmed.indexOf(':');
-                if (colonIndex !== -1) {
-                    const key = trimmed.slice(0, colonIndex).trim();
-                    let value = trimmed.slice(colonIndex + 1).trim();
-                    if (value.startsWith('"') && value.endsWith('"')) value = value.slice(1, -1);
-                    metadata[key] = value;
-                }
-            }
+      for (const line of lines) {
+        const trimmed = line.trim();
+        if (trimmed === '---') {
+          if (!inFrontMatter) inFrontMatter = true;
+          else break; 
+          continue;
         }
-        return metadata;
+        if (inFrontMatter) {
+          const colonIndex = trimmed.indexOf(':');
+          if (colonIndex !== -1) {
+            const key = trimmed.slice(0, colonIndex).trim();
+            let value = trimmed.slice(colonIndex + 1).trim();
+            // Remove quotes if present
+            if (value.startsWith('"') && value.endsWith('"')) value = value.slice(1, -1);
+            metadata[key] = value;
+          }
+        }
+      }
+      return metadata;
     }
 
-    async function syncArchive() {
-        const container = document.getElementById('archive-container');
-        const REPO = 'hadinoori/hadinoori.github.io';
+    // 3. Main Fetch Function
+    async function loadInsights() {
+      const container = document.getElementById('archive-container');
+      
+      try {
+        // Fetch list of files from GitHub API
+        const response = await fetch(`https://api.github.com/repos/${CONFIG.repo}/contents/${CONFIG.folder}`);
+        if (!response.ok) throw new Error('Archive locked');
         
-        try {
-            const res = await fetch(`https://api.github.com/repos/${REPO}/contents/_insights`);
-            if (!res.ok) throw new Error('Archive locked');
-            
-            const files = await res.json();
-            const mdFiles = files.filter(f => f.name.endsWith('.md')).reverse();
-            
-            // Parallel Fetch for Speed
-            const fetchPromises = mdFiles.map(async (file) => {
-                const fileRes = await fetch(file.download_url);
-                return {
-                    text: await fileRes.text(),
-                    filename: file.name
-                };
-            });
+        const files = await response.json();
+        // Filter for markdown files and sort newest first (reverse)
+        const mdFiles = files.filter(f => f.name.endsWith('.md')).reverse();
 
-            const loadedFiles = await Promise.all(fetchPromises);
-            
-            let htmlBuffer = '';
-            let count = 0;
+        // Fetch content of each file in parallel
+        const fileContents = await Promise.all(mdFiles.map(async file => {
+          const contentRes = await fetch(file.download_url);
+          return {
+            filename: file.name,
+            text: await contentRes.text()
+          };
+        }));
 
-            for (const fileData of loadedFiles) {
-                const meta = parseFrontMatter(fileData.text);
-                
-                // Show ALL posts in archive
-                count++;
-                const title = meta.title || "Untitled Dispatch";
-                const dateRaw = meta.date;
-                const desc = meta.description || "";
-                const extUrl = meta.external_url;
-                const type = meta.type || "Dispatch"; // Default tag if missing
-                
-                const dateObj = dateRaw ? new Date(dateRaw) : new Date();
-                const displayDate = dateObj.toLocaleDateString('en-US', {month:'short', year:'numeric'}).toUpperCase();
+        let html = '';
+        let count = 0;
 
-                const link = (extUrl && extUrl.length > 5) ? extUrl : `insights/${fileData.filename.replace('.md', '.html')}`;
-                const target = (extUrl && extUrl.length > 5) ? 'target="_blank"' : '';
+        fileContents.forEach((file, index) => {
+          const meta = parseFrontMatter(file.text);
+          count++;
 
-                htmlBuffer += `
-                    <article class="entry">
-                        <div class="meta-spine">
-                            <span class="year">${displayDate}</span>
-                            <span class="tag">${escapeHTML(type)}</span>
-                        </div>
-                        <div class="entry-content">
-                            <h3 class="entry-title"><a href="${link}" ${target}>${escapeHTML(title)}</a></h3>
-                            <p class="entry-desc">${escapeHTML(desc)}</p>
-                        </div>
-                    </article>
-                `;
-            }
-            
-            container.innerHTML = count > 0 ? htmlBuffer : '<div class="loading-state">Archive is empty.</div>';
-            
-        } catch (e) { 
-            console.error("Archive Error:", e);
-            container.innerHTML = '<div class="loading-state">Secure archive unavailable.</div>';
-        }
+          // -- MAPPING CMS FIELDS --
+          const title = meta.title || "Untitled Dispatch";
+          const desc = meta.description || "";
+          const dateRaw = meta.date;
+          const externalUrl = meta.external_url; // From your CMS
+          
+          // Date Formatting
+          const dateObj = dateRaw ? new Date(dateRaw) : new Date();
+          const displayDate = dateObj.toLocaleDateString('en-US', {
+            year: 'numeric', month: 'short', day: 'numeric'
+          }).toUpperCase();
+
+          // Link Logic: External vs Internal
+          let href = '';
+          let targetAttr = '';
+          
+          if (externalUrl && externalUrl.length > 5) {
+            // Priority 1: User entered an External URL in CMS
+            href = externalUrl;
+            targetAttr = 'target="_blank" rel="noopener"';
+          } else {
+            // Priority 2: Standard internal link (GitHub Pages behavior)
+            // 2026-02-07-slug.md -> insights/2026-02-07-slug.html
+            href = `insights/${file.filename.replace('.md', '.html')}`;
+          }
+
+          // Delay animation for cascading effect
+          const delay = index * 0.1;
+
+          html += `
+            <article class="entry" style="animation-delay: ${delay}s">
+              <div class="entry-meta">
+                <span class="entry-date">${displayDate}</span>
+                <span class="entry-tag">DISPATCH</span>
+              </div>
+              <div class="entry-content">
+                <h2 class="entry-title">
+                  <a href="${href}" ${targetAttr}>${title}</a>
+                </h2>
+                <p class="entry-summary">${desc}</p>
+              </div>
+            </article>
+          `;
+        });
+
+        container.innerHTML = count > 0 ? html : '<div class="loading-state">Archive is empty.</div>';
+
+      } catch (error) {
+        console.error(error);
+        container.innerHTML = '<div class="loading-state">System Error: Unable to access archive.</div>';
+      }
     }
-    window.addEventListener('DOMContentLoaded', syncArchive);
-</script>
+
+    // Initialize
+    loadInsights();
+  </script>
 </body>
 </html>
