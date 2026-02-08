@@ -6,7 +6,13 @@ backend:
 media_folder: "assets/img"
 public_folder: "/assets/img"
 
+# Optional: Set this to your live site URL to preview content correctly
+display_url: "https://hadinoori.ca"
+
 collections:
+  # -----------------------------------------------------------
+  # COLLECTION 1: INSIGHTS (Blog/Articles)
+  # -----------------------------------------------------------
   - name: "insights"
     label: "Insights"
     folder: "_insights"
@@ -17,11 +23,36 @@ collections:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Publish Date", name: "date", widget: "datetime" }
       
-      # Logic for Home Page Visibility
-      - { label: "Add to Selected Dispatch?", name: "selected_dispatch", widget: "boolean", default: false }
+      # Homepage Feature Logic
+      # If set to true, this post will appear on the homepage as the "Selected Insight"
+      - { label: "Feature on Homepage?", name: "selected_insight", widget: "boolean", default: false }
       
-      # Logic for External Curated Content
+      # External Link Logic
+      # If populated, clicking the title redirects to this URL (e.g., LinkedIn, PDF)
       - { label: "External URL (Optional)", name: "external_url", widget: "string", required: false }
       
-      - { label: "Summary", name: "description", widget: "text" }
+      # The Description acts as the "Quote" on the homepage if selected
+      - { label: "Summary / Insight Quote", name: "description", widget: "text" }
+      
       - { label: "Body Content", name: "body", widget: "markdown", required: false }
+
+  # -----------------------------------------------------------
+  # COLLECTION 2: PROJECTS (Portfolio)
+  # -----------------------------------------------------------
+  - name: "projects"
+    label: "Projects"
+    folder: "_projects"
+    create: true
+    slug: "{{year}}-{{slug}}"
+    fields:
+      - { label: "Layout", name: "layout", widget: "hidden", default: "project" }
+      - { label: "Project Title", name: "title", widget: "string" }
+      - { label: "Year", name: "year", widget: "string", default: "2026" }
+      - { label: "My Role", name: "role", widget: "string", default: "Lead Strategist" }
+      - { label: "Status", name: "status", widget: "select", options: ["Active", "Completed", "Audited"], default: "Completed" }
+      
+      - { label: "Short Description", name: "description", widget: "text" }
+      
+      - { label: "External Link / Case Study", name: "external_url", widget: "string", required: false }
+      
+      - { label: "Case Study Details", name: "body", widget: "markdown", required: false }
