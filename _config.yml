@@ -1,57 +1,64 @@
-backend:
-  name: github
-  repo: hadinoori/hadinoori.github.io
-  branch: main
-media_folder: "assets/img"
-public_folder: "/assets/img"
-# Optional: Set this to your live site URL to preview content correctly
-display_url: "https://hadinoori.ca"
-collections:
-  # -----------------------------------------------------------
-  # COLLECTION 1: INSIGHTS (Blog/Articles)
-  # -----------------------------------------------------------
-  - name: "insights"
-    label: "Insights"
-    folder: "_insights"
-    create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
-    fields:
-      - { label: "Layout", name: "layout", widget: "hidden", default: "post" }
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Publish Date", name: "date", widget: "datetime" }
-      
-      # Tag field (optional, for categorization)
-      - { label: "Tag", name: "tag", widget: "string", default: "BRIEF", required: false }
-      
-      # Homepage Feature Logic
-      # If set to true, this post will appear on the homepage as the "Selected Insight"
-      - { label: "Feature on Homepage?", name: "selected_insight", widget: "boolean", default: false }
-      
-      # External Link Logic
-      # If populated, clicking the title redirects to this URL (e.g., LinkedIn, PDF)
-      - { label: "External URL (Optional)", name: "external_url", widget: "string", required: false }
-      
-      # The Description acts as the "Quote" on the homepage if selected
-      - { label: "Summary / Insight Quote", name: "description", widget: "text" }
-      
-      - { label: "Body Content", name: "body", widget: "markdown", required: false }
-  # -----------------------------------------------------------
-  # COLLECTION 2: PROJECTS (Portfolio)
-  # -----------------------------------------------------------
-  - name: "projects"
-    label: "Projects"
-    folder: "_projects"
-    create: true
-    slug: "{{year}}-{{slug}}"
-    fields:
-      - { label: "Layout", name: "layout", widget: "hidden", default: "project" }
-      - { label: "Project Title", name: "title", widget: "string" }
-      - { label: "Year", name: "year", widget: "string", default: "2026" }
-      - { label: "My Role", name: "role", widget: "string", default: "Lead Strategist" }
-      - { label: "Status", name: "status", widget: "select", options: ["Active", "Completed", "Audited"], default: "Completed" }
-      
-      - { label: "Short Description", name: "description", widget: "text" }
-      
-      - { label: "External Link / Case Study", name: "external_url", widget: "string", required: false }
-      
-      - { label: "Case Study Details", name: "body", widget: "markdown", required: false }
+# -----------------------------------------------------------------------------
+# SITE CONFIGURATION - HADI NOORI (Thought Leadership Strategy)
+# -----------------------------------------------------------------------------
+# Site Settings
+title: "Hadi Noori"
+first_name: "Hadi"
+last_name: "Noori"
+tagline: "Bridging AI Policy and Engineering for Regulated Industries." # Strategic focus
+description: "AI Ethics & Governance Specialist. Researching Digital Transformation failures and AI accountability."
+url: "https://hadinoori.ca" # Personal domain
+baseurl: ""
+# Profile Information
+email: "info@hadinoori.ca"
+# Removing generic descriptions to focus on "Weight" and Authority
+# -----------------------------------------------------------------------------
+# APPEARANCE & TYPOGRAPHY (Editorial Style)
+# -----------------------------------------------------------------------------
+# Google Fonts - Added 'Lora' for academic prestige and 'Inter' for clarity
+google_fonts: "family=Inter:wght@300;400;600;800&family=Lora:ital,wght@0,400;0,700;1,400&display=swap"
+# Navigation & Layout Settings
+# Switching from Sidebar to Top Navigation for "Editorial" look
+navbar_fixed: true
+footer_fixed: false
+sidebar: false # Explicitly disabling sidebar based on critical reviews
+# Enable/Disable Sections
+# Focus on thinking (Insights) and results (Projects)
+show_excerpts: true
+external_links: true
+# -----------------------------------------------------------------------------
+# SOCIAL & TRUST SIGNALS
+# -----------------------------------------------------------------------------
+# Only professional icons to maintain authority
+social:
+  linkedin: "hadinoori" # Focus on professional presence
+  github: "hadinoori"
+  google_scholar: "YOUR_ID" # If available, adds massive weight
+# -----------------------------------------------------------------------------
+# BUILD SETTINGS
+# -----------------------------------------------------------------------------
+markdown: kramdown
+highlighter: rouge
+permalink: /:title/
+# Pagination for Insights
+pagination:
+  enabled: true
+  per_page: 5
+  permalink: '/page/:num/'
+# Exclusion list
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+# -----------------------------------------------------------------------------
+# PLUGINS
+# -----------------------------------------------------------------------------
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-paginate
+  - jekyll-seo-tag
