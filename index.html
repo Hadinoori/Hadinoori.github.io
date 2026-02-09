@@ -9,258 +9,345 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
 
     <style>
-        /* --- RESET & VARIABLES --- */
+        /* --- VARIABLES (Classic Engineering Theme) --- */
         :root {
-            --bg-color: #080808; /* Deep Matte Black */
-            --text-primary: #e0e0e0;
-            --text-secondary: #757575;
-            --spine-width: 240px;
-            --font-display: 'Inter', sans-serif;
-            --font-body: 'Lora', serif;
+            --bg-color: #ffffff;
+            --navy: #0a1628;
+            --blue: #1e3a8a;
+            --cyan: #0891b2;
+            --slate: #475569;
+            --grid-line: rgba(30, 58, 138, 0.06);
+            --sidebar-width: 260px;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body {
             background-color: var(--bg-color);
-            color: var(--text-primary);
-            font-family: var(--font-display);
+            color: var(--navy);
+            font-family: 'IBM Plex Sans', sans-serif;
             overflow-x: hidden;
-            /* No fake height anymore */
+        }
+
+        /* --- BACKGROUND GRID (The "Paper" Feel) --- */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: 
+                linear-gradient(var(--grid-line) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+            background-size: 60px 60px;
+            z-index: -1;
+            pointer-events: none;
         }
 
         a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
-        ul { list-style: none; }
 
-        /* --- LAYOUT GRID --- */
-        .grid-container {
-            display: grid;
-            grid-template-columns: var(--spine-width) 1fr;
+        /* --- LAYOUT STRUCTURE --- */
+        .layout {
+            display: flex;
             min-height: 100vh;
         }
 
-        /* --- 1. THE SPINE (CENTRAL COMMAND) --- */
-        .spine {
-            border-right: 1px solid rgba(255, 255, 255, 0.06);
+        /* --- SIDEBAR (Fixed Spine) --- */
+        .sidebar {
+            width: var(--sidebar-width);
+            background: rgba(255, 255, 255, 0.95);
+            border-right: 1px solid rgba(10, 22, 40, 0.1);
+            position: fixed;
+            height: 100vh;
             padding: 40px 30px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            position: fixed;
-            height: 100vh;
-            width: var(--spine-width);
             z-index: 100;
-            background: var(--bg-color);
         }
 
-        .brand-lockup { margin-bottom: 60px; }
-        .brand-name {
-            font-size: 0.8rem;
-            font-weight: 800;
-            letter-spacing: 0.1em;
+        .brand-block { margin-bottom: 40px; }
+        .logo-img { height: 32px; width: auto; margin-bottom: 15px; display: block; }
+        
+        .brand-title {
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 1px;
             text-transform: uppercase;
-            color: #fff;
+            color: var(--navy);
             display: block;
-            margin-bottom: 4px;
         }
-        .brand-role {
+        .brand-subtitle {
+            font-family: 'IBM Plex Mono', monospace;
             font-size: 0.65rem;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
+            color: var(--slate);
+            margin-top: 5px;
+            display: block;
         }
 
-        /* Merged Navigation */
-        .nav-menu {
+        .nav-links {
             display: flex;
             flex-direction: column;
-            gap: 24px;
-            flex-grow: 1; /* Pushes meta-data down */
+            gap: 20px;
         }
 
-        .nav-link {
-            font-family: var(--font-display);
+        .nav-item {
+            font-family: 'IBM Plex Mono', monospace;
             font-size: 0.75rem;
             font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--text-secondary);
+            letter-spacing: 1.5px;
+            color: var(--slate);
             display: flex;
             align-items: center;
         }
+        .nav-item:hover { color: var(--blue); padding-left: 5px; }
+        .nav-item.active { color: var(--navy); border-left: 2px solid var(--blue); padding-left: 10px; }
 
-        .nav-link:hover { color: #fff; transform: translateX(5px); }
-        .nav-link.active { color: #fff; border-left: 2px solid #fff; padding-left: 10px; }
-
-        /* Meta Data (Cleaned Up) */
-        .meta-data {
-            font-family: 'Courier New', monospace;
-            font-size: 0.65rem;
-            color: var(--text-secondary);
-            line-height: 2;
-            border-top: 1px solid rgba(255, 255, 255, 0.06);
+        .sidebar-footer {
+            border-top: 1px solid rgba(10, 22, 40, 0.1);
             padding-top: 20px;
         }
-
-        .status-indicator {
-            display: inline-block; width: 6px; height: 6px; 
-            border: 1px solid #fff; /* Hollow, not neon */
-            border-radius: 50%; margin-right: 8px;
-            opacity: 0.6;
+        .meta-row {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.6rem;
+            color: var(--slate);
+            display: flex; justify-content: space-between;
+            margin-bottom: 8px;
         }
 
-        /* --- 2. MAIN STAGE (SCROLLABLE) --- */
-        .main-stage {
-            grid-column: 2;
+        /* --- MAIN CONTENT --- */
+        .content-area {
+            margin-left: var(--sidebar-width);
+            width: calc(100% - var(--sidebar-width));
+            padding: 60px 80px;
             position: relative;
         }
 
-        section {
-            min-height: 100vh;
-            display: flex;
+        /* --- HERO SECTION (Classic Layout) --- */
+        .hero {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr; /* Text left, Graph right */
+            gap: 60px;
+            min-height: 80vh; /* Not full screen force, just minimum */
             align-items: center;
-            padding: 0 100px;
-            position: relative;
-            z-index: 10;
+            margin-bottom: 100px;
         }
 
-        /* --- HERO TYPOGRAPHY --- */
-        h1 {
-            font-weight: 800;
-            font-size: clamp(3rem, 5vw, 5.5rem);
-            line-height: 1;
-            letter-spacing: -0.03em;
-            text-transform: uppercase;
-            max-width: 900px;
-        }
-
-        .hero-text { opacity: 0; transform: translateY(20px); transition: all 1s ease; }
-        .hero-text.visible { opacity: 1; transform: translateY(0); }
-
-        .strike {
-            text-decoration: line-through;
-            text-decoration-color: rgba(255, 255, 255, 0.4);
-            color: #fff;
-        }
-        
-        .highlight { color: #fff; border-bottom: 2px solid #fff; }
-        .dim { color: #444; }
-
-        /* --- LOGIC SECTION --- */
-        .logic-content {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 1s ease;
-            max-width: 650px;
-        }
-        .logic-content.visible { opacity: 1; transform: translateY(0); }
-
-        .logic-title {
-            font-size: 2.5rem;
-            color: #fff;
-            margin-bottom: 30px;
+        .hero-label {
+            font-family: 'IBM Plex Mono', monospace;
+            color: var(--blue);
+            font-size: 0.75rem;
             font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+            display: flex; align-items: center; gap: 10px;
+        }
+        .hero-label::before { content: ''; width: 20px; height: 2px; background: var(--blue); }
+
+        .hero-headline {
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-size: 3.5rem; /* Big but readable */
+            line-height: 1.1;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 30px;
+            letter-spacing: -1px;
         }
 
-        .logic-body {
-            font-family: var(--font-body);
-            font-size: 1.25rem;
-            line-height: 1.6;
-            color: var(--text-secondary);
-            border-left: 1px solid #444;
-            padding-left: 30px;
+        .hero-sub {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: var(--slate);
+            max-width: 500px;
             margin-bottom: 40px;
         }
 
-        .cta-btn {
-            padding: 18px 36px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: #fff;
-            font-size: 0.7rem;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            background: transparent;
-            cursor: pointer;
-        }
-        .cta-btn:hover { background: rgba(255,255,255,0.05); border-color: #fff; }
+        .btn-group { display: flex; gap: 20px; }
 
-        /* --- BACKGROUND GRAPH (TEXTURE) --- */
-        .graph-container {
-            position: fixed;
-            top: 0; right: 0; width: 100%; height: 100%;
-            z-index: 0;
-            pointer-events: none;
-            opacity: 0.15; /* Much more subtle */
-            mask-image: radial-gradient(circle at 70% 50%, black, transparent 70%);
-            -webkit-mask-image: radial-gradient(circle at 70% 50%, black, transparent 70%);
+        .btn {
+            padding: 16px 32px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: var(--navy);
+            color: #fff;
+            border: 1px solid var(--navy);
+        }
+        .btn-primary:hover { background: var(--blue); border-color: var(--blue); }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--navy);
+            border: 1px solid var(--navy);
+        }
+        .btn-secondary:hover { background: var(--navy); color: #fff; }
+
+        /* --- NETWORK GRAPH (Right Side) --- */
+        .network-visual {
+            position: relative;
+            height: 500px;
+            width: 100%;
+        }
+        
+        /* --- CARDS SECTION (Information Density) --- */
+        .core-systems {
+            border-top: 1px solid rgba(10, 22, 40, 0.1);
+            padding-top: 60px;
+        }
+        
+        .section-head {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--navy);
+            margin-bottom: 40px;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .card {
+            background: #fff;
+            border: 1px solid rgba(10, 22, 40, 0.08);
+            padding: 30px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(10, 22, 40, 0.05);
+            border-color: var(--blue);
+        }
+
+        .card-num {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 2rem;
+            font-weight: 600;
+            color: rgba(30, 58, 138, 0.15);
+            margin-bottom: 15px;
+        }
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 10px;
+        }
+        .card-desc {
+            font-size: 0.9rem;
+            color: var(--slate);
+            line-height: 1.6;
         }
 
         /* --- RESPONSIVE --- */
         @media (max-width: 1024px) {
-            .grid-container { grid-template-columns: 1fr; }
-            .spine { 
-                position: relative; height: auto; width: 100%; 
-                flex-direction: row; align-items: center; border-bottom: 1px solid #222;
-                padding: 20px;
-            }
-            .nav-menu { display: none; } /* Mobile Menu would go here */
-            .meta-data { display: none; }
-            section { padding: 0 30px; min-height: 80vh; }
-            h1 { font-size: 3rem; }
+            .sidebar { display: none; } /* Mobile Menu needed */
+            .content-area { margin-left: 0; width: 100%; padding: 40px 20px; }
+            .hero { grid-template-columns: 1fr; }
+            .network-visual { height: 300px; order: -1; }
+            .card-grid { grid-template-columns: 1fr; }
+            
+            /* Add a top mobile nav here if needed */
         }
     </style>
 </head>
 <body>
 
-    <div class="graph-container" id="graph"></div>
-
-    <div class="grid-container">
+    <div class="layout">
         
-        <aside class="spine">
-            <div class="brand-lockup">
-                <span class="brand-name">Hadi Noori</span>
-                <span class="brand-role">Strategic Governance</span>
+        <aside class="sidebar">
+            <div>
+                <div class="brand-block">
+                    <img src="assets/img/sidebar-logo.png" alt="Logo" class="logo-img">
+                    <span class="brand-title">Hadi Noori</span>
+                    <span class="brand-subtitle">Strategic Governance</span>
+                </div>
+                
+                <nav class="nav-links">
+                    <a href="#" class="nav-item active">Overview</a>
+                    <a href="/projects" class="nav-item">Protocols</a>
+                    <a href="/insights" class="nav-item">Intelligence</a>
+                    <a href="/dossier" class="nav-item">Dossier</a>
+                </nav>
             </div>
 
-            <nav class="nav-menu">
-                <a href="/insights" class="nav-link">Insights</a>
-                <a href="/projects" class="nav-link">Projects</a>
-                <a href="/dossier" class="nav-link">Dossier</a>
-                <a href="/contact" class="nav-link" style="color:#fff;">Inquiry</a>
-            </nav>
-
-            <div class="meta-data">
-                <div style="margin-bottom: 12px;">
-                    <span class="status-indicator"></span>SYSTEM: ONLINE
+            <div class="sidebar-footer">
+                <div class="meta-row">
+                    <span>SYS: ONLINE</span>
+                    <span style="color:var(--blue)">●</span>
                 </div>
-                <div>SECTOR: GLOBAL</div>
-                <div>MODE: PUBLIC</div>
+                <div class="meta-row">
+                    <span>LOC: GLOBAL</span>
+                </div>
+                <a href="/contact" class="btn btn-primary" style="width:100%; text-align:center; padding:12px; margin-top:20px; font-size:0.7rem;">Initiate Inquiry</a>
             </div>
         </aside>
 
-        <main class="main-stage">
+        <main class="content-area">
             
-            <section id="hero">
-                <div class="hero-text visible">
-                    <h1>
-                        When AI <span class="strike">Fails</span>,<br>
-                        Governance<br>
-                        Decides <span class="highlight">Who Pays.</span>
+            <section class="hero">
+                <div class="hero-text">
+                    <div class="hero-label">System Critical</div>
+                    <h1 class="hero-headline">
+                        When AI <span style="text-decoration: line-through; color: var(--slate); opacity: 0.5;">Fails</span>,<br>
+                        Governance Decides<br>
+                        <span style="color: var(--blue);">Who Pays.</span>
                     </h1>
+                    <p class="hero-sub">
+                        We architect the legitimacy layer for high-stakes autonomous systems. 
+                        Moving beyond ethical theory to defensible engineering protocols that protect your organization.
+                    </p>
+                    <div class="btn-group">
+                        <a href="/projects" class="btn btn-primary">Audit Your Risk</a>
+                        <a href="/dossier" class="btn btn-secondary">View Framework</a>
+                    </div>
                 </div>
+
+                <div class="network-visual" id="networkContainer"></div>
             </section>
 
-            <section id="logic">
-                <div class="logic-content">
-                    <h2 class="logic-title">Governing Systems<br>That Cannot Pause.</h2>
-                    <p class="logic-body">
-                        Architecting the legitimacy layer for high-stakes autonomous decisions. 
-                        Moving beyond ethical theory to defensible engineering protocols.
-                    </p>
-                    <a href="/projects" class="cta-btn">View Protocols</a>
+            <section class="core-systems">
+                <div class="section-head">Operational Modules</div>
+                <div class="card-grid">
+                    
+                    <div class="card">
+                        <div class="card-num">01</div>
+                        <div class="card-title">Algorithmic Accountability</div>
+                        <p class="card-desc">
+                            Automated auditing trails for black-box models. Ensure every decision is traceable and defensible in court.
+                        </p>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-num">02</div>
+                        <div class="card-title">Risk Architecture</div>
+                        <p class="card-desc">
+                            Deployment frameworks that isolate high-risk agents. Prevent systemic failure through compartmentalization.
+                        </p>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-num">03</div>
+                        <div class="card-title">Compliance Vectors</div>
+                        <p class="card-desc">
+                            Real-time alignment with EU AI Act and global standards. Turn regulation from a bottleneck into a moat.
+                        </p>
+                    </div>
+
                 </div>
             </section>
 
@@ -268,85 +355,70 @@
     </div>
 
     <script>
-        // --- 1. OBSERVER FOR SCROLL TRANSITIONS (No fake height) ---
-        const observerOptions = {
-            root: null,
-            threshold: 0.5 // Trigger when 50% visible
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    if (entry.target.id === 'hero') {
-                        document.querySelector('.hero-text').classList.add('visible');
-                        document.querySelector('.logic-content').classList.remove('visible');
-                    }
-                    if (entry.target.id === 'logic') {
-                        document.querySelector('.hero-text').classList.remove('visible');
-                        document.querySelector('.logic-content').classList.add('visible');
-                    }
-                }
-            });
-        }, observerOptions);
-
-        observer.observe(document.getElementById('hero'));
-        observer.observe(document.getElementById('logic'));
-
-
-        // --- 2. SUBTLE GRAPH TEXTURE (Optimized) ---
+        // --- ENGINEERING GRAPH VISUALIZATION ---
+        // Simple, clean, tech-focused. No distractions.
+        const container = document.getElementById('networkContainer');
         const canvas = document.createElement('canvas');
         const ctx = canvas.getContext('2d');
-        const graphContainer = document.getElementById('graph');
-        graphContainer.appendChild(canvas);
+        container.appendChild(canvas);
 
         let width, height;
-        const nodes = [];
-        const nodeCount = 20; 
+        let nodes = [];
 
         function resize() {
-            width = canvas.width = graphContainer.offsetWidth;
-            height = canvas.height = graphContainer.offsetHeight;
+            width = canvas.width = container.offsetWidth;
+            height = canvas.height = container.offsetHeight;
         }
 
         class Node {
             constructor() {
                 this.x = Math.random() * width;
                 this.y = Math.random() * height;
-                // Very slow movement for "texture" feel
-                this.vx = (Math.random() - 0.5) * 0.15; 
-                this.vy = (Math.random() - 0.5) * 0.15;
+                this.vx = (Math.random() - 0.5) * 0.5;
+                this.vy = (Math.random() - 0.5) * 0.5;
             }
             update() {
                 this.x += this.vx;
                 this.y += this.vy;
-                if (this.x < 0 || this.x > width) this.vx *= -1;
-                if (this.y < 0 || this.y > height) this.vy *= -1;
+                if(this.x < 0 || this.x > width) this.vx *= -1;
+                if(this.y < 0 || this.y > height) this.vy *= -1;
             }
         }
 
-        for (let i = 0; i < nodeCount; i++) nodes.push(new Node());
+        // Initialize 
+        for(let i=0; i<12; i++) nodes.push(new Node()); // Fewer nodes = cleaner look
 
         function animate() {
             ctx.clearRect(0, 0, width, height);
             
-            // Draw very faint lines
-            ctx.lineWidth = 0.5;
-            for (let i = 0; i < nodes.length; i++) {
-                for (let j = i + 1; j < nodes.length; j++) {
-                    let dist = Math.hypot(nodes[i].x - nodes[j].x, nodes[i].y - nodes[j].y);
-                    if (dist < 150) {
-                        // Very low opacity
-                        ctx.strokeStyle = `rgba(255, 255, 255, ${0.08 * (1 - dist/150)})`;
+            // Draw Connections
+            ctx.lineWidth = 1;
+            for(let i=0; i<nodes.length; i++) {
+                for(let j=i+1; j<nodes.length; j++) {
+                    let d = Math.hypot(nodes[i].x - nodes[j].x, nodes[i].y - nodes[j].y);
+                    if(d < 150) {
                         ctx.beginPath();
                         ctx.moveTo(nodes[i].x, nodes[i].y);
                         ctx.lineTo(nodes[j].x, nodes[j].y);
+                        // Blue engineering lines
+                        ctx.strokeStyle = `rgba(30, 58, 138, ${0.2 * (1 - d/150)})`; 
                         ctx.stroke();
                     }
                 }
             }
-            
-            // Update nodes without drawing dots (Pure network look)
-            nodes.forEach(node => node.update());
+
+            // Draw Nodes (Blue Dots)
+            for(let i=0; i<nodes.length; i++) {
+                let n = nodes[i];
+                n.update();
+                
+                ctx.beginPath();
+                ctx.arc(n.x, n.y, 4, 0, Math.PI*2);
+                ctx.fillStyle = '#ffffff'; // White center
+                ctx.fill();
+                ctx.strokeStyle = '#1e3a8a'; // Blue border
+                ctx.stroke();
+            }
 
             requestAnimationFrame(animate);
         }
