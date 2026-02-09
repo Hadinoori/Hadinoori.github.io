@@ -1,363 +1,347 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Projects | Hadi Noori</title>
-  <meta name="description" content="Portfolio of AI governance protocols, risk assessment frameworks, and algorithmic auditing projects.">
-  
-  <link rel="icon" type="image/png" href="assets/img/sidebar-logo.png">
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
-  
-  <style>
-    :root {
-      /* Palette from Main Page */
-      --navy: #0a1628;
-      --blue: #1e3a8a;
-      --cyan: #0891b2;
-      --slate: #475569;
-      --white: #ffffff;
-      --grid-subtle: rgba(30, 58, 138, 0.06);
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects | Hadi Noori</title>
     
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    <link rel="icon" type="image/png" href="assets/img/sidebar-logo.png">
     
-    body {
-      font-family: 'IBM Plex Sans', sans-serif;
-      background: var(--white);
-      color: var(--navy);
-      overflow-x: hidden;
-      line-height: 1.6;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-    }
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,500&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
 
-    /* Background Grid */
-    .grid-overlay {
-      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-      background-image: 
-        linear-gradient(var(--grid-subtle) 1px, transparent 1px),
-        linear-gradient(90deg, var(--grid-subtle) 1px, transparent 1px);
-      background-size: 80px 80px;
-      z-index: 0; pointer-events: none; opacity: 0.4;
-    }
+    <style>
+        /* --- VARIABLES (MATCHING INDEX) --- */
+        :root {
+            --bg: #ffffff;
+            --navy: #0a1628;
+            --blue: #1e3a8a;
+            --cyan: #0891b2;
+            --slate: #475569;
+            --grid: rgba(10, 22, 40, 0.06); 
+            --border: rgba(10, 22, 40, 0.08);
+        }
 
-    .container { 
-      max-width: 1080px; 
-      margin: 0 auto; 
-      padding: 0 40px; 
-      position: relative; 
-      z-index: 1; 
-      flex: 1;
-    }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-    /* Navigation */
-    nav {
-      padding: 20px 0;
-      display: flex; 
-      justify-content: space-between; 
-      align-items: center;
-      border-bottom: 1px solid rgba(10, 22, 40, 0.1); 
-      margin-bottom: 80px;
-      position: sticky;
-      top: 0;
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(10px);
-      z-index: 100;
-    }
-    .nav-brand {
-      font-family: 'IBM Plex Mono', monospace; 
-      font-size: 0.7rem; 
-      font-weight: 600;
-      letter-spacing: 3px; 
-      text-transform: uppercase; 
-      color: var(--blue);
-    }
-    .nav-links { display: flex; gap: 36px; align-items: center; }
-    .nav-links a {
-      font-family: 'IBM Plex Mono', monospace; 
-      font-size: 0.7rem; 
-      font-weight: 600;
-      text-transform: uppercase; 
-      letter-spacing: 2px; 
-      color: var(--slate);
-      text-decoration: none; 
-      transition: color 0.3s ease;
-    }
-    .nav-links a:hover, .nav-links a.active { color: var(--blue); }
-    .nav-cta { 
-      background: var(--navy); 
-      color: var(--white) !important; 
-      padding: 11px 26px; 
-    }
-    .nav-cta:hover { background: var(--blue); }
+        body {
+            background-color: var(--bg);
+            color: var(--navy);
+            font-family: 'IBM Plex Sans', sans-serif;
+            overflow-x: hidden;
+            line-height: 1.6;
+            display: flex; flex-direction: column; min-height: 100vh;
+        }
 
-    /* Project List Styles */
-    .entry {
-      display: grid;
-      grid-template-columns: 200px 1fr;
-      gap: 40px;
-      padding-bottom: 60px;
-      margin-bottom: 60px;
-      border-bottom: 1px solid rgba(10, 22, 40, 0.1);
-      align-items: start;
-      animation: fadeIn 0.5s ease-out forwards;
-      opacity: 0;
-    }
+        /* --- BACKGROUND GRID --- */
+        .grid-bg {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: 
+                linear-gradient(var(--grid) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+            background-size: 60px 60px;
+            z-index: -1;
+        }
 
-    .entry-meta {
-      text-align: right;
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 0.7rem;
-    }
+        /* --- HEADER (MATCHING INDEX) --- */
+        header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 24px 60px;
+            border-bottom: 1px solid var(--border);
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+        }
 
-    .meta-row {
-      display: block;
-      margin-bottom: 6px;
-    }
-    
-    .meta-year { color: var(--navy); font-weight: 600; font-size: 0.8rem; }
-    .meta-role { color: var(--blue); letter-spacing: 1px; text-transform: uppercase; }
-    .meta-status { color: var(--slate); font-style: italic; opacity: 0.8; }
+        .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+        .logo { height: 32px; width: auto; }
+        .brand-info { display: flex; flex-direction: column; }
+        .brand-name { font-size: 0.85rem; font-weight: 700; color: var(--navy); text-transform: uppercase; letter-spacing: 1px; }
+        .brand-tag { font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; color: var(--slate); text-transform: uppercase; }
 
-    .entry-content { position: relative; }
-    
-    .entry-title {
-      font-family: 'IBM Plex Sans', sans-serif;
-      font-size: 1.8rem;
-      font-weight: 700;
-      margin-bottom: 16px;
-      line-height: 1.2;
-      color: var(--navy);
-    }
+        .nav { display: flex; gap: 40px; }
+        .nav a {
+            font-family: 'IBM Plex Mono', monospace; font-size: 0.75rem; font-weight: 600; 
+            text-transform: uppercase; letter-spacing: 1px; color: var(--slate); text-decoration: none;
+            transition: color 0.3s;
+            position: relative;
+        }
+        .nav a:hover { color: var(--blue); }
+        .nav a.active { color: var(--navy); }
+        .nav a.active::after {
+            content: ''; position: absolute; bottom: -5px; left: 0; width: 100%; height: 1px; background: var(--blue);
+        }
 
-    .entry-desc {
-      color: var(--slate);
-      font-size: 1rem;
-      line-height: 1.7;
-      max-width: 700px;
-      margin-bottom: 24px;
-    }
+        .cta {
+            padding: 10px 24px; background: var(--navy); color: #fff;
+            font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; font-weight: 600;
+            text-transform: uppercase; letter-spacing: 1px; text-decoration: none;
+        }
+        .cta:hover { background: var(--blue); }
 
-    .project-link {
-      display: inline-flex;
-      align-items: center;
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 0.7rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      color: var(--blue);
-      text-decoration: none;
-      border-bottom: 1px solid transparent;
-      transition: all 0.3s ease;
-    }
-    .project-link:hover {
-      border-bottom-color: var(--blue);
-      gap: 4px;
-    }
-    .project-link::after { content: '→'; margin-left: 6px; }
+        /* --- PROJECT LIST LAYOUT --- */
+        .projects-wrapper {
+            margin-top: 80px;
+            padding: 80px 60px;
+            max-width: 1100px; 
+            margin-left: auto; margin-right: auto;
+            flex: 1; width: 100%;
+        }
 
-    .loading-state {
-      font-family: 'IBM Plex Mono', monospace;
-      color: var(--slate);
-      text-align: center;
-      padding: 100px 0;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      font-size: 0.8rem;
-    }
+        .page-label {
+            font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; 
+            color: var(--blue); font-weight: 600; letter-spacing: 2px; text-transform: uppercase;
+            margin-bottom: 40px; display: block;
+        }
 
-    /* Footer */
-    footer {
-      padding: 36px 0;
-      border-top: 1.5px solid rgba(10, 22, 40, 0.15);
-      background: var(--white);
-      margin-top: auto;
-    }
-    .footer-content {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .footer-brand-name {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--navy);
-    }
-    .footer-links a {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 0.65rem;
-      font-weight: 600;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--slate);
-      text-decoration: none;
-      margin-left: 24px;
-      transition: color 0.3s ease;
-    }
-    .footer-links a:hover { color: var(--blue); }
+        /* --- PROJECT ENTRY CARD --- */
+        .entry {
+            display: grid;
+            grid-template-columns: 220px 1fr; /* Meta Column | Content Column */
+            gap: 40px;
+            padding: 50px 0;
+            border-bottom: 1px solid var(--border);
+            opacity: 0; animation: fadeIn 0.6s ease forwards;
+            align-items: start;
+        }
+        .entry:first-of-type { border-top: 1px solid var(--border); }
 
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        /* Left Column: Technical Meta */
+        .entry-meta {
+            font-family: 'IBM Plex Mono', monospace;
+            text-align: right;
+            border-right: 3px solid var(--cyan); /* Cyan accent line */
+            padding-right: 20px;
+            display: flex; flex-direction: column; gap: 8px;
+        }
+        .meta-year { font-size: 0.9rem; font-weight: 700; color: var(--navy); }
+        .meta-role { font-size: 0.7rem; color: var(--blue); text-transform: uppercase; letter-spacing: 1px; }
+        .meta-status { font-size: 0.65rem; color: var(--slate); font-style: italic; }
 
-    /* Responsive */
-    @media (max-width: 768px) {
-      .container { padding: 0 24px; }
-      nav { padding: 16px 0; margin-bottom: 60px; }
-      .nav-links a:not(.active) { display: none; }
-      
-      .entry { grid-template-columns: 1fr; gap: 20px; padding-bottom: 40px; margin-bottom: 40px; }
-      
-      .entry-meta { 
-        text-align: left; 
-        display: flex; 
-        gap: 16px;
-        align-items: baseline;
-        padding-left: 12px;
-        border-left: 3px solid var(--cyan);
-      }
-      .meta-row { display: inline-block; margin-bottom: 0; margin-right: 12px; }
-      .entry-title { font-size: 1.5rem; }
-    }
-  </style>
+        /* Right Column: Content */
+        .entry-content { display: flex; flex-direction: column; }
+        
+        .entry-title {
+            font-size: 1.8rem; font-weight: 700; color: var(--navy); margin-bottom: 16px;
+            line-height: 1.2; letter-spacing: -0.5px;
+        }
+        
+        .entry-desc {
+            font-size: 1rem; color: var(--slate); line-height: 1.7; max-width: 700px;
+            margin-bottom: 24px;
+        }
+
+        .project-link {
+            font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; 
+            font-weight: 600; color: var(--navy); text-decoration: none; 
+            text-transform: uppercase; letter-spacing: 1.5px; 
+            display: inline-flex; align-items: center; width: fit-content;
+            border: 1px solid var(--border); padding: 8px 16px; transition: all 0.3s;
+        }
+        .project-link:hover { border-color: var(--blue); color: var(--blue); background: rgba(30,58,138,0.02); }
+
+        .loading { font-family: 'IBM Plex Mono', monospace; text-transform: uppercase; color: var(--slate); text-align: center; margin-top: 100px; font-size: 0.8rem; letter-spacing: 2px; }
+
+        /* --- FOOTER (MATCHING INDEX) --- */
+        footer {
+            background: #fff;
+            border-top: 1px solid var(--border);
+            padding: 80px 60px 40px;
+        }
+        .footer-content {
+            max-width: 1440px; margin: 0 auto;
+            display: flex; justify-content: space-between; align-items: flex-start;
+            margin-bottom: 60px;
+        }
+        
+        .footer-brand h4 {
+            font-size: 1rem; font-weight: 700; color: var(--navy); 
+            text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px;
+        }
+        .footer-status {
+            font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; color: var(--slate);
+            line-height: 1.8;
+        }
+        .status-dot { color: var(--cyan); margin-left: 5px; animation: blink 2s infinite; }
+        
+        .footer-links { display: flex; gap: 40px; }
+        .footer-links a {
+            font-family: 'IBM Plex Mono', monospace; font-size: 0.75rem; 
+            font-weight: 600; text-transform: uppercase; color: var(--navy); 
+            text-decoration: none; letter-spacing: 1px;
+            border-bottom: 1px solid transparent; transition: border-color 0.3s;
+        }
+        .footer-links a:hover { border-color: var(--blue); }
+
+        .footer-bottom {
+            max-width: 1440px; margin: 0 auto;
+            border-top: 1px solid var(--border); padding-top: 30px;
+            display: flex; justify-content: space-between;
+            font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; color: var(--slate);
+        }
+
+        @keyframes blink { 0%, 100% {opacity: 1;} 50% {opacity: 0.4;} }
+        @keyframes fadeIn { from {opacity:0; transform:translateY(10px);} to {opacity:1; transform:translateY(0);} }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            header { padding: 20px 30px; }
+            .nav { display: none; }
+            .projects-wrapper { padding: 40px 30px; }
+            
+            .entry { grid-template-columns: 1fr; gap: 20px; padding: 40px 0; }
+            .entry-meta { 
+                text-align: left; border-right: none; border-left: 3px solid var(--cyan);
+                padding-right: 0; padding-left: 15px; 
+                flex-direction: row; align-items: center; gap: 15px;
+            }
+            .meta-year { font-size: 1rem; }
+            
+            footer { padding: 60px 30px 30px; }
+            .footer-content { flex-direction: column; gap: 40px; }
+            .footer-links { flex-direction: column; gap: 15px; }
+            .footer-bottom { flex-direction: column; gap: 15px; }
+        }
+    </style>
 </head>
 <body>
-  <div class="grid-overlay"></div>
 
-  <div class="container">
-    <nav>
-      <div class="nav-brand">Strategic AI Governance</div>
-      <div class="nav-links">
-        <a href="/">Home</a>
-        <a href="insights.html">Insights</a>
-        <a href="projects.html" class="active">Projects</a>
-        <a href="contact.html" class="nav-cta">Inquiry</a>
-      </div>
-    </nav>
+    <div class="grid-bg"></div>
 
-    <main id="projects-container">
-      <div class="loading-state">Syncing Protocols...</div>
-    </main>
-  </div>
-
-  <footer>
-    <div class="container">
-      <div class="footer-content">
-        <div class="footer-brand-name">Strategic AI Governance</div>
-        <div class="footer-links">
-          <a href="contact.html">Inquiry</a>
-          <a href="https://linkedin.com/in/hadinoori" target="_blank">LinkedIn</a>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <script>
-    // --- CMS INTEGRATION ENGINE (PROJECTS) ---
-    
-    // 1. Config
-    const CONFIG = {
-      repo: 'hadinoori/hadinoori.github.io', 
-      folder: '_projects' // NOTE: You need to create this folder in GitHub
-    };
-
-    // 2. Parser
-    function parseFrontMatter(text) {
-      const lines = text.split('\n');
-      const metadata = {};
-      let inFrontMatter = false;
-
-      for (const line of lines) {
-        const trimmed = line.trim();
-        if (trimmed === '---') {
-          if (!inFrontMatter) inFrontMatter = true;
-          else break; 
-          continue;
-        }
-        if (inFrontMatter) {
-          const colonIndex = trimmed.indexOf(':');
-          if (colonIndex !== -1) {
-            const key = trimmed.slice(0, colonIndex).trim();
-            let value = trimmed.slice(colonIndex + 1).trim();
-            if (value.startsWith('"') && value.endsWith('"')) value = value.slice(1, -1);
-            metadata[key] = value;
-          }
-        }
-      }
-      return metadata;
-    }
-
-    // 3. Fetcher
-    async function loadProjects() {
-      const container = document.getElementById('projects-container');
-      
-      try {
-        const response = await fetch(`https://api.github.com/repos/${CONFIG.repo}/contents/${CONFIG.folder}`);
-        if (!response.ok) throw new Error('Folder not found');
-        
-        const files = await response.json();
-        const mdFiles = files.filter(f => f.name.endsWith('.md')).reverse();
-
-        const fileContents = await Promise.all(mdFiles.map(async file => {
-          const contentRes = await fetch(file.download_url);
-          return { text: await contentRes.text() };
-        }));
-
-        let html = '';
-        
-        // Header is inserted via JS to ensure it appears only if content loads
-        html += `
-            <div style="border-bottom: 2px solid var(--navy); margin-bottom: 60px; padding-bottom: 40px;">
-                <h1 style="font-family: 'IBM Plex Sans'; font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 700; color: var(--navy); line-height: 1; margin-bottom: 20px;">Governance Protocols</h1>
-                <p style="font-family: 'IBM Plex Sans'; font-size: 1.1rem; color: var(--slate); max-width: 600px;">Applied frameworks and technical systems designed for algorithmic accountability.</p>
+    <header>
+        <a href="/" class="brand">
+            <img src="assets/img/sidebar-logo.png" alt="Logo" class="logo">
+            <div class="brand-info">
+                <span class="brand-name">Hadi Noori</span>
+                <span class="brand-tag">Strategic Governance</span>
             </div>
-        `;
+        </a>
+        <nav class="nav">
+            <a href="/insights">Insights</a>
+            <a href="/projects" class="active">Projects</a>
+            <a href="/dossier">Dossier</a>
+        </nav>
+        <a href="/contact" class="cta">Inquiry</a>
+    </header>
 
-        fileContents.forEach((file, index) => {
-          const meta = parseFrontMatter(file.text);
-          
-          // Data Mapping
-          const title = meta.title || "Restricted Project";
-          const desc = meta.description || "";
-          const role = meta.role || "Lead Architect";
-          const status = meta.status || "Completed";
-          const year = meta.year || "2026";
-          const link = meta.external_url;
+    <main class="projects-wrapper">
+        <span class="page-label">Governance Protocols</span>
+        
+        <div id="project-feed">
+            <div class="loading">Syncing Protocols...</div>
+        </div>
+    </main>
 
-          const delay = index * 0.1;
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h4>Hadi Noori</h4>
+                <div class="footer-status">
+                    SYSTEM STATUS: ONLINE <span class="status-dot">●</span><br>
+                    SECTOR: GLOBAL<br>
+                    LAST UPDATE: 2026.02
+                </div>
+            </div>
+            <div class="footer-links">
+                <a href="https://linkedin.com/in/hadinoori" target="_blank">LinkedIn</a>
+                <a href="mailto:info@hadinoori.com">Email Interface</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2026 Hadi Noori. All rights reserved.</span>
+            <span>Strategic AI Governance Architecture</span>
+        </div>
+    </footer>
 
-          html += `
-            <article class="entry" style="animation-delay: ${delay}s">
-              <div class="entry-meta">
-                <span class="meta-row meta-year">${year}</span>
-                <span class="meta-row meta-role">${role}</span>
-                <span class="meta-row meta-status">${status}</span>
-              </div>
-              <div class="entry-content">
-                <h2 class="entry-title">${title}</h2>
-                <p class="entry-desc">${desc}</p>
-                ${link ? `<a href="${link}" class="project-link" target="_blank">View Documentation</a>` : ''}
-              </div>
-            </article>
-          `;
-        });
+    <script>
+        const CONFIG = {
+            repo: 'hadinoori/hadinoori.github.io', 
+            folder: '_projects' 
+        };
 
-        container.innerHTML = fileContents.length > 0 ? html : '<div class="loading-state">No protocols listed.</div>';
+        function parseFrontMatter(text) {
+            const lines = text.split('\n');
+            const metadata = {};
+            let inFrontMatter = false;
 
-      } catch (error) {
-        console.error(error);
-        container.innerHTML = '<div class="loading-state">Initialize Protocol: Create "_projects" folder in CMS.</div>';
-      }
-    }
+            for (const line of lines) {
+                const trimmed = line.trim();
+                if (trimmed === '---') {
+                    if (!inFrontMatter) inFrontMatter = true;
+                    else break; 
+                    continue;
+                }
+                if (inFrontMatter) {
+                    const colonIndex = trimmed.indexOf(':');
+                    if (colonIndex !== -1) {
+                        const key = trimmed.slice(0, colonIndex).trim();
+                        let value = trimmed.slice(colonIndex + 1).trim();
+                        if (value.startsWith('"') && value.endsWith('"')) value = value.slice(1, -1);
+                        metadata[key] = value;
+                    }
+                }
+            }
+            return metadata;
+        }
 
-    loadProjects();
-  </script>
+        async function loadProjects() {
+            const container = document.getElementById('project-feed');
+            
+            try {
+                // 1. Fetch File List
+                const response = await fetch(`https://api.github.com/repos/${CONFIG.repo}/contents/${CONFIG.folder}`);
+                if (!response.ok) throw new Error('Repo Access Denied');
+                
+                const files = await response.json();
+                const mdFiles = files.filter(f => f.name.endsWith('.md')).reverse();
+
+                // 2. Fetch Content
+                const projects = await Promise.all(mdFiles.map(async file => {
+                    const res = await fetch(file.download_url);
+                    const text = await res.text();
+                    return { filename: file.name, ...parseFrontMatter(text) };
+                }));
+
+                // 3. Render
+                let html = '';
+                projects.forEach((proj, index) => {
+                    // Data Mapping
+                    const title = proj.title || 'Confidential Project';
+                    const desc = proj.description || 'Details restricted.';
+                    const year = proj.year || '2026';
+                    const role = proj.role || 'Lead Architect';
+                    const status = proj.status || 'Active';
+                    const external = proj.external_url;
+
+                    // Delay for animation
+                    const delay = index * 0.1;
+
+                    html += `
+                        <article class="entry" style="animation-delay: ${delay}s">
+                            <div class="entry-meta">
+                                <span class="meta-year">${year}</span>
+                                <span class="meta-role">${role}</span>
+                                <span class="meta-status">${status}</span>
+                            </div>
+                            <div class="entry-content">
+                                <h2 class="entry-title">${title}</h2>
+                                <p class="entry-desc">${desc}</p>
+                                ${external ? `<a href="${external}" target="_blank" class="project-link">View Protocol</a>` : ''}
+                            </div>
+                        </article>
+                    `;
+                });
+
+                container.innerHTML = html || '<div class="loading">No protocols initialized.</div>';
+
+            } catch (e) {
+                console.error(e);
+                container.innerHTML = '<div class="loading">System Error: Protocols Unreachable.</div>';
+            }
+        }
+
+        loadProjects();
+    </script>
 </body>
 </html>
