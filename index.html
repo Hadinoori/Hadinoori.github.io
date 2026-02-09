@@ -1,431 +1,332 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hadi Noori | Strategic AI Governance</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hadi Noori | Strategic AI Governance</title>
+  
+  <link rel="icon" type="image/png" href="assets/img/sidebar-logo.png">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --navy: #0a1628;
+      --blue: #1e3a8a;
+      --cyan: #0891b2;
+      --slate: #475569;
+      --white: #ffffff;
+      --grid-subtle: rgba(30, 58, 138, 0.06);
+      --sidebar-width: 280px;
+    }
     
-    <link rel="icon" type="image/png" href="assets/img/sidebar-logo.png">
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+    body {
+      font-family: 'IBM Plex Sans', sans-serif;
+      background: var(--white);
+      color: var(--navy);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
 
-    <style>
-        /* --- VARIABLES (Classic Engineering Theme) --- */
-        :root {
-            --bg-color: #ffffff;
-            --navy: #0a1628;
-            --blue: #1e3a8a;
-            --cyan: #0891b2;
-            --slate: #475569;
-            --grid-line: rgba(30, 58, 138, 0.06);
-            --sidebar-width: 260px;
-        }
+    /* --- THE GRID BACKGROUND YOU LIKED --- */
+    .grid-overlay {
+      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background-image: 
+        linear-gradient(var(--grid-subtle) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-subtle) 1px, transparent 1px);
+      background-size: 60px 60px;
+      z-index: -1; pointer-events: none;
+    }
+    
+    /* --- LAYOUT CONTAINER --- */
+    .layout-wrapper {
+        display: flex;
+        min-height: 100vh;
+    }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body {
-            background-color: var(--bg-color);
-            color: var(--navy);
-            font-family: 'IBM Plex Sans', sans-serif;
-            overflow-x: hidden;
-        }
+    /* --- 1. FIXED SIDEBAR (The Navigation) --- */
+    .sidebar {
+        width: var(--sidebar-width);
+        background: rgba(255, 255, 255, 0.95);
+        border-right: 1px solid rgba(10, 22, 40, 0.1);
+        height: 100vh;
+        position: fixed;
+        left: 0; top: 0;
+        padding: 40px 30px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        z-index: 100;
+    }
 
-        /* --- BACKGROUND GRID (The "Paper" Feel) --- */
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-image: 
-                linear-gradient(var(--grid-line) 1px, transparent 1px),
-                linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
-            background-size: 60px 60px;
-            z-index: -1;
-            pointer-events: none;
-        }
+    .brand-section img { height: 32px; width: auto; margin-bottom: 15px; }
+    .brand-title { 
+        font-family: 'IBM Plex Sans', sans-serif; font-weight: 700; 
+        font-size: 0.9rem; letter-spacing: 1px; color: var(--navy); display: block; 
+    }
+    .brand-role {
+        font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; 
+        color: var(--slate); margin-top: 4px; display: block;
+    }
 
-        a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
+    .nav-menu { display: flex; flex-direction: column; gap: 20px; margin-top: 60px; }
+    .nav-link {
+        font-family: 'IBM Plex Mono', monospace; font-size: 0.75rem; 
+        font-weight: 600; text-transform: uppercase; letter-spacing: 2px; 
+        color: var(--slate); text-decoration: none; transition: all 0.3s ease;
+        display: flex; align-items: center;
+    }
+    .nav-link:hover { color: var(--blue); transform: translateX(5px); }
+    .nav-link.active { color: var(--navy); border-left: 2px solid var(--blue); padding-left: 10px; }
 
-        /* --- LAYOUT STRUCTURE --- */
-        .layout {
-            display: flex;
-            min-height: 100vh;
-        }
+    .sidebar-footer { border-top: 1px solid rgba(10, 22, 40, 0.1); padding-top: 20px; }
+    .meta-data { font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; color: var(--slate); line-height: 1.8; }
 
-        /* --- SIDEBAR (Fixed Spine) --- */
-        .sidebar {
-            width: var(--sidebar-width);
-            background: rgba(255, 255, 255, 0.95);
-            border-right: 1px solid rgba(10, 22, 40, 0.1);
-            position: fixed;
-            height: 100vh;
-            padding: 40px 30px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            z-index: 100;
-        }
+    /* --- 2. MAIN CONTENT (Right Side) --- */
+    .main-content {
+        margin-left: var(--sidebar-width);
+        width: calc(100% - var(--sidebar-width));
+        padding: 60px 80px;
+    }
 
-        .brand-block { margin-bottom: 40px; }
-        .logo-img { height: 32px; width: auto; margin-bottom: 15px; display: block; }
-        
-        .brand-title {
-            font-family: 'IBM Plex Sans', sans-serif;
-            font-size: 0.9rem;
-            font-weight: 700;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            color: var(--navy);
-            display: block;
-        }
-        .brand-subtitle {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.65rem;
-            color: var(--slate);
-            margin-top: 5px;
-            display: block;
-        }
+    /* HERO SECTION */
+    .hero {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 60px;
+        align-items: center;
+        min-height: 80vh;
+        margin-bottom: 80px;
+    }
 
-        .nav-links {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
+    .category-tag {
+        font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; 
+        color: var(--blue); font-weight: 600; letter-spacing: 3px; 
+        text-transform: uppercase; margin-bottom: 24px;
+        display: flex; align-items: center; gap: 10px;
+    }
+    .category-tag::before { content: ''; width: 24px; height: 2px; background: var(--blue); }
 
-        .nav-item {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: var(--slate);
-            display: flex;
-            align-items: center;
-        }
-        .nav-item:hover { color: var(--blue); padding-left: 5px; }
-        .nav-item.active { color: var(--navy); border-left: 2px solid var(--blue); padding-left: 10px; }
+    .hero-title {
+        font-family: 'IBM Plex Sans', sans-serif;
+        font-size: 3.5rem; /* Large but readable */
+        font-weight: 700;
+        line-height: 1.1;
+        color: var(--navy);
+        margin-bottom: 30px;
+        letter-spacing: -1px;
+    }
 
-        .sidebar-footer {
-            border-top: 1px solid rgba(10, 22, 40, 0.1);
-            padding-top: 20px;
-        }
-        .meta-row {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.6rem;
-            color: var(--slate);
-            display: flex; justify-content: space-between;
-            margin-bottom: 8px;
-        }
+    .hero-desc {
+        font-size: 1.1rem; line-height: 1.7; color: var(--slate);
+        max-width: 520px; margin-bottom: 40px;
+    }
 
-        /* --- MAIN CONTENT --- */
-        .content-area {
-            margin-left: var(--sidebar-width);
-            width: calc(100% - var(--sidebar-width));
-            padding: 60px 80px;
-            position: relative;
-        }
+    .btn-group { display: flex; gap: 20px; }
+    .btn {
+        padding: 16px 32px; font-family: 'IBM Plex Mono', monospace; 
+        font-size: 0.8rem; font-weight: 600; text-transform: uppercase; 
+        letter-spacing: 1px; text-decoration: none; transition: all 0.3s;
+        border: 1px solid var(--navy); cursor: pointer;
+    }
+    .btn-primary { background: var(--navy); color: #fff; }
+    .btn-primary:hover { background: var(--blue); border-color: var(--blue); }
+    .btn-secondary { background: transparent; color: var(--navy); }
+    .btn-secondary:hover { background: var(--navy); color: #fff; }
 
-        /* --- HERO SECTION (Classic Layout) --- */
-        .hero {
-            display: grid;
-            grid-template-columns: 1.2fr 0.8fr; /* Text left, Graph right */
-            gap: 60px;
-            min-height: 80vh; /* Not full screen force, just minimum */
-            align-items: center;
-            margin-bottom: 100px;
-        }
+    /* VISUAL: Clean JS Graph instead of heavy CSS */
+    .hero-visual {
+        position: relative; height: 500px; width: 100%;
+    }
 
-        .hero-label {
-            font-family: 'IBM Plex Mono', monospace;
-            color: var(--blue);
-            font-size: 0.75rem;
-            font-weight: 700;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            margin-bottom: 24px;
-            display: flex; align-items: center; gap: 10px;
-        }
-        .hero-label::before { content: ''; width: 20px; height: 2px; background: var(--blue); }
+    /* CARDS SECTION (Keeping the useful content) */
+    .cards-section {
+        border-top: 1px solid rgba(10, 22, 40, 0.1);
+        padding-top: 60px;
+        margin-bottom: 100px;
+    }
+    .section-label {
+        font-family: 'IBM Plex Mono', monospace; font-size: 0.8rem; 
+        font-weight: 700; letter-spacing: 2px; text-transform: uppercase; 
+        color: var(--navy); margin-bottom: 40px;
+    }
+    .card-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+    .card {
+        padding: 30px; border: 1px solid rgba(10, 22, 40, 0.08); background: #fff;
+        transition: transform 0.3s;
+    }
+    .card:hover { transform: translateY(-5px); border-color: var(--blue); }
+    .card-num {
+        font-family: 'IBM Plex Mono', monospace; font-size: 2rem; 
+        color: rgba(30, 58, 138, 0.1); margin-bottom: 15px; font-weight: 600;
+    }
+    .card h3 { font-size: 1.1rem; margin-bottom: 10px; color: var(--navy); }
+    .card p { font-size: 0.9rem; color: var(--slate); line-height: 1.6; }
 
-        .hero-headline {
-            font-family: 'IBM Plex Sans', sans-serif;
-            font-size: 3.5rem; /* Big but readable */
-            line-height: 1.1;
-            font-weight: 700;
-            color: var(--navy);
-            margin-bottom: 30px;
-            letter-spacing: -1px;
-        }
-
-        .hero-sub {
-            font-size: 1.1rem;
-            line-height: 1.7;
-            color: var(--slate);
-            max-width: 500px;
-            margin-bottom: 40px;
-        }
-
-        .btn-group { display: flex; gap: 20px; }
-
-        .btn {
-            padding: 16px 32px;
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.8rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .btn-primary {
-            background: var(--navy);
-            color: #fff;
-            border: 1px solid var(--navy);
-        }
-        .btn-primary:hover { background: var(--blue); border-color: var(--blue); }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--navy);
-            border: 1px solid var(--navy);
-        }
-        .btn-secondary:hover { background: var(--navy); color: #fff; }
-
-        /* --- NETWORK GRAPH (Right Side) --- */
-        .network-visual {
-            position: relative;
-            height: 500px;
-            width: 100%;
-        }
-        
-        /* --- CARDS SECTION (Information Density) --- */
-        .core-systems {
-            border-top: 1px solid rgba(10, 22, 40, 0.1);
-            padding-top: 60px;
-        }
-        
-        .section-head {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.8rem;
-            font-weight: 700;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--navy);
-            margin-bottom: 40px;
-        }
-
-        .card-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
-        }
-
-        .card {
-            background: #fff;
-            border: 1px solid rgba(10, 22, 40, 0.08);
-            padding: 30px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(10, 22, 40, 0.05);
-            border-color: var(--blue);
-        }
-
-        .card-num {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 2rem;
-            font-weight: 600;
-            color: rgba(30, 58, 138, 0.15);
-            margin-bottom: 15px;
-        }
-        .card-title {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: var(--navy);
-            margin-bottom: 10px;
-        }
-        .card-desc {
-            font-size: 0.9rem;
-            color: var(--slate);
-            line-height: 1.6;
-        }
-
-        /* --- RESPONSIVE --- */
-        @media (max-width: 1024px) {
-            .sidebar { display: none; } /* Mobile Menu needed */
-            .content-area { margin-left: 0; width: 100%; padding: 40px 20px; }
-            .hero { grid-template-columns: 1fr; }
-            .network-visual { height: 300px; order: -1; }
-            .card-grid { grid-template-columns: 1fr; }
-            
-            /* Add a top mobile nav here if needed */
-        }
-    </style>
+    /* RESPONSIVE */
+    @media (max-width: 1024px) {
+        .sidebar { display: none; } /* Mobile nav needed */
+        .main-content { margin-left: 0; width: 100%; padding: 40px 20px; }
+        .hero { grid-template-columns: 1fr; }
+        .hero-visual { height: 300px; order: -1; }
+        .card-grid { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
 
-    <div class="layout">
+  <div class="grid-overlay"></div>
+
+  <div class="layout-wrapper">
+    
+    <aside class="sidebar">
+        <div>
+            <div class="brand-section">
+                <img src="assets/img/sidebar-logo.png" alt="Logo">
+                <span class="brand-title">HADI NOORI</span>
+                <span class="brand-role">Strategic Governance</span>
+            </div>
+            
+            <nav class="nav-menu">
+                <a href="#" class="nav-link active">Overview</a>
+                <a href="/insights" class="nav-link">Insights</a>
+                <a href="/projects" class="nav-link">Projects</a>
+                <a href="/dossier" class="nav-link">Dossier</a>
+            </nav>
+        </div>
+
+        <div class="sidebar-footer">
+            <div class="meta-data">
+                <div>SYS: ONLINE <span style="color:green">●</span></div>
+                <div>LOC: GLOBAL</div>
+                <div style="margin-top:15px;">
+                    <a href="/contact" style="color:var(--navy); text-decoration:underline;">Inquiry →</a>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <main class="main-content">
         
-        <aside class="sidebar">
-            <div>
-                <div class="brand-block">
-                    <img src="assets/img/sidebar-logo.png" alt="Logo" class="logo-img">
-                    <span class="brand-title">Hadi Noori</span>
-                    <span class="brand-subtitle">Strategic Governance</span>
+        <section class="hero">
+            <div class="hero-text">
+                <div class="category-tag">System Governance</div>
+                <h1 class="hero-title">
+                    When AI <span style="text-decoration: line-through; color:var(--slate); opacity:0.6;">Fails</span>,<br>
+                    Governance Decides<br>
+                    <span style="color: var(--blue);">Who Pays.</span>
+                </h1>
+                <p class="hero-desc">
+                    We architect the legitimacy layer for high-stakes autonomous systems. 
+                    Moving beyond ethical theory to defensible engineering protocols.
+                </p>
+                <div class="btn-group">
+                    <a href="/contact" class="btn btn-primary">Initiate Inquiry</a>
+                    <a href="/projects" class="btn btn-secondary">Review Protocols</a>
                 </div>
-                
-                <nav class="nav-links">
-                    <a href="#" class="nav-item active">Overview</a>
-                    <a href="/projects" class="nav-item">Protocols</a>
-                    <a href="/insights" class="nav-item">Intelligence</a>
-                    <a href="/dossier" class="nav-item">Dossier</a>
-                </nav>
             </div>
 
-            <div class="sidebar-footer">
-                <div class="meta-row">
-                    <span>SYS: ONLINE</span>
-                    <span style="color:var(--blue)">●</span>
+            <div class="hero-visual" id="graphContainer"></div>
+        </section>
+
+        <section class="cards-section">
+            <div class="section-label">Core Modules</div>
+            <div class="card-grid">
+                <div class="card">
+                    <div class="card-num">01</div>
+                    <h3>Accountability</h3>
+                    <p>Designing auditing trails that ensure every AI decision is traceable and defensible.</p>
                 </div>
-                <div class="meta-row">
-                    <span>LOC: GLOBAL</span>
+                <div class="card">
+                    <div class="card-num">02</div>
+                    <h3>Trust Vectors</h3>
+                    <p>Quantifiable metrics for measuring system reliability and user trust in real-time.</p>
                 </div>
-                <a href="/contact" class="btn btn-primary" style="width:100%; text-align:center; padding:12px; margin-top:20px; font-size:0.7rem;">Initiate Inquiry</a>
+                <div class="card">
+                    <div class="card-num">03</div>
+                    <h3>Legitimacy</h3>
+                    <p>Aligning technical performance with global regulatory standards like the EU AI Act.</p>
+                </div>
             </div>
-        </aside>
+        </section>
 
-        <main class="content-area">
-            
-            <section class="hero">
-                <div class="hero-text">
-                    <div class="hero-label">System Critical</div>
-                    <h1 class="hero-headline">
-                        When AI <span style="text-decoration: line-through; color: var(--slate); opacity: 0.5;">Fails</span>,<br>
-                        Governance Decides<br>
-                        <span style="color: var(--blue);">Who Pays.</span>
-                    </h1>
-                    <p class="hero-sub">
-                        We architect the legitimacy layer for high-stakes autonomous systems. 
-                        Moving beyond ethical theory to defensible engineering protocols that protect your organization.
-                    </p>
-                    <div class="btn-group">
-                        <a href="/projects" class="btn btn-primary">Audit Your Risk</a>
-                        <a href="/dossier" class="btn btn-secondary">View Framework</a>
-                    </div>
-                </div>
+    </main>
+  </div>
 
-                <div class="network-visual" id="networkContainer"></div>
-            </section>
+  <script>
+    // --- LIGHTWEIGHT NETWORK GRAPH (Vanilla JS) ---
+    // Clean, technical, blue lines on white background.
+    const container = document.getElementById('graphContainer');
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+    container.appendChild(canvas);
 
-            <section class="core-systems">
-                <div class="section-head">Operational Modules</div>
-                <div class="card-grid">
-                    
-                    <div class="card">
-                        <div class="card-num">01</div>
-                        <div class="card-title">Algorithmic Accountability</div>
-                        <p class="card-desc">
-                            Automated auditing trails for black-box models. Ensure every decision is traceable and defensible in court.
-                        </p>
-                    </div>
+    let width, height;
+    let nodes = [];
 
-                    <div class="card">
-                        <div class="card-num">02</div>
-                        <div class="card-title">Risk Architecture</div>
-                        <p class="card-desc">
-                            Deployment frameworks that isolate high-risk agents. Prevent systemic failure through compartmentalization.
-                        </p>
-                    </div>
+    function resize() {
+        width = canvas.width = container.offsetWidth;
+        height = canvas.height = container.offsetHeight;
+    }
 
-                    <div class="card">
-                        <div class="card-num">03</div>
-                        <div class="card-title">Compliance Vectors</div>
-                        <p class="card-desc">
-                            Real-time alignment with EU AI Act and global standards. Turn regulation from a bottleneck into a moat.
-                        </p>
-                    </div>
-
-                </div>
-            </section>
-
-        </main>
-    </div>
-
-    <script>
-        // --- ENGINEERING GRAPH VISUALIZATION ---
-        // Simple, clean, tech-focused. No distractions.
-        const container = document.getElementById('networkContainer');
-        const canvas = document.createElement('canvas');
-        const ctx = canvas.getContext('2d');
-        container.appendChild(canvas);
-
-        let width, height;
-        let nodes = [];
-
-        function resize() {
-            width = canvas.width = container.offsetWidth;
-            height = canvas.height = container.offsetHeight;
+    class Node {
+        constructor() {
+            this.x = Math.random() * width;
+            this.y = Math.random() * height;
+            this.vx = (Math.random() - 0.5) * 0.5; // Slow, calm movement
+            this.vy = (Math.random() - 0.5) * 0.5;
         }
-
-        class Node {
-            constructor() {
-                this.x = Math.random() * width;
-                this.y = Math.random() * height;
-                this.vx = (Math.random() - 0.5) * 0.5;
-                this.vy = (Math.random() - 0.5) * 0.5;
-            }
-            update() {
-                this.x += this.vx;
-                this.y += this.vy;
-                if(this.x < 0 || this.x > width) this.vx *= -1;
-                if(this.y < 0 || this.y > height) this.vy *= -1;
-            }
+        update() {
+            this.x += this.vx;
+            this.y += this.vy;
+            if(this.x < 0 || this.x > width) this.vx *= -1;
+            if(this.y < 0 || this.y > height) this.vy *= -1;
         }
+    }
 
-        // Initialize 
-        for(let i=0; i<12; i++) nodes.push(new Node()); // Fewer nodes = cleaner look
+    // Create 15 nodes
+    for(let i=0; i<15; i++) nodes.push(new Node());
 
-        function animate() {
-            ctx.clearRect(0, 0, width, height);
-            
-            // Draw Connections
-            ctx.lineWidth = 1;
-            for(let i=0; i<nodes.length; i++) {
-                for(let j=i+1; j<nodes.length; j++) {
-                    let d = Math.hypot(nodes[i].x - nodes[j].x, nodes[i].y - nodes[j].y);
-                    if(d < 150) {
-                        ctx.beginPath();
-                        ctx.moveTo(nodes[i].x, nodes[i].y);
-                        ctx.lineTo(nodes[j].x, nodes[j].y);
-                        // Blue engineering lines
-                        ctx.strokeStyle = `rgba(30, 58, 138, ${0.2 * (1 - d/150)})`; 
-                        ctx.stroke();
-                    }
+    function animate() {
+        ctx.clearRect(0, 0, width, height);
+        
+        // Draw Lines
+        ctx.lineWidth = 1;
+        for(let i=0; i<nodes.length; i++) {
+            for(let j=i+1; j<nodes.length; j++) {
+                let d = Math.hypot(nodes[i].x - nodes[j].x, nodes[i].y - nodes[j].y);
+                if(d < 150) {
+                    ctx.beginPath();
+                    ctx.moveTo(nodes[i].x, nodes[i].y);
+                    ctx.lineTo(nodes[j].x, nodes[j].y);
+                    // Blue, subtle lines
+                    ctx.strokeStyle = `rgba(30, 58, 138, ${0.15 * (1 - d/150)})`;
+                    ctx.stroke();
                 }
             }
-
-            // Draw Nodes (Blue Dots)
-            for(let i=0; i<nodes.length; i++) {
-                let n = nodes[i];
-                n.update();
-                
-                ctx.beginPath();
-                ctx.arc(n.x, n.y, 4, 0, Math.PI*2);
-                ctx.fillStyle = '#ffffff'; // White center
-                ctx.fill();
-                ctx.strokeStyle = '#1e3a8a'; // Blue border
-                ctx.stroke();
-            }
-
-            requestAnimationFrame(animate);
         }
 
-        window.addEventListener('resize', resize);
-        resize();
-        animate();
-    </script>
+        // Draw Dots
+        for(let i=0; i<nodes.length; i++) {
+            let n = nodes[i];
+            n.update();
+            ctx.beginPath();
+            ctx.arc(n.x, n.y, 4, 0, Math.PI*2);
+            ctx.fillStyle = '#fff';
+            ctx.fill();
+            ctx.strokeStyle = '#1e3a8a';
+            ctx.stroke();
+        }
+        requestAnimationFrame(animate);
+    }
+
+    window.addEventListener('resize', resize);
+    resize();
+    animate();
+  </script>
 </body>
 </html>
