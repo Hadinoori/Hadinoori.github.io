@@ -288,14 +288,16 @@
                 // 3. Render
                 let html = '';
                 posts.forEach((post, index) => {
-                    const date = post.date || '2026.01.01'; // Dot format fits engineering style better
+                    const date = post.date || '2026.01.01';
                     const title = post.title || 'Restricted File';
                     const desc = post.description || 'Access limited to authorized personnel.';
                     const tag = post.tag || 'BRIEF';
                     
-                    // Link Logic
-                    let link = `insights/${post.filename.replace('.md', '.html')}`;
+                    // FIXED: Link to post viewer with filename parameter
+                    let link = `insights/post.html?file=${post.filename}`;
                     let target = '';
+                    
+                    // If external URL exists, use that instead
                     if (post.external_url) {
                         link = post.external_url;
                         target = 'target="_blank"';
