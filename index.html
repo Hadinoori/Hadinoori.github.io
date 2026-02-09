@@ -9,7 +9,7 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,600;0,700;1,500&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,500&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
 
     <style>
         :root {
@@ -19,6 +19,7 @@
             --cyan: #0891b2;
             --slate: #475569;
             --grid: rgba(10, 22, 40, 0.06); 
+            --border: rgba(10, 22, 40, 0.08);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -28,9 +29,10 @@
             color: var(--navy);
             font-family: 'IBM Plex Sans', sans-serif;
             overflow-x: hidden;
+            line-height: 1.6;
         }
 
-        /* --- THE GRID (Background) --- */
+        /* --- BACKGROUND GRID --- */
         .grid-bg {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background-image: 
@@ -44,7 +46,7 @@
         header {
             display: flex; justify-content: space-between; align-items: center;
             padding: 24px 60px;
-            border-bottom: 1px solid rgba(10,22,40,0.05);
+            border-bottom: 1px solid var(--border);
             background: rgba(255,255,255,0.95);
             backdrop-filter: blur(10px);
             position: fixed; top: 0; width: 100%; z-index: 1000;
@@ -70,21 +72,21 @@
         }
         .cta:hover { background: var(--blue); }
 
-        /* --- HERO SECTION (Split Screen) --- */
+        /* --- 1. HERO SECTION --- */
         .hero-wrapper {
             margin-top: 80px;
-            min-height: calc(100vh - 80px);
+            min-height: 90vh;
             display: grid;
-            grid-template-columns: 1fr 1fr; /* Equal split for balance */
+            grid-template-columns: 1fr 1fr;
             max-width: 1440px;
             margin-left: auto;
             margin-right: auto;
             padding: 0 60px;
             align-items: center;
             gap: 80px;
+            border-bottom: 1px solid var(--border);
         }
 
-        /* LEFT: CONTENT */
         .hero-text { z-index: 10; }
         
         .badge {
@@ -96,7 +98,7 @@
         .badge::before { content:''; width: 20px; height: 2px; background: var(--blue); }
 
         h1 {
-            font-size: clamp(3rem, 5.5vw, 5rem);
+            font-size: clamp(3rem, 5.5vw, 4.8rem);
             line-height: 1.05; font-weight: 700; letter-spacing: -1px;
             color: var(--navy); margin-bottom: 30px;
         }
@@ -129,27 +131,12 @@
         }
         .btn-outline:hover { background: var(--navy); color: #fff; }
 
-        /* RIGHT: VISUAL (DYNAMIC SYSTEM) */
-        .hero-visual {
-            position: relative;
-            height: 600px;
-            width: 100%;
-            display: flex; justify-content: center; align-items: center;
-        }
-
-        #system-canvas {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            z-index: 1;
-        }
-
-        /* Floating Labels over the canvas */
+        .hero-visual { position: relative; height: 500px; width: 100%; }
+        #system-canvas { width: 100%; height: 100%; }
         .sys-label {
             position: absolute; font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem;
             color: var(--blue); background: rgba(255,255,255,0.9); padding: 6px 12px; 
-            border: 1px solid rgba(30,58,138,0.2);
-            font-weight: 600; letter-spacing: 1px; z-index: 10;
+            border: 1px solid rgba(30,58,138,0.2); font-weight: 600; letter-spacing: 1px;
             box-shadow: 0 4px 12px rgba(10,22,40,0.05);
         }
         .lbl-1 { top: 20%; left: 15%; }
@@ -157,17 +144,145 @@
         .lbl-3 { bottom: 25%; left: 20%; }
         .lbl-4 { bottom: 20%; right: 15%; }
 
+        /* --- 2. INSIGHTS SECTION (Two Boxes) --- */
+        .insights-section {
+            max-width: 1440px; margin: 0 auto; padding: 80px 60px;
+            border-bottom: 1px solid var(--border);
+        }
+        .section-label {
+            font-family: 'IBM Plex Mono', monospace; font-size: 0.75rem; 
+            font-weight: 700; letter-spacing: 3px; color: var(--slate); 
+            text-transform: uppercase; margin-bottom: 40px; display: block;
+        }
+
+        .insights-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+            position: relative;
+        }
+        /* Vertical Divider Line */
+        .insights-grid::after {
+            content: ''; position: absolute; left: 50%; top: 0; height: 100%; 
+            width: 1px; background: var(--border);
+        }
+
+        .insight-card { display: flex; flex-direction: column; align-items: flex-start; }
+        .insight-tag {
+            font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; color: var(--blue);
+            text-transform: uppercase; margin-bottom: 20px; font-weight: 600;
+        }
+        .insight-title {
+            font-size: 1.5rem; font-weight: 600; line-height: 1.4; color: var(--navy);
+            margin-bottom: 24px; max-width: 90%;
+        }
+        .insight-link {
+            font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; 
+            font-weight: 600; color: var(--navy); text-decoration: none;
+            border-bottom: 1px solid var(--navy); padding-bottom: 4px;
+            transition: color 0.3s;
+        }
+        .insight-link:hover { color: var(--blue); border-color: var(--blue); }
+
+        /* --- 3. CORE SYSTEMS (Three Boxes) --- */
+        .focus-section {
+            max-width: 1440px; margin: 0 auto; padding: 100px 60px;
+        }
+        
+        .focus-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px;
+        }
+
+        .focus-card {
+            background: #fff;
+            border: 1px solid var(--border);
+            padding: 40px 32px;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            position: relative;
+        }
+        .focus-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--blue);
+            box-shadow: 0 20px 40px rgba(10,22,40,0.03);
+        }
+        /* Top Accent Line */
+        .focus-card::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 0; 
+            height: 3px; background: var(--blue); transition: width 0.3s ease;
+        }
+        .focus-card:hover::before { width: 100%; }
+
+        .focus-num {
+            font-family: 'IBM Plex Mono', monospace; font-size: 2.5rem; 
+            font-weight: 600; color: rgba(30,58,138,0.1); margin-bottom: 20px;
+            line-height: 1;
+        }
+        .focus-title {
+            font-size: 1.2rem; font-weight: 700; color: var(--navy); 
+            margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.5px;
+        }
+        .focus-desc {
+            font-size: 0.95rem; line-height: 1.6; color: var(--slate);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background: #fff;
+            border-top: 1px solid var(--border);
+            padding: 80px 60px 40px;
+        }
+        .footer-content {
+            max-width: 1440px; margin: 0 auto;
+            display: grid; grid-template-columns: 1fr 1fr; gap: 40px;
+            margin-bottom: 60px;
+        }
+        
+        .footer-brand h4 {
+            font-size: 1rem; font-weight: 700; color: var(--navy); 
+            text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px;
+        }
+        .footer-status {
+            font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; color: var(--slate);
+        }
+        .status-dot { color: var(--cyan); margin-left: 5px; animation: blink 2s infinite; }
+        
+        .footer-links {
+            display: flex; gap: 40px; justify-content: flex-end;
+        }
+        .footer-links a {
+            font-family: 'IBM Plex Mono', monospace; font-size: 0.75rem; 
+            font-weight: 600; text-transform: uppercase; color: var(--navy); 
+            text-decoration: none; letter-spacing: 1px;
+        }
+
+        .footer-bottom {
+            max-width: 1440px; margin: 0 auto;
+            border-top: 1px solid var(--border); padding-top: 30px;
+            display: flex; justify-content: space-between;
+            font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; color: var(--slate);
+        }
+
+        @keyframes blink { 0%, 100% {opacity: 1;} 50% {opacity: 0.4;} }
 
         /* --- RESPONSIVE --- */
         @media (max-width: 1024px) {
             header { padding: 20px 30px; }
-            .nav { display: none; } 
-            .hero-wrapper { grid-template-columns: 1fr; margin-top: 60px; padding: 60px 30px; gap: 60px; }
+            .nav { display: none; }
+            .hero-wrapper { grid-template-columns: 1fr; padding: 60px 30px; }
             .hero-text { padding-right: 0; text-align: center; }
-            .badge { justify-content: center; }
+            .hero-visual { height: 400px; margin-top: 40px; }
+            .badge, .btn-group { justify-content: center; }
             .sub { margin: 0 auto 40px; }
-            .btn-group { justify-content: center; }
-            .hero-visual { height: 450px; }
+            
+            .insights-section { padding: 60px 30px; }
+            .insights-grid { grid-template-columns: 1fr; gap: 40px; }
+            .insights-grid::after { display: none; } /* Remove vertical line */
+            
+            .focus-section { padding: 60px 30px; }
+            .focus-grid { grid-template-columns: 1fr; gap: 30px; }
+            
+            footer { padding: 60px 30px 30px; }
+            .footer-content { grid-template-columns: 1fr; gap: 40px; }
+            .footer-links { justify-content: flex-start; flex-direction: column; gap: 15px; }
+            .footer-bottom { flex-direction: column; gap: 15px; }
         }
     </style>
 </head>
@@ -183,60 +298,110 @@
                 <span class="brand-tag">Strategic Governance</span>
             </div>
         </a>
-
         <nav class="nav">
             <a href="/insights">Insights</a>
             <a href="/projects">Projects</a>
             <a href="/dossier">Dossier</a>
         </nav>
-
         <a href="/contact" class="cta">Inquiry</a>
     </header>
 
     <div class="hero-wrapper">
-        
         <div class="hero-text">
             <div class="badge">System Critical</div>
-            
-            <h1>
-                When AI <span class="emphasis">Fails</span>,<br>
-                Governance<br>
-                Decides Who Pays.
-            </h1>
-
-            <p class="sub">
-                Building accountable protocols for high-stakes AI deployment. 
-                Moving beyond technical performance to ensure legitimacy and trust in complex systems.
-            </p>
-
+            <h1>When AI <span class="emphasis">Fails</span>,<br>Governance<br>Decides Who Pays.</h1>
+            <p class="sub">Building accountable protocols for high-stakes AI deployment. Moving beyond technical performance to ensure legitimacy and trust.</p>
             <div class="btn-group">
                 <a href="/contact" class="btn-primary">Initiate Inquiry</a>
                 <a href="/projects" class="btn-outline">Review Protocols</a>
             </div>
         </div>
-
         <div class="hero-visual">
             <canvas id="system-canvas"></canvas>
-            
             <div class="sys-label lbl-1">ACCOUNTABILITY PROTOCOLS</div>
             <div class="sys-label lbl-2">TRUST VECTORS</div>
             <div class="sys-label lbl-3">LEGITIMACY LAYER</div>
             <div class="sys-label lbl-4">RISK CONTROL</div>
         </div>
-
     </div>
 
+    <section class="insights-section">
+        <span class="section-label">Intelligence Brief</span>
+        <div class="insights-grid">
+            
+            <div class="insight-card">
+                <span class="insight-tag">Latest Analysis</span>
+                <h3 class="insight-title">The Liability Shift: From Algorithm Developers to Enterprise Deployers</h3>
+                <a href="/insights/liability" class="insight-link">Read Dispatch →</a>
+            </div>
+
+            <div class="insight-card">
+                <span class="insight-tag">Field Note</span>
+                <h3 class="insight-title">Measuring Trust: Quantifiable Metrics for High-Stakes Autonomous Systems</h3>
+                <a href="/insights/trust-metrics" class="insight-link">View Data →</a>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="focus-section">
+        <span class="section-label">Core Modules</span>
+        <div class="focus-grid">
+            
+            <div class="focus-card">
+                <div class="focus-num">01</div>
+                <h3 class="focus-title">Accountability</h3>
+                <p class="focus-desc">Designing auditing trails that ensure every AI decision is traceable and defensible in court.</p>
+            </div>
+
+            <div class="focus-card">
+                <div class="focus-num">02</div>
+                <h3 class="focus-title">Risk Architecture</h3>
+                <p class="focus-desc">Deployment frameworks that isolate high-risk agents. Prevent systemic failure through compartmentalization.</p>
+            </div>
+
+            <div class="focus-card">
+                <div class="focus-num">03</div>
+                <h3 class="focus-title">Legitimacy</h3>
+                <p class="focus-desc">Real-time alignment with EU AI Act and global standards. Turn regulation from a bottleneck into a moat.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h4>Hadi Noori</h4>
+                <div class="footer-status">
+                    SYSTEM STATUS: ONLINE <span class="status-dot">●</span><br>
+                    SECTOR: GLOBAL<br>
+                    VERSION: 4.2
+                </div>
+            </div>
+            <div class="footer-links">
+                <a href="/insights">Insights</a>
+                <a href="/projects">Projects</a>
+                <a href="/dossier">Dossier</a>
+                <a href="https://linkedin.com/in/hadinoori">LinkedIn</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2026 Hadi Noori. All rights reserved.</span>
+            <span>Strategic AI Governance Architecture</span>
+        </div>
+    </footer>
+
     <script>
-        // --- DYNAMIC PARTICLE SYSTEM (Vanilla JS) ---
-        // Creates a dense, slow-moving network representing complex systems.
         const canvas = document.getElementById('system-canvas');
         const ctx = canvas.getContext('2d');
         let width, height;
         let particles = [];
-        const particleCount = 45; // Increased density for "weight"
-        const connectionDistance = 160;
+        const particleCount = 50; 
+        const connectionDistance = 150;
 
         function resize() {
+            if (!canvas.parentElement) return;
             width = canvas.width = canvas.parentElement.offsetWidth;
             height = canvas.height = canvas.parentElement.offsetHeight;
         }
@@ -245,25 +410,23 @@
             constructor() {
                 this.x = Math.random() * width;
                 this.y = Math.random() * height;
-                // Slow, deliberate movement
-                this.vx = (Math.random() - 0.5) * 0.2; 
-                this.vy = (Math.random() - 0.5) * 0.2;
-                this.size = Math.random() * 3 + 2;
+                this.vx = (Math.random() - 0.5) * 0.25; 
+                this.vy = (Math.random() - 0.5) * 0.25;
+                this.size = Math.random() * 3 + 1.5;
             }
             update() {
                 this.x += this.vx;
                 this.y += this.vy;
-                // Bounce off edges
                 if (this.x < 0 || this.x > width) this.vx *= -1;
                 if (this.y < 0 || this.y > height) this.vy *= -1;
             }
             draw() {
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fillStyle = '#ffffff'; // White center
+                ctx.fillStyle = '#fff';
                 ctx.fill();
-                ctx.lineWidth = 2;
-                ctx.strokeStyle = '#1e3a8a'; // Strong blue border
+                ctx.lineWidth = 1.5;
+                ctx.strokeStyle = '#1e3a8a'; 
                 ctx.stroke();
             }
         }
@@ -278,7 +441,7 @@
         function animate() {
             ctx.clearRect(0, 0, width, height);
             
-            // 1. Draw Connections (Lines)
+            // Draw Connections
             ctx.lineWidth = 1;
             for (let i = 0; i < particles.length; i++) {
                 for (let j = i + 1; j < particles.length; j++) {
@@ -287,10 +450,8 @@
                     let dist = Math.sqrt(dx * dx + dy * dy);
 
                     if (dist < connectionDistance) {
-                        // Opacity based on distance for depth effect
                         let opacity = 1 - (dist / connectionDistance);
-                        // Deep Navy/Blue lines
-                        ctx.strokeStyle = `rgba(30, 58, 138, ${opacity * 0.4})`; 
+                        ctx.strokeStyle = `rgba(30, 58, 138, ${opacity * 0.3})`; 
                         ctx.beginPath();
                         ctx.moveTo(particles[i].x, particles[i].y);
                         ctx.lineTo(particles[j].x, particles[j].y);
@@ -299,7 +460,7 @@
                 }
             }
 
-            // 2. Update and Draw Particles (Nodes)
+            // Draw Particles
             particles.forEach(p => {
                 p.update();
                 p.draw();
@@ -308,11 +469,7 @@
             requestAnimationFrame(animate);
         }
 
-        window.addEventListener('resize', () => {
-            resize();
-            init(); // Re-initialize on resize to prevent stretching
-        });
-        
+        window.addEventListener('resize', () => { resize(); init(); });
         resize();
         init();
         animate();
