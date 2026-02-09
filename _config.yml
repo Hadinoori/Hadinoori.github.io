@@ -9,27 +9,23 @@ tagline: "Bridging AI Policy and Engineering for Regulated Industries." # Strate
 description: "AI Ethics & Governance Specialist. Researching Digital Transformation failures and AI accountability."
 url: "https://hadinoori.ca" # Personal domain
 baseurl: ""
-
 # Profile Information
 email: "info@hadinoori.ca"
-
+# Removing generic descriptions to focus on "Weight" and Authority
 # -----------------------------------------------------------------------------
 # APPEARANCE & TYPOGRAPHY (Editorial Style)
 # -----------------------------------------------------------------------------
 # Google Fonts - Added 'Lora' for academic prestige and 'Inter' for clarity
 google_fonts: "family=Inter:wght@300;400;600;800&family=Lora:ital,wght@0,400;0,700;1,400&display=swap"
-
 # Navigation & Layout Settings
 # Switching from Sidebar to Top Navigation for "Editorial" look
 navbar_fixed: true
 footer_fixed: false
 sidebar: false # Explicitly disabling sidebar based on critical reviews
-
 # Enable/Disable Sections
 # Focus on thinking (Insights) and results (Projects)
 show_excerpts: true
 external_links: true
-
 # -----------------------------------------------------------------------------
 # SOCIAL & TRUST SIGNALS
 # -----------------------------------------------------------------------------
@@ -38,21 +34,18 @@ social:
   linkedin: "hadinoori" # Focus on professional presence
   github: "hadinoori"
   google_scholar: "YOUR_ID" # If available, adds massive weight
-
 # -----------------------------------------------------------------------------
 # BUILD SETTINGS
 # -----------------------------------------------------------------------------
 markdown: kramdown
 highlighter: rouge
 permalink: /:title/
-
-# Pagination for jekyll-paginate (simple pagination)
-paginate: 5
-paginate_path: "/page/:num/"
-
-# -----------------------------------------------------------------------------
-# EXCLUSIONS
-# -----------------------------------------------------------------------------
+# Pagination for Insights
+pagination:
+  enabled: true
+  per_page: 5
+  permalink: '/page/:num/'
+# Exclusion list
 exclude:
   - Gemfile
   - Gemfile.lock
@@ -61,9 +54,6 @@ exclude:
   - vendor/cache/
   - vendor/gems/
   - vendor/ruby/
-  - admin/
-  - README.md
-
 # -----------------------------------------------------------------------------
 # PLUGINS
 # -----------------------------------------------------------------------------
