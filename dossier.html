@@ -1,466 +1,372 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Personnel Dossier | Hadi Noori</title>
-  <meta name="description" content="Professional biography, academic credentials, and operational history of Hadi Noori.">
-  <meta name="robots" content="noindex, nofollow">
-  
-  <link rel="icon" type="image/png" href="assets/img/sidebar-logo.png">
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
-  
-  <style>
-    :root {
-      /* Palette from Main Page */
-      --navy: #0a1628;
-      --blue: #1e3a8a;
-      --cyan: #0891b2;
-      --slate: #475569;
-      --white: #ffffff;
-      --grid-subtle: rgba(30, 58, 138, 0.06);
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dossier | Hadi Noori</title>
     
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    <link rel="icon" type="image/png" href="assets/img/sidebar-logo.png">
     
-    body {
-      font-family: 'IBM Plex Sans', sans-serif;
-      background: var(--white);
-      color: var(--navy);
-      overflow-x: hidden;
-      line-height: 1.7;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-    }
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,500&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
 
-    /* Background Grid */
-    .grid-overlay {
-      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-      background-image: 
-        linear-gradient(var(--grid-subtle) 1px, transparent 1px),
-        linear-gradient(90deg, var(--grid-subtle) 1px, transparent 1px);
-      background-size: 80px 80px;
-      z-index: 0; pointer-events: none; opacity: 0.4;
-    }
+    <style>
+        /* --- VARIABLES (MATCHING GLOBAL THEME) --- */
+        :root {
+            --bg: #ffffff;
+            --navy: #0a1628;
+            --blue: #1e3a8a;
+            --cyan: #0891b2;
+            --slate: #475569;
+            --grid: rgba(10, 22, 40, 0.06); 
+            --border: rgba(10, 22, 40, 0.08);
+        }
 
-    .container { 
-      max-width: 1080px; 
-      margin: 0 auto; 
-      padding: 0 40px; 
-      position: relative; 
-      z-index: 1; 
-      flex: 1;
-    }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-    /* Navigation */
-    nav {
-      padding: 20px 0;
-      display: flex; 
-      justify-content: space-between; 
-      align-items: center;
-      border-bottom: 1px solid rgba(10, 22, 40, 0.1); 
-      margin-bottom: 80px;
-      position: sticky;
-      top: 0;
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(10px);
-      z-index: 100;
-    }
-    .nav-brand {
-      font-family: 'IBM Plex Mono', monospace; 
-      font-size: 0.7rem; 
-      font-weight: 600;
-      letter-spacing: 3px; 
-      text-transform: uppercase; 
-      color: var(--blue);
-    }
-    .nav-links { display: flex; gap: 36px; align-items: center; }
-    .nav-links a {
-      font-family: 'IBM Plex Mono', monospace; 
-      font-size: 0.7rem; 
-      font-weight: 600;
-      text-transform: uppercase; 
-      letter-spacing: 2px; 
-      color: var(--slate);
-      text-decoration: none; 
-      transition: color 0.3s ease;
-    }
-    .nav-links a:hover, .nav-links a.active { color: var(--blue); }
-    .nav-cta { 
-      background: var(--navy); 
-      color: var(--white) !important; 
-      padding: 11px 26px; 
-    }
-    .nav-cta:hover { background: var(--blue); }
+        body {
+            background-color: var(--bg);
+            color: var(--navy);
+            font-family: 'IBM Plex Sans', sans-serif;
+            overflow-x: hidden;
+            line-height: 1.7;
+            display: flex; flex-direction: column; min-height: 100vh;
+        }
 
-    /* Dossier Specific Styles */
-    .dossier-header {
-      border-bottom: 2px solid var(--navy);
-      padding-bottom: 40px;
-      margin-bottom: 60px;
-      animation: fadeIn 0.6s ease-out;
-    }
+        /* --- BACKGROUND GRID --- */
+        .grid-bg {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: 
+                linear-gradient(var(--grid) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+            background-size: 60px 60px;
+            z-index: -1;
+        }
 
-    .doc-id {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 0.7rem;
-      color: var(--cyan);
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      font-weight: 600;
-      display: block;
-      margin-bottom: 16px;
-    }
+        /* --- HEADER (STANDARD) --- */
+        header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 24px 60px;
+            border-bottom: 1px solid var(--border);
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+        }
 
-    .full-name {
-      font-family: 'IBM Plex Sans', sans-serif;
-      font-size: clamp(2.5rem, 5vw, 4rem);
-      font-weight: 700;
-      color: var(--navy);
-      line-height: 1;
-      margin-bottom: 16px;
-      letter-spacing: -0.02em;
-    }
-    
-    .role-title {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 1rem;
-      color: var(--slate);
-      font-weight: 400;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-    }
+        .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+        .logo { height: 32px; width: auto; }
+        .brand-info { display: flex; flex-direction: column; }
+        .brand-name { font-size: 0.85rem; font-weight: 700; color: var(--navy); text-transform: uppercase; letter-spacing: 1px; }
+        .brand-tag { font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; color: var(--slate); text-transform: uppercase; }
 
-    .section-block {
-      display: grid; 
-      grid-template-columns: 200px 1fr; 
-      gap: 60px; 
-      margin-bottom: 80px;
-      align-items: start;
-      opacity: 0;
-      animation: fadeIn 0.6s ease-out forwards;
-    }
+        .nav { display: flex; gap: 40px; }
+        .nav a {
+            font-family: 'IBM Plex Mono', monospace; font-size: 0.75rem; font-weight: 600; 
+            text-transform: uppercase; letter-spacing: 1px; color: var(--slate); text-decoration: none;
+            transition: color 0.3s;
+            position: relative;
+        }
+        .nav a:hover { color: var(--blue); }
+        .nav a.active { color: var(--navy); }
+        .nav a.active::after {
+            content: ''; position: absolute; bottom: -5px; left: 0; width: 100%; height: 1px; background: var(--blue);
+        }
 
-    .section-title {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 0.75rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      color: var(--blue);
-      text-align: right;
-      position: sticky;
-      top: 100px; 
-      padding-top: 6px;
-      border-right: 2px solid var(--grid-subtle);
-      padding-right: 20px;
-    }
+        .cta {
+            padding: 10px 24px; background: var(--navy); color: #fff;
+            font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; font-weight: 600;
+            text-transform: uppercase; letter-spacing: 1px; text-decoration: none;
+        }
+        .cta:hover { background: var(--blue); }
 
-    .section-content {
-      color: var(--slate);
-      font-size: 1rem;
-    }
+        /* --- DOSSIER LAYOUT --- */
+        .dossier-wrapper {
+            margin-top: 80px;
+            padding: 80px 60px;
+            max-width: 1100px; 
+            margin-left: auto; margin-right: auto;
+            flex: 1; width: 100%;
+        }
 
-    .bio-text p { 
-      margin: 0 0 24px; 
-      max-width: 680px;
-    }
+        /* 1. Profile Header */
+        .profile-header {
+            margin-bottom: 80px;
+            border-bottom: 2px solid var(--navy);
+            padding-bottom: 40px;
+            opacity: 0; animation: fadeIn 0.8s ease forwards;
+        }
+        .doc-id {
+            font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; 
+            color: var(--blue); font-weight: 600; letter-spacing: 2px; text-transform: uppercase;
+            display: block; margin-bottom: 20px;
+        }
+        .profile-name {
+            font-size: clamp(3rem, 5vw, 4.5rem); font-weight: 700; color: var(--navy);
+            line-height: 1; letter-spacing: -1px; margin-bottom: 10px;
+        }
+        .profile-role {
+            font-family: 'IBM Plex Mono', monospace; font-size: 1rem; color: var(--slate);
+            text-transform: uppercase; letter-spacing: 1px;
+        }
 
-    /* Timeline Items */
-    .timeline-item {
-      margin-bottom: 40px;
-      position: relative;
-      padding-left: 24px;
-      border-left: 1px solid var(--cyan);
-    }
-    
-    .timeline-date {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 0.7rem;
-      font-weight: 600;
-      color: var(--navy);
-      display: block;
-      margin-bottom: 6px;
-    }
-    
-    .timeline-role {
-      font-family: 'IBM Plex Sans', sans-serif;
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: var(--navy);
-      margin: 0 0 6px;
-      line-height: 1.3;
-    }
-    
-    .timeline-org {
-      font-family: 'IBM Plex Sans', sans-serif;
-      font-size: 0.95rem;
-      font-style: italic;
-      color: var(--slate);
-      display: block;
-    }
+        /* 2. Section Blocks (Grid Layout) */
+        .section-block {
+            display: grid;
+            grid-template-columns: 200px 1fr; /* Label | Content */
+            gap: 40px;
+            padding: 40px 0;
+            border-bottom: 1px solid var(--border);
+            opacity: 0; animation: fadeIn 0.8s ease forwards;
+        }
 
-    /* Skills Grid */
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 40px;
-    }
-    .skill-col h4 {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      margin-bottom: 20px;
-      color: var(--navy);
-      border-bottom: 1px solid rgba(10, 22, 40, 0.1);
-      padding-bottom: 8px;
-    }
-    .skill-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-    .skill-list li {
-      font-family: 'IBM Plex Sans', sans-serif;
-      font-size: 0.95rem;
-      margin-bottom: 10px;
-      padding-left: 16px;
-      position: relative;
-      color: var(--slate);
-    }
-    .skill-list li::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 10px;
-      width: 6px;
-      height: 6px;
-      background: var(--cyan);
-      border-radius: 50%;
-    }
+        .section-label {
+            font-family: 'IBM Plex Mono', monospace; font-size: 0.75rem; 
+            color: var(--slate); font-weight: 600; text-transform: uppercase; letter-spacing: 2px;
+            text-align: right; padding-top: 6px;
+        }
 
-    /* Loading State */
-    .loading-state {
-      font-family: 'IBM Plex Mono', monospace;
-      color: var(--slate);
-      text-align: center;
-      padding: 100px 0;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      font-size: 0.8rem;
-    }
+        .section-content { color: var(--navy); font-size: 1rem; }
+        
+        .bio-text p { margin-bottom: 24px; max-width: 700px; color: var(--slate); }
 
-    /* Footer */
-    footer {
-      padding: 36px 0;
-      border-top: 1.5px solid rgba(10, 22, 40, 0.15);
-      background: var(--white);
-      margin-top: auto;
-    }
-    .footer-content {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .footer-brand-name {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--navy);
-    }
-    .footer-links a {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 0.65rem;
-      font-weight: 600;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--slate);
-      text-decoration: none;
-      margin-left: 24px;
-      transition: color 0.3s ease;
-    }
-    .footer-links a:hover { color: var(--blue); }
+        /* Timeline Items (Credentials/Output) */
+        .timeline-item {
+            display: grid;
+            grid-template-columns: 80px 1fr;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .item-year {
+            font-family: 'IBM Plex Mono', monospace; font-size: 0.8rem; 
+            font-weight: 600; color: var(--blue); padding-top: 4px;
+        }
+        .item-detail h3 {
+            font-size: 1.1rem; font-weight: 700; color: var(--navy); margin-bottom: 4px;
+        }
+        .item-detail span {
+            font-family: 'IBM Plex Mono', monospace; font-size: 0.8rem; color: var(--slate);
+        }
 
-    /* Print Styles */
-    @media print {
-      body { background: white; color: black; }
-      header, nav, footer, .grid-overlay, .nav-cta { display: none; }
-      .container { max-width: 100%; padding: 0; margin: 0; }
-      .section-block { break-inside: avoid; gap: 30px; margin-bottom: 40px; opacity: 1 !important; }
-      .section-title { 
-        text-align: left; 
-        position: static; 
-        color: black; 
-        border-right: none;
-        border-bottom: 1px solid #000; 
-        padding-bottom: 5px; 
-        margin-bottom: 15px;
-      }
-      .timeline-item { border-left: 2px solid black; }
-      .doc-id { color: black; }
-      .dossier-header { border-bottom: 2px solid black; }
-    }
+        /* Skills Grid */
+        .skills-container {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
+        }
+        .skill-group h4 {
+            font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; 
+            color: var(--navy); text-transform: uppercase; letter-spacing: 1px;
+            margin-bottom: 20px; border-bottom: 1px solid var(--border); padding-bottom: 10px;
+        }
+        .skill-list { list-style: none; padding: 0; }
+        .skill-list li {
+            font-family: 'IBM Plex Sans', sans-serif; font-size: 0.95rem; color: var(--slate);
+            margin-bottom: 8px; display: flex; align-items: center; gap: 10px;
+        }
+        .skill-list li::before {
+            content: ''; width: 4px; height: 4px; background: var(--cyan); border-radius: 50%;
+        }
 
-    /* Responsive */
-    @media (max-width: 768px) {
-      .container { padding: 0 24px; }
-      nav { padding: 16px 0; margin-bottom: 60px; }
-      .nav-links a:not(.active) { display: none; }
-      
-      .dossier-header { margin-bottom: 40px; padding-bottom: 30px; }
-      .full-name { font-size: 2.5rem; }
-      
-      .section-block { grid-template-columns: 1fr; gap: 24px; margin-bottom: 60px; }
-      .section-title { 
-        text-align: left; 
-        position: static; 
-        border-right: none;
-        border-bottom: 1px solid rgba(10, 22, 40, 0.1); 
-        padding-bottom: 8px; 
-        margin-bottom: 20px; 
-      }
-      
-      .skills-grid { grid-template-columns: 1fr; gap: 30px; }
-      
-      .footer-content { flex-direction: column; align-items: flex-start; gap: 20px; }
-      .footer-links { width: 100%; display: flex; flex-direction: column; gap: 16px; align-items: flex-start; }
-      .footer-links a { margin-left: 0; }
-    }
-    
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
-  </style>
+        /* Loading */
+        .loading {
+            font-family: 'IBM Plex Mono', monospace; text-transform: uppercase; 
+            color: var(--slate); text-align: center; margin-top: 100px; font-size: 0.8rem; letter-spacing: 2px;
+        }
+
+        /* --- FOOTER (STANDARD) --- */
+        footer {
+            background: #fff;
+            border-top: 1px solid var(--border);
+            padding: 80px 60px 40px;
+        }
+        .footer-content {
+            max-width: 1440px; margin: 0 auto;
+            display: flex; justify-content: space-between; align-items: flex-start;
+            margin-bottom: 60px;
+        }
+        .footer-brand h4 { font-size: 1rem; font-weight: 700; color: var(--navy); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px; }
+        .footer-status { font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; color: var(--slate); line-height: 1.8; }
+        .status-dot { color: var(--cyan); margin-left: 5px; animation: blink 2s infinite; }
+        .footer-links { display: flex; gap: 40px; }
+        .footer-links a {
+            font-family: 'IBM Plex Mono', monospace; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; color: var(--navy); 
+            text-decoration: none; letter-spacing: 1px; border-bottom: 1px solid transparent; transition: border-color 0.3s;
+        }
+        .footer-links a:hover { border-color: var(--blue); }
+        .footer-bottom {
+            max-width: 1440px; margin: 0 auto; border-top: 1px solid var(--border); padding-top: 30px;
+            display: flex; justify-content: space-between; font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; color: var(--slate);
+        }
+
+        @keyframes blink { 0%, 100% {opacity: 1;} 50% {opacity: 0.4;} }
+        @keyframes fadeIn { from {opacity:0; transform:translateY(10px);} to {opacity:1; transform:translateY(0);} }
+
+        /* --- PRINT STYLES --- */
+        @media print {
+            header, footer, .grid-bg, .cta { display: none !important; }
+            body { background: #fff; color: #000; }
+            .dossier-wrapper { margin-top: 0; padding: 0; }
+            .profile-header { border-bottom: 2px solid #000; }
+            .section-block { break-inside: avoid; border-bottom: 1px solid #ccc; }
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            header { padding: 20px 30px; }
+            .nav { display: none; }
+            .dossier-wrapper { padding: 40px 30px; }
+            
+            .profile-name { font-size: 2.5rem; }
+            
+            .section-block { grid-template-columns: 1fr; gap: 20px; }
+            .section-label { text-align: left; padding-top: 0; color: var(--blue); }
+            
+            .skills-container { grid-template-columns: 1fr; gap: 30px; }
+            
+            footer { padding: 60px 30px 30px; }
+            .footer-content { flex-direction: column; gap: 40px; }
+            .footer-links { flex-direction: column; gap: 15px; }
+            .footer-bottom { flex-direction: column; gap: 15px; }
+        }
+    </style>
 </head>
 <body>
-  <div class="grid-overlay"></div>
 
-  <div class="container">
-    <nav>
-      <div class="nav-brand">Strategic AI Governance</div>
-      <div class="nav-links">
-        <a href="/">Home</a>
-        <a href="insights.html">Insights</a>
-        <a href="projects.html">Projects</a>
-        <a href="contact.html" class="nav-cta">Inquiry</a>
-      </div>
-    </nav>
+    <div class="grid-bg"></div>
 
-    <main id="content">
-      <div id="dossier-content">
-        <div class="loading-state">Decrypting Personnel File...</div>
-      </div>
+    <header>
+        <a href="/" class="brand">
+            <img src="assets/img/sidebar-logo.png" alt="Logo" class="logo">
+            <div class="brand-info">
+                <span class="brand-name">Hadi Noori</span>
+                <span class="brand-tag">Strategic Governance</span>
+            </div>
+        </a>
+        <nav class="nav">
+            <a href="/insights">Insights</a>
+            <a href="/projects">Projects</a>
+            <a href="/dossier" class="active">Dossier</a>
+        </nav>
+        <a href="/contact" class="cta">Inquiry</a>
+    </header>
+
+    <main class="dossier-wrapper" id="content">
+        <div class="loading">Decrypting Personnel File...</div>
     </main>
-  </div>
 
-  <footer>
-    <div class="container">
-      <div class="footer-content">
-        <div class="footer-brand-name">Strategic AI Governance</div>
-        <div class="footer-links">
-          <a href="contact.html">Inquiry</a>
-          <a href="javascript:window.print()">Print Dossier</a>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h4>Hadi Noori</h4>
+                <div class="footer-status">
+                    SYSTEM STATUS: ONLINE <span class="status-dot">●</span><br>
+                    SECTOR: GLOBAL<br>
+                    LAST UPDATE: 2026.02
+                </div>
+            </div>
+            <div class="footer-links">
+                <a href="https://linkedin.com/in/hadinoori" target="_blank">LinkedIn</a>
+                <a href="javascript:window.print()">Print Dossier</a>
+            </div>
         </div>
-      </div>
-    </div>
-  </footer>
+        <div class="footer-bottom">
+            <span>© 2026 Hadi Noori. All rights reserved.</span>
+            <span>Strategic AI Governance Architecture</span>
+        </div>
+    </footer>
 
-  <script>
-    function escapeHTML(str) {
-      if (!str) return '';
-      if (Array.isArray(str)) return str.map(escapeHTML); 
-      return str.replace(/[&<>"']/g, m => ({
-        '&': '&amp;', '<': '&lt;', '>': '&gt;', 
-        '"': '&quot;', "'": '&#39;'
-      }[m]));
-    }
+    <script>
+        function escapeHTML(str) {
+            if (!str) return '';
+            return str.replace(/[&<>"']/g, m => ({
+                '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+            }[m]));
+        }
 
-    async function loadDossier() {
-      const container = document.getElementById('dossier-content');
-      
-      try {
-        // NOTE: Ensure you have a 'data' folder with 'dossier.json' in your root
-        const res = await fetch('data/dossier.json');
-        if (!res.ok) throw new Error(`Status: ${res.status}`);
-        const data = await res.json();
-        
-        // Build the HTML
-        let html = `
-          <div class="dossier-header">
-            <span class="doc-id">Dossier ID: ${escapeHTML(data.profile.id)}</span>
-            <h1 class="full-name">${escapeHTML(data.profile.name)}</h1>
-            <h2 class="role-title">${escapeHTML(data.profile.role)}</h2>
-          </div>
+        async function loadDossier() {
+            const container = document.getElementById('content');
+            
+            try {
+                // Fetch JSON (Expects data/dossier.json)
+                const res = await fetch('data/dossier.json');
+                if (!res.ok) throw new Error('Data Access Denied');
+                const data = await res.json();
+                
+                // Build HTML
+                let html = `
+                    <div class="profile-header">
+                        <span class="doc-id">ID: ${escapeHTML(data.profile.id)}</span>
+                        <h1 class="profile-name">${escapeHTML(data.profile.name)}</h1>
+                        <div class="profile-role">${escapeHTML(data.profile.role)}</div>
+                    </div>
 
-          <section class="section-block" style="animation-delay: 0.1s">
-            <div class="section-title">Profile</div>
-            <div class="section-content bio-text">
-              <p>${escapeHTML(data.profile.bio_p1)}</p>
-              <p>${escapeHTML(data.profile.bio_p2)}</p>
-            </div>
-          </section>
+                    <section class="section-block" style="animation-delay: 0.1s">
+                        <div class="section-label">Profile</div>
+                        <div class="section-content bio-text">
+                            <p>${escapeHTML(data.profile.bio_p1)}</p>
+                            <p>${escapeHTML(data.profile.bio_p2)}</p>
+                        </div>
+                    </section>
 
-          <section class="section-block" style="animation-delay: 0.2s">
-            <div class="section-title">Credentials</div>
-            <div class="section-content">
-              ${data.credentials.map(cred => `
-                <div class="timeline-item">
-                  <span class="timeline-date">${escapeHTML(cred.year)}</span>
-                  <h3 class="timeline-role">${escapeHTML(cred.degree)}</h3>
-                  <span class="timeline-org">${escapeHTML(cred.meta)}</span>
-                </div>
-              `).join('')}
-            </div>
-          </section>
+                    <section class="section-block" style="animation-delay: 0.2s">
+                        <div class="section-label">Credentials</div>
+                        <div class="section-content">
+                            ${data.credentials.map(cred => `
+                                <div class="timeline-item">
+                                    <span class="item-year">${escapeHTML(cred.year)}</span>
+                                    <div class="item-detail">
+                                        <h3>${escapeHTML(cred.degree)}</h3>
+                                        <span>${escapeHTML(cred.meta)}</span>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </section>
 
-          <section class="section-block" style="animation-delay: 0.3s">
-            <div class="section-title">Competencies</div>
-            <div class="section-content">
-              <div class="skills-grid">
-                <div class="skill-col">
-                  <h4>${escapeHTML(data.competencies.col1_title)}</h4>
-                  <ul class="skill-list">
-                    ${data.competencies.col1_items.map(item => `<li>${escapeHTML(item)}</li>`).join('')}
-                  </ul>
-                </div>
-                <div class="skill-col">
-                  <h4>${escapeHTML(data.competencies.col2_title)}</h4>
-                  <ul class="skill-list">
-                    ${data.competencies.col2_items.map(item => `<li>${escapeHTML(item)}</li>`).join('')}
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </section>
+                    <section class="section-block" style="animation-delay: 0.3s">
+                        <div class="section-label">Competencies</div>
+                        <div class="section-content">
+                            <div class="skills-container">
+                                <div class="skill-group">
+                                    <h4>${escapeHTML(data.competencies.col1_title)}</h4>
+                                    <ul class="skill-list">
+                                        ${data.competencies.col1_items.map(item => `<li>${escapeHTML(item)}</li>`).join('')}
+                                    </ul>
+                                </div>
+                                <div class="skill-group">
+                                    <h4>${escapeHTML(data.competencies.col2_title)}</h4>
+                                    <ul class="skill-list">
+                                        ${data.competencies.col2_items.map(item => `<li>${escapeHTML(item)}</li>`).join('')}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
 
-          <section class="section-block" style="animation-delay: 0.4s">
-            <div class="section-title">Key Output</div>
-            <div class="section-content">
-              ${data.outputs.map(out => `
-                <div class="timeline-item">
-                  <span class="timeline-date">${escapeHTML(out.year)}</span>
-                  <h3 class="timeline-role">${escapeHTML(out.title)}</h3>
-                  <span class="timeline-org">${escapeHTML(out.role)}</span>
-                </div>
-              `).join('')}
-            </div>
-          </section>
-        `;
-        
-        container.innerHTML = html;
-        
-      } catch (e) {
-        console.error("Dossier Load Error:", e);
-        container.innerHTML = '<div class="loading-state">File Access Denied. Please ensure "data/dossier.json" exists.</div>';
-      }
-    }
+                    <section class="section-block" style="animation-delay: 0.4s">
+                        <div class="section-label">Key Output</div>
+                        <div class="section-content">
+                            ${data.outputs.map(out => `
+                                <div class="timeline-item">
+                                    <span class="item-year">${escapeHTML(out.year)}</span>
+                                    <div class="item-detail">
+                                        <h3>${escapeHTML(out.title)}</h3>
+                                        <span>${escapeHTML(out.role)}</span>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </section>
+                `;
+                
+                container.innerHTML = html;
+                
+            } catch (e) {
+                console.error(e);
+                container.innerHTML = '<div class="loading">System Error: File Access Denied (Check data/dossier.json).</div>';
+            }
+        }
 
-    window.addEventListener('DOMContentLoaded', loadDossier);
-  </script>
+        window.addEventListener('DOMContentLoaded', loadDossier);
+    </script>
 </body>
 </html>
