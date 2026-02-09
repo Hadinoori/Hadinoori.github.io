@@ -40,12 +40,12 @@
             z-index: -1;
         }
 
-        /* --- HEADER (Clean Top Bar) --- */
+        /* --- HEADER --- */
         header {
             display: flex; justify-content: space-between; align-items: center;
             padding: 24px 60px;
             border-bottom: 1px solid rgba(10,22,40,0.05);
-            background: rgba(255,255,255,0.9);
+            background: rgba(255,255,255,0.95);
             backdrop-filter: blur(10px);
             position: fixed; top: 0; width: 100%; z-index: 1000;
         }
@@ -72,19 +72,20 @@
 
         /* --- HERO SECTION (Split Screen) --- */
         .hero-wrapper {
-            margin-top: 80px; /* Offset for fixed header */
+            margin-top: 80px;
             min-height: calc(100vh - 80px);
             display: grid;
-            grid-template-columns: 1.1fr 0.9fr; /* Text | Visual */
+            grid-template-columns: 1fr 1fr; /* Equal split for balance */
             max-width: 1440px;
             margin-left: auto;
             margin-right: auto;
             padding: 0 60px;
             align-items: center;
+            gap: 80px;
         }
 
         /* LEFT: CONTENT */
-        .hero-text { padding-right: 40px; z-index: 10; }
+        .hero-text { z-index: 10; }
         
         .badge {
             display: inline-flex; align-items: center; gap: 8px;
@@ -95,32 +96,32 @@
         .badge::before { content:''; width: 20px; height: 2px; background: var(--blue); }
 
         h1 {
-            font-size: clamp(3rem, 5vw, 4.5rem);
-            line-height: 1.1; font-weight: 700; letter-spacing: -1px;
+            font-size: clamp(3rem, 5.5vw, 5rem);
+            line-height: 1.05; font-weight: 700; letter-spacing: -1px;
             color: var(--navy); margin-bottom: 30px;
         }
 
         .emphasis {
             font-style: italic; color: var(--navy);
-            text-decoration: underline; text-decoration-color: var(--blue); text-decoration-thickness: 3px;
-            text-underline-offset: 5px;
+            text-decoration: underline; text-decoration-color: var(--blue); text-decoration-thickness: 4px;
+            text-underline-offset: 6px;
         }
 
         .sub {
-            font-size: 1.1rem; line-height: 1.6; color: var(--slate);
-            max-width: 500px; margin-bottom: 40px;
+            font-size: 1.15rem; line-height: 1.6; color: var(--slate);
+            max-width: 540px; margin-bottom: 40px;
         }
 
         .btn-group { display: flex; gap: 20px; }
         .btn-primary {
-            padding: 16px 32px; background: var(--navy); color: #fff;
+            padding: 16px 36px; background: var(--navy); color: #fff;
             font-family: 'IBM Plex Mono', monospace; font-size: 0.8rem; font-weight: 600;
             text-transform: uppercase; letter-spacing: 1px; text-decoration: none;
             transition: background 0.3s;
         }
         .btn-primary:hover { background: var(--blue); }
         .btn-outline {
-            padding: 16px 32px; background: transparent; color: var(--navy);
+            padding: 16px 36px; background: transparent; color: var(--navy);
             border: 1px solid var(--navy);
             font-family: 'IBM Plex Mono', monospace; font-size: 0.8rem; font-weight: 600;
             text-transform: uppercase; letter-spacing: 1px; text-decoration: none;
@@ -128,70 +129,45 @@
         }
         .btn-outline:hover { background: var(--navy); color: #fff; }
 
-        /* RIGHT: VISUAL (Network Graph) */
+        /* RIGHT: VISUAL (DYNAMIC SYSTEM) */
         .hero-visual {
             position: relative;
             height: 600px;
             width: 100%;
-            /* Border purely for visual structure in layout */
-            border-left: 1px solid rgba(10,22,40,0.05); 
+            display: flex; justify-content: center; align-items: center;
         }
 
-        .system-network { width: 100%; height: 100%; position: relative; }
-
-        /* --- GRAPH ELEMENTS (Keeping your preferred style) --- */
-        .central-node {
-            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            width: 120px; height: 120px; border: 3px solid var(--blue); border-radius: 50%;
-            background: #fff; animation: pulse 4s infinite; z-index: 5;
+        #system-canvas {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 1;
         }
-        @keyframes pulse { 0%{box-shadow:0 0 0 0 rgba(30,58,138,0.2)} 70%{box-shadow:0 0 0 20px rgba(30,58,138,0)} 100%{box-shadow:0 0 0 0 rgba(30,58,138,0)} }
 
-        .node {
-            position: absolute; width: 40px; height: 40px; border: 2px solid var(--cyan);
-            border-radius: 50%; background: #fff; z-index: 2;
-            display: flex; align-items: center; justify-content: center;
-        }
-        .node::after { content:''; width: 10px; height: 10px; background: var(--cyan); border-radius: 50%; }
-
-        /* Positioning Nodes relative to container */
-        .n1 { top: 20%; left: 20%; }
-        .n2 { top: 15%; right: 25%; }
-        .n3 { bottom: 25%; left: 15%; }
-        .n4 { bottom: 20%; right: 15%; }
-        .n5 { top: 50%; right: 5%; }
-
-        .line {
-            position: absolute; height: 1px; background: linear-gradient(90deg, transparent, rgba(30,58,138,0.3), transparent);
-            transform-origin: left center; z-index: 1;
-        }
-        /* Static lines for stability */
-        .l1 { top: 35%; left: 25%; width: 150px; transform: rotate(-25deg); }
-        .l2 { top: 32%; right: 30%; width: 140px; transform: rotate(20deg); bottom: auto; left: auto; transform-origin: right center;}
-        .l3 { top: 55%; left: 20%; width: 160px; transform: rotate(25deg); }
-        .l4 { top: 60%; right: 20%; width: 150px; transform: rotate(-15deg); left: auto; transform-origin: right center;}
-
-        .label {
+        /* Floating Labels over the canvas */
+        .sys-label {
             position: absolute; font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem;
-            color: var(--blue); background: #fff; padding: 4px 8px; border: 1px solid rgba(30,58,138,0.15);
-            font-weight: 600; letter-spacing: 1px; z-index: 6;
+            color: var(--blue); background: rgba(255,255,255,0.9); padding: 6px 12px; 
+            border: 1px solid rgba(30,58,138,0.2);
+            font-weight: 600; letter-spacing: 1px; z-index: 10;
+            box-shadow: 0 4px 12px rgba(10,22,40,0.05);
         }
-        .lbl-1 { top: 14%; left: 18%; }
-        .lbl-2 { top: 9%; right: 22%; }
-        .lbl-3 { bottom: 18%; left: 12%; }
-        .lbl-4 { bottom: 14%; right: 12%; }
+        .lbl-1 { top: 20%; left: 15%; }
+        .lbl-2 { top: 15%; right: 20%; }
+        .lbl-3 { bottom: 25%; left: 20%; }
+        .lbl-4 { bottom: 20%; right: 15%; }
 
 
         /* --- RESPONSIVE --- */
         @media (max-width: 1024px) {
             header { padding: 20px 30px; }
-            .nav { display: none; } /* Mobile Menu Placeholder */
-            .hero-wrapper { grid-template-columns: 1fr; margin-top: 60px; padding: 40px 30px; gap: 60px; }
+            .nav { display: none; } 
+            .hero-wrapper { grid-template-columns: 1fr; margin-top: 60px; padding: 60px 30px; gap: 60px; }
             .hero-text { padding-right: 0; text-align: center; }
             .badge { justify-content: center; }
             .sub { margin: 0 auto 40px; }
             .btn-group { justify-content: center; }
-            .hero-visual { height: 400px; border-left: none; }
+            .hero-visual { height: 450px; }
         }
     </style>
 </head>
@@ -235,33 +211,111 @@
 
             <div class="btn-group">
                 <a href="/contact" class="btn-primary">Initiate Inquiry</a>
-                <a href="/projects" class="btn-outline">View Protocols</a>
+                <a href="/projects" class="btn-outline">Review Protocols</a>
             </div>
         </div>
 
         <div class="hero-visual">
-            <div class="system-network">
-                <div class="central-node"></div>
-                
-                <div class="node n1"></div>
-                <div class="node n2"></div>
-                <div class="node n3"></div>
-                <div class="node n4"></div>
-                <div class="node n5"></div>
-
-                <div class="label lbl-1">ACCOUNTABILITY</div>
-                <div class="label lbl-2">TRUST</div>
-                <div class="label lbl-3">LEGITIMACY</div>
-                <div class="label lbl-4">CONTROL</div>
-
-                <div class="line l1"></div>
-                <div class="line l2"></div>
-                <div class="line l3"></div>
-                <div class="line l4"></div>
-            </div>
+            <canvas id="system-canvas"></canvas>
+            
+            <div class="sys-label lbl-1">ACCOUNTABILITY PROTOCOLS</div>
+            <div class="sys-label lbl-2">TRUST VECTORS</div>
+            <div class="sys-label lbl-3">LEGITIMACY LAYER</div>
+            <div class="sys-label lbl-4">RISK CONTROL</div>
         </div>
 
     </div>
 
+    <script>
+        // --- DYNAMIC PARTICLE SYSTEM (Vanilla JS) ---
+        // Creates a dense, slow-moving network representing complex systems.
+        const canvas = document.getElementById('system-canvas');
+        const ctx = canvas.getContext('2d');
+        let width, height;
+        let particles = [];
+        const particleCount = 45; // Increased density for "weight"
+        const connectionDistance = 160;
+
+        function resize() {
+            width = canvas.width = canvas.parentElement.offsetWidth;
+            height = canvas.height = canvas.parentElement.offsetHeight;
+        }
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                // Slow, deliberate movement
+                this.vx = (Math.random() - 0.5) * 0.2; 
+                this.vy = (Math.random() - 0.5) * 0.2;
+                this.size = Math.random() * 3 + 2;
+            }
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                // Bounce off edges
+                if (this.x < 0 || this.x > width) this.vx *= -1;
+                if (this.y < 0 || this.y > height) this.vy *= -1;
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = '#ffffff'; // White center
+                ctx.fill();
+                ctx.lineWidth = 2;
+                ctx.strokeStyle = '#1e3a8a'; // Strong blue border
+                ctx.stroke();
+            }
+        }
+
+        function init() {
+            particles = [];
+            for (let i = 0; i < particleCount; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, width, height);
+            
+            // 1. Draw Connections (Lines)
+            ctx.lineWidth = 1;
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i + 1; j < particles.length; j++) {
+                    let dx = particles[i].x - particles[j].x;
+                    let dy = particles[i].y - particles[j].y;
+                    let dist = Math.sqrt(dx * dx + dy * dy);
+
+                    if (dist < connectionDistance) {
+                        // Opacity based on distance for depth effect
+                        let opacity = 1 - (dist / connectionDistance);
+                        // Deep Navy/Blue lines
+                        ctx.strokeStyle = `rgba(30, 58, 138, ${opacity * 0.4})`; 
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+
+            // 2. Update and Draw Particles (Nodes)
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+
+            requestAnimationFrame(animate);
+        }
+
+        window.addEventListener('resize', () => {
+            resize();
+            init(); // Re-initialize on resize to prevent stretching
+        });
+        
+        resize();
+        init();
+        animate();
+    </script>
 </body>
 </html>
