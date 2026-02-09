@@ -1,7 +1,6 @@
 # -----------------------------------------------------------------------------
 # SITE CONFIGURATION - HADI NOORI (Thought Leadership Strategy)
 # -----------------------------------------------------------------------------
-
 # Site Settings
 title: "Hadi Noori"
 first_name: "Hadi"
@@ -13,12 +12,10 @@ baseurl: ""
 
 # Profile Information
 email: "info@hadinoori.ca"
-# Removing generic descriptions to focus on "Weight" and Authority
 
 # -----------------------------------------------------------------------------
 # APPEARANCE & TYPOGRAPHY (Editorial Style)
 # -----------------------------------------------------------------------------
-
 # Google Fonts - Added 'Lora' for academic prestige and 'Inter' for clarity
 google_fonts: "family=Inter:wght@300;400;600;800&family=Lora:ital,wght@0,400;0,700;1,400&display=swap"
 
@@ -36,7 +33,6 @@ external_links: true
 # -----------------------------------------------------------------------------
 # SOCIAL & TRUST SIGNALS
 # -----------------------------------------------------------------------------
-
 # Only professional icons to maintain authority
 social:
   linkedin: "hadinoori" # Focus on professional presence
@@ -46,18 +42,17 @@ social:
 # -----------------------------------------------------------------------------
 # BUILD SETTINGS
 # -----------------------------------------------------------------------------
-
 markdown: kramdown
 highlighter: rouge
 permalink: /:title/
 
-# Pagination for Insights
-pagination:
-  enabled: true
-  per_page: 5
-  permalink: '/page/:num/'
+# Pagination for jekyll-paginate (simple pagination)
+paginate: 5
+paginate_path: "/page/:num/"
 
-# Exclusion list
+# -----------------------------------------------------------------------------
+# EXCLUSIONS
+# -----------------------------------------------------------------------------
 exclude:
   - Gemfile
   - Gemfile.lock
@@ -66,11 +61,12 @@ exclude:
   - vendor/cache/
   - vendor/gems/
   - vendor/ruby/
+  - admin/
+  - README.md
 
 # -----------------------------------------------------------------------------
 # PLUGINS
 # -----------------------------------------------------------------------------
-
 plugins:
   - jekyll-feed
   - jekyll-sitemap
