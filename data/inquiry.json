@@ -1,19 +1,25 @@
 {
   "email": {
-    "user": "noori.hadi",       
-    "domain": "hotmail.com",      
-    "desc": "For inquiries regarding strategic consulting, governance audits, or academic collaboration."
+    "user": "noori.hadi",
+    "domain": "hotmail.com",
+    "desc": "Primary channel for strategic consultation, algorithmic auditing, and institutional governance architecture. Unsolicited commercial proposals will be filtered."
   },
   "availability": {
     "year": "2026",
-    "status": "Q3/Q4 OPEN",
-    "message": "Currently accepting limited advisory roles. Priority is given to public sector projects and institutional governance frameworks."
+    "status": "CAPACITY: RESTRICTED",
+    "message": "Operational bandwidth is currently allocated to public sector frameworks. New advisory retainers for Q3/Q4 are evaluated on a strict case-by-case basis, with priority given to critical infrastructure."
   },
   "socials": [
-    { "name": "LinkedIn", "url": "https://www.linkedin.com/in/hadinoori" },
-    { "name": "GitHub", "url": "https://github.com/hadinoori" }
+    { 
+      "name": "LinkedIn / Profile", 
+      "url": "https://www.linkedin.com/in/hadinoori" 
+    },
+    { 
+      "name": "GitHub / Repos", 
+      "url": "https://github.com/hadinoori" 
+    }
   ],
   "security": {
-    "fingerprint": "8F3D 2A1B 9C4E 5F6G 7H8I 9J0K L1M2 N3O4"
+    "fingerprint": "8F3D 2A1B 9C4E 5F60 7182 9304 B1C2 D3E4 F506"
   }
 }
