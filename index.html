@@ -131,13 +131,24 @@
         }
         .btn-outline:hover { background: var(--navy); color: #fff; }
 
-        .hero-visual { position: relative; height: 500px; width: 100%; }
-        #system-canvas { width: 100%; height: 100%; }
+        /* Dynamic Graph Container */
+        .hero-visual {
+            position: relative;
+            height: 600px;
+            width: 100%;
+            display: flex; justify-content: center; align-items: center;
+        }
+
+        #system-canvas {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;
+        }
+
+        /* Floating Labels */
         .sys-label {
             position: absolute; font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem;
             color: var(--blue); background: rgba(255,255,255,0.9); padding: 6px 12px; 
             border: 1px solid rgba(30,58,138,0.2); font-weight: 600; letter-spacing: 1px;
-            box-shadow: 0 4px 12px rgba(10,22,40,0.05);
+            box-shadow: 0 4px 12px rgba(10,22,40,0.05); z-index: 10;
         }
         .lbl-1 { top: 20%; left: 15%; }
         .lbl-2 { top: 15%; right: 20%; }
@@ -203,7 +214,6 @@
             border-color: var(--blue);
             box-shadow: 0 20px 40px rgba(10,22,40,0.03);
         }
-        /* Top Accent Line */
         .focus-card::before {
             content: ''; position: absolute; top: 0; left: 0; width: 0; 
             height: 3px; background: var(--blue); transition: width 0.3s ease;
@@ -223,7 +233,7 @@
             font-size: 0.95rem; line-height: 1.6; color: var(--slate);
         }
 
-        /* --- FOOTER --- */
+        /* --- FOOTER (Cleaned) --- */
         footer {
             background: #fff;
             border-top: 1px solid var(--border);
@@ -231,7 +241,7 @@
         }
         .footer-content {
             max-width: 1440px; margin: 0 auto;
-            display: grid; grid-template-columns: 1fr 1fr; gap: 40px;
+            display: flex; justify-content: space-between; align-items: flex-start;
             margin-bottom: 60px;
         }
         
@@ -241,17 +251,20 @@
         }
         .footer-status {
             font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; color: var(--slate);
+            line-height: 1.8;
         }
         .status-dot { color: var(--cyan); margin-left: 5px; animation: blink 2s infinite; }
         
         .footer-links {
-            display: flex; gap: 40px; justify-content: flex-end;
+            display: flex; gap: 40px;
         }
         .footer-links a {
             font-family: 'IBM Plex Mono', monospace; font-size: 0.75rem; 
             font-weight: 600; text-transform: uppercase; color: var(--navy); 
             text-decoration: none; letter-spacing: 1px;
+            border-bottom: 1px solid transparent; transition: border-color 0.3s;
         }
+        .footer-links a:hover { border-color: var(--blue); }
 
         .footer-bottom {
             max-width: 1440px; margin: 0 auto;
@@ -266,22 +279,22 @@
         @media (max-width: 1024px) {
             header { padding: 20px 30px; }
             .nav { display: none; }
-            .hero-wrapper { grid-template-columns: 1fr; padding: 60px 30px; }
+            .hero-wrapper { grid-template-columns: 1fr; padding: 60px 30px; gap: 50px; }
             .hero-text { padding-right: 0; text-align: center; }
-            .hero-visual { height: 400px; margin-top: 40px; }
+            .hero-visual { height: 400px; margin-top: 20px; }
             .badge, .btn-group { justify-content: center; }
             .sub { margin: 0 auto 40px; }
             
             .insights-section { padding: 60px 30px; }
             .insights-grid { grid-template-columns: 1fr; gap: 40px; }
-            .insights-grid::after { display: none; } /* Remove vertical line */
+            .insights-grid::after { display: none; }
             
             .focus-section { padding: 60px 30px; }
             .focus-grid { grid-template-columns: 1fr; gap: 30px; }
             
             footer { padding: 60px 30px 30px; }
-            .footer-content { grid-template-columns: 1fr; gap: 40px; }
-            .footer-links { justify-content: flex-start; flex-direction: column; gap: 15px; }
+            .footer-content { flex-direction: column; gap: 40px; }
+            .footer-links { flex-direction: column; gap: 15px; }
             .footer-bottom { flex-direction: column; gap: 15px; }
         }
     </style>
@@ -316,6 +329,7 @@
                 <a href="/projects" class="btn-outline">Review Protocols</a>
             </div>
         </div>
+        
         <div class="hero-visual">
             <canvas id="system-canvas"></canvas>
             <div class="sys-label lbl-1">ACCOUNTABILITY PROTOCOLS</div>
@@ -371,21 +385,22 @@
 
     <footer>
         <div class="footer-content">
+            
             <div class="footer-brand">
                 <h4>Hadi Noori</h4>
                 <div class="footer-status">
                     SYSTEM STATUS: ONLINE <span class="status-dot">●</span><br>
                     SECTOR: GLOBAL<br>
-                    VERSION: 4.2
+                    LAST UPDATE: 2026.02
                 </div>
             </div>
+
             <div class="footer-links">
-                <a href="/insights">Insights</a>
-                <a href="/projects">Projects</a>
-                <a href="/dossier">Dossier</a>
-                <a href="https://linkedin.com/in/hadinoori">LinkedIn</a>
+                <a href="https://linkedin.com/in/hadinoori" target="_blank">LinkedIn</a>
+                <a href="mailto:info@hadinoori.com">Email Interface</a>
             </div>
         </div>
+
         <div class="footer-bottom">
             <span>© 2026 Hadi Noori. All rights reserved.</span>
             <span>Strategic AI Governance Architecture</span>
