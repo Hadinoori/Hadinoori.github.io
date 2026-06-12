@@ -222,7 +222,7 @@
             </div>
             <div class="footer-links">
                 <a href="https://linkedin.com/in/hadinoori" target="_blank">LinkedIn</a>
-                <a href="/cdn-cgi/l/email-protection#cea7a0a8a18ea6afaaa7a0a1a1bca7e0ada1a3">Email Interface</a>
+                <a href="/contact">Email Interface</a>
             </div>
         </div>
         <div class="footer-bottom">
@@ -231,11 +231,29 @@
         </div>
     </footer>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    <script>
         const CONFIG = {
-            repo: 'hadinoori/hadinoori.github.io', 
+            repo: 'hadinoori/hadinoori.github.io',
             folder: '_insights'
         };
+
+        function escapeHTML(value) {
+            return String(value ?? '')
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;');
+        }
+
+        function isSafeURL(url) {
+            try {
+                const parsed = new URL(url, window.location.origin);
+                return parsed.protocol === 'http:' || parsed.protocol === 'https:' || parsed.origin === window.location.origin;
+            } catch (e) {
+                return false;
+            }
+        }
 
         // Front Matter Parser
         function parseFrontMatter(text) {
@@ -245,77 +263,117 @@
 
             for (const line of lines) {
                 const trimmed = line.trim();
+
                 if (trimmed === '---') {
-                    if (!inFrontMatter) inFrontMatter = true;
-                    else break; 
+                    if (!inFrontMatter) {
+                        inFrontMatter = true;
+                    } else {
+                        break;
+                    }
                     continue;
                 }
+
                 if (inFrontMatter) {
                     const colonIndex = trimmed.indexOf(':');
                     if (colonIndex !== -1) {
                         const key = trimmed.slice(0, colonIndex).trim();
                         let value = trimmed.slice(colonIndex + 1).trim();
-                        if (value.startsWith('"') && value.endsWith('"')) value = value.slice(1, -1);
+
+                        if ((value.startsWith('"') && value.endsWith('"')) ||
+                            (value.startsWith("'") && value.endsWith("'"))) {
+                            value = value.slice(1, -1);
+                        }
+
                         metadata[key] = value;
                     }
                 }
             }
+
             return metadata;
+        }
+
+        function renderPost(post, index) {
+            const date = escapeHTML(post.date || '2026.01.01');
+            const title = escapeHTML(post.title || 'Restricted File');
+            const desc = escapeHTML(post.description || 'Access limited to authorized personnel.');
+            const delay = Math.min(index * 0.1, 0.8).toFixed(1);
+
+            let link = `insights/post.html?file=${encodeURIComponent(post.filename)}`;
+            let target = '';
+            let rel = '';
+
+            if (post.external_url && isSafeURL(post.external_url)) {
+                link = post.external_url;
+                target = ' target="_blank"';
+                rel = ' rel="noopener noreferrer"';
+            }
+
+            const safeLink = escapeHTML(link);
+
+            return `
+                <article class="entry" style="animation-delay: ${delay}s">
+                    <div class="entry-meta">
+                        <span class="entry-date">${date}</span>
+                    </div>
+                    <div class="entry-content">
+                        <h2 class="entry-title"><a href="${safeLink}"${target}${rel}>${title}</a></h2>
+                        <p class="entry-excerpt">${desc}</p>
+                        <a href="${safeLink}"${target}${rel} class="read-more">Read Dispatch →</a>
+                    </div>
+                </article>
+            `;
         }
 
         async function loadArchive() {
             const container = document.getElementById('feed');
-            
+
+            if (!container) return;
+
             try {
-                // 1. Fetch File List
-                const response = await fetch(`https://api.github.com/repos/${CONFIG.repo}/contents/${CONFIG.folder}`);
-                if (!response.ok) throw new Error('Repo Access Denied');
-                
-                const files = await response.json();
-                const mdFiles = files.filter(f => f.name.endsWith('.md')).reverse(); 
-
-                // 2. Fetch Content
-                const posts = await Promise.all(mdFiles.map(async file => {
-                    const res = await fetch(file.download_url);
-                    const text = await res.text();
-                    return { filename: file.name, ...parseFrontMatter(text) };
-                }));
-
-                // 3. Render
-                let html = '';
-                posts.forEach((post, index) => {
-                    const date = post.date || '2026.01.01';
-                    const title = post.title || 'Restricted File';
-                    const desc = post.description || 'Access limited to authorized personnel.';
-                    
-                    // FIXED: Link to post viewer with filename parameter
-                    let link = `insights/post.html?file=${post.filename}`;
-                    let target = '';
-                    
-                    // If external URL exists, use that instead
-                    if (post.external_url) {
-                        link = post.external_url;
-                        target = 'target="_blank"';
-                    }
-
-                    const delay = index * 0.1;
-
-                    html += `
-                        <article class="entry" style="animation-delay: ${delay}s">
-                            <div class="entry-meta">
-                                <span class="entry-date">${date}</span>
-                            </div>
-                            <div class="entry-content">
-                                <h2 class="entry-title"><a href="${link}" ${target}>${title}</a></h2>
-                                <p class="entry-excerpt">${desc}</p>
-                                <a href="${link}" ${target} class="read-more">Read Dispatch →</a>
-                            </div>
-                        </article>
-                    `;
+                const response = await fetch(`https://api.github.com/repos/${CONFIG.repo}/contents/${CONFIG.folder}`, {
+                    headers: { Accept: 'application/vnd.github+json' }
                 });
 
-                container.innerHTML = html || '<div class="loading">No records found.</div>';
+                if (!response.ok) {
+                    throw new Error(`Archive request failed: ${response.status}`);
+                }
 
+                const files = await response.json();
+
+                if (!Array.isArray(files)) {
+                    throw new Error('Unexpected archive response.');
+                }
+
+                const mdFiles = files
+                    .filter(file => file && file.type === 'file' && file.name && file.name.endsWith('.md'))
+                    .sort((a, b) => b.name.localeCompare(a.name));
+
+                if (mdFiles.length === 0) {
+                    container.innerHTML = '<div class="loading">No records found.</div>';
+                    return;
+                }
+
+                const posts = await Promise.all(mdFiles.map(async file => {
+                    const res = await fetch(file.download_url);
+                    if (!res.ok) {
+                        throw new Error(`Could not load ${file.name}`);
+                    }
+
+                    const text = await res.text();
+                    return {
+                        filename: file.name,
+                        ...parseFrontMatter(text)
+                    };
+                }));
+
+                container.innerHTML = posts.map(renderPost).join('');
             } catch (e) {
                 console.error(e);
-                container.innerH
+                container.innerHTML = '<div class="loading">Archive temporarily unavailable.</div>';
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', loadArchive);
+    </script>
+</body>
+</html>
