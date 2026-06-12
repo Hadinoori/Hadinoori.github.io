@@ -1,34 +1,34 @@
 [
   {
-    "title": "Algorithmic Bias Audit Framework",
-    "description": "A comprehensive auditing protocol designed for Tier-1 financial institutions to detect and mitigate bias in credit scoring algorithms, ensuring compliance with the EU AI Act.",
+    "title": "Fairness Audit Playbook",
+    "description": "A practical governance-oriented playbook for examining algorithmic fairness beyond aggregate bias checks, with attention to subgroup harm, intersectional patterns, and audit limitations.",
     "year": "2026",
-    "role": "Lead Architect",
-    "status": "DEPLOYED",
-    "url": "https://github.com/hadinoori/audit-protocol"
+    "role": "Author / Researcher",
+    "status": "PUBLISHED / ONGOING",
+    "url": ""
   },
   {
-    "title": "Sovereign AI Infrastructure",
-    "description": "Strategic advisory for a public sector entity on establishing sovereign data centers and localized LLM deployment to prevent data leakage.",
-    "year": "2025",
-    "role": "Strategic Advisor",
+    "title": "AI Governance Research Notes",
+    "description": "Conceptual and applied writing on algorithmic accountability, feedback loops, embedded evaluation, and the limits of static audits in high-impact AI systems.",
+    "year": "2026",
+    "role": "Researcher",
+    "status": "IN DEVELOPMENT",
+    "url": ""
+  },
+  {
+    "title": "Digital Transformation Failure Study",
+    "description": "Graduate research examining how socio-political dimensions are marginalized in explanations of digital transformation project failure, especially when failure is reduced to technical or managerial causes.",
+    "year": "2025–2026",
+    "role": "Graduate Researcher",
     "status": "IN PROGRESS",
     "url": ""
   },
   {
-    "title": "Automated Compliance Sentinel",
-    "description": "Development of a real-time monitoring agent that flags non-compliant generative AI outputs against internal corporate policy.",
-    "year": "2025",
-    "role": "Technical Lead",
-    "status": "BETA TESTING",
-    "url": "https://example.com/sentinel"
-  },
-  {
-    "title": "Deepfake Detection Grid",
-    "description": "Collaborative research project aimed at creating a decentralized verification layer for media authenticity in high-stakes environments.",
-    "year": "2024",
-    "role": "Research Fellow",
-    "status": "PUBLISHED",
-    "url": "https://arxiv.org/example"
+    "title": "Responsible AI Risk Review Framework",
+    "description": "A developing framework for connecting fairness assessment, accountability documentation, and organizational risk review before and after AI system deployment.",
+    "year": "2026",
+    "role": "Independent Researcher",
+    "status": "DRAFT",
+    "url": ""
   }
 ]
