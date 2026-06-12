@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, follow">
+    <title>Page Not Found | Hadi Noori</title>
+    <meta name="description" content="The requested page could not be found on Hadi Noori's website.">
+
+    <link rel="icon" type="image/png" href="/assets/img/sidebar-logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,500&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #ffffff;
+            --navy: #0a1628;
+            --blue: #1e3a8a;
+            --cyan: #0891b2;
+            --slate: #475569;
+            --muted: #64748b;
+            --grid: rgba(10, 22, 40, 0.06);
+            --border: rgba(10, 22, 40, 0.08);
+            --panel: rgba(255, 255, 255, 0.86);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            min-height: 100vh;
+            background: var(--bg);
+            color: var(--navy);
+            font-family: 'IBM Plex Sans', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .grid-bg {
+            position: fixed;
+            inset: 0;
+            background-image:
+                linear-gradient(var(--grid) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+            background-size: 60px 60px;
+            z-index: -1;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 60px;
+            border-bottom: 1px solid var(--border);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo { height: 32px; width: auto; }
+
+        .brand-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .brand-name {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--navy);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .brand-tag {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.6rem;
+            color: var(--slate);
+            text-transform: uppercase;
+        }
+
+        .nav {
+            display: flex;
+            gap: 40px;
+        }
+
+        .nav a {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--slate);
+            text-decoration: none;
+            transition: color 0.25s ease;
+        }
+
+        .nav a:hover,
+        .nav a:focus-visible {
+            color: var(--blue);
+            outline: none;
+        }
+
+        .cta {
+            padding: 10px 20px;
+            border: 1px solid var(--navy);
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--navy);
+            text-decoration: none;
+            transition: all 0.25s ease;
+        }
+
+        .cta:hover,
+        .cta:focus-visible {
+            background: var(--navy);
+            color: #ffffff;
+            outline: none;
+        }
+
+        main {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 150px 28px 80px;
+        }
+
+        .error-card {
+            width: min(880px, 100%);
+            padding: 58px;
+            border: 1px solid var(--border);
+            background: var(--panel);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 24px 60px rgba(10, 22, 40, 0.08);
+        }
+
+        .kicker {
+            display: inline-block;
+            margin-bottom: 22px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--cyan);
+        }
+
+        h1 {
+            max-width: 760px;
+            margin-bottom: 20px;
+            font-size: clamp(2.5rem, 7vw, 5.6rem);
+            line-height: 0.95;
+            letter-spacing: -0.05em;
+            color: var(--navy);
+        }
+
+        p {
+            max-width: 660px;
+            margin-bottom: 34px;
+            font-size: 1.08rem;
+            color: var(--slate);
+        }
+
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+        }
+
+        .button-primary,
+        .button-secondary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 46px;
+            padding: 12px 22px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: all 0.25s ease;
+        }
+
+        .button-primary {
+            background: var(--navy);
+            border: 1px solid var(--navy);
+            color: #ffffff;
+        }
+
+        .button-primary:hover,
+        .button-primary:focus-visible {
+            background: var(--blue);
+            border-color: var(--blue);
+            outline: none;
+        }
+
+        .button-secondary {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--navy);
+        }
+
+        .button-secondary:hover,
+        .button-secondary:focus-visible {
+            border-color: var(--navy);
+            outline: none;
+        }
+
+        footer {
+            padding: 26px 60px;
+            border-top: 1px solid var(--border);
+            color: var(--muted);
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        footer a {
+            color: var(--slate);
+            text-decoration: none;
+        }
+
+        footer a:hover,
+        footer a:focus-visible {
+            color: var(--blue);
+            outline: none;
+        }
+
+        @media (max-width: 760px) {
+            header {
+                padding: 18px 22px;
+                gap: 18px;
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .nav {
+                gap: 18px;
+                flex-wrap: wrap;
+            }
+
+            .cta {
+                display: none;
+            }
+
+            main {
+                padding-top: 190px;
+            }
+
+            .error-card {
+                padding: 34px 24px;
+            }
+
+            p {
+                font-size: 1rem;
+            }
+
+            footer {
+                padding: 24px 22px;
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="grid-bg" aria-hidden="true"></div>
+
+    <header>
+        <a href="/" class="brand" aria-label="Hadi Noori home">
+            <img src="/assets/img/sidebar-logo.png" alt="Hadi Noori logo" class="logo">
+            <div class="brand-info">
+                <span class="brand-name">Hadi Noori</span>
+                <span class="brand-tag">Strategic Governance</span>
+            </div>
+        </a>
+        <nav class="nav" aria-label="Main navigation">
+            <a href="/insights">Insights</a>
+            <a href="/projects">Projects</a>
+            <a href="/dossier">Dossier</a>
+        </nav>
+        <a href="/contact" class="cta">Inquiry</a>
+    </header>
+
+    <main>
+        <section class="error-card" aria-labelledby="error-title">
+            <span class="kicker">404 / Page Not Found</span>
+            <h1 id="error-title">This page is outside the archive.</h1>
+            <p>
+                The page may have been moved, renamed, or removed. Return to the main site or continue through the current sections on AI governance, accountability, and digital transformation.
+            </p>
+            <div class="actions">
+                <a class="button-primary" href="/">Return Home</a>
+                <a class="button-secondary" href="/insights">View Insights</a>
+                <a class="button-secondary" href="/projects">View Projects</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <span>© Hadi Noori</span>
+        <a href="/contact">Contact</a>
+    </footer>
+</body>
+</html>
