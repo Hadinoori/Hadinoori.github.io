@@ -1,0 +1,62 @@
+backend:
+  name: github
+  repo: Hadinoori/Hadinoori.github.io
+  branch: main
+
+site_url: "https://hadinoori.ca"
+display_url: "https://hadinoori.ca"
+logo_url: "/assets/img/sidebar-logo.png"
+
+media_folder: "assets/img"
+public_folder: "/assets/img"
+
+collections:
+  - name: "insights"
+    label: "Insights"
+    label_singular: "Insight"
+    description: "Articles and research notes displayed on the Insights page and, when selected, on the homepage."
+    folder: "_insights"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    extension: "md"
+    format: "frontmatter"
+    preview_path: "insights/post/?file={{filename}}"
+    fields:
+      - label: "Layout"
+        name: "layout"
+        widget: "hidden"
+        default: "post"
+
+      - label: "Title"
+        name: "title"
+        widget: "string"
+        required: true
+
+      - label: "Publish Date"
+        name: "date"
+        widget: "datetime"
+        required: true
+        format: "YYYY-MM-DDTHH:mm:ss"
+
+      - label: "Feature on Homepage"
+        name: "selected_insight"
+        widget: "boolean"
+        default: false
+        required: false
+
+      - label: "External URL"
+        name: "external_url"
+        widget: "string"
+        required: false
+        hint: "Use only when the insight should open an external article, PDF, or publication page. Leave empty for local posts."
+
+      - label: "Summary"
+        name: "description"
+        widget: "text"
+        required: true
+        hint: "Short summary used on the Insights page and homepage cards."
+
+      - label: "Body Content"
+        name: "body"
+        widget: "markdown"
+        required: false
